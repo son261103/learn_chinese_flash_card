@@ -50,7 +50,7 @@ export function TopControlBar({
     >
       {/* Left: Level badge + Lesson selector button */}
       <div className="flex items-center gap-2 min-w-0">
-        <span className="h-9 px-3 inline-flex items-center justify-center text-xs font-bold tracking-tight rounded-xl bg-[#1C1C1C] text-white shadow-xs shrink-0">
+        <span className="h-9 px-3 inline-flex items-center justify-center text-xs font-bold tracking-tight rounded-xl bg-[#24523B] text-white shadow-xs shrink-0">
           {currentLevelId.toUpperCase()}
         </span>
 
@@ -89,7 +89,7 @@ export function TopControlBar({
             onClick={onTogglePinyin}
             className={`h-9 px-3 rounded-xl border text-xs font-semibold transition-all cursor-pointer shadow-2xs ${
               showPinyin
-                ? "bg-[#1C1C1C] text-white border-[#1C1C1C]"
+                ? "bg-[#24523B] text-white border-[#24523B]"
                 : "bg-white text-slate-600 border-[#E5E3DF] hover:border-slate-400"
             }`}
             title="Bật / Tắt Pinyin"
@@ -105,7 +105,7 @@ export function TopControlBar({
             onClick={onToggleMeaning}
             className={`h-9 px-3 rounded-xl border text-xs font-semibold transition-all cursor-pointer shadow-2xs ${
               showMeaning
-                ? "bg-[#1C1C1C] text-white border-[#1C1C1C]"
+                ? "bg-[#24523B] text-white border-[#24523B]"
                 : "bg-white text-slate-600 border-[#E5E3DF] hover:border-slate-400"
             }`}
             title="Bật / Tắt Nghĩa tiếng Việt"
@@ -119,7 +119,7 @@ export function TopControlBar({
           <button
             type="button"
             onClick={onSpeak}
-            className="h-9 w-9 rounded-xl border border-[#E5E3DF] bg-white text-slate-700 hover:text-black hover:border-slate-400 transition-all flex items-center justify-center shadow-2xs cursor-pointer"
+            className="h-9 w-9 rounded-xl border border-[#E5E3DF] bg-white text-slate-700 hover:text-slate-900 hover:border-slate-400 transition-all flex items-center justify-center shadow-2xs cursor-pointer"
             title="Phát âm câu / từ này"
           >
             <Volume2 className="w-4 h-4" />
@@ -133,7 +133,7 @@ export function TopControlBar({
             onClick={onToggleShuffle}
             className={`h-9 w-9 rounded-xl border transition-all flex items-center justify-center cursor-pointer shadow-2xs ${
               isShuffle
-                ? "bg-[#1C1C1C] text-white border-[#1C1C1C]"
+                ? "bg-[#24523B] text-white border-[#24523B]"
                 : "bg-white text-slate-600 border-[#E5E3DF] hover:border-slate-400"
             }`}
             title="Trộn ngẫu nhiên [Phím S]"

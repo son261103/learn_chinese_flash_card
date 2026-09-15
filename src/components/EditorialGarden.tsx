@@ -65,7 +65,7 @@ export function EditorialGarden({
       <div className="h-14 px-4 sm:px-6 xl:px-8 border-b border-[#E5E3DF] flex items-center justify-between bg-[#FAF9F6] sticky top-0 z-10 shrink-0">
         {/* Left: Level badge + Title */}
         <div className="flex items-center gap-2.5 min-w-0">
-          <span className="h-9 px-3 inline-flex items-center justify-center text-xs font-bold tracking-tight rounded-xl bg-[#1C1C1C] text-white shadow-xs shrink-0">
+          <span className="h-9 px-3 inline-flex items-center justify-center text-xs font-bold tracking-tight rounded-xl bg-[#24523B] text-white shadow-xs shrink-0">
             {level.toUpperCase()}
           </span>
 
@@ -96,7 +96,7 @@ export function EditorialGarden({
                 }}
                 className={`h-full px-2.5 sm:px-3 text-xs font-bold rounded-lg transition-all cursor-pointer ${
                   level === lvlKey
-                    ? "bg-[#1C1C1C] text-white shadow-xs"
+                    ? "bg-[#24523B] text-white shadow-xs"
                     : "text-slate-600 hover:text-slate-900"
                 }`}
               >
@@ -114,7 +114,7 @@ export function EditorialGarden({
             }}
             className={`h-9 px-3 rounded-xl border text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs ${
               isHideMode
-                ? "bg-[#1C1C1C] text-white border-[#1C1C1C]"
+                ? "bg-[#24523B] text-white border-[#24523B]"
                 : "bg-white text-slate-700 border-[#E5E3DF] hover:border-slate-400"
             }`}
             title="Ẩn / Hiện nghĩa để tự kiểm tra trí nhớ"
@@ -142,7 +142,7 @@ export function EditorialGarden({
                 Đang hiển thị {displayedWords.length} / {filtered.length} từ
               </span>
               {isHideMode && (
-                <span className="text-xs text-amber-800 font-medium hidden md:inline">
+                <span className="text-xs text-[#24523B] font-medium hidden md:inline">
                   (Bấm vào biểu tượng mắt để mở nghĩa)
                 </span>
               )}
@@ -158,7 +158,7 @@ export function EditorialGarden({
                   setPage(60);
                 }}
                 placeholder="Tìm theo chữ Hán, pinyin, tiếng Việt..."
-                className="w-full pl-9 pr-3 py-2 text-xs bg-[#FAF9F6] border border-[#E5E3DF] rounded-xl focus:outline-hidden focus:border-[#1C1C1C]"
+                className="w-full pl-9 pr-3 py-2 text-xs bg-[#FAF9F6] border border-[#E5E3DF] rounded-xl focus:outline-none focus:border-[#24523B]"
               />
             </div>
           </div>
@@ -204,7 +204,7 @@ export function EditorialGarden({
                       </td>
                       <td className="py-2.5 px-4 text-xs">
                         <span
-                          className={`font-semibold text-amber-800 transition-all ${
+                          className={`font-semibold text-[#24523B] transition-all ${
                             !isRevealed ? "blur-sm select-none" : ""
                           }`}
                         >
@@ -247,7 +247,7 @@ export function EditorialGarden({
                           onClick={() => onToggleMastered(`${level}_${w.zh}`)}
                           className={`p-1 rounded border transition-all cursor-pointer ${
                             isWordMastered
-                              ? "bg-emerald-500 text-white border-emerald-500"
+                              ? "bg-[#24523B] text-white border-[#24523B]"
                               : "text-slate-300 hover:text-slate-600 border-transparent"
                           }`}
                         >

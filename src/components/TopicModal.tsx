@@ -41,9 +41,9 @@ export function TopicModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-[#1C1C1C]/40 backdrop-blur-xs select-none">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-[#24523B]/40 backdrop-blur-xs select-none">
       <div
-        className="bg-[#FAF9F6] border border-[#E5E3DF] rounded-3xl max-w-2xl w-full p-5 sm:p-6 md:p-7 shadow-2xl space-y-4 max-h-[85vh] flex flex-col text-[#1C1C1C]"
+        className="bg-[#FAF9F6] border border-[#E5E3DF] rounded-3xl max-w-2xl w-full p-5 sm:p-6 md:p-7 shadow-2xl space-y-4 max-h-[85vh] flex flex-col text-[#222B25]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -61,7 +61,7 @@ export function TopicModal({
           <button
             type="button"
             onClick={onClose}
-            className="p-2 text-slate-400 hover:text-black rounded-xl hover:bg-[#E5E3DF]/50 transition-colors cursor-pointer"
+            className="p-2 text-slate-400 hover:text-slate-900 rounded-xl hover:bg-[#E5E3DF]/50 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -75,7 +75,7 @@ export function TopicModal({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Tìm theo tên bài, chữ Hán, từ vựng..."
-            className="w-full pl-9 pr-4 py-2.5 bg-white border border-[#E5E3DF] rounded-xl text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:border-[#1C1C1C] focus:ring-1 focus:ring-[#1C1C1C]"
+            className="w-full pl-9 pr-4 py-2.5 bg-white border border-[#E5E3DF] rounded-xl text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#24523B] focus:ring-1 focus:ring-[#24523B]"
           />
         </div>
 
@@ -94,7 +94,7 @@ export function TopicModal({
                 }}
                 className={`w-full text-left p-3.5 rounded-2xl border transition-all flex items-center justify-between gap-3 cursor-pointer ${
                   isSelected
-                    ? "bg-[#1C1C1C] text-white border-[#1C1C1C] shadow-sm"
+                    ? "bg-[#24523B] text-white border-[#24523B] shadow-sm"
                     : "bg-white text-slate-800 border-[#E5E3DF] hover:border-slate-400 hover:bg-[#FAF9F6]"
                 }`}
               >
@@ -135,7 +135,7 @@ export function TopicModal({
                     {lesson.w?.length || 0} từ
                   </span>
 
-                  {isSelected && <Check className="w-4 h-4 text-emerald-400" />}
+                  {isSelected && <Check className="w-4 h-4 text-white" />}
                 </div>
               </button>
             );

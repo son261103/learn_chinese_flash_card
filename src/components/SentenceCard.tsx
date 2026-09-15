@@ -130,8 +130,8 @@ export function SentenceCard({
         type="button"
         onClick={() => handleSpeak()}
         disabled={isPlayingAudio}
-        className={`w-11 h-11 rounded-full border border-[#E5E3DF] bg-white text-slate-700 hover:bg-[#1C1C1C] hover:text-white hover:border-[#1C1C1C] transition-all flex items-center justify-center shadow-2xs mb-5 active:scale-95 cursor-pointer ${
-          isPlayingAudio ? "ring-2 ring-emerald-500 bg-emerald-50 text-emerald-700" : ""
+        className={`w-11 h-11 rounded-full border border-[#E5E3DF] bg-white text-slate-700 hover:bg-[#24523B] hover:text-white hover:border-[#24523B] transition-all flex items-center justify-center shadow-2xs mb-5 active:scale-95 cursor-pointer ${
+          isPlayingAudio ? "ring-2 ring-[#24523B] bg-[#FAF9F6] text-[#24523B]" : ""
         }`}
         title="Nghe phát âm (Audio)"
       >
@@ -176,11 +176,11 @@ export function SentenceCard({
                 title={isChinese ? `Nhấp để tra từ "${tok.char}"` : undefined}
                 className={`group/char relative inline-flex flex-col items-center justify-end rounded-2xl transition-all duration-150 px-1.5 py-1 ${
                   isChinese
-                    ? "cursor-pointer hover:bg-black/5 active:scale-95"
+                    ? "cursor-pointer hover:bg-slate-100 active:scale-95"
                     : "cursor-default"
                 } ${
                   isHighlighted
-                    ? "bg-amber-100/90 ring-2 ring-amber-400/80 shadow-xs z-10"
+                    ? "bg-[#24523B]/10 ring-2 ring-[#24523B]/60 shadow-xs z-10"
                     : ""
                 }`}
               >
@@ -189,7 +189,7 @@ export function SentenceCard({
                   <span
                     className={`text-xs sm:text-sm font-sans tracking-tight select-none transition-all pb-1 min-h-[1.25rem] flex items-center justify-center ${
                       isHighlighted
-                        ? "font-bold text-amber-900"
+                        ? "font-bold text-[#24523B]"
                         : "text-slate-400 font-medium group-hover/char:text-slate-900"
                     }`}
                   >
@@ -205,7 +205,7 @@ export function SentenceCard({
                 <span
                   id={`target-hanzi-${tok.id}`}
                   className={`hanzi ${hanziSizeClass} font-medium tracking-tight select-text transition-all leading-none ${
-                    isHighlighted ? "text-amber-950 font-semibold" : "text-slate-900"
+                    isHighlighted ? "text-[#222B25] font-semibold" : "text-slate-900"
                   }`}
                 >
                   {tok.char}
@@ -216,7 +216,7 @@ export function SentenceCard({
                   className={`w-1 h-1 rounded-full transition-opacity mt-1.5 ${
                     isChinese
                       ? isHighlighted
-                        ? "bg-amber-500 opacity-100"
+                        ? "bg-[#24523B] opacity-100"
                         : "bg-slate-300 opacity-0 group-hover/char:opacity-100"
                       : "opacity-0 pointer-events-none"
                   }`}
@@ -232,7 +232,7 @@ export function SentenceCard({
             className="opacity-0 group-hover:opacity-100 transition-opacity absolute -right-6 top-1/2 -translate-y-1/2 p-2 text-slate-400 hover:text-slate-700 rounded-lg hidden md:block cursor-pointer"
             title="Sao chép chữ Hán"
           >
-            {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+            {copied ? <Check className="w-4 h-4 text-[#24523B]" /> : <Copy className="w-4 h-4" />}
           </button>
         </div>
 
@@ -261,7 +261,7 @@ export function SentenceCard({
                 <span className="hanzi text-2xl font-bold text-slate-900 leading-none">
                   {lookupData.word}
                 </span>
-                <span className="text-sm font-sans font-semibold text-amber-700">
+                <span className="text-sm font-sans font-semibold text-[#24523B]">
                   {lookupData.pinyin}
                 </span>
                 <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 uppercase tracking-wider">

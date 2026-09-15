@@ -43,7 +43,7 @@ export default function RootLayout({
       lang="vi"
       className={`${plusJakarta.variable} ${newsreader.variable} ${notoSerifSC.variable} ${notoSansSC.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#FAF9F6] text-[#1C1C1C] selection:bg-[#1C1C1C] selection:text-white">
+      <body className="min-h-full flex flex-col bg-[#FAF9F6] text-[#222B25] selection:bg-[#24523B] selection:text-white">
         {children}
       </body>
     </html>

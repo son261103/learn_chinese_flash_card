@@ -82,7 +82,7 @@ export function EditorialFlashcards({
   const [shuffledIndices, setShuffledIndices] = useState<number[] | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
-  // iPhone Dynamic Island floating notification state
+  // Clean, modern floating pill toast notification state
   const [islandToast, setIslandToast] = useState<DynamicIslandToast | null>(null);
   const islandTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -182,7 +182,6 @@ export function EditorialFlashcards({
         speakChinese(words[nextIdx].zh, 0.9);
       }
     } else {
-      // Completed round
       setIsRoundFinished(true);
       const allMastered = words.every((w) => !!masteredCards[`${levelId}_${w.zh}`]);
       if (allMastered) {
@@ -235,7 +234,6 @@ export function EditorialFlashcards({
     if (!currentKey) return;
     onMarkCard(currentKey, remembered);
 
-    // Show iPhone Dynamic Island feedback
     if (islandTimerRef.current) {
       clearTimeout(islandTimerRef.current);
     }
@@ -243,15 +241,15 @@ export function EditorialFlashcards({
       playSuccessChime();
       const prevRec = cardMemory[currentKey];
       const repetitions = (prevRec?.repetitions || 0) + 1;
-      let text = "Nhắc lại sau 1 ngày";
-      if (repetitions === 2) text = "Nhắc lại sau 3 ngày";
-      else if (repetitions === 3) text = "Nhắc lại sau 7 ngày";
-      else if (repetitions === 4) text = "Nhắc lại sau 14 ngày";
-      else if (repetitions > 4) text = "Nhắc lại sau 1-3 tháng";
+      let text = "Đã nhớ · Nhắc lại sau 1 ngày";
+      if (repetitions === 2) text = "Đã nhớ · Nhắc lại sau 3 ngày";
+      else if (repetitions === 3) text = "Đã nhớ · Nhắc lại sau 7 ngày";
+      else if (repetitions === 4) text = "Đã nhớ · Nhắc lại sau 14 ngày";
+      else if (repetitions > 4) text = "Đã nhớ · Nhắc lại sau 1-3 tháng";
       setIslandToast({ type: "good", text });
     } else {
       playErrorBuzz();
-      setIslandToast({ type: "again", text: "Sẽ nhắc lại từ này sau 10 phút" });
+      setIslandToast({ type: "again", text: "Chưa nhớ · Sẽ nhắc lại sau 10 phút" });
     }
 
     islandTimerRef.current = setTimeout(() => {
@@ -332,19 +330,42 @@ export function EditorialFlashcards({
   }
 
   return (
-    <div className="flex-1 flex flex-col h-full w-full overflow-hidden select-none">
+    <div className="flex-1 flex flex-col h-full w-full overflow-hidden select-none relative">
+      {/* Clean, Elegant Floating Pill Notification - Unified 3-Color Palette */}
+      {islandToast && (
+        <div className="absolute top-3.5 left-1/2 -translate-x-1/2 z-[80] pointer-events-none select-none animate-island-drop">
+          <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-white/95 text-[#222B25] text-xs font-semibold rounded-full shadow-[0_8px_24px_rgba(0,0,0,0.08)] border border-[#E5E3DF] backdrop-blur-md">
+            <span
+              className={`w-2 h-2 rounded-full shrink-0 ${
+                islandToast.type === "good"
+                  ? "bg-[#24523B] shadow-[0_0_8px_rgba(36,82,59,0.5)]"
+                  : "bg-slate-400 shadow-[0_0_8px_rgba(100,116,139,0.5)]"
+              }`}
+            />
+            {islandToast.type === "good" ? (
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#24523B] shrink-0" />
+            ) : (
+              <RotateCcw className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+            )}
+            <span className="tracking-tight font-medium text-[#222B25]">
+              {islandToast.text}
+            </span>
+          </div>
+        </div>
+      )}
+
       {/* Top Bar Header */}
       <div className="h-14 px-4 sm:px-6 xl:px-8 border-b border-[#E5E3DF] flex items-center justify-between bg-[#FAF9F6] sticky top-0 z-10 shrink-0">
         {/* Left: Level + Lesson */}
         <div className="flex items-center gap-2 min-w-0">
-          <span className="h-9 px-3 inline-flex items-center justify-center text-xs font-bold tracking-tight rounded-xl bg-[#1C1C1C] text-white shadow-xs shrink-0">
+          <span className="h-9 px-3 inline-flex items-center justify-center text-xs font-bold tracking-tight rounded-xl bg-[#24523B] text-white shadow-xs shrink-0">
             {levelId.toUpperCase()}
           </span>
 
           <button
             type="button"
             onClick={onOpenTopicModal}
-            className="h-9 px-3.5 inline-flex items-center gap-2 text-xs sm:text-sm font-semibold rounded-xl border border-[#E5E3DF] bg-white text-slate-800 hover:border-slate-400 hover:bg-[#FAF9F6] transition-all shadow-2xs group cursor-pointer truncate focus:outline-hidden focus-visible:outline-hidden"
+            className="h-9 px-3.5 inline-flex items-center gap-2 text-xs sm:text-sm font-semibold rounded-xl border border-[#E5E3DF] bg-white text-slate-800 hover:border-slate-400 hover:bg-[#FAF9F6] transition-all shadow-2xs group cursor-pointer truncate outline-none focus:outline-none focus-visible:outline-none focus:ring-0"
             title="Đổi bài học"
           >
             <BookOpen className="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-800 shrink-0" />
@@ -362,9 +383,9 @@ export function EditorialFlashcards({
             <button
               type="button"
               onClick={() => handleResetRound("all")}
-              className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer focus:outline-hidden focus-visible:outline-hidden ${
+              className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
                 studyFilter === "all"
-                  ? "bg-[#1C1C1C] text-white shadow-xs"
+                  ? "bg-[#24523B] text-white shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
               }`}
               title="Học tất cả từ vựng trong bài"
@@ -376,10 +397,10 @@ export function EditorialFlashcards({
               <button
                 type="button"
                 onClick={() => handleResetRound("due")}
-                className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 focus:outline-hidden focus-visible:outline-hidden ${
+                className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
                   studyFilter === "due"
-                    ? "bg-rose-600 text-white shadow-xs"
-                    : "text-rose-700 hover:bg-rose-50"
+                    ? "bg-[#24523B] text-white shadow-xs"
+                    : "text-slate-600 hover:text-slate-900"
                 }`}
                 title="Chỉ ôn các từ đã đến lịch nhắc lại"
               >
@@ -392,10 +413,10 @@ export function EditorialFlashcards({
               <button
                 type="button"
                 onClick={() => handleResetRound("review")}
-                className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 focus:outline-hidden focus-visible:outline-hidden ${
+                className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
                   studyFilter === "review"
-                    ? "bg-amber-800 text-white shadow-xs"
-                    : "text-amber-800 hover:bg-amber-50"
+                    ? "bg-[#24523B] text-white shadow-xs"
+                    : "text-slate-600 hover:text-slate-900"
                 }`}
                 title="Chỉ ôn lại các từ chưa nhớ"
               >
@@ -409,9 +430,9 @@ export function EditorialFlashcards({
             <button
               type="button"
               onClick={() => setViewTab("card")}
-              className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer focus:outline-hidden focus-visible:outline-hidden ${
+              className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
                 viewTab === "card"
-                  ? "bg-[#1C1C1C] text-white shadow-xs"
+                  ? "bg-[#24523B] text-white shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -421,9 +442,9 @@ export function EditorialFlashcards({
             <button
               type="button"
               onClick={() => setViewTab("table")}
-              className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer focus:outline-hidden focus-visible:outline-hidden ${
+              className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
                 viewTab === "table"
-                  ? "bg-[#1C1C1C] text-white shadow-xs"
+                  ? "bg-[#24523B] text-white shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -436,10 +457,10 @@ export function EditorialFlashcards({
           <button
             type="button"
             onClick={handleToggleAutoPlay}
-            className={`h-9 px-2.5 sm:px-3 rounded-xl border text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs focus:outline-hidden focus-visible:outline-hidden ${
+            className={`h-9 px-2.5 sm:px-3 rounded-xl border text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
               isAutoPlay
-                ? "bg-[#1C1C1C] text-white border-[#1C1C1C]"
-                : "bg-white text-slate-500 border-[#E5E3DF] hover:border-slate-400"
+                ? "bg-[#24523B] text-white border-[#24523B]"
+                : "bg-white text-slate-600 border-[#E5E3DF] hover:border-slate-400"
             }`}
             title={isAutoPlay ? "Đang bật tự động đọc (Bấm để tắt)" : "Đang tắt tự động đọc (Bấm để bật)"}
           >
@@ -453,9 +474,9 @@ export function EditorialFlashcards({
           <button
             type="button"
             onClick={handleShuffleToggle}
-            className={`h-9 w-9 rounded-xl border transition-all flex items-center justify-center cursor-pointer shadow-2xs focus:outline-hidden focus-visible:outline-hidden ${
+            className={`h-9 w-9 rounded-xl border transition-all flex items-center justify-center cursor-pointer shadow-2xs outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
               isShuffled
-                ? "bg-[#1C1C1C] text-white border-[#1C1C1C]"
+                ? "bg-[#24523B] text-white border-[#24523B]"
                 : "bg-white text-slate-600 border-[#E5E3DF] hover:border-slate-400"
             }`}
             title="Trộn ngẫu nhiên thẻ [Phím S]"
@@ -465,76 +486,28 @@ export function EditorialFlashcards({
         </div>
       </div>
 
-      {/* VIEW 1: Spaced Repetition 3D Flashcard Stage */}
+      {/* VIEW 1: Spaced Repetition 3D Flashcard Stage (ZERO BANNERS ON CARD) */}
       {viewTab === "card" ? (
         <div className="flex-1 overflow-hidden flex flex-col items-center justify-center px-4 sm:px-6 xl:px-8 py-2 relative">
-          {/* iPhone Dynamic Island Floating Pill Notification */}
-          {islandToast && (
-            <div className="absolute top-3 left-1/2 -translate-x-1/2 z-40 pointer-events-none transition-all duration-300">
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#1C1C1C] text-white text-xs font-semibold rounded-full shadow-[0_12px_32px_rgba(0,0,0,0.35)] border border-white/20 backdrop-blur-xl animate-island-in">
-                <span
-                  className={`w-2 h-2 rounded-full shrink-0 ${
-                    islandToast.type === "good"
-                      ? "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"
-                      : "bg-rose-400 shadow-[0_0_8px_rgba(251,113,133,0.8)]"
-                  }`}
-                />
-                {islandToast.type === "good" ? (
-                  <CalendarClock className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                ) : (
-                  <RotateCcw className="w-3.5 h-3.5 text-rose-400 shrink-0" />
-                )}
-                <span className="tracking-wide">{islandToast.text}</span>
-              </div>
-            </div>
-          )}
-
           {!isRoundFinished ? (
             <div className="w-full max-w-lg sm:max-w-xl flex flex-col items-center justify-center space-y-4 my-auto">
               {/* Top Indicator & Progress Line */}
               <div className="w-full space-y-1.5">
                 <div className="flex items-center justify-between text-xs text-slate-500 px-1">
-                  <span className="font-mono font-bold text-slate-800">
+                  <span className="font-mono font-bold text-slate-700">
                     Thẻ {currentIdx + 1} / {words.length}
                   </span>
-                  <div className="flex items-center gap-2">
-                    {studyFilter === "review" && (
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold">
-                        Chế độ nhắc lại
-                      </span>
-                    )}
-                    {studyFilter === "due" && (
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-rose-100 text-rose-900 font-bold">
-                        Ôn từ đến hạn
-                      </span>
-                    )}
-                    <span className="text-emerald-700 font-medium">
-                      Đã thuộc: <strong>{masteredCount}</strong>/{rawWords.length}
-                    </span>
-                  </div>
                 </div>
 
                 {/* Smooth Progress Bar */}
                 <div className="h-1.5 bg-[#E5E3DF] w-full rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-[#1C1C1C] rounded-full transition-all duration-300"
+                    className="h-full bg-[#24523B] rounded-full transition-all duration-300"
                     style={{
                       width: `${((currentIdx + 1) / words.length) * 100}%`,
                     }}
                   />
                 </div>
-
-                {/* Daily Review Banner for current lesson */}
-                {dueCountInLesson > 0 && studyFilter !== "due" && (
-                  <button
-                    type="button"
-                    onClick={() => handleResetRound("due")}
-                    className="w-full py-1.5 px-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer hover:bg-rose-100 transition-colors focus:outline-hidden focus-visible:outline-hidden"
-                  >
-                    <BellRing className="w-3.5 h-3.5" />
-                    <span>Bài này có {dueCountInLesson} từ đến hạn ôn lại hôm nay. Bấm để ôn ngay!</span>
-                  </button>
-                )}
               </div>
 
               {/* 3D Flip Card Container */}
@@ -555,10 +528,10 @@ export function EditorialFlashcards({
                         e.stopPropagation();
                         handleRateCard(!isMastered);
                       }}
-                      className={`absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-xl border transition-all cursor-pointer focus:outline-hidden focus-visible:outline-hidden ${
+                      className={`absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-xl border transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
                         isMastered
-                          ? "bg-emerald-500 text-white border-emerald-500 shadow-2xs"
-                          : "text-slate-300 hover:text-emerald-600 border-[#E5E3DF] hover:bg-emerald-50"
+                          ? "bg-[#24523B] text-white border-[#24523B] shadow-2xs"
+                          : "text-slate-300 hover:text-[#24523B] border-[#E5E3DF] hover:bg-[#FAF9F6]"
                       }`}
                       title={isMastered ? "Đã thuộc" : "Đánh dấu đã thuộc [Phím 2]"}
                     >
@@ -567,7 +540,7 @@ export function EditorialFlashcards({
 
                     {/* Character Calligraphy */}
                     <div className="space-y-3">
-                      <div className="hanzi text-6xl sm:text-7xl md:text-8xl font-normal text-[#1C1C1C] tracking-wide">
+                      <div className="hanzi text-6xl sm:text-7xl md:text-8xl font-normal text-slate-900 tracking-wide">
                         {currentWord?.zh}
                       </div>
 
@@ -575,7 +548,7 @@ export function EditorialFlashcards({
                         <button
                           type="button"
                           onClick={(e) => handleSpeak(currentWord.zh, e)}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FAF9F6] text-slate-700 hover:bg-[#1C1C1C] hover:text-white border border-[#E5E3DF] text-xs font-semibold transition-all cursor-pointer shadow-2xs focus:outline-hidden focus-visible:outline-hidden"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FAF9F6] text-slate-700 hover:bg-[#24523B] hover:text-white border border-[#E5E3DF] text-xs font-semibold transition-all cursor-pointer shadow-2xs outline-none focus:outline-none focus-visible:outline-none focus:ring-0"
                         >
                           <Volume2 className="w-3.5 h-3.5" />
                           <span>Phát âm</span>
@@ -585,16 +558,16 @@ export function EditorialFlashcards({
                   </div>
 
                   {/* BACK FACE */}
-                  <div className="absolute inset-0 backface-hidden rotate-y-180 w-full h-full bg-[#1C1C1C] text-white rounded-3xl p-5 sm:p-6 border border-[#1C1C1C] shadow-2xl overflow-hidden flex flex-col items-center justify-center text-center">
+                  <div className="absolute inset-0 backface-hidden rotate-y-180 w-full h-full bg-[#24523B] text-white rounded-3xl p-5 sm:p-6 border border-[#24523B] shadow-xl overflow-hidden flex flex-col items-center justify-center text-center">
                     <button
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleRateCard(!isMastered);
                       }}
-                      className={`absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-xl border transition-all cursor-pointer focus:outline-hidden focus-visible:outline-hidden ${
+                      className={`absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-xl border transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
                         isMastered
-                          ? "bg-emerald-500 text-white border-emerald-500"
+                          ? "bg-white/25 text-white border-white/30"
                           : "text-white/40 hover:text-white border-white/20 hover:bg-white/10"
                       }`}
                       title={isMastered ? "Đã thuộc" : "Đánh dấu đã thuộc [Phím 2]"}
@@ -607,12 +580,12 @@ export function EditorialFlashcards({
                         {currentWord?.zh}
                       </div>
 
-                      <div className="text-xl sm:text-2xl font-bold text-amber-300 tracking-wider">
+                      <div className="text-xl sm:text-2xl font-bold text-[#D1E7DD] tracking-wider">
                         {currentWord?.py}
                       </div>
 
                       {currentWord?.hv && (
-                        <div className="text-xs text-slate-400 italic">
+                        <div className="text-xs text-slate-300 italic">
                           Hán Việt: {currentWord.hv}
                         </div>
                       )}
@@ -629,7 +602,7 @@ export function EditorialFlashcards({
                         )}
                         {cardMemory[currentKey]?.nextReview && (
                           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/10 border border-white/15 text-[10px] text-slate-300">
-                            <CalendarClock className="w-3 h-3 text-amber-300" />
+                            <CalendarClock className="w-3 h-3 text-[#D1E7DD]" />
                             <span>{formatNextReview(cardMemory[currentKey])}</span>
                           </span>
                         )}
@@ -639,49 +612,49 @@ export function EditorialFlashcards({
                 </div>
               </div>
 
-              {/* Action Buttons with Spaced Repetition Rating */}
+              {/* Action Buttons with Spaced Repetition Rating - Unified 3-Color Palette */}
               <div className="flex items-center justify-between gap-2.5 w-full pt-1">
                 {/* Previous */}
                 <button
                   type="button"
                   onClick={handlePrev}
                   disabled={currentIdx === 0}
-                  className="h-11 px-3 rounded-2xl bg-white border border-[#E5E3DF] text-slate-600 hover:border-slate-400 flex items-center justify-center shadow-2xs transition-all disabled:opacity-30 disabled:pointer-events-none cursor-pointer focus:outline-hidden focus-visible:outline-hidden select-none"
+                  className="h-11 px-3.5 rounded-2xl bg-white border border-[#E5E3DF] text-[#222B25] hover:border-[#24523B] flex items-center justify-center shadow-2xs transition-all disabled:opacity-30 disabled:pointer-events-none cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 active:outline-none select-none"
                   title="Thẻ trước [Phím ←]"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
 
-                {/* Chưa nhớ (Again) */}
+                {/* Chưa nhớ (Again) - Clean White Card with Subtle Border */}
                 <button
                   type="button"
                   onClick={() => handleRateCard(false)}
-                  className="flex-1 h-11 px-3 rounded-2xl border border-rose-200 bg-rose-50/70 hover:bg-rose-100 text-rose-800 font-bold text-xs shadow-2xs transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 focus:outline-hidden focus-visible:outline-hidden select-none"
+                  className="flex-1 h-11 px-3.5 rounded-2xl bg-white border border-[#E5E3DF] hover:border-[#24523B] hover:bg-[#FAF9F6] text-[#222B25] font-semibold text-xs shadow-2xs transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 active:outline-none select-none"
                   title="Nhắc lại từ này sau 10 phút [Phím 1]"
                 >
-                  <XCircle className="w-4 h-4 text-rose-600" />
+                  <XCircle className="w-4 h-4 text-slate-400" />
                   <span>Chưa nhớ [1]</span>
                 </button>
 
-                {/* Flip Space */}
+                {/* Flip Space - Primary Action in Deep Jade Green */}
                 <button
                   type="button"
                   onClick={() => setIsFlipped(!isFlipped)}
-                  className="h-11 px-4 rounded-2xl bg-white border border-[#E5E3DF] text-slate-800 font-bold text-xs shadow-2xs flex items-center gap-1.5 transition-all hover:bg-[#FAF9F6] cursor-pointer focus:outline-hidden focus-visible:outline-hidden select-none"
+                  className="px-6 h-11 rounded-2xl bg-[#24523B] hover:bg-[#2D6448] text-white font-bold text-xs shadow-xs flex items-center gap-2 transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 active:outline-none select-none"
                   title="Lật thẻ [Phím Space]"
                 >
-                  <RotateCw className="w-3.5 h-3.5 text-slate-500" />
-                  <span className="hidden sm:inline">Lật</span>
+                  <RotateCw className="w-3.5 h-3.5 text-white/80" />
+                  <span>Lật thẻ [Space]</span>
                 </button>
 
-                {/* Đã nhớ (Good) */}
+                {/* Đã nhớ (Good) - Clean White Card with Deep Jade Accent */}
                 <button
                   type="button"
                   onClick={() => handleRateCard(true)}
-                  className="flex-1 h-11 px-3 rounded-2xl border border-emerald-200 bg-emerald-50/80 hover:bg-emerald-100 text-emerald-800 font-bold text-xs shadow-2xs transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 focus:outline-hidden focus-visible:outline-hidden select-none"
+                  className="flex-1 h-11 px-3.5 rounded-2xl bg-white border border-[#24523B] text-[#24523B] hover:bg-[#24523B] hover:text-white font-bold text-xs shadow-2xs transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 active:outline-none select-none"
                   title="Đã thuộc, tự động nhắc lại sau vài ngày [Phím 2]"
                 >
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <CheckCircle2 className="w-4 h-4" />
                   <span>Đã nhớ [2]</span>
                 </button>
 
@@ -689,30 +662,21 @@ export function EditorialFlashcards({
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="h-11 px-3 rounded-2xl bg-white border border-[#E5E3DF] text-slate-600 hover:border-slate-400 flex items-center justify-center shadow-2xs transition-all cursor-pointer focus:outline-hidden focus-visible:outline-hidden select-none"
+                  className="h-11 px-3.5 rounded-2xl bg-white border border-[#E5E3DF] text-[#222B25] hover:border-[#24523B] flex items-center justify-center shadow-2xs transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 active:outline-none select-none"
                   title="Bỏ qua / Thẻ sau [Phím →]"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
-
-              {/* Keyboard Shortcuts Helper */}
-              <div className="text-center text-[11px] text-slate-400">
-                Phím tắt: <kbd className="px-1.5 py-0.5 bg-white border border-[#E5E3DF] rounded font-mono">1</kbd> Chưa nhớ ·{" "}
-                <kbd className="px-1.5 py-0.5 bg-white border border-[#E5E3DF] rounded font-mono">2</kbd> Đã nhớ ·{" "}
-                <kbd className="px-1.5 py-0.5 bg-white border border-[#E5E3DF] rounded font-mono">Space</kbd> Lật ·{" "}
-                <kbd className="px-1.5 py-0.5 bg-white border border-[#E5E3DF] rounded font-mono">←</kbd> Trước ·{" "}
-                <kbd className="px-1.5 py-0.5 bg-white border border-[#E5E3DF] rounded font-mono">→</kbd> Tiếp
-              </div>
             </div>
           ) : (
             /* Round Completion Summary Screen */
             <div className="w-full max-w-md bg-white border border-[#E5E3DF] rounded-3xl p-6 sm:p-8 shadow-2xl text-center space-y-5 my-auto">
-              <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mx-auto shadow-2xs">
+              <div className="w-14 h-14 rounded-2xl bg-[#FAF9F6] border border-[#E5E3DF] text-[#24523B] flex items-center justify-center mx-auto shadow-2xs">
                 {unmasteredCount === 0 ? (
-                  <Award className="w-7 h-7 text-amber-600" />
+                  <Award className="w-7 h-7 text-[#24523B]" />
                 ) : (
-                  <RotateCcw className="w-7 h-7 text-amber-700" />
+                  <RotateCcw className="w-7 h-7 text-slate-700" />
                 )}
               </div>
 
@@ -733,11 +697,11 @@ export function EditorialFlashcards({
               {/* Stats Box */}
               <div className="grid grid-cols-2 gap-2 p-3 bg-[#FAF9F6] rounded-2xl border border-[#E5E3DF]">
                 <div className="p-2 text-center">
-                  <div className="text-2xl font-bold text-emerald-600">{masteredCount}</div>
+                  <div className="text-2xl font-bold text-[#24523B]">{masteredCount}</div>
                   <div className="text-[11px] text-slate-500">Từ đã thuộc</div>
                 </div>
                 <div className="p-2 text-center border-l border-[#E5E3DF]">
-                  <div className="text-2xl font-bold text-amber-700">{unmasteredCount}</div>
+                  <div className="text-2xl font-bold text-slate-700">{unmasteredCount}</div>
                   <div className="text-[11px] text-slate-500">Cần nhắc lại</div>
                 </div>
               </div>
@@ -748,7 +712,7 @@ export function EditorialFlashcards({
                   <button
                     type="button"
                     onClick={() => handleResetRound("review")}
-                    className="w-full py-3 px-4 bg-[#1C1C1C] hover:bg-black text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-hidden focus-visible:outline-hidden"
+                    className="w-full py-3 px-4 bg-[#24523B] hover:bg-[#2D6448] text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                     <span>Ôn lại ngay {unmasteredCount} từ chưa nhớ</span>
@@ -758,7 +722,7 @@ export function EditorialFlashcards({
                     <button
                       type="button"
                       onClick={onNextLesson}
-                      className="w-full py-3 px-4 bg-[#1C1C1C] hover:bg-black text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-hidden focus-visible:outline-hidden"
+                      className="w-full py-3 px-4 bg-[#24523B] hover:bg-[#2D6448] text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0"
                     >
                       <span>Sang bài tiếp theo</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -769,7 +733,7 @@ export function EditorialFlashcards({
                 <button
                   type="button"
                   onClick={() => handleResetRound("all")}
-                  className="w-full py-2.5 px-4 bg-white hover:bg-[#FAF9F6] text-slate-700 font-semibold text-xs rounded-xl border border-[#E5E3DF] transition-all flex items-center justify-center gap-1.5 cursor-pointer focus:outline-hidden focus-visible:outline-hidden"
+                  className="w-full py-2.5 px-4 bg-white hover:bg-[#FAF9F6] text-slate-700 font-semibold text-xs rounded-xl border border-[#E5E3DF] transition-all flex items-center justify-center gap-1.5 cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0"
                 >
                   <span>Học lại tất cả {rawWords.length} từ</span>
                 </button>
@@ -796,7 +760,7 @@ export function EditorialFlashcards({
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Tìm theo chữ, pinyin, nghĩa..."
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#FAF9F6] border border-[#E5E3DF] rounded-xl focus:outline-hidden focus:border-[#1C1C1C]"
+                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#FAF9F6] border border-[#E5E3DF] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#24523B]"
                 />
               </div>
             </div>
@@ -853,7 +817,7 @@ export function EditorialFlashcards({
                         <td className="py-2.5 px-4 hanzi text-xl font-bold text-slate-900">
                           {w.zh}
                         </td>
-                        <td className="py-2.5 px-4 text-amber-700 font-semibold text-xs">
+                        <td className="py-2.5 px-4 text-[#24523B] font-semibold text-xs">
                           {w.py}
                         </td>
                         <td className="py-2.5 px-4 text-slate-500 italic text-xs">
@@ -868,7 +832,7 @@ export function EditorialFlashcards({
                             if (!rec || !rec.nextReview) return <span className="text-slate-400">—</span>;
                             const isDue = rec.nextReview <= nowSnapshot;
                             return (
-                              <span className={`font-semibold ${isDue ? "text-rose-600" : "text-sky-700"}`}>
+                              <span className={`font-semibold ${isDue ? "text-[#24523B]" : "text-slate-600"}`}>
                                 {formatNextReview(rec)}
                               </span>
                             );
@@ -883,9 +847,9 @@ export function EditorialFlashcards({
                             }}
                             className={`px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
                               isWordMastered
-                                ? "bg-emerald-500 text-white border-emerald-500"
+                                ? "bg-[#24523B] text-white border-[#24523B]"
                                 : isWordNeedsReview
-                                ? "bg-rose-50 text-rose-700 border-rose-200"
+                                ? "bg-[#FAF9F6] text-[#222B25] border-[#E5E3DF]"
                                 : "text-slate-400 border-[#E5E3DF] hover:bg-slate-100"
                             }`}
                           >

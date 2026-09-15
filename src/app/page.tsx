@@ -148,13 +148,13 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen lg:h-screen lg:overflow-hidden w-full bg-[#FAF9F6] text-[#1C1C1C] font-sans antialiased selection:bg-[#E5E3DF]">
+    <div className="flex flex-col lg:flex-row min-h-screen lg:h-screen lg:overflow-hidden w-full bg-[#FAF9F6] text-[#222B25] font-sans antialiased selection:bg-[#E5E3DF]">
       {/* Mobile Top Header (< lg) matching --main */}
       <header className="lg:hidden w-full border-b border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md sticky top-0 z-30 px-4 py-3">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 sm:gap-3">
             <div>
-              <span className="text-xl font-black tracking-tighter text-[#1C1C1C]">
+              <span className="text-xl font-black tracking-tighter text-[#222B25]">
                 HANZI.
               </span>
               <span className="micro-caps ml-1">HSK</span>
@@ -169,7 +169,7 @@ export default function HomePage() {
                   onClick={() => handleSelectLevel(lvl.id)}
                   className={`px-2 py-1 rounded-md transition-all ${
                     currentLevelId === lvl.id
-                      ? "bg-[#1C1C1C] text-white shadow-xs"
+                      ? "bg-[#24523B] text-white shadow-xs"
                       : "text-slate-600"
                   }`}
                 >
@@ -206,7 +206,7 @@ export default function HomePage() {
             onClick={() => handleSelectMode("typing")}
             className={`py-1 text-xs font-bold rounded-lg cursor-pointer ${
               activeMode === "typing"
-                ? "bg-[#1C1C1C] text-white"
+                ? "bg-[#24523B] text-white"
                 : "text-slate-600 hover:bg-slate-100"
             }`}
           >
@@ -217,7 +217,7 @@ export default function HomePage() {
             onClick={() => handleSelectMode("flashcards")}
             className={`py-1 text-xs font-bold rounded-lg cursor-pointer ${
               activeMode === "flashcards"
-                ? "bg-[#1C1C1C] text-white"
+                ? "bg-[#24523B] text-white"
                 : "text-slate-600 hover:bg-slate-100"
             }`}
           >
@@ -228,7 +228,7 @@ export default function HomePage() {
             onClick={() => handleSelectMode("lessons")}
             className={`py-1 text-xs font-bold rounded-lg cursor-pointer ${
               activeMode === "lessons"
-                ? "bg-[#1C1C1C] text-white"
+                ? "bg-[#24523B] text-white"
                 : "text-slate-600 hover:bg-slate-100"
             }`}
           >
@@ -239,7 +239,7 @@ export default function HomePage() {
             onClick={() => handleSelectMode("garden")}
             className={`py-1 text-xs font-bold rounded-lg cursor-pointer ${
               activeMode === "garden"
-                ? "bg-[#1C1C1C] text-white"
+                ? "bg-[#24523B] text-white"
                 : "text-slate-600 hover:bg-slate-100"
             }`}
           >

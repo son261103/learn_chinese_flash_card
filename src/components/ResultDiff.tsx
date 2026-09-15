@@ -122,7 +122,7 @@ export function ResultDiff({
               <button
                 type="button"
                 onClick={onContinue}
-                className="px-3 py-1.5 bg-slate-900 text-white font-bold text-xs rounded-xl hover:bg-black transition-colors flex items-center gap-1 cursor-pointer"
+                className="px-3 py-1.5 bg-[#24523B] text-white font-bold text-xs rounded-xl hover:bg-[#2D6448] transition-colors flex items-center gap-1 cursor-pointer"
               >
                 <span>Bỏ qua</span>
                 <ArrowRight className="w-3.5 h-3.5" />

@@ -67,7 +67,7 @@ export function EditorialLessons({
       <div className="h-14 px-4 sm:px-6 xl:px-8 border-b border-[#E5E3DF] flex items-center justify-between bg-[#FAF9F6] sticky top-0 z-10 shrink-0">
         {/* Left: Level Badge + Lesson Selector */}
         <div className="flex items-center gap-2 min-w-0">
-          <span className="h-9 px-3 inline-flex items-center justify-center text-xs font-bold tracking-tight rounded-xl bg-[#1C1C1C] text-white shadow-xs shrink-0">
+          <span className="h-9 px-3 inline-flex items-center justify-center text-xs font-bold tracking-tight rounded-xl bg-[#24523B] text-white shadow-xs shrink-0">
             {levelId.toUpperCase()}
           </span>
 
@@ -94,7 +94,7 @@ export function EditorialLessons({
               onClick={() => setActiveSection("dialogue")}
               className={`h-full px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
                 activeSection === "dialogue"
-                  ? "bg-[#1C1C1C] text-white shadow-xs"
+                  ? "bg-[#24523B] text-white shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -108,7 +108,7 @@ export function EditorialLessons({
                 onClick={() => setActiveSection("grammar")}
                 className={`h-full px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
                   activeSection === "grammar"
-                    ? "bg-[#1C1C1C] text-white shadow-xs"
+                    ? "bg-[#24523B] text-white shadow-xs"
                     : "text-slate-600 hover:text-slate-900"
                 }`}
               >
@@ -123,7 +123,7 @@ export function EditorialLessons({
                 onClick={() => setActiveSection("reading")}
                 className={`h-full px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
                   activeSection === "reading"
-                    ? "bg-[#1C1C1C] text-white shadow-xs"
+                    ? "bg-[#24523B] text-white shadow-xs"
                     : "text-slate-600 hover:text-slate-900"
                 }`}
               >
@@ -139,7 +139,7 @@ export function EditorialLessons({
             onClick={() => setShowMeaning(!showMeaning)}
             className={`h-9 px-3 rounded-xl border text-xs font-semibold transition-all cursor-pointer shadow-2xs ${
               showMeaning
-                ? "bg-[#1C1C1C] text-white border-[#1C1C1C]"
+                ? "bg-[#24523B] text-white border-[#24523B]"
                 : "bg-white text-slate-600 border-[#E5E3DF] hover:border-slate-400"
             }`}
             title="Bật / Tắt dịch nghĩa tiếng Việt"
@@ -193,11 +193,11 @@ export function EditorialLessons({
                     {/* Section Top Bar with Title and Play Whole Dialogue */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2.5 border-b border-[#E5E3DF]">
                       <div className="flex items-center gap-2.5">
-                        <span className="w-7 h-7 rounded-xl bg-[#1C1C1C] text-white text-xs font-bold flex items-center justify-center">
+                        <span className="w-7 h-7 rounded-xl bg-[#24523B] text-white text-xs font-bold flex items-center justify-center">
                           {sIdx + 1}
                         </span>
                         <div>
-                          <h3 className="text-sm font-bold tracking-tight text-[#1C1C1C] uppercase font-chinese">
+                          <h3 className="text-sm font-bold tracking-tight text-[#222B25] uppercase font-chinese">
                             {cleanLabel}
                           </h3>
                         </div>
@@ -208,9 +208,9 @@ export function EditorialLessons({
                           type="button"
                           onClick={() => handleSpeakAll(allDialogue)}
                           disabled={isPlayingAll}
-                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white border border-[#E5E3DF] text-slate-700 hover:border-slate-400 hover:text-black text-xs font-semibold transition-all shadow-2xs cursor-pointer self-start sm:self-auto"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white border border-[#E5E3DF] text-slate-700 hover:border-slate-400 hover:text-slate-900 text-xs font-semibold transition-all shadow-2xs cursor-pointer self-start sm:self-auto"
                         >
-                          <Play className="w-3.5 h-3.5 text-emerald-600 fill-emerald-600" />
+                          <Play className="w-3.5 h-3.5 text-[#24523B] fill-[#24523B]" />
                           <span>{isPlayingAll ? "Đang phát..." : "Nghe toàn bộ đoạn"}</span>
                         </button>
                       )}
@@ -251,7 +251,7 @@ export function EditorialLessons({
                               <div
                                 className={`w-9 h-9 rounded-2xl flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs select-none border ${
                                   isSecondarySpeaker
-                                    ? "bg-[#1C1C1C] text-white border-[#1C1C1C]"
+                                    ? "bg-[#24523B] text-white border-[#24523B]"
                                     : "bg-white text-slate-800 border-[#E5E3DF]"
                                 }`}
                                 title={line.who}
@@ -267,7 +267,7 @@ export function EditorialLessons({
                                     : "bg-white border-[#E5E3DF] rounded-tl-xs"
                                 } ${
                                   isPlayingThis
-                                    ? "ring-2 ring-amber-400 bg-amber-50/70 border-amber-300"
+                                    ? "ring-2 ring-[#24523B]/40 bg-[#FAF9F6] border-[#24523B]/50"
                                     : ""
                                 }`}
                               >
@@ -280,7 +280,7 @@ export function EditorialLessons({
                                   <button
                                     type="button"
                                     onClick={() => handleSpeakLine(lineKey, line.zh)}
-                                    className="p-1 text-slate-400 hover:text-black rounded-lg transition-colors cursor-pointer"
+                                    className="p-1 text-slate-400 hover:text-slate-900 rounded-lg transition-colors cursor-pointer"
                                     title="Phát âm câu này"
                                   >
                                     <Volume2 className="w-4 h-4" />
@@ -288,12 +288,12 @@ export function EditorialLessons({
                                 </div>
 
                                 {/* Chinese Hanzi */}
-                                <div className="hanzi text-2xl sm:text-3xl font-normal text-[#1C1C1C] tracking-wide pt-0.5 leading-snug">
+                                <div className="hanzi text-2xl sm:text-3xl font-normal text-[#222B25] tracking-wide pt-0.5 leading-snug">
                                   {line.zh}
                                 </div>
 
                                 {/* Pinyin */}
-                                <div className="text-sm sm:text-base font-semibold text-amber-800/95 tracking-wide">
+                                <div className="text-sm sm:text-base font-semibold text-[#24523B] tracking-wide">
                                   {line.py}
                                 </div>
 
@@ -331,11 +331,11 @@ export function EditorialLessons({
                 >
                   {/* Grammar Title */}
                   <div className="flex items-baseline gap-3 pb-3 border-b border-[#E5E3DF]">
-                    <span className="w-7 h-7 rounded-xl bg-[#1C1C1C] text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-7 h-7 rounded-xl bg-[#24523B] text-white text-xs font-bold flex items-center justify-center shrink-0">
                       {i + 1}
                     </span>
                     <div>
-                      <h4 className="hanzi text-xl sm:text-2xl font-bold text-[#1C1C1C]">
+                      <h4 className="hanzi text-xl sm:text-2xl font-bold text-[#222B25]">
                         {gp.title_zh}
                       </h4>
                       <p className="text-xs sm:text-sm text-slate-500 font-editorial-serif italic mt-0.5">
@@ -366,7 +366,7 @@ export function EditorialLessons({
                               <div className="hanzi text-base sm:text-lg font-normal text-slate-900">
                                 {ex.zh}
                               </div>
-                              <div className="text-xs sm:text-sm font-semibold text-amber-800">
+                              <div className="text-xs sm:text-sm font-semibold text-[#24523B]">
                                 {ex.py}
                               </div>
                               <div className="text-xs sm:text-sm text-slate-500 font-editorial-serif italic">
@@ -376,7 +376,7 @@ export function EditorialLessons({
                             <button
                               type="button"
                               onClick={() => speakChinese(ex.zh, 0.9)}
-                              className="w-9 h-9 rounded-xl bg-white border border-[#E5E3DF] text-slate-600 hover:text-black hover:border-slate-400 flex items-center justify-center shrink-0 cursor-pointer shadow-2xs"
+                              className="w-9 h-9 rounded-xl bg-white border border-[#E5E3DF] text-slate-600 hover:text-slate-900 hover:border-slate-400 flex items-center justify-center shrink-0 cursor-pointer shadow-2xs"
                               title="Nghe câu ví dụ"
                             >
                               <Volume2 className="w-4 h-4" />
@@ -413,9 +413,9 @@ export function EditorialLessons({
                       type="button"
                       onClick={() => handleSpeakAll(rp.zh.map((s) => ({ zh: s })))}
                       disabled={isPlayingAll}
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#FAF9F6] border border-[#E5E3DF] text-slate-700 hover:text-black hover:bg-white text-xs font-semibold transition-all shadow-2xs cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#FAF9F6] border border-[#E5E3DF] text-slate-700 hover:text-slate-900 hover:bg-white text-xs font-semibold transition-all shadow-2xs cursor-pointer"
                     >
-                      <Play className="w-3.5 h-3.5 text-emerald-600 fill-emerald-600" />
+                      <Play className="w-3.5 h-3.5 text-[#24523B] fill-[#24523B]" />
                       <span>Nghe cả đoạn</span>
                     </button>
                   </div>
@@ -428,7 +428,7 @@ export function EditorialLessons({
                         className="p-4 rounded-2xl bg-[#FAF9F6] border border-[#E5E3DF] hover:border-slate-300 transition-all flex items-start justify-between gap-3"
                       >
                         <div className="space-y-1">
-                          <div className="hanzi text-lg sm:text-xl font-normal text-[#1C1C1C] leading-relaxed">
+                          <div className="hanzi text-lg sm:text-xl font-normal text-[#222B25] leading-relaxed">
                             {zhLine}
                           </div>
                           {rp.vi?.[zIdx] && (
@@ -440,7 +440,7 @@ export function EditorialLessons({
                         <button
                           type="button"
                           onClick={() => speakChinese(zhLine, 0.9)}
-                          className="w-8 h-8 rounded-lg bg-white border border-[#E5E3DF] text-slate-600 hover:text-black hover:border-slate-400 flex items-center justify-center shrink-0 cursor-pointer shadow-2xs"
+                          className="w-8 h-8 rounded-lg bg-white border border-[#E5E3DF] text-slate-600 hover:text-slate-900 hover:border-slate-400 flex items-center justify-center shrink-0 cursor-pointer shadow-2xs"
                           title="Nghe câu"
                         >
                           <Volume2 className="w-3.5 h-3.5" />

@@ -8,8 +8,6 @@ import {
   Library,
   Flame,
   RotateCcw,
-  BellRing,
-  Sparkles,
 } from "lucide-react";
 import { LevelInfo, Lesson, UserProgress } from "@/lib/types";
 import { getDueCardsCount } from "@/lib/data-service";
@@ -60,7 +58,7 @@ export function EditorialSidebar({
       {/* Brand Header */}
       <div className="h-14 px-6 xl:px-8 border-b border-[#E5E3DF] flex items-center shrink-0">
         <div>
-          <h1 className="text-xl font-black tracking-tighter text-[#1C1C1C] leading-none">
+          <h1 className="text-xl font-black tracking-tighter text-[#222B25] leading-none">
             HANZI.
           </h1>
           <p className="micro-caps mt-1 text-[10px]">Học Tiếng Trung & Luyện Gõ</p>
@@ -84,7 +82,7 @@ export function EditorialSidebar({
                     onClick={() => onSelectLevel(lvl.id)}
                     className={`py-1.5 px-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center cursor-pointer ${
                       isActive
-                        ? "bg-[#1C1C1C] text-white shadow-xs"
+                        ? "bg-[#24523B] text-white shadow-xs"
                         : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
                     }`}
                   >
@@ -104,7 +102,7 @@ export function EditorialSidebar({
                 onClick={() => onSelectMode("typing")}
                 className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer ${
                   activeMode === "typing"
-                    ? "bg-[#1C1C1C] text-white border-[#1C1C1C] shadow-xs"
+                    ? "bg-[#24523B] text-white border-[#24523B] shadow-xs"
                     : "bg-white text-slate-700 border-[#E5E3DF] hover:border-slate-400"
                 }`}
               >
@@ -126,7 +124,7 @@ export function EditorialSidebar({
                 onClick={() => onSelectMode("flashcards")}
                 className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer relative ${
                   activeMode === "flashcards"
-                    ? "bg-[#1C1C1C] text-white border-[#1C1C1C] shadow-xs"
+                    ? "bg-[#24523B] text-white border-[#24523B] shadow-xs"
                     : "bg-white text-slate-700 border-[#E5E3DF] hover:border-slate-400"
                 }`}
               >
@@ -146,7 +144,7 @@ export function EditorialSidebar({
 
                 {/* Due review badge */}
                 {dueCount > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 min-w-[20px] h-5 px-1 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
+                  <span className="absolute -top-1.5 -right-1.5 min-w-[20px] h-5 px-1.5 rounded-full bg-[#24523B] text-white text-[10px] font-bold flex items-center justify-center shadow-xs">
                     {dueCount}
                   </span>
                 )}
@@ -157,7 +155,7 @@ export function EditorialSidebar({
                 onClick={() => onSelectMode("lessons")}
                 className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer ${
                   activeMode === "lessons"
-                    ? "bg-[#1C1C1C] text-white border-[#1C1C1C] shadow-xs"
+                    ? "bg-[#24523B] text-white border-[#24523B] shadow-xs"
                     : "bg-white text-slate-700 border-[#E5E3DF] hover:border-slate-400"
                 }`}
               >
@@ -181,7 +179,7 @@ export function EditorialSidebar({
                 onClick={() => onSelectMode("garden")}
                 className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer ${
                   activeMode === "garden"
-                    ? "bg-[#1C1C1C] text-white border-[#1C1C1C] shadow-xs"
+                    ? "bg-[#24523B] text-white border-[#24523B] shadow-xs"
                     : "bg-white text-slate-700 border-[#E5E3DF] hover:border-slate-400"
                 }`}
               >
@@ -202,28 +200,6 @@ export function EditorialSidebar({
             </div>
           </div>
 
-          {/* Spaced Repetition Due Reminder Card */}
-          {dueCount > 0 ? (
-            <div className="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 shadow-2xs space-y-2">
-              <div className="flex items-center gap-2 text-rose-900 font-bold text-xs">
-                <BellRing className="w-4 h-4 text-rose-600" />
-                <span>Hôm nay cần ôn lại {dueCount} từ!</span>
-              </div>
-              <p className="text-[11px] text-rose-700/80 leading-relaxed">
-                Các từ đã đến lịch nhắc lại thông minh (1 ngày / 3 ngày / 7 ngày).
-                Bấm để vào Flashcards và ôn ngay.
-              </p>
-              <button
-                type="button"
-                onClick={() => onSelectMode("flashcards")}
-                className="w-full py-2 px-3 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold transition-all cursor-pointer shadow-xs flex items-center justify-center gap-1.5"
-              >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Ôn ngay {dueCount} từ đến hạn</span>
-              </button>
-            </div>
-          ) : null}
-
           {/* Topic / Current Lesson Card */}
           <div>
             <div className="flex items-center justify-between mb-2">
@@ -231,7 +207,7 @@ export function EditorialSidebar({
               <button
                 type="button"
                 onClick={onOpenTopicModal}
-                className="text-xs text-slate-700 hover:text-black font-semibold underline underline-offset-2 cursor-pointer"
+                className="text-xs text-slate-700 hover:text-slate-900 font-semibold underline underline-offset-2 cursor-pointer"
               >
                 Đổi bài
               </button>
@@ -270,9 +246,9 @@ export function EditorialSidebar({
                   type="button"
                   onClick={onResetStats}
                   title="Làm mới thống kê phiên này"
-                  className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-400 hover:text-[#24523B] transition-colors cursor-pointer"
                 >
-                  <RotateCcw className="w-3 h-3" />
+                  <RotateCcw className="w-3.5 h-3.5" />
                   <span>Làm mới</span>
                 </button>
               )}
@@ -293,7 +269,7 @@ export function EditorialSidebar({
                   <div className="text-[11px] font-medium text-slate-500">
                     Chuẩn 100%
                   </div>
-                  <div className="text-base font-bold text-emerald-600 mt-0.5">
+                  <div className="text-base font-bold text-[#24523B] mt-0.5">
                     {stats.correctCount}{" "}
                     <span className="text-xs font-normal text-slate-500">từ</span>
                   </div>
@@ -313,8 +289,8 @@ export function EditorialSidebar({
                       stats.completedCount === 0
                         ? "w-0"
                         : accuracyAvg >= 80
-                        ? "bg-emerald-500"
-                        : "bg-amber-500"
+                        ? "bg-[#24523B]"
+                        : "bg-[#24523B]/60"
                     }`}
                     style={{
                       width: stats.completedCount > 0 ? `${accuracyAvg}%` : "0%",

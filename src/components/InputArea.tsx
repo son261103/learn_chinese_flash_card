@@ -58,7 +58,7 @@ export function InputArea({
       <div
         className={`w-full bg-white border border-[#E5E3DF] rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] p-2.5 sm:p-3 relative transition-all duration-200 ${
           isFocused
-            ? "border-[#1C1C1C] ring-2 ring-[#1C1C1C]/5"
+            ? "border-[#24523B] ring-2 ring-[#24523B]/15"
             : "hover:border-slate-300"
         } ${disabled ? "bg-[#FAF9F6]/50" : ""}`}
       >
@@ -76,7 +76,7 @@ export function InputArea({
           placeholder="Nhập chữ Hán tại đây (dùng bộ gõ Pinyin)..."
           spellCheck={false}
           rows={1}
-          className="hanzi w-full text-lg sm:text-xl md:text-2xl text-slate-900 bg-transparent border-none outline-hidden resize-none placeholder:text-slate-300 placeholder:font-sans placeholder:text-sm tracking-wide leading-relaxed min-h-[42px] px-1"
+          className="hanzi w-full text-lg sm:text-xl md:text-2xl text-slate-900 bg-transparent border-none outline-none resize-none placeholder:text-slate-300 placeholder:font-sans placeholder:text-sm tracking-wide leading-relaxed min-h-[42px] px-1"
         />
 
         {/* Bottom Bar with Character Counter and Action Buttons */}
@@ -125,7 +125,7 @@ export function InputArea({
               type="button"
               onClick={onSubmit}
               disabled={disabled || value.trim().length === 0}
-              className="h-8 sm:h-8.5 px-4 sm:px-5 rounded-lg bg-[#1C1C1C] text-white font-bold text-xs hover:bg-black active:scale-95 disabled:opacity-40 disabled:pointer-events-none transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer"
+              className="h-8 sm:h-8.5 px-4 sm:px-5 rounded-lg bg-[#24523B] text-white font-bold text-xs hover:bg-[#2D6448] active:scale-95 disabled:opacity-40 disabled:pointer-events-none transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer"
             >
               <span>Kiểm tra</span>
               <span className="opacity-60 text-[10px] font-mono hidden xs:flex items-center gap-0.5">
