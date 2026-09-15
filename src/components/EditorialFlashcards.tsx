@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useCallback, useEffect } from "react";
+import React, { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import {
   Volume2,
   VolumeX,
@@ -44,6 +44,11 @@ interface EditorialFlashcardsProps {
 
 const FLASHCARD_AUTOPLAY_KEY = "hsk_flashcard_autoplay_v1";
 
+interface DynamicIslandToast {
+  type: "again" | "good";
+  text: string;
+}
+
 export function EditorialFlashcards({
   lesson,
   lessonIdx,
@@ -76,10 +81,19 @@ export function EditorialFlashcards({
   const [isShuffled, setIsShuffled] = useState(false);
   const [shuffledIndices, setShuffledIndices] = useState<number[] | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [lastScheduleMsg, setLastScheduleMsg] = useState<string | null>(null);
+
+  // iPhone Dynamic Island floating notification state
+  const [islandToast, setIslandToast] = useState<DynamicIslandToast | null>(null);
+  const islandTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Snapshot timestamp once at mount to keep render pure
   const [nowSnapshot] = useState(() => Date.now());
+
+  useEffect(() => {
+    return () => {
+      if (islandTimerRef.current) clearTimeout(islandTimerRef.current);
+    };
+  }, []);
 
   const handleToggleAutoPlay = () => {
     setIsAutoPlay((prev) => {
@@ -221,26 +235,28 @@ export function EditorialFlashcards({
     if (!currentKey) return;
     onMarkCard(currentKey, remembered);
 
-    // Show immediate scheduling feedback: when this word will be reminded again
+    // Show iPhone Dynamic Island feedback
+    if (islandTimerRef.current) {
+      clearTimeout(islandTimerRef.current);
+    }
     if (remembered) {
       playSuccessChime();
       const prevRec = cardMemory[currentKey];
       const repetitions = (prevRec?.repetitions || 0) + 1;
-      if (repetitions === 1) {
-        setLastScheduleMsg("Nhắc lại từ này sau 1 ngày");
-      } else if (repetitions === 2) {
-        setLastScheduleMsg("Nhắc lại từ này sau 3 ngày");
-      } else if (repetitions === 3) {
-        setLastScheduleMsg("Nhắc lại từ này sau 7 ngày");
-      } else if (repetitions === 4) {
-        setLastScheduleMsg("Nhắc lại từ này sau 14 ngày");
-      } else {
-        setLastScheduleMsg("Nhắc lại từ này sau 1-3 tháng");
-      }
+      let text = "Nhắc lại sau 1 ngày";
+      if (repetitions === 2) text = "Nhắc lại sau 3 ngày";
+      else if (repetitions === 3) text = "Nhắc lại sau 7 ngày";
+      else if (repetitions === 4) text = "Nhắc lại sau 14 ngày";
+      else if (repetitions > 4) text = "Nhắc lại sau 1-3 tháng";
+      setIslandToast({ type: "good", text });
     } else {
       playErrorBuzz();
-      setLastScheduleMsg("Sẽ nhắc lại từ này sau 10 phút");
+      setIslandToast({ type: "again", text: "Sẽ nhắc lại từ này sau 10 phút" });
     }
+
+    islandTimerRef.current = setTimeout(() => {
+      setIslandToast(null);
+    }, 2200);
 
     handleNext();
   };
@@ -252,7 +268,7 @@ export function EditorialFlashcards({
     setIsRoundFinished(false);
     setIsShuffled(false);
     setShuffledIndices(null);
-    setLastScheduleMsg(null);
+    setIslandToast(null);
   };
 
   // Keyboard shortcuts
@@ -328,7 +344,7 @@ export function EditorialFlashcards({
           <button
             type="button"
             onClick={onOpenTopicModal}
-            className="h-9 px-3.5 inline-flex items-center gap-2 text-xs sm:text-sm font-semibold rounded-xl border border-[#E5E3DF] bg-white text-slate-800 hover:border-slate-400 hover:bg-[#FAF9F6] transition-all shadow-2xs group cursor-pointer truncate"
+            className="h-9 px-3.5 inline-flex items-center gap-2 text-xs sm:text-sm font-semibold rounded-xl border border-[#E5E3DF] bg-white text-slate-800 hover:border-slate-400 hover:bg-[#FAF9F6] transition-all shadow-2xs group cursor-pointer truncate focus:outline-hidden focus-visible:outline-hidden"
             title="Đổi bài học"
           >
             <BookOpen className="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-800 shrink-0" />
@@ -346,7 +362,7 @@ export function EditorialFlashcards({
             <button
               type="button"
               onClick={() => handleResetRound("all")}
-              className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer focus:outline-hidden focus-visible:outline-hidden ${
                 studyFilter === "all"
                   ? "bg-[#1C1C1C] text-white shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
@@ -360,7 +376,7 @@ export function EditorialFlashcards({
               <button
                 type="button"
                 onClick={() => handleResetRound("due")}
-                className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 ${
+                className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 focus:outline-hidden focus-visible:outline-hidden ${
                   studyFilter === "due"
                     ? "bg-rose-600 text-white shadow-xs"
                     : "text-rose-700 hover:bg-rose-50"
@@ -376,7 +392,7 @@ export function EditorialFlashcards({
               <button
                 type="button"
                 onClick={() => handleResetRound("review")}
-                className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 ${
+                className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 focus:outline-hidden focus-visible:outline-hidden ${
                   studyFilter === "review"
                     ? "bg-amber-800 text-white shadow-xs"
                     : "text-amber-800 hover:bg-amber-50"
@@ -393,7 +409,7 @@ export function EditorialFlashcards({
             <button
               type="button"
               onClick={() => setViewTab("card")}
-              className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+              className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer focus:outline-hidden focus-visible:outline-hidden ${
                 viewTab === "card"
                   ? "bg-[#1C1C1C] text-white shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
@@ -405,7 +421,7 @@ export function EditorialFlashcards({
             <button
               type="button"
               onClick={() => setViewTab("table")}
-              className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+              className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer focus:outline-hidden focus-visible:outline-hidden ${
                 viewTab === "table"
                   ? "bg-[#1C1C1C] text-white shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
@@ -420,7 +436,7 @@ export function EditorialFlashcards({
           <button
             type="button"
             onClick={handleToggleAutoPlay}
-            className={`h-9 px-2.5 sm:px-3 rounded-xl border text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs ${
+            className={`h-9 px-2.5 sm:px-3 rounded-xl border text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs focus:outline-hidden focus-visible:outline-hidden ${
               isAutoPlay
                 ? "bg-[#1C1C1C] text-white border-[#1C1C1C]"
                 : "bg-white text-slate-500 border-[#E5E3DF] hover:border-slate-400"
@@ -437,7 +453,7 @@ export function EditorialFlashcards({
           <button
             type="button"
             onClick={handleShuffleToggle}
-            className={`h-9 w-9 rounded-xl border transition-all flex items-center justify-center cursor-pointer shadow-2xs ${
+            className={`h-9 w-9 rounded-xl border transition-all flex items-center justify-center cursor-pointer shadow-2xs focus:outline-hidden focus-visible:outline-hidden ${
               isShuffled
                 ? "bg-[#1C1C1C] text-white border-[#1C1C1C]"
                 : "bg-white text-slate-600 border-[#E5E3DF] hover:border-slate-400"
@@ -452,6 +468,27 @@ export function EditorialFlashcards({
       {/* VIEW 1: Spaced Repetition 3D Flashcard Stage */}
       {viewTab === "card" ? (
         <div className="flex-1 overflow-hidden flex flex-col items-center justify-center px-4 sm:px-6 xl:px-8 py-2 relative">
+          {/* iPhone Dynamic Island Floating Pill Notification */}
+          {islandToast && (
+            <div className="absolute top-3 left-1/2 -translate-x-1/2 z-40 pointer-events-none transition-all duration-300">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#1C1C1C] text-white text-xs font-semibold rounded-full shadow-[0_12px_32px_rgba(0,0,0,0.35)] border border-white/20 backdrop-blur-xl animate-island-in">
+                <span
+                  className={`w-2 h-2 rounded-full shrink-0 ${
+                    islandToast.type === "good"
+                      ? "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"
+                      : "bg-rose-400 shadow-[0_0_8px_rgba(251,113,133,0.8)]"
+                  }`}
+                />
+                {islandToast.type === "good" ? (
+                  <CalendarClock className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                ) : (
+                  <RotateCcw className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+                )}
+                <span className="tracking-wide">{islandToast.text}</span>
+              </div>
+            </div>
+          )}
+
           {!isRoundFinished ? (
             <div className="w-full max-w-lg sm:max-w-xl flex flex-col items-center justify-center space-y-4 my-auto">
               {/* Top Indicator & Progress Line */}
@@ -492,7 +529,7 @@ export function EditorialFlashcards({
                   <button
                     type="button"
                     onClick={() => handleResetRound("due")}
-                    className="w-full py-1.5 px-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer hover:bg-rose-100 transition-colors"
+                    className="w-full py-1.5 px-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer hover:bg-rose-100 transition-colors focus:outline-hidden focus-visible:outline-hidden"
                   >
                     <BellRing className="w-3.5 h-3.5" />
                     <span>Bài này có {dueCountInLesson} từ đến hạn ôn lại hôm nay. Bấm để ôn ngay!</span>
@@ -518,7 +555,7 @@ export function EditorialFlashcards({
                         e.stopPropagation();
                         handleRateCard(!isMastered);
                       }}
-                      className={`absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-xl border transition-all cursor-pointer ${
+                      className={`absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-xl border transition-all cursor-pointer focus:outline-hidden focus-visible:outline-hidden ${
                         isMastered
                           ? "bg-emerald-500 text-white border-emerald-500 shadow-2xs"
                           : "text-slate-300 hover:text-emerald-600 border-[#E5E3DF] hover:bg-emerald-50"
@@ -538,14 +575,13 @@ export function EditorialFlashcards({
                         <button
                           type="button"
                           onClick={(e) => handleSpeak(currentWord.zh, e)}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FAF9F6] text-slate-700 hover:bg-[#1C1C1C] hover:text-white border border-[#E5E3DF] text-xs font-semibold transition-all cursor-pointer shadow-2xs"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FAF9F6] text-slate-700 hover:bg-[#1C1C1C] hover:text-white border border-[#E5E3DF] text-xs font-semibold transition-all cursor-pointer shadow-2xs focus:outline-hidden focus-visible:outline-hidden"
                         >
                           <Volume2 className="w-3.5 h-3.5" />
                           <span>Phát âm</span>
                         </button>
                       </div>
                     </div>
-
                   </div>
 
                   {/* BACK FACE */}
@@ -556,7 +592,7 @@ export function EditorialFlashcards({
                         e.stopPropagation();
                         handleRateCard(!isMastered);
                       }}
-                      className={`absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-xl border transition-all cursor-pointer ${
+                      className={`absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-xl border transition-all cursor-pointer focus:outline-hidden focus-visible:outline-hidden ${
                         isMastered
                           ? "bg-emerald-500 text-white border-emerald-500"
                           : "text-white/40 hover:text-white border-white/20 hover:bg-white/10"
@@ -603,13 +639,6 @@ export function EditorialFlashcards({
                 </div>
               </div>
 
-              {/* Last schedule feedback message */}
-              {lastScheduleMsg && (
-                <div className="w-full py-1.5 px-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold text-center">
-                  ✓ {lastScheduleMsg}
-                </div>
-              )}
-
               {/* Action Buttons with Spaced Repetition Rating */}
               <div className="flex items-center justify-between gap-2.5 w-full pt-1">
                 {/* Previous */}
@@ -617,7 +646,7 @@ export function EditorialFlashcards({
                   type="button"
                   onClick={handlePrev}
                   disabled={currentIdx === 0}
-                  className="h-11 px-3 rounded-2xl bg-white border border-[#E5E3DF] text-slate-600 hover:border-slate-400 flex items-center justify-center shadow-2xs transition-all disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                  className="h-11 px-3 rounded-2xl bg-white border border-[#E5E3DF] text-slate-600 hover:border-slate-400 flex items-center justify-center shadow-2xs transition-all disabled:opacity-30 disabled:pointer-events-none cursor-pointer focus:outline-hidden focus-visible:outline-hidden select-none"
                   title="Thẻ trước [Phím ←]"
                 >
                   <ChevronLeft className="w-4 h-4" />
@@ -627,7 +656,7 @@ export function EditorialFlashcards({
                 <button
                   type="button"
                   onClick={() => handleRateCard(false)}
-                  className="flex-1 h-11 px-3 rounded-2xl border border-rose-200 bg-rose-50/70 hover:bg-rose-100 text-rose-800 font-bold text-xs shadow-2xs transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95"
+                  className="flex-1 h-11 px-3 rounded-2xl border border-rose-200 bg-rose-50/70 hover:bg-rose-100 text-rose-800 font-bold text-xs shadow-2xs transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 focus:outline-hidden focus-visible:outline-hidden select-none"
                   title="Nhắc lại từ này sau 10 phút [Phím 1]"
                 >
                   <XCircle className="w-4 h-4 text-rose-600" />
@@ -638,7 +667,7 @@ export function EditorialFlashcards({
                 <button
                   type="button"
                   onClick={() => setIsFlipped(!isFlipped)}
-                  className="h-11 px-4 rounded-2xl bg-white border border-[#E5E3DF] text-slate-800 font-bold text-xs shadow-2xs flex items-center gap-1.5 transition-all hover:bg-[#FAF9F6] cursor-pointer"
+                  className="h-11 px-4 rounded-2xl bg-white border border-[#E5E3DF] text-slate-800 font-bold text-xs shadow-2xs flex items-center gap-1.5 transition-all hover:bg-[#FAF9F6] cursor-pointer focus:outline-hidden focus-visible:outline-hidden select-none"
                   title="Lật thẻ [Phím Space]"
                 >
                   <RotateCw className="w-3.5 h-3.5 text-slate-500" />
@@ -649,7 +678,7 @@ export function EditorialFlashcards({
                 <button
                   type="button"
                   onClick={() => handleRateCard(true)}
-                  className="flex-1 h-11 px-3 rounded-2xl border border-emerald-200 bg-emerald-50/80 hover:bg-emerald-100 text-emerald-800 font-bold text-xs shadow-2xs transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95"
+                  className="flex-1 h-11 px-3 rounded-2xl border border-emerald-200 bg-emerald-50/80 hover:bg-emerald-100 text-emerald-800 font-bold text-xs shadow-2xs transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 focus:outline-hidden focus-visible:outline-hidden select-none"
                   title="Đã thuộc, tự động nhắc lại sau vài ngày [Phím 2]"
                 >
                   <CheckCircle2 className="w-4 h-4 text-emerald-600" />
@@ -660,13 +689,21 @@ export function EditorialFlashcards({
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="h-11 px-3 rounded-2xl bg-white border border-[#E5E3DF] text-slate-600 hover:border-slate-400 flex items-center justify-center shadow-2xs transition-all cursor-pointer"
+                  className="h-11 px-3 rounded-2xl bg-white border border-[#E5E3DF] text-slate-600 hover:border-slate-400 flex items-center justify-center shadow-2xs transition-all cursor-pointer focus:outline-hidden focus-visible:outline-hidden select-none"
                   title="Bỏ qua / Thẻ sau [Phím →]"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
 
+              {/* Keyboard Shortcuts Helper */}
+              <div className="text-center text-[11px] text-slate-400">
+                Phím tắt: <kbd className="px-1.5 py-0.5 bg-white border border-[#E5E3DF] rounded font-mono">1</kbd> Chưa nhớ ·{" "}
+                <kbd className="px-1.5 py-0.5 bg-white border border-[#E5E3DF] rounded font-mono">2</kbd> Đã nhớ ·{" "}
+                <kbd className="px-1.5 py-0.5 bg-white border border-[#E5E3DF] rounded font-mono">Space</kbd> Lật ·{" "}
+                <kbd className="px-1.5 py-0.5 bg-white border border-[#E5E3DF] rounded font-mono">←</kbd> Trước ·{" "}
+                <kbd className="px-1.5 py-0.5 bg-white border border-[#E5E3DF] rounded font-mono">→</kbd> Tiếp
+              </div>
             </div>
           ) : (
             /* Round Completion Summary Screen */
@@ -711,7 +748,7 @@ export function EditorialFlashcards({
                   <button
                     type="button"
                     onClick={() => handleResetRound("review")}
-                    className="w-full py-3 px-4 bg-[#1C1C1C] hover:bg-black text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-3 px-4 bg-[#1C1C1C] hover:bg-black text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-hidden focus-visible:outline-hidden"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                     <span>Ôn lại ngay {unmasteredCount} từ chưa nhớ</span>
@@ -721,7 +758,7 @@ export function EditorialFlashcards({
                     <button
                       type="button"
                       onClick={onNextLesson}
-                      className="w-full py-3 px-4 bg-[#1C1C1C] hover:bg-black text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full py-3 px-4 bg-[#1C1C1C] hover:bg-black text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-hidden focus-visible:outline-hidden"
                     >
                       <span>Sang bài tiếp theo</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -732,7 +769,7 @@ export function EditorialFlashcards({
                 <button
                   type="button"
                   onClick={() => handleResetRound("all")}
-                  className="w-full py-2.5 px-4 bg-white hover:bg-[#FAF9F6] text-slate-700 font-semibold text-xs rounded-xl border border-[#E5E3DF] transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="w-full py-2.5 px-4 bg-white hover:bg-[#FAF9F6] text-slate-700 font-semibold text-xs rounded-xl border border-[#E5E3DF] transition-all flex items-center justify-center gap-1.5 cursor-pointer focus:outline-hidden focus-visible:outline-hidden"
                 >
                   <span>Học lại tất cả {rawWords.length} từ</span>
                 </button>
