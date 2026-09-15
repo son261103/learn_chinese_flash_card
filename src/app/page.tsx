@@ -17,6 +17,7 @@ import {
   getDefaultPracticeStats,
   loadUserProgress,
   saveUserProgress,
+  scheduleNextReview,
 } from "@/lib/data-service";
 import { LevelInfo, Lesson, UserProgress } from "@/lib/types";
 import { BookOpen, Flame } from "lucide-react";
@@ -53,6 +54,32 @@ export default function HomePage() {
           [key]: !prev.masteredCards[key],
         },
       };
+      saveUserProgress(updated);
+      return updated;
+    });
+  };
+
+  // Spaced Repetition Mark with SM-2 scheduling
+  const handleMarkCard = (key: string, isMastered: boolean) => {
+    setProgress((prev) => {
+      const needsReviewCards = { ...prev.needsReviewCards };
+      const masteredCards = { ...prev.masteredCards };
+      const cardMemory = { ...prev.cardMemory };
+      const now = Date.now();
+
+      // Update mastered / review state
+      if (isMastered) {
+        masteredCards[key] = true;
+        needsReviewCards[key] = false;
+      } else {
+        masteredCards[key] = false;
+        needsReviewCards[key] = true;
+      }
+
+      // SM-2 scheduled next review date
+      cardMemory[key] = scheduleNextReview(cardMemory[key], isMastered, now);
+
+      const updated = { ...prev, masteredCards, needsReviewCards, cardMemory };
       saveUserProgress(updated);
       return updated;
     });
@@ -112,6 +139,12 @@ export default function HomePage() {
   const handleSelectLesson = (idx: number) => {
     setCurrentLessonIdx(idx);
     saveAppState({ currentLessonIdx: idx });
+  };
+
+  const handleNextLesson = () => {
+    const nextIdx = Math.min(safeLessonIdx + 1, currentLessons.length - 1);
+    setCurrentLessonIdx(nextIdx);
+    saveAppState({ currentLessonIdx: nextIdx });
   };
 
   return (
@@ -227,6 +260,7 @@ export default function HomePage() {
         onOpenTopicModal={() => setIsTopicModalOpen(true)}
         stats={stats}
         onResetStats={handleResetStats}
+        progress={progress}
       />
 
       {/* Right Column: Full-width, Full-height Workspace Stage */}
@@ -250,7 +284,10 @@ export default function HomePage() {
             levelId={currentLevelId}
             onOpenTopicModal={() => setIsTopicModalOpen(true)}
             masteredCards={progress.masteredCards}
-            onToggleMastered={handleToggleMastered}
+            needsReviewCards={progress.needsReviewCards}
+            cardMemory={progress.cardMemory}
+            onMarkCard={handleMarkCard}
+            onNextLesson={handleNextLesson}
           />
         )}
 

@@ -8,8 +8,11 @@ import {
   Library,
   Flame,
   RotateCcw,
+  BellRing,
+  Sparkles,
 } from "lucide-react";
-import { LevelInfo, Lesson } from "@/lib/types";
+import { LevelInfo, Lesson, UserProgress } from "@/lib/types";
+import { getDueCardsCount } from "@/lib/data-service";
 
 export interface EditorialStats {
   completedCount: number;
@@ -29,6 +32,7 @@ interface EditorialSidebarProps {
   onOpenTopicModal: () => void;
   stats: EditorialStats;
   onResetStats: () => void;
+  progress: UserProgress;
 }
 
 export function EditorialSidebar({
@@ -42,11 +46,14 @@ export function EditorialSidebar({
   onOpenTopicModal,
   stats,
   onResetStats,
+  progress,
 }: EditorialSidebarProps) {
   const accuracyAvg =
     stats.completedCount > 0
       ? Math.round((stats.correctCount / stats.completedCount) * 100)
       : 100;
+
+  const dueCount = getDueCardsCount(progress);
 
   return (
     <aside className="w-72 xl:w-80 border-r border-[#E5E3DF] hidden lg:flex flex-col shrink-0 bg-[#FAF9F6] h-full overflow-hidden select-none">
@@ -117,7 +124,7 @@ export function EditorialSidebar({
               <button
                 type="button"
                 onClick={() => onSelectMode("flashcards")}
-                className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer ${
+                className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer relative ${
                   activeMode === "flashcards"
                     ? "bg-[#1C1C1C] text-white border-[#1C1C1C] shadow-xs"
                     : "bg-white text-slate-700 border-[#E5E3DF] hover:border-slate-400"
@@ -136,6 +143,13 @@ export function EditorialSidebar({
                     Lật thẻ từ vựng
                   </div>
                 </div>
+
+                {/* Due review badge */}
+                {dueCount > 0 && (
+                  <span className="absolute -top-1.5 -right-1.5 min-w-[20px] h-5 px-1 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
+                    {dueCount}
+                  </span>
+                )}
               </button>
 
               <button
@@ -187,6 +201,28 @@ export function EditorialSidebar({
               </button>
             </div>
           </div>
+
+          {/* Spaced Repetition Due Reminder Card */}
+          {dueCount > 0 ? (
+            <div className="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 shadow-2xs space-y-2">
+              <div className="flex items-center gap-2 text-rose-900 font-bold text-xs">
+                <BellRing className="w-4 h-4 text-rose-600" />
+                <span>Hôm nay cần ôn lại {dueCount} từ!</span>
+              </div>
+              <p className="text-[11px] text-rose-700/80 leading-relaxed">
+                Các từ đã đến lịch nhắc lại thông minh (1 ngày / 3 ngày / 7 ngày).
+                Bấm để vào Flashcards và ôn ngay.
+              </p>
+              <button
+                type="button"
+                onClick={() => onSelectMode("flashcards")}
+                className="w-full py-2 px-3 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold transition-all cursor-pointer shadow-xs flex items-center justify-center gap-1.5"
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Ôn ngay {dueCount} từ đến hạn</span>
+              </button>
+            </div>
+          ) : null}
 
           {/* Topic / Current Lesson Card */}
           <div>

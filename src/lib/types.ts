@@ -65,9 +65,20 @@ export interface TypingRecord {
   timestamp: number;
 }
 
+// Spaced Repetition Memory Tracking (SM-2 / Leitner based)
+export interface CardMemoryRecord {
+  repetitions: number; // Consecutive successful recalls
+  intervalDays: number; // Current review interval in days
+  easeFactor: number; // Ease factor, starts at 2.5 (SM-2)
+  lastReviewed: number | null; // Timestamp of last review
+  nextReview: number | null; // Timestamp for due date
+}
+
 export interface UserProgress {
   learnedWords: Record<string, boolean>;
   masteredCards: Record<string, boolean>;
+  needsReviewCards: Record<string, boolean>;
+  cardMemory: Record<string, CardMemoryRecord>;
   typingHistory: Record<string, TypingRecord>;
   favoriteWords: Record<string, boolean>;
 }
