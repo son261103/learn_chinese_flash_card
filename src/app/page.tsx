@@ -10,6 +10,11 @@ import { TopicModal } from "@/components/TopicModal";
 import {
   LOCAL_LEVELS,
   LOCAL_DATA,
+  loadAppState,
+  saveAppState,
+  loadPracticeStats,
+  savePracticeStats,
+  getDefaultPracticeStats,
   loadUserProgress,
   saveUserProgress,
 } from "@/lib/data-service";
@@ -18,11 +23,24 @@ import { BookOpen, Flame } from "lucide-react";
 
 export default function HomePage() {
   const [levels] = useState<LevelInfo[]>(LOCAL_LEVELS);
-  const [currentLevelId, setCurrentLevelId] = useState("hsk1");
-  const [currentLessonIdx, setCurrentLessonIdx] = useState(0);
+
+  // Lazy state initializers reading directly from localStorage
+  const [currentLevelId, setCurrentLevelId] = useState<string>(
+    () => loadAppState().currentLevelId
+  );
   const [activeMode, setActiveMode] = useState<
     "typing" | "flashcards" | "lessons" | "garden"
-  >("typing");
+  >(() => loadAppState().activeMode);
+
+  const [typingLessonIdx, setTypingLessonIdx] = useState<number>(
+    () => loadAppState().typingLessonIdx
+  );
+  const [flashcardLessonIdx, setFlashcardLessonIdx] = useState<number>(
+    () => loadAppState().flashcardLessonIdx
+  );
+  const [lessonsLessonIdx, setLessonsLessonIdx] = useState<number>(
+    () => loadAppState().lessonsLessonIdx
+  );
 
   const [progress, setProgress] = useState<UserProgress>(() =>
     loadUserProgress()
@@ -30,13 +48,8 @@ export default function HomePage() {
 
   const [isTopicModalOpen, setIsTopicModalOpen] = useState(false);
 
-  // Practice stats tracking
-  const [stats, setStats] = useState<EditorialStats>({
-    completedCount: 0,
-    correctCount: 0,
-    currentStreak: 0,
-    bestStreak: 0,
-  });
+  // Practice stats tracking with localStorage persistence
+  const [stats, setStats] = useState<EditorialStats>(() => loadPracticeStats());
 
   const handleToggleMastered = (key: string) => {
     setProgress((prev) => {
@@ -56,36 +69,67 @@ export default function HomePage() {
     setStats((prev) => {
       const newStreak = isCorrect ? prev.currentStreak + 1 : 0;
       const newBest = Math.max(prev.bestStreak, newStreak);
-      return {
+      const updatedStats = {
         completedCount: prev.completedCount + 1,
         correctCount: isCorrect ? prev.correctCount + 1 : prev.correctCount,
         currentStreak: newStreak,
         bestStreak: newBest,
       };
+      savePracticeStats(updatedStats);
+      return updatedStats;
     });
   }, []);
 
   const handleResetStats = () => {
-    setStats({
-      completedCount: 0,
-      correctCount: 0,
-      currentStreak: 0,
-      bestStreak: 0,
-    });
+    const defaultStats = getDefaultPracticeStats();
+    setStats(defaultStats);
+    savePracticeStats(defaultStats);
   };
 
   const currentLevel =
     levels.find((l) => l.id === currentLevelId) || levels[0];
   const currentLessons: Lesson[] = LOCAL_DATA[currentLevelId] || [];
-  const currentLesson = currentLessons[currentLessonIdx] || currentLessons[0];
+
+  // Active lesson index specific to the currently viewed mode
+  const currentActiveLessonIdx =
+    activeMode === "typing"
+      ? typingLessonIdx
+      : activeMode === "flashcards"
+      ? flashcardLessonIdx
+      : lessonsLessonIdx;
+
+  const currentActiveLesson =
+    currentLessons[currentActiveLessonIdx] || currentLessons[0];
 
   const handleSelectLevel = (lvlId: string) => {
     setCurrentLevelId(lvlId);
-    setCurrentLessonIdx(0);
+    setTypingLessonIdx(0);
+    setFlashcardLessonIdx(0);
+    setLessonsLessonIdx(0);
+    saveAppState({
+      currentLevelId: lvlId,
+      typingLessonIdx: 0,
+      flashcardLessonIdx: 0,
+      lessonsLessonIdx: 0,
+    });
+  };
+
+  const handleSelectMode = (mode: "typing" | "flashcards" | "lessons" | "garden") => {
+    setActiveMode(mode);
+    saveAppState({ activeMode: mode });
   };
 
   const handleSelectLesson = (idx: number) => {
-    setCurrentLessonIdx(idx);
+    if (activeMode === "typing") {
+      setTypingLessonIdx(idx);
+      saveAppState({ typingLessonIdx: idx });
+    } else if (activeMode === "flashcards") {
+      setFlashcardLessonIdx(idx);
+      saveAppState({ flashcardLessonIdx: idx });
+    } else if (activeMode === "lessons") {
+      setLessonsLessonIdx(idx);
+      saveAppState({ lessonsLessonIdx: idx });
+    }
   };
 
   return (
@@ -127,7 +171,7 @@ export default function HomePage() {
             >
               <BookOpen className="w-3 h-3 text-slate-500" />
               <span className="max-w-[80px] truncate">
-                Bài {currentLessonIdx + 1}
+                Bài {currentActiveLessonIdx + 1}
               </span>
             </button>
           </div>
@@ -144,7 +188,7 @@ export default function HomePage() {
         <div className="grid grid-cols-4 gap-1 pt-2 mt-2 border-t border-[#E5E3DF]">
           <button
             type="button"
-            onClick={() => setActiveMode("typing")}
+            onClick={() => handleSelectMode("typing")}
             className={`py-1 text-xs font-bold rounded-lg cursor-pointer ${
               activeMode === "typing"
                 ? "bg-[#1C1C1C] text-white"
@@ -155,7 +199,7 @@ export default function HomePage() {
           </button>
           <button
             type="button"
-            onClick={() => setActiveMode("flashcards")}
+            onClick={() => handleSelectMode("flashcards")}
             className={`py-1 text-xs font-bold rounded-lg cursor-pointer ${
               activeMode === "flashcards"
                 ? "bg-[#1C1C1C] text-white"
@@ -166,7 +210,7 @@ export default function HomePage() {
           </button>
           <button
             type="button"
-            onClick={() => setActiveMode("lessons")}
+            onClick={() => handleSelectMode("lessons")}
             className={`py-1 text-xs font-bold rounded-lg cursor-pointer ${
               activeMode === "lessons"
                 ? "bg-[#1C1C1C] text-white"
@@ -177,7 +221,7 @@ export default function HomePage() {
           </button>
           <button
             type="button"
-            onClick={() => setActiveMode("garden")}
+            onClick={() => handleSelectMode("garden")}
             className={`py-1 text-xs font-bold rounded-lg cursor-pointer ${
               activeMode === "garden"
                 ? "bg-[#1C1C1C] text-white"
@@ -195,9 +239,9 @@ export default function HomePage() {
         currentLevelId={currentLevelId}
         onSelectLevel={handleSelectLevel}
         activeMode={activeMode}
-        onSelectMode={setActiveMode}
-        currentLesson={currentLesson}
-        currentLessonIdx={currentLessonIdx}
+        onSelectMode={handleSelectMode}
+        currentLesson={currentActiveLesson}
+        currentLessonIdx={currentActiveLessonIdx}
         onOpenTopicModal={() => setIsTopicModalOpen(true)}
         stats={stats}
         onResetStats={handleResetStats}
@@ -207,8 +251,8 @@ export default function HomePage() {
       <main className="flex-1 flex flex-col h-full w-full min-w-0 overflow-hidden bg-[#FAF9F6]">
         {activeMode === "typing" && (
           <EditorialTyping
-            lesson={currentLesson}
-            lessonIdx={currentLessonIdx}
+            lesson={currentLessons[typingLessonIdx] || currentLessons[0]}
+            lessonIdx={typingLessonIdx}
             levelId={currentLevelId}
             onOpenTopicModal={() => setIsTopicModalOpen(true)}
             onRecordResult={handleRecordResult}
@@ -217,8 +261,8 @@ export default function HomePage() {
 
         {activeMode === "flashcards" && (
           <EditorialFlashcards
-            lesson={currentLesson}
-            lessonIdx={currentLessonIdx}
+            lesson={currentLessons[flashcardLessonIdx] || currentLessons[0]}
+            lessonIdx={flashcardLessonIdx}
             levelId={currentLevelId}
             onOpenTopicModal={() => setIsTopicModalOpen(true)}
             masteredCards={progress.masteredCards}
@@ -228,11 +272,11 @@ export default function HomePage() {
 
         {activeMode === "lessons" && (
           <EditorialLessons
-            lesson={currentLesson}
-            lessonIdx={currentLessonIdx}
+            lesson={currentLessons[lessonsLessonIdx] || currentLessons[0]}
+            lessonIdx={lessonsLessonIdx}
             levelId={currentLevelId}
             onOpenTopicModal={() => setIsTopicModalOpen(true)}
-            onSelectMode={(m) => setActiveMode(m)}
+            onSelectMode={handleSelectMode}
           />
         )}
 
@@ -250,7 +294,7 @@ export default function HomePage() {
         isOpen={isTopicModalOpen}
         onClose={() => setIsTopicModalOpen(false)}
         lessons={currentLessons}
-        currentLessonIdx={currentLessonIdx}
+        currentLessonIdx={currentActiveLessonIdx}
         onSelectLesson={handleSelectLesson}
         levelId={currentLevelId}
         levelName={currentLevel.name}

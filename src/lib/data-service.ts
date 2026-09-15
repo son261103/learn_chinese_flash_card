@@ -13,8 +13,89 @@ export const LOCAL_DATA: Record<string, Lesson[]> = {
 };
 
 export const STORAGE_KEYS = {
-  PROGRESS: "hsk_study_progress_v2",
+  APP_STATE: "hsk_app_state_v3",
+  PROGRESS: "hsk_study_progress_v3",
+  STATS: "hsk_practice_stats_v3",
 };
+
+export interface UserAppState {
+  currentLevelId: string;
+  activeMode: "typing" | "flashcards" | "lessons" | "garden";
+  typingLessonIdx: number;
+  flashcardLessonIdx: number;
+  lessonsLessonIdx: number;
+}
+
+export interface PracticeStatsRecord {
+  completedCount: number;
+  correctCount: number;
+  currentStreak: number;
+  bestStreak: number;
+}
+
+export function getDefaultAppState(): UserAppState {
+  return {
+    currentLevelId: "hsk1",
+    activeMode: "typing",
+    typingLessonIdx: 0,
+    flashcardLessonIdx: 0,
+    lessonsLessonIdx: 0,
+  };
+}
+
+export function loadAppState(): UserAppState {
+  if (typeof window === "undefined") return getDefaultAppState();
+  try {
+    const raw = localStorage.getItem(STORAGE_KEYS.APP_STATE);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return {
+        currentLevelId: parsed.currentLevelId || "hsk1",
+        activeMode: parsed.activeMode || "typing",
+        typingLessonIdx: Number.isInteger(parsed.typingLessonIdx) ? parsed.typingLessonIdx : 0,
+        flashcardLessonIdx: Number.isInteger(parsed.flashcardLessonIdx) ? parsed.flashcardLessonIdx : 0,
+        lessonsLessonIdx: Number.isInteger(parsed.lessonsLessonIdx) ? parsed.lessonsLessonIdx : 0,
+      };
+    }
+  } catch {}
+  return getDefaultAppState();
+}
+
+export function saveAppState(partialState: Partial<UserAppState>): void {
+  if (typeof window === "undefined") return;
+  try {
+    const current = loadAppState();
+    const updated = { ...current, ...partialState };
+    localStorage.setItem(STORAGE_KEYS.APP_STATE, JSON.stringify(updated));
+  } catch {}
+}
+
+export function getDefaultPracticeStats(): PracticeStatsRecord {
+  return {
+    completedCount: 0,
+    correctCount: 0,
+    currentStreak: 0,
+    bestStreak: 0,
+  };
+}
+
+export function loadPracticeStats(): PracticeStatsRecord {
+  if (typeof window === "undefined") return getDefaultPracticeStats();
+  try {
+    const raw = localStorage.getItem(STORAGE_KEYS.STATS);
+    if (raw) {
+      return { ...getDefaultPracticeStats(), ...JSON.parse(raw) };
+    }
+  } catch {}
+  return getDefaultPracticeStats();
+}
+
+export function savePracticeStats(stats: PracticeStatsRecord): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(STORAGE_KEYS.STATS, JSON.stringify(stats));
+  } catch {}
+}
 
 export function getInitialProgress(): UserProgress {
   return {

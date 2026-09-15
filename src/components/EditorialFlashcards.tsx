@@ -29,6 +29,9 @@ interface EditorialFlashcardsProps {
   onToggleMastered: (key: string) => void;
 }
 
+const FLASHCARD_AUTOPLAY_KEY = "hsk_flashcard_autoplay_v1";
+const FLASHCARD_TAB_KEY = "hsk_flashcard_tab_v1";
+
 export function EditorialFlashcards({
   lesson,
   lessonIdx,
@@ -39,11 +42,48 @@ export function EditorialFlashcards({
 }: EditorialFlashcardsProps) {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [isAutoPlay, setIsAutoPlay] = useState(false);
+
+  // Persist autoplay preference in localStorage
+  const [isAutoPlay, setIsAutoPlay] = useState(() => {
+    if (typeof window === "undefined") return false;
+    try {
+      return localStorage.getItem(FLASHCARD_AUTOPLAY_KEY) === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  // Persist viewTab in localStorage
+  const [viewTab, setViewTab] = useState<"card" | "table">(() => {
+    if (typeof window === "undefined") return "card";
+    try {
+      const saved = localStorage.getItem(FLASHCARD_TAB_KEY);
+      return saved === "table" ? "table" : "card";
+    } catch {
+      return "card";
+    }
+  });
+
   const [isShuffled, setIsShuffled] = useState(false);
   const [shuffledIndices, setShuffledIndices] = useState<number[] | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [viewTab, setViewTab] = useState<"card" | "table">("card");
+
+  const handleToggleAutoPlay = () => {
+    setIsAutoPlay((prev) => {
+      const next = !prev;
+      try {
+        localStorage.setItem(FLASHCARD_AUTOPLAY_KEY, String(next));
+      } catch {}
+      return next;
+    });
+  };
+
+  const handleSetViewTab = (tab: "card" | "table") => {
+    setViewTab(tab);
+    try {
+      localStorage.setItem(FLASHCARD_TAB_KEY, tab);
+    } catch {}
+  };
 
   const rawWords: Word[] = useMemo(() => {
     if (!lesson || !lesson.w) return [];
@@ -211,7 +251,7 @@ export function EditorialFlashcards({
           <div className="inline-flex items-center h-9 rounded-xl border border-[#E5E3DF] bg-white p-0.5 shadow-2xs">
             <button
               type="button"
-              onClick={() => setViewTab("card")}
+              onClick={() => handleSetViewTab("card")}
               className={`h-full px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
                 viewTab === "card"
                   ? "bg-[#1C1C1C] text-white shadow-xs"
@@ -223,7 +263,7 @@ export function EditorialFlashcards({
             </button>
             <button
               type="button"
-              onClick={() => setViewTab("table")}
+              onClick={() => handleSetViewTab("table")}
               className={`h-full px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
                 viewTab === "table"
                   ? "bg-[#1C1C1C] text-white shadow-xs"
@@ -238,7 +278,7 @@ export function EditorialFlashcards({
           {/* Sound Mute/Unmute Toggle Button */}
           <button
             type="button"
-            onClick={() => setIsAutoPlay(!isAutoPlay)}
+            onClick={handleToggleAutoPlay}
             className={`h-9 px-3 rounded-xl border text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs ${
               isAutoPlay
                 ? "bg-[#1C1C1C] text-white border-[#1C1C1C]"
@@ -268,7 +308,7 @@ export function EditorialFlashcards({
         </div>
       </div>
 
-      {/* VIEW 1: Standalone 100% Fit-in-One-Screen 3D Flashcard Stage (Synchronized padding: px-4 sm:px-6 xl:px-8) */}
+      {/* VIEW 1: Standalone 100% Fit-in-One-Screen 3D Flashcard Stage */}
       {viewTab === "card" ? (
         <div className="flex-1 overflow-hidden flex flex-col items-center justify-center px-4 sm:px-6 xl:px-8 py-2 relative">
           <div className="w-full max-w-lg sm:max-w-xl flex flex-col items-center justify-center space-y-4 my-auto">
@@ -299,7 +339,7 @@ export function EditorialFlashcards({
                   isFlipped ? "rotate-y-180" : ""
                 }`}
               >
-                {/* FRONT FACE (Clean, Uncluttered, No header label) */}
+                {/* FRONT FACE (Clean, Uncluttered) */}
                 <div className="absolute inset-0 backface-hidden w-full h-full bg-white rounded-3xl p-6 sm:p-7 border border-[#E5E3DF] shadow-[0_4px_24px_rgba(0,0,0,0.03)] flex flex-col justify-between items-center text-center">
                   <div className="w-full flex items-center justify-end">
                     <button
@@ -443,7 +483,7 @@ export function EditorialFlashcards({
           </div>
         </div>
       ) : (
-        /* VIEW 2: Full Vocabulary Table (Synchronized padding: px-4 sm:px-6 xl:px-8) */
+        /* VIEW 2: Full Vocabulary Table (Synchronized padding) */
         <div className="flex-1 overflow-y-auto px-4 sm:px-6 xl:px-8 py-6">
           <div className="w-full bg-white rounded-2xl border border-[#E5E3DF] shadow-2xs overflow-hidden">
             <div className="p-4 sm:p-5 border-b border-[#E5E3DF] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -492,7 +532,7 @@ export function EditorialFlashcards({
                           if (newIdx !== -1) {
                             setCurrentIdx(newIdx);
                             setIsFlipped(false);
-                            setViewTab("card");
+                            handleSetViewTab("card");
                           }
                         }}
                         className={`cursor-pointer transition-colors ${
