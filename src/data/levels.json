@@ -1,0 +1,23 @@
+[
+  {
+    "id": "hsk1",
+    "name": "HSK 1 · Sơ cấp",
+    "description": "Nền tảng phát âm, chào hỏi, số đếm và giao tiếp cơ bản",
+    "lessonsCount": 15,
+    "totalWords": 320
+  },
+  {
+    "id": "hsk2",
+    "name": "HSK 2 · Sơ trung cấp",
+    "description": "Giao tiếp hàng ngày, mua sắm, thời tiết, phương hướng",
+    "lessonsCount": 15,
+    "totalWords": 209
+  },
+  {
+    "id": "hsk3",
+    "name": "HSK 3 · Trung cấp",
+    "description": "Hội thoại mở rộng, công việc, du lịch, diễn đạt ý kiến cá nhân",
+    "lessonsCount": 18,
+    "totalWords": 481
+  }
+]

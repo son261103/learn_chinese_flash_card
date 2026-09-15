@@ -1,0 +1,5310 @@
+[
+  {
+    "t": "Bài 1",
+    "vi_t": "Cô ấy đã mời chúng tôi ăn vịt quay Bắc Kinh",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "语气助词「吧」",
+        "title_vi": "Trợ từ ngữ khí \"吧\"",
+        "explain_zh": "语气助词「吧」用在疑问句末尾，表达揣测、估计的语气。",
+        "explain_vi": "Trợ từ ngữ khí \"吧\" dùng ở cuối câu nghi vấn, biểu thị sắc thái phỏng đoán hoặc ước lượng của người nói.",
+        "examples": [
+          {
+            "zh": "你们就是他的学生吧？",
+            "py": "Nǐmen jiù shì tā de xuésheng ba?",
+            "vi": "Các bạn chính là học sinh của anh ấy phải không?"
+          },
+          {
+            "zh": "他唱歌很好听吧？",
+            "py": "Tā chànggē hěn hǎotīng ba?",
+            "vi": "Anh ấy hát chắc hay lắm nhỉ?"
+          },
+          {
+            "zh": "陈天中是泰国人吧？",
+            "py": "Chén Tiānzhōng shì Tàiguórén ba?",
+            "vi": "Trần Thiên Trung là người Thái Lan phải không?"
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "「是……的」句",
+        "title_vi": "Câu với \"是……的\"",
+        "explain_zh": "「是……的」句用来强调事情发生的时间、地点、方式、动作者、目的等。肯定句和疑问句中可以省略「是」，否定句中不能省略「是」。",
+        "explain_vi": "Cụm \"是……的\" dùng để nhấn mạnh thời gian, địa điểm, cách thức, người thực hiện, mục đích... của một việc đã xảy ra. Trong câu khẳng định và câu hỏi có thể lược bỏ \"是\", nhưng trong câu phủ định thì không được lược bỏ.",
+        "examples": [
+          {
+            "zh": "我们是来旅游的。",
+            "py": "Wǒmen shì lái lǚyóu de.",
+            "vi": "Chúng tôi đến đây là để du lịch."
+          },
+          {
+            "zh": "苹果在哪儿买的？",
+            "py": "Píngguǒ zài nǎr mǎi de?",
+            "vi": "Táo mua ở đâu vậy?"
+          },
+          {
+            "zh": "我们不是坐出租车的。",
+            "py": "Wǒmen bú shì zuò chūzūchē de.",
+            "vi": "Chúng tôi không phải đi bằng taxi."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "兼语句",
+        "title_vi": "Câu kiêm ngữ (với 请/让/叫)",
+        "explain_zh": "兼语句的谓语由两个动词短语组成，前一个动词的宾语同时是第二个动词的主语。前一个动词是「请、让、叫」时，表示让某人做某事。基本结构：S + 请/让/叫 + O + (S) + V。",
+        "explain_vi": "Vị ngữ của câu kiêm ngữ gồm hai cụm động từ, trong đó tân ngữ của động từ thứ nhất đồng thời là chủ ngữ của động từ thứ hai. Khi động từ thứ nhất là \"请/让/叫\" thì câu biểu thị ý nhờ/bảo/kêu ai đó làm việc gì. Cấu trúc cơ bản: S + 请/让/叫 + O + (S) + V.",
+        "examples": [
+          {
+            "zh": "我想请你帮个忙。",
+            "py": "Wǒ xiǎng qǐng nǐ bāng ge máng.",
+            "vi": "Tôi muốn nhờ bạn giúp một việc."
+          },
+          {
+            "zh": "王老师让我们说中文。",
+            "py": "Wáng lǎoshī ràng wǒmen shuō Zhōngwén.",
+            "vi": "Cô Vương bảo chúng tôi nói tiếng Trung."
+          },
+          {
+            "zh": "妈妈叫孩子们回家。",
+            "py": "Māma jiào háizimen huí jiā.",
+            "vi": "Mẹ gọi các con về nhà."
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "王老师，我们已经到北京了，是您姐姐来接的我们。",
+          "她请我们吃了北京烤鸭，还给我们介绍了很多东西。",
+          "我们的中文不太好，有时不太懂她的意思。"
+        ],
+        "vi": [
+          "Thưa thầy Vương, chúng em đã đến Bắc Kinh rồi, là chị gái của thầy ra đón chúng em.",
+          "Chị ấy mời chúng em ăn vịt quay Bắc Kinh, còn giới thiệu cho chúng em rất nhiều thứ.",
+          "Tiếng Trung của chúng em không tốt lắm, đôi khi không hiểu hết ý của chị ấy."
+        ]
+      },
+      {
+        "zh": [
+          "我想请你帮个忙，你明天有时间吗？",
+          "不好意思，我已经到北京了，你可以叫李文帮忙。",
+          "他还在学校呢，一会儿给他打个电话吧。"
+        ],
+        "vi": [
+          "Mình muốn nhờ bạn giúp một việc, mai bạn có rảnh không?",
+          "Ngại quá, mình đến Bắc Kinh rồi, bạn nhờ Lý Văn giúp nhé.",
+          "Cậu ấy vẫn còn ở trường, lát nữa gọi điện cho cậu ấy đi."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "Tại nhà ga, Bạch Gia Nguyệt và An Ni gặp Vương Nhất Tuyết — chị gái của thầy Vương Nhất Phi — đến đón họ.",
+        "dialogue": [
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "请问，您是王一飞老师的姐姐吗？",
+            "py": "Qǐngwèn, nín shì Wáng Yīfēi lǎoshī de jiějie ma?",
+            "vi": "Xin hỏi, chị có phải là chị gái của thầy Vương Nhất Phi không ạ?"
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "是的，你们就是她的学生吗？",
+            "py": "Shì de, nǐmen jiù shì tā de xuésheng ma?",
+            "vi": "Đúng vậy, các em chính là học sinh của cậu ấy à?"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "对。我是白家月，她是安妮。",
+            "py": "Duì. Wǒ shì Bái Jiāyuè, tā shì Ānní.",
+            "vi": "Vâng. Em là Bạch Gia Nguyệt, đây là An Ni."
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "你们好，我叫王一雪。一飞给我打电话了，让我来接你们。",
+            "py": "Nǐmen hǎo, wǒ jiào Wáng Yīxuě. Yīfēi gěi wǒ dǎ diànhuà le, ràng wǒ lái jiē nǐmen.",
+            "vi": "Chào các em, chị tên Vương Nhất Tuyết. Nhất Phi gọi điện cho chị, bảo chị đến đón các em."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "谢谢您。",
+            "py": "Xièxie nín.",
+            "vi": "Cảm ơn chị ạ."
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "不客气。",
+            "py": "Bú kèqi.",
+            "vi": "Không có gì."
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "Trên đường về, Vương Nhất Tuyết hỏi thăm hai bạn về chuyến đi Bắc Kinh lần đầu.",
+        "dialogue": [
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "你们是第一次来北京吗？",
+            "py": "Nǐmen shì dì-yī cì lái Běijīng ma?",
+            "vi": "Các em đến Bắc Kinh lần đầu à?"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "是的，我们都是第一次来。",
+            "py": "Shì de, wǒmen dōu shì dì-yī cì lái.",
+            "vi": "Vâng, tụi em đều là lần đầu đến ạ."
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "你们是来学中文的吗?",
+            "py": "Nǐmen shì lái xué Zhōngwén de ma?",
+            "vi": "Các em đến đây để học tiếng Trung à?"
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "不是，我们是来旅游的。",
+            "py": "Bú shì, wǒmen shì lái lǚyóu de.",
+            "vi": "Không ạ, tụi em đến để du lịch."
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "我这几天都不忙，你们有事就找我。",
+            "py": "Wǒ zhè jǐ tiān dōu bù máng, nǐmen yǒu shì jiù zhǎo wǒ.",
+            "vi": "Mấy hôm nay chị không bận lắm, có việc gì các em cứ tìm chị."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "好的，谢谢您。",
+            "py": "Hǎo de, xièxie nín.",
+            "vi": "Vâng, cảm ơn chị ạ."
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Bạch Gia Nguyệt vừa đến Bắc Kinh thì nhận điện thoại nhờ giúp đỡ từ Trần Thiên Trung.",
+        "dialogue": [
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "喂，家月，你明天有时间吗？我想请你帮个忙。",
+            "py": "Wéi, Jiāyuè, nǐ míngtiān yǒu shíjiān ma? Wǒ xiǎng qǐng nǐ bāng ge máng.",
+            "vi": "A lô, Gia Nguyệt, mai bạn có rảnh không? Mình muốn nhờ bạn giúp một việc."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "不好意思，天中，我已经到北京了。",
+            "py": "Bù hǎoyìsi, Tiānzhōng, wǒ yǐjīng dào Běijīng le.",
+            "vi": "Ngại quá, Thiên Trung à, mình đến Bắc Kinh rồi."
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "你是什么时候到的？",
+            "py": "Nǐ shì shénme shíhou dào de?",
+            "vi": "Bạn đến lúc nào vậy?"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "我是今天早上到的。你有事可以叫李文帮忙，他还在学校呢。",
+            "py": "Wǒ shì jīntiān zǎoshang dào de. Nǐ yǒu shì kěyǐ jiào Lǐ Wén bāngmáng, tā hái zài xuéxiào ne.",
+            "vi": "Mình đến sáng nay. Có việc gì bạn nhờ Lý Văn giúp nhé, cậu ấy vẫn còn ở trường."
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "好的，那我给他打个电话。",
+            "py": "Hǎo de, nà wǒ gěi tā dǎ ge diànhuà.",
+            "vi": "Được, vậy mình gọi điện cho cậu ấy."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "好，再见！",
+            "py": "Hǎo, zàijiàn!",
+            "vi": "Ừ, tạm biệt!"
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Tại khách sạn, Bạch Gia Nguyệt nhắn tin cho cô Vương Nhất Phi.",
+        "dialogue": [
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "王老师，我们已经到北京了，是您姐姐来接的我们。",
+            "py": "Wáng lǎoshī, wǒmen yǐjīng dào Běijīng le, shì nín jiějie lái jiē de wǒmen.",
+            "vi": "Thưa cô Vương, chúng em đã đến Bắc Kinh rồi, là chị của cô đến đón chúng em."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "她请我们吃了北京烤鸭，还给我们介绍了很多东西。",
+            "py": "Tā qǐng wǒmen chī le Běijīng kǎoyā, hái gěi wǒmen jièshào le hěn duō dōngxi.",
+            "vi": "Chị ấy đã mời chúng em ăn vịt quay Bắc Kinh, còn giới thiệu cho chúng em rất nhiều thứ."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "我们的中文不太好，有时不太懂她的意思。",
+            "py": "Wǒmen de Zhōngwén bú tài hǎo, yǒushí bú tài dǒng tā de yìsi.",
+            "vi": "Tiếng Trung của chúng em không tốt lắm, đôi khi không hiểu ý của chị ấy."
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "就",
+        "jiù",
+        "Tựu",
+        "chính là",
+        "Phó từ"
+      ],
+      [
+        "给",
+        "gěi",
+        "Cấp",
+        "cho",
+        "Giới từ"
+      ],
+      [
+        "让",
+        "ràng",
+        "Nhượng",
+        "kêu, bảo",
+        "Động từ"
+      ],
+      [
+        "接",
+        "jiē",
+        "Tiếp",
+        "đón",
+        "Động từ"
+      ],
+      [
+        "次",
+        "cì",
+        "Thứ",
+        "lần",
+        "Lượng từ"
+      ],
+      [
+        "旅游",
+        "lǚyóu",
+        "Lữ du",
+        "du lịch",
+        "Động từ"
+      ],
+      [
+        "帮忙",
+        "bāngmáng",
+        "Bang mang",
+        "giúp, giúp đỡ",
+        "Động từ"
+      ],
+      [
+        "不好意思",
+        "bù hǎo yì si",
+        "Bất hảo ý tứ",
+        "ngại quá, xin lỗi",
+        "Cụm từ"
+      ],
+      [
+        "已经",
+        "yǐjīng",
+        "Dĩ kinh",
+        "đã",
+        "Phó từ"
+      ],
+      [
+        "那",
+        "nà",
+        "Na",
+        "thế thì, vậy thì",
+        "Liên từ"
+      ],
+      [
+        "介绍",
+        "jièshào",
+        "Giới thiệu",
+        "giới thiệu",
+        "Động từ"
+      ],
+      [
+        "有时",
+        "yǒushí",
+        "Hữu thời",
+        "có lúc, thỉnh thoảng",
+        "Phó từ"
+      ],
+      [
+        "懂",
+        "dǒng",
+        "Đổng",
+        "hiểu, biết",
+        "Động từ"
+      ],
+      [
+        "意思",
+        "yìsi",
+        "Ý tứ",
+        "ý, nghĩa",
+        "Danh từ"
+      ],
+      [
+        "北京烤鸭",
+        "Běijīng kǎoyā",
+        "Bắc Kinh khảo áp",
+        "vịt quay Bắc Kinh",
+        "Danh từ"
+      ]
+    ]
+  },
+  {
+    "t": "Bài 2",
+    "vi_t": "Vẫn nên bắt taxi đi Đại học Bắc Kinh thôi!",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "「还是……吧」",
+        "title_vi": "Cấu trúc \"还是……吧\"",
+        "explain_zh": "固定格式「还是……吧」表示倾向性选择，有「这样办比较好」的意思。",
+        "explain_vi": "Cấu trúc \"还是……吧\" thể hiện sự lựa chọn ưu tiên, mang nghĩa \"làm theo cách này sẽ tốt hơn\".",
+        "examples": [
+          {
+            "zh": "我们还是打车去吧。",
+            "py": "Wǒmen háishi dǎchē qù ba.",
+            "vi": "Chúng ta vẫn nên bắt taxi đi thôi."
+          },
+          {
+            "zh": "那件衣服很好看，还是买那件吧。",
+            "py": "Nà jiàn yīfu hěn hǎokàn, háishi mǎi nà jiàn ba.",
+            "vi": "Cái áo đó đẹp lắm, vẫn nên mua cái đó thôi."
+          },
+          {
+            "zh": "你第一次去北京，还是找个人接你吧。",
+            "py": "Nǐ dì-yī cì qù Běijīng, háishi zhǎo ge rén jiē nǐ ba.",
+            "vi": "Bạn lần đầu đến Bắc Kinh, vẫn nên tìm người đón bạn thôi."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "「多」表示概数",
+        "title_vi": "\"多\" biểu thị số lượng xấp xỉ",
+        "explain_zh": "「多」用在数词或数量词后，表示有零头。当数字是10的整数倍时，「多」一般用在数词后面；当数字不是10的整数倍时，「多」一般用在量词后面。",
+        "explain_vi": "\"多\" đứng sau số hoặc lượng từ để biểu thị có phần dư. Khi số đó là bội số của 10 thì \"多\" thường đứng sau số; khi không phải bội số của 10 thì \"多\" thường đứng sau lượng từ.",
+        "examples": [
+          {
+            "zh": "北京大学有四万多名学生呢！",
+            "py": "Běijīng Dàxué yǒu sì wàn duō míng xuésheng ne!",
+            "vi": "Đại học Bắc Kinh có hơn bốn vạn sinh viên đấy!"
+          },
+          {
+            "zh": "教室里有二十多个学生。",
+            "py": "Jiàoshì lǐ yǒu èrshí duō ge xuésheng.",
+            "vi": "Trong lớp học có hơn hai mươi học sinh."
+          },
+          {
+            "zh": "这两个苹果五块多钱。",
+            "py": "Zhè liǎng ge píngguǒ wǔ kuài duō qián.",
+            "vi": "Hai quả táo này hơn năm đồng."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "动词/动词短语作定语",
+        "title_vi": "Động từ hoặc cụm động từ làm định ngữ",
+        "explain_zh": "动词或动词性短语、主谓短语用在名词前面，加「的」，表示名词的特征或状态。结构：V/短语 + 的 + 中心语。",
+        "explain_vi": "Động từ hoặc cụm động từ, cụm chủ-vị đứng trước danh từ kèm \"的\", để biểu thị đặc điểm hoặc trạng thái của danh từ. Cấu trúc: V/cụm từ + 的 + trung tâm ngữ.",
+        "examples": [
+          {
+            "zh": "他们卖的电影票也很便宜。",
+            "py": "Tāmen mài de diànyǐng piào yě hěn piányi.",
+            "vi": "Vé phim họ bán cũng rất rẻ."
+          },
+          {
+            "zh": "现在学中文的学生很多。",
+            "py": "Xiànzài xué Zhōngwén de xuésheng hěn duō.",
+            "vi": "Hiện nay học sinh học tiếng Trung rất nhiều."
+          },
+          {
+            "zh": "这是朋友给我的被子。",
+            "py": "Zhè shì péngyou gěi wǒ de bèizi.",
+            "vi": "Đây là cái chăn bạn tặng cho tôi."
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "北京大学很大，有四万多名学生。",
+          "学校很漂亮，里边还有家电影院，电影票也不贵。",
+          "我们有时间还想再过来看个电影。"
+        ],
+        "vi": [
+          "Đại học Bắc Kinh rất rộng, có hơn bốn vạn sinh viên.",
+          "Trường rất đẹp, bên trong còn có một rạp chiếu phim, vé phim cũng không đắt.",
+          "Có thời gian chúng tôi còn muốn quay lại xem phim."
+        ]
+      },
+      {
+        "zh": [
+          "这儿到北京大学没有公交车经过，车站有点儿远。",
+          "打车倒是很方便，一会儿就到了。",
+          "学校里人特别多，光外国学生就有三千多名。"
+        ],
+        "vi": [
+          "Ở đây không có xe buýt đi qua Đại học Bắc Kinh, trạm xe hơi xa.",
+          "Bắt taxi thì lại rất tiện, một lát là đến.",
+          "Trong trường người đặc biệt đông, riêng sinh viên nước ngoài đã hơn ba nghìn người."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "Bạch Gia Nguyệt và An Ni hỏi đường ra Đại học Bắc Kinh, phân vân đi xe buýt hay bắt taxi.",
+        "dialogue": [
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "请问，这儿有到北京大学的公交车吗？",
+            "py": "Qǐngwèn, zhèr yǒu dào Běijīng Dàxué de gōngjiāochē ma?",
+            "vi": "Xin hỏi, ở đây có xe buýt đến Đại học Bắc Kinh không ạ?"
+          },
+          {
+            "who": "服务员 Fúwùyuán",
+            "zh": "有，但车站有点儿远。",
+            "py": "Yǒu, dàn chēzhàn yǒudiǎnr yuǎn.",
+            "vi": "Có, nhưng trạm xe hơi xa một chút."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "这儿好打车吗？",
+            "py": "Zhèr hǎo dǎchē ma?",
+            "vi": "Ở đây có dễ bắt taxi không ạ?"
+          },
+          {
+            "who": "服务员 Fúwùyuán",
+            "zh": "好打车。",
+            "py": "Hǎo dǎchē.",
+            "vi": "Dễ bắt taxi."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "谢谢。安妮，我们还是打车去吧。",
+            "py": "Xièxie. Ānní, wǒmen háishi dǎchē qù ba.",
+            "vi": "Cảm ơn. An Ni, chúng ta vẫn nên bắt taxi đi thôi."
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "好，没问题。",
+            "py": "Hǎo, méi wèntí.",
+            "vi": "Được, không vấn đề gì."
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "An Ni và Bạch Gia Nguyệt ngạc nhiên trước quy mô của Đại học Bắc Kinh.",
+        "dialogue": [
+          {
+            "who": "安妮 Ānní",
+            "zh": "是网上说的，网上还说北京大学有三千多名外国学生。",
+            "py": "Shì wǎngshàng shuō de, wǎngshàng hái shuō Běijīng Dàxué yǒu sānqiān duō míng wàiguó xuésheng.",
+            "vi": "Là trên mạng nói đấy, trên mạng còn nói Đại học Bắc Kinh có hơn ba nghìn sinh viên nước ngoài."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "我也想来这儿学习。那边就有一间教室，我们去看一下吧。",
+            "py": "Wǒ yě xiǎng lái zhèr xuéxí. Nàbiān jiù yǒu yì jiān jiàoshì, wǒmen qù kàn yíxià ba.",
+            "vi": "Tôi cũng muốn đến đây học. Đằng kia có một phòng học, chúng ta đi xem thử nhé."
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "学校里人真多啊！",
+            "py": "Xuéxiào lǐ rén zhēn duō a!",
+            "vi": "Trong trường người đông thật đấy!"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "是啊，北京大学有四万多名学生呢！",
+            "py": "Shì a, Běijīng Dàxué yǒu sì wàn duō míng xuésheng ne!",
+            "vi": "Đúng vậy, Đại học Bắc Kinh có hơn bốn vạn sinh viên đấy!"
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "你是怎么知道的？",
+            "py": "Nǐ shì zěnme zhīdào de?",
+            "vi": "Bạn biết bằng cách nào vậy?"
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Bạch Gia Nguyệt và An Ni phát hiện trong trường còn có rạp chiếu phim.",
+        "dialogue": [
+          {
+            "who": "安妮 Ānní",
+            "zh": "家月，你看，学校里有家电影院！",
+            "py": "Jiāyuè, nǐ kàn, xuéxiào lǐ yǒu jiā diànyǐngyuàn!",
+            "vi": "Gia Nguyệt, bạn xem, trong trường có một rạp chiếu phim đấy!"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "是啊，电影院还不小。他们卖的电影票也很便宜。",
+            "py": "Shì a, diànyǐngyuàn hái bù xiǎo. Tāmen mài de diànyǐng piào yě hěn piányi.",
+            "vi": "Đúng vậy, rạp cũng không nhỏ. Vé phim họ bán cũng rất rẻ."
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "天啊！有的还不到二十块钱。",
+            "py": "Tiān a! Yǒude hái bú dào èrshí kuài qián.",
+            "vi": "Trời ơi! Có vé còn chưa đến hai mươi tệ."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "那你想不想去看个电影？",
+            "py": "Nà nǐ xiǎng bu xiǎng qù kàn ge diànyǐng?",
+            "vi": "Vậy bạn có muốn đi xem phim không?"
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "还是别看电影了，北京大学就很好玩！",
+            "py": "Háishi bié kàn diànyǐng le, Běijīng Dàxué jiù hěn hǎowán!",
+            "vi": "Thôi khỏi xem phim đi, Đại học Bắc Kinh đã đủ thú vị rồi!"
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Tại cổng Đại học Bắc Kinh, Bạch Gia Nguyệt nhắn tin cho Trần Thiên Trung.",
+        "dialogue": [
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "北京大学很大，有四万多名学生。",
+            "py": "Běijīng Dàxué hěn dà, yǒu sì wàn duō míng xuésheng.",
+            "vi": "Đại học Bắc Kinh rất lớn, có hơn bốn vạn sinh viên."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "学校很漂亮，里边还有家电影院，电影票也不贵，",
+            "py": "Xuéxiào hěn piàoliang, lǐbian hái yǒu jiā diànyǐngyuàn, diànyǐngpiào yě bú guì,",
+            "vi": "Trường rất đẹp, bên trong còn có một rạp chiếu phim, vé xem phim cũng không đắt,"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "我们有时间还想再过来看个电影。",
+            "py": "Wǒmen yǒu shíjiān hái xiǎng zài guòlái kàn ge diànyǐng.",
+            "vi": "chúng tôi có thời gian còn muốn quay lại xem một bộ phim."
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "公交车",
+        "gōngjiāochē",
+        "Công giao xa",
+        "xe buýt",
+        "Danh từ"
+      ],
+      [
+        "但",
+        "dàn",
+        "Đãn",
+        "nhưng mà",
+        "Liên từ"
+      ],
+      [
+        "车站",
+        "chēzhàn",
+        "Xa trạm",
+        "trạm xe, bến xe",
+        "Danh từ"
+      ],
+      [
+        "远",
+        "yuǎn",
+        "Viễn",
+        "xa",
+        "Tính từ"
+      ],
+      [
+        "打车",
+        "dǎchē",
+        "Đả xa",
+        "bắt taxi",
+        "Động từ"
+      ],
+      [
+        "还是",
+        "háishi",
+        "Hoàn thị",
+        "hay là, vẫn nên",
+        "Phó từ"
+      ],
+      [
+        "啊",
+        "a",
+        "A",
+        "(trợ từ cuối câu)",
+        "Trợ từ"
+      ],
+      [
+        "万",
+        "wàn",
+        "Vạn",
+        "vạn (10.000)",
+        "Số từ"
+      ],
+      [
+        "名",
+        "míng",
+        "Danh",
+        "(lượng từ chỉ người)",
+        "Lượng từ"
+      ],
+      [
+        "网上",
+        "wǎngshàng",
+        "Võng thượng",
+        "trên mạng",
+        "Danh từ"
+      ],
+      [
+        "外国",
+        "wàiguó",
+        "Ngoại quốc",
+        "nước ngoài",
+        "Danh từ"
+      ],
+      [
+        "间",
+        "jiān",
+        "Gian",
+        "(lượng từ chỉ phòng)",
+        "Lượng từ"
+      ],
+      [
+        "教室",
+        "jiàoshì",
+        "Giáo thất",
+        "lớp học, phòng học",
+        "Danh từ"
+      ],
+      [
+        "票",
+        "piào",
+        "Phiếu",
+        "vé",
+        "Danh từ"
+      ],
+      [
+        "别",
+        "bié",
+        "Biệt",
+        "đừng",
+        "Phó từ"
+      ],
+      [
+        "过来",
+        "guòlái",
+        "Quá lai",
+        "qua đây",
+        "Động từ"
+      ]
+    ]
+  },
+  {
+    "t": "Bài 3",
+    "vi_t": "Tôi muốn đi Tây An du lịch!",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "结果补语",
+        "title_vi": "Bổ ngữ kết quả",
+        "explain_zh": "一些动词或形容词用在动词后面，表示动作的结果。否定形式：没(有) + V + 结果补语（去掉「了」）。疑问形式：句尾加「了吗」或「(了)没有」，或 V + 没 + V + 结果补语。",
+        "explain_vi": "Một số động từ hoặc tính từ đứng sau động từ để chỉ kết quả của hành động. Thể phủ định: thêm \"没(有)\" trước động từ, đồng thời bỏ \"了\". Thể nghi vấn: thêm \"了吗\" hoặc \"(了)没有\" cuối câu, hoặc V + 没 + V + bổ ngữ kết quả.",
+        "examples": [
+          {
+            "zh": "菜都做好了。",
+            "py": "Cài dōu zuò hǎo le.",
+            "vi": "Món ăn đều đã làm xong rồi."
+          },
+          {
+            "zh": "我没吃晚饭。",
+            "py": "Wǒ méi chī wǎnfàn.",
+            "vi": "Tôi chưa ăn cơm tối."
+          },
+          {
+            "zh": "你吃完饭了吗？",
+            "py": "Nǐ chī wán fàn le ma?",
+            "vi": "Bạn ăn cơm xong chưa?"
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "动词重叠(1)",
+        "title_vi": "Động từ lặp lại — biểu thị hành động chưa xảy ra",
+        "explain_zh": "动作性强、可重复或持续的动词重叠使用，表示时间短、数量少、尝试等意思，语气轻松随意，多用于口语。单音节：A(一)A；双音节：ABAB；离合词：AAB。",
+        "explain_vi": "Những động từ mang tính hành động, có thể lặp lại khi lặp sẽ biểu thị: thời gian ngắn, số lượng ít, làm thử... Sắc thái nhẹ nhàng, thường dùng trong khẩu ngữ. Một âm tiết: A(一)A; hai âm tiết: ABAB; động từ ly hợp: AAB.",
+        "examples": [
+          {
+            "zh": "你想好了，我来买票。",
+            "py": "Nǐ xiǎng hǎo le, wǒ lái mǎi piào.",
+            "vi": "Bạn nghĩ kỹ rồi thì để tôi mua vé."
+          },
+          {
+            "zh": "我有点儿累，现在想休息休息。",
+            "py": "Wǒ yǒudiǎnr lèi, xiànzài xiǎng xiūxi xiūxi.",
+            "vi": "Tôi hơi mệt, bây giờ muốn nghỉ ngơi một chút."
+          },
+          {
+            "zh": "你能过来帮帮忙吗？",
+            "py": "Nǐ néng guòlái bāngbāngmáng ma?",
+            "vi": "Bạn có thể qua giúp một tay không?"
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "动词重叠(2)",
+        "title_vi": "Động từ lặp lại — biểu thị hành động đã xảy ra",
+        "explain_zh": "表达已发生的情况：单音节动词重叠为「A了A」；双音节动词一般不能重叠，只能用「AB了一下」；离合词重叠为「A了AB」。",
+        "explain_vi": "Khi diễn tả hành động đã xảy ra: động từ một âm tiết có dạng lặp \"A了A\"; động từ hai âm tiết thường không lặp kiểu ABAB mà dùng \"AB了一下\"; động từ ly hợp có dạng lặp \"A了AB\".",
+        "examples": [
+          {
+            "zh": "我看了看网上的介绍。",
+            "py": "Wǒ kàn le kàn wǎngshàng de jièshào.",
+            "vi": "Tôi xem qua giới thiệu trên mạng."
+          },
+          {
+            "zh": "我休息了一下，现在觉得不累了。",
+            "py": "Wǒ xiūxi le yíxià, xiànzài juéde bú lèi le.",
+            "vi": "Tôi nghỉ một lát, bây giờ thấy không mệt nữa."
+          },
+          {
+            "zh": "他昨天来帮了帮忙。",
+            "py": "Tā zuótiān lái bāng le bāngmáng.",
+            "vi": "Hôm qua anh ấy đến giúp một tay."
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "早上，赵刚开车送孩子去学校。",
+          "送完孩子回家后，医院就来电话了，让他回去上班。",
+          "这个月他每天都很累，真想让他休息休息。"
+        ],
+        "vi": [
+          "Sáng sớm, Lưu Minh lái xe đưa con đến trường.",
+          "Đưa con xong về nhà, bệnh viện gọi điện đến, bảo anh quay lại làm việc.",
+          "Tháng này ngày nào anh cũng mệt, thật muốn để anh nghỉ ngơi một chút."
+        ]
+      },
+      {
+        "zh": [
+          "这几天工作太多，赵刚下班常常很晚。",
+          "他想找个时间跟张丽一起去旅游。",
+          "看了网上的介绍，他觉得这个时候去西安很不错。"
+        ],
+        "vi": [
+          "Mấy hôm nay công việc nhiều quá, Lưu Minh tan làm thường rất muộn.",
+          "Anh muốn tìm thời gian cùng Vương Nhất Tuyết đi du lịch.",
+          "Xem giới thiệu trên mạng, anh thấy dịp này đi Tây An rất được."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "Lưu Minh đi làm về muộn, Vương Nhất Tuyết đã chuẩn bị cơm sẵn.",
+        "dialogue": [
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "今天回来这么晚啊！",
+            "py": "Jīntiān huílái zhème wǎn a!",
+            "vi": "Hôm nay về muộn thế!"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "工作太多了，下班的时候没做完。",
+            "py": "Gōngzuò tài duō le, xiàbān de shíhou méi zuò wán.",
+            "vi": "Việc nhiều quá, lúc tan làm chưa xong."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "菜都做好了，过来吃饭吧。",
+            "py": "Cài dōu zuò hǎo le, guòlái chīfàn ba.",
+            "vi": "Món ăn làm xong hết rồi, qua ăn cơm đi."
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "我想休息一下，喝杯水。",
+            "py": "Wǒ xiǎng xiūxi yíxià, hē bēi shuǐ.",
+            "vi": "Tôi muốn nghỉ một lát, uống cốc nước."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "好的。",
+            "py": "Hǎo de.",
+            "vi": "Được."
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "Vợ chồng Lưu Minh bàn chuyện đi du lịch.",
+        "dialogue": [
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "我们找个时间去旅游，怎么样？",
+            "py": "Wǒmen zhǎo ge shíjiān qù lǚyóu, zěnmeyàng?",
+            "vi": "Chúng ta tìm thời gian đi du lịch nhé, được không?"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "好啊，我也很想一起出去玩。你想去哪儿？",
+            "py": "Hǎo a, wǒ yě hěn xiǎng yìqǐ chūqù wán. Nǐ xiǎng qù nǎr?",
+            "vi": "Được đấy, tôi cũng rất muốn cùng đi chơi. Anh muốn đi đâu?"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "我还没想好呢。",
+            "py": "Wǒ hái méi xiǎng hǎo ne.",
+            "vi": "Tôi vẫn chưa nghĩ ra."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "那你再想一想，你想好了，我来买票。",
+            "py": "Nà nǐ zài xiǎng yi xiǎng, nǐ xiǎng hǎo le, wǒ lái mǎi piào.",
+            "vi": "Vậy anh nghĩ thêm đi, nghĩ ra rồi để tôi mua vé."
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Lưu Minh gợi ý cả nhà đi Tây An du lịch.",
+        "dialogue": [
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "吃个苹果吧，我都洗好了。",
+            "py": "Chī ge píngguǒ ba, wǒ dōu xǐ hǎo le.",
+            "vi": "Ăn quả táo đi, tôi rửa xong rồi."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "好的。",
+            "py": "Hǎo de.",
+            "vi": "Được."
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "就在桌子上，你自己拿。我去洗洗手。对了，我们去西安旅游，怎么样？",
+            "py": "Jiù zài zhuōzi shàng, nǐ zìjǐ ná. Wǒ qù xǐxǐ shǒu. Duì le, wǒmen qù Xī'ān lǚyóu, zěnmeyàng?",
+            "vi": "Ngay trên bàn đấy, anh tự lấy. Tôi đi rửa tay. À đúng rồi, chúng ta đi Tây An du lịch nhé?"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "为什么想去西安？",
+            "py": "Wèishénme xiǎng qù Xī'ān?",
+            "vi": "Sao lại muốn đi Tây An?"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "我看了看网上的介绍，这个时候去西安很不错。",
+            "py": "Wǒ kàn le kàn wǎngshàng de jièshào, zhège shíhou qù Xī'ān hěn búcuò.",
+            "vi": "Tôi xem qua giới thiệu trên mạng, dịp này đi Tây An rất được."
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Ở nhà, Vương Nhất Tuyết gọi điện kể chuyện chồng cho bạn thân.",
+        "dialogue": [
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "早上，刘明开车送孩子去学校，",
+            "py": "Zǎoshang, Liú Míng kāichē sòng háizi qù xuéxiào,",
+            "vi": "Buổi sáng, Lưu Minh lái xe đưa con đến trường,"
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "送完孩子回家后，医院就来电话了，让他回去上班。",
+            "py": "sòngwán háizi huí jiā hòu, yīyuàn jiù lái diànhuà le, ràng tā huíqù shàngbān.",
+            "vi": "đưa con xong về nhà thì bệnh viện gọi điện đến, bảo anh ấy quay lại làm việc."
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "我觉得他这个月每天都很累，真想让他休息休息。",
+            "py": "Wǒ juéde tā zhège yuè měitiān dōu hěn lèi, zhēn xiǎng ràng tā xiūxi xiūxi.",
+            "vi": "Tôi thấy tháng này ngày nào anh ấy cũng mệt, thật muốn để anh ấy nghỉ ngơi một chút."
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "回来",
+        "huílái",
+        "Hồi lai",
+        "quay lại, trở về",
+        "Động từ"
+      ],
+      [
+        "这么",
+        "zhème",
+        "Giá ma",
+        "như thế",
+        "Đại từ"
+      ],
+      [
+        "完",
+        "wán",
+        "Hoàn",
+        "xong",
+        "Động từ"
+      ],
+      [
+        "一起",
+        "yìqǐ",
+        "Nhất khởi",
+        "cùng nhau",
+        "Phó từ"
+      ],
+      [
+        "出去",
+        "chūqù",
+        "Xuất khứ",
+        "ra ngoài",
+        "Động từ"
+      ],
+      [
+        "洗",
+        "xǐ",
+        "Tẩy",
+        "rửa",
+        "Động từ"
+      ],
+      [
+        "自己",
+        "zìjǐ",
+        "Tự kỷ",
+        "tự mình",
+        "Đại từ"
+      ],
+      [
+        "拿",
+        "ná",
+        "Nã",
+        "lấy, cầm",
+        "Động từ"
+      ],
+      [
+        "手",
+        "shǒu",
+        "Thủ",
+        "tay",
+        "Danh từ"
+      ],
+      [
+        "为什么",
+        "wèishénme",
+        "Vị thập ma",
+        "tại sao",
+        "Đại từ"
+      ],
+      [
+        "不错",
+        "búcuò",
+        "Bất thác",
+        "không tệ, rất được",
+        "Tính từ"
+      ],
+      [
+        "送",
+        "sòng",
+        "Tống",
+        "đưa, tặng",
+        "Động từ"
+      ],
+      [
+        "回去",
+        "huíqù",
+        "Hồi khứ",
+        "quay trở về",
+        "Động từ"
+      ],
+      [
+        "每",
+        "měi",
+        "Mỗi",
+        "mỗi",
+        "Đại từ"
+      ],
+      [
+        "累",
+        "lèi",
+        "Luy",
+        "mệt",
+        "Tính từ"
+      ]
+    ]
+  },
+  {
+    "t": "Bài 4",
+    "vi_t": "Bạn mặc màu đỏ rất đẹp!",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "动态助词「过」",
+        "title_vi": "Trợ từ động thái \"过\"",
+        "explain_zh": "动态助词「过」表示动作曾在过去发生，但未持续到现在。结构：S + V + 过 + O（肯定）；S + 没(有) + V + 过 + O（否定）。疑问：句尾加「吗」或「没有」，或 V + 没 + V + 过。",
+        "explain_vi": "Trợ từ động thái \"过\" biểu thị một hành động đã từng xảy ra trong quá khứ, nhưng không kéo dài đến hiện tại. Cấu trúc: S + V + 过 + O (khẳng định); S + 没(有) + V + 过 + O (phủ định). Nghi vấn: thêm \"吗\" hoặc \"没有\" cuối câu, hoặc V + 没 + V + 过.",
+        "examples": [
+          {
+            "zh": "他去过中国。",
+            "py": "Tā qù guo Zhōngguó.",
+            "vi": "Anh ấy đã từng đi Trung Quốc."
+          },
+          {
+            "zh": "我吃过饺子，很好吃。",
+            "py": "Wǒ chī guo jiǎozi, hěn hǎochī.",
+            "vi": "Tôi đã từng ăn sủi cảo, rất ngon."
+          },
+          {
+            "zh": "我们来过这家商场吗？",
+            "py": "Wǒmen lái guo zhè jiā shāngchǎng ma?",
+            "vi": "Chúng ta đã từng đến trung tâm thương mại này chưa?"
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "「因为……所以……」",
+        "title_vi": "Cấu trúc \"因为……所以……\"",
+        "explain_zh": "「因为……所以……」构成因果关系复句。「因为」和「所以」可以成对使用，也可以只用其中一个。",
+        "explain_vi": "Cấu trúc \"因为……所以……\" (bởi vì... cho nên...) tạo thành câu phức chỉ mối quan hệ nhân quả. Có thể dùng cả hai từ hoặc chỉ dùng một trong hai.",
+        "examples": [
+          {
+            "zh": "因为我生病了，今天没去上班。",
+            "py": "Yīnwèi wǒ shēngbìng le, jīntiān méi qù shàngbān.",
+            "vi": "Vì tôi bị ốm nên hôm nay không đi làm."
+          },
+          {
+            "zh": "我没去过他家，所以让他来车站接我。",
+            "py": "Wǒ méi qù guo tā jiā, suǒyǐ ràng tā lái chēzhàn jiē wǒ.",
+            "vi": "Tôi chưa từng đến nhà anh ấy, nên bảo anh ấy ra bến xe đón tôi."
+          },
+          {
+            "zh": "就是因为没穿过，所以想试试啊！",
+            "py": "Jiùshì yīnwèi méi chuān guo, suǒyǐ xiǎng shìshi a!",
+            "vi": "Chính vì chưa mặc bao giờ nên mới muốn thử đấy!"
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "「的」字短语",
+        "title_vi": "Cụm từ có \"的\"",
+        "explain_zh": "结构助词「的」用在名词、代词、动词、形容词等后面，组成「的」字短语，相当于名词性短语。",
+        "explain_vi": "Trợ từ kết cấu \"的\" dùng sau danh từ, đại từ, động từ, tính từ để tạo thành cụm từ có \"的\", tương đương một cụm danh từ.",
+        "examples": [
+          {
+            "zh": "红色的、绿色的、黑色的，你想买哪个？",
+            "py": "Hóngsè de, lǜsè de, hēisè de, nǐ xiǎng mǎi nǎge?",
+            "vi": "Màu đỏ, màu xanh lá, màu đen, bạn muốn mua cái nào?"
+          },
+          {
+            "zh": "这个面包是爸爸买的，妈妈买的在那儿。",
+            "py": "Zhège miànbāo shì bàba mǎi de, māma mǎi de zài nàr.",
+            "vi": "Bánh mì này là bố mua, cái mẹ mua ở đằng kia."
+          },
+          {
+            "zh": "这件衣服太贵了，还是买那件便宜的吧。",
+            "py": "Zhè jiàn yīfu tài guì le, háishi mǎi nà jiàn piányi de ba.",
+            "vi": "Cái áo này đắt quá, vẫn nên mua cái rẻ hơn thôi."
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "我和妈妈去了一家商场。",
+          "因为是新开的，所以这几天东西很便宜。",
+          "商场里的衣服颜色很多，我没穿过红色的裤子，妈妈让我试了试。",
+          "我觉得我穿红色的也很好看。"
+        ],
+        "vi": [
+          "Tôi và mẹ đi đến một trung tâm thương mại.",
+          "Vì mới khai trương nên mấy hôm nay đồ rất rẻ.",
+          "Trong trung tâm thương mại quần áo màu sắc rất nhiều, tôi chưa mặc quần màu đỏ bao giờ, mẹ bảo tôi thử.",
+          "Tôi thấy mình mặc màu đỏ cũng rất đẹp."
+        ]
+      },
+      {
+        "zh": [
+          "这是一家新开的商场，东西不算贵。",
+          "赵小雨想买一条裤子，也想买一个新书包。",
+          "她试了试红色的裤子，妈妈说很好看，比白色的更合适。"
+        ],
+        "vi": [
+          "Đây là một trung tâm thương mại mới mở, đồ không quá đắt.",
+          "Lưu Tiểu Tuyết muốn mua một cái quần, cũng muốn mua một cái cặp mới.",
+          "Bé thử quần màu đỏ, mẹ nói rất đẹp, hợp hơn màu trắng."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "Lưu Tiểu Tuyết cùng mẹ Vương Nhất Tuyết lần đầu đến một trung tâm thương mại mới mở.",
+        "dialogue": [
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "妈妈，我们来过这家商场吗？",
+            "py": "Māma, wǒmen lái guo zhè jiā shāngchǎng ma?",
+            "vi": "Mẹ ơi, chúng ta đến trung tâm thương mại này chưa?"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "没来过，这是新开的。",
+            "py": "Méi lái guo, zhè shì xīn kāi de.",
+            "vi": "Chưa đến, đây là chỗ mới mở."
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "我们进去看看吧。",
+            "py": "Wǒmen jìnqù kànkan ba.",
+            "vi": "Chúng ta vào xem thử đi."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "好啊！你想买点儿什么？",
+            "py": "Hǎo a! Nǐ xiǎng mǎi diǎnr shénme?",
+            "vi": "Được đấy! Con muốn mua gì?"
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "我想买条裤子。",
+            "py": "Wǒ xiǎng mǎi tiáo kùzi.",
+            "vi": "Con muốn mua một cái quần."
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "Lưu Tiểu Tuyết chọn quần, hai mẹ con bàn về màu sắc.",
+        "dialogue": [
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "妈妈，我想买这条白色的裤子？",
+            "py": "Māma, wǒ xiǎng mǎi zhè tiáo báisè de kùzi?",
+            "vi": "Mẹ ơi, con muốn mua cái quần màu trắng này."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "你有很多白色的衣服，为什么还买白色的？我觉得这条白色的不太好看，你试试那条红色的吧。",
+            "py": "Nǐ yǒu hěnduō báisè de yīfu, wèishénme hái mǎi báisè de? Wǒ juéde zhè tiáo báisè de bú tài hǎokàn, nǐ shìshi nà tiáo hóngsè de ba.",
+            "vi": "Con có nhiều áo trắng rồi, sao còn mua màu trắng nữa? Mẹ thấy cái trắng này không đẹp lắm, con thử cái màu đỏ kia xem."
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "因为我喜欢白色啊！我没穿过红色的，红色的好看吗？",
+            "py": "Yīnwèi wǒ xǐhuan báisè a! Wǒ méi chuān guo hóngsè de, hóngsè de hǎokàn ma?",
+            "vi": "Vì con thích màu trắng mà! Con chưa mặc màu đỏ bao giờ, màu đỏ có đẹp không?"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "就是因为没穿过，所以想试试啊！",
+            "py": "Jiùshì yīnwèi méi chuān guo, suǒyǐ xiǎng shìshi a!",
+            "vi": "Chính vì chưa mặc bao giờ nên mới muốn con thử đấy!"
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Hai mẹ con đi mua cặp sách, chọn màu sắc.",
+        "dialogue": [
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "妈妈，我买个新书包？",
+            "py": "Māma, wǒ mǎi ge xīn shūbāo?",
+            "vi": "Mẹ ơi, con mua một cái cặp mới nhé?"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "好，那边卖书包，我们过去看看吧。",
+            "py": "Hǎo, nàbiān mài shūbāo, wǒmen guòqù kànkan ba.",
+            "vi": "Được, đằng kia có bán cặp sách, chúng ta qua xem thử đi."
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "这么多漂亮的书包！红色的、绿色的、黑色的，你想买哪个？",
+            "py": "Zhème duō piàoliang de shūbāo! Hóngsè de, lǜsè de, hēisè de, nǐ xiǎng mǎi nǎge?",
+            "vi": "Nhiều cặp sách đẹp thế! Màu đỏ, màu xanh lá, màu đen, mẹ thấy con nên mua cái nào?"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "绿色的吧！",
+            "py": "Lǜsè de ba!",
+            "vi": "Màu xanh lá đi!"
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "不错，我也觉得绿色的更好看。",
+            "py": "Búcuò, wǒ yě juéde lǜsè de gèng hǎokàn.",
+            "vi": "Được đấy, con cũng thấy màu xanh lá đẹp hơn."
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Ở nhà, Lưu Tiểu Tuyết viết nhật ký trong phòng.",
+        "dialogue": [
+          {
+            "who": "刘小雪 Liú Xiǎoxuě",
+            "zh": "我和妈妈去了一家商场。",
+            "py": "Wǒ hé māma qù le yì jiā shāngchǎng.",
+            "vi": "Con và mẹ đã đi đến một trung tâm thương mại."
+          },
+          {
+            "who": "刘小雪 Liú Xiǎoxuě",
+            "zh": "因为是新开的，所以这几天东西很便宜。",
+            "py": "Yīnwèi shì xīn kāi de, suǒyǐ zhè jǐ tiān dōngxi hěn piányi.",
+            "vi": "Vì mới khai trương nên mấy hôm nay đồ rất rẻ."
+          },
+          {
+            "who": "刘小雪 Liú Xiǎoxuě",
+            "zh": "商场里的衣服颜色很多。我没穿过红色的裤子，妈妈让我试试，",
+            "py": "Shāngchǎng lǐ de yīfu yánsè hěn duō. Wǒ méi chuān guo hóngsè de kùzi, māma ràng wǒ shìshi,",
+            "vi": "Quần áo trong trung tâm thương mại có rất nhiều màu sắc. Con chưa mặc quần màu đỏ bao giờ, mẹ bảo con thử,"
+          },
+          {
+            "who": "刘小雪 Liú Xiǎoxuě",
+            "zh": "我觉得穿红色的也很好看。",
+            "py": "wǒ juéde chuān hóngsè de yě hěn hǎokàn.",
+            "vi": "con thấy mặc màu đỏ cũng rất đẹp."
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "过",
+        "guo",
+        "Qua",
+        "đã từng (đứng sau V)",
+        "Trợ từ"
+      ],
+      [
+        "商场",
+        "shāngchǎng",
+        "Thương trường",
+        "trung tâm thương mại",
+        "Danh từ"
+      ],
+      [
+        "进去",
+        "jìnqù",
+        "Tiến khứ",
+        "đi vào",
+        "Động từ"
+      ],
+      [
+        "条",
+        "tiáo",
+        "Điều",
+        "(lượng từ vật dài)",
+        "Lượng từ"
+      ],
+      [
+        "裤子",
+        "kùzi",
+        "Khố tử",
+        "quần",
+        "Danh từ"
+      ],
+      [
+        "白色",
+        "báisè",
+        "Bạch sắc",
+        "màu trắng",
+        "Danh từ"
+      ],
+      [
+        "因为",
+        "yīnwèi",
+        "Nhân vị",
+        "bởi vì",
+        "Liên từ"
+      ],
+      [
+        "试",
+        "shì",
+        "Thí",
+        "thử",
+        "Động từ"
+      ],
+      [
+        "红色",
+        "hóngsè",
+        "Hồng sắc",
+        "màu đỏ",
+        "Danh từ"
+      ],
+      [
+        "所以",
+        "suǒyǐ",
+        "Sở dĩ",
+        "vì thế, cho nên",
+        "Liên từ"
+      ],
+      [
+        "书包",
+        "shūbāo",
+        "Thư bao",
+        "cặp sách",
+        "Danh từ"
+      ],
+      [
+        "过去",
+        "guòqù",
+        "Quá khứ",
+        "đi qua, quá khứ",
+        "Động từ"
+      ],
+      [
+        "绿色",
+        "lǜsè",
+        "Lục sắc",
+        "màu xanh lá",
+        "Danh từ"
+      ],
+      [
+        "黑色",
+        "hēisè",
+        "Hắc sắc",
+        "màu đen",
+        "Danh từ"
+      ],
+      [
+        "更",
+        "gèng",
+        "Cánh",
+        "hơn",
+        "Phó từ"
+      ],
+      [
+        "颜色",
+        "yánsè",
+        "Nhan sắc",
+        "màu sắc",
+        "Danh từ"
+      ]
+    ]
+  },
+  {
+    "t": "Bài 5",
+    "vi_t": "Mau vào đi, để tôi giới thiệu với mọi người",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "简单趋向补语(1)",
+        "title_vi": "Bổ ngữ xu hướng đơn giản (来/去)",
+        "explain_zh": "结构：V + 来/去。「来」指动作朝说话人方向移动；「去」指动作离开说话人或说话人离开当前位置。常用动词：上、下、进、出、回、过。「起来」较特殊，表示起床或向上的趋向。",
+        "explain_vi": "Cấu trúc: V + 来/去. \"来\" chỉ hành động di chuyển về phía người nói; \"去\" chỉ hành động rời xa người nói hoặc người nói rời vị trí hiện tại. Động từ thường dùng: 上、下、进、出、回、过. \"起来\" khá đặc biệt, chỉ việc đứng dậy hoặc xu hướng chuyển động lên trên.",
+        "examples": [
+          {
+            "zh": "我不上去了，就在下面等你。",
+            "py": "Wǒ bú shàngqù le, jiù zài xiàmiàn děng nǐ.",
+            "vi": "Tôi không lên nữa đâu, cứ ở dưới đợi bạn."
+          },
+          {
+            "zh": "家月到下边了，你下去接她吧。",
+            "py": "Jiāyuè dào xiàbian le, nǐ xiàqù jiē tā ba.",
+            "vi": "Gia Nguyệt xuống dưới rồi, bạn xuống đón cô ấy đi."
+          },
+          {
+            "zh": "我在外边呢，你出来吧。",
+            "py": "Wǒ zài wàibian ne, nǐ chūlái ba.",
+            "vi": "Tôi ở ngoài này, bạn ra đây đi."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "简单趋向补语(2)",
+        "title_vi": "Bổ ngữ xu hướng đơn giản — vị trí tân ngữ",
+        "explain_zh": "动词带趋向补语（来/去）又带宾语时：宾语是地点名词，须放在「来/去」前面；宾语是事物名词，可放在「来/去」前或后。",
+        "explain_vi": "Khi động từ vừa mang bổ ngữ xu hướng đơn (来/去), vừa có tân ngữ: nếu tân ngữ là danh từ chỉ địa điểm thì đặt trước \"来/去\"; nếu là danh từ chỉ sự vật thì có thể đặt trước hoặc sau.",
+        "examples": [
+          {
+            "zh": "你们太客气了，还拿这么多礼物来。",
+            "py": "Nǐmen tài kèqi le, hái ná zhème duō lǐwù lái.",
+            "vi": "Các bạn khách sáo quá, còn mang nhiều quà thế này đến."
+          },
+          {
+            "zh": "上课了，你们快进教室来吧。",
+            "py": "Shàngkè le, nǐmen kuài jìn jiàoshì lái ba.",
+            "vi": "Vào tiết học rồi, các em mau vào lớp đi."
+          },
+          {
+            "zh": "妈妈拿出了二十块钱，让小雪自己去买点儿吃的。",
+            "py": "Māma ná chū le èrshí kuài qián, ràng Xiǎoxuě zìjǐ qù mǎi diǎnr chī de.",
+            "vi": "Mẹ lấy ra hai mươi tệ, bảo Tiểu Tuyết tự đi mua chút đồ ăn."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "「都……了」",
+        "title_vi": "Cấu trúc cố định \"都……了\"",
+        "explain_zh": "「都……了」表示「已经……了」，已经到了或超过某种程度，常带强调语气，有时含不满/催促的意味。",
+        "explain_vi": "\"都……了\" dùng để biểu thị \"đã… rồi\", đã đến mức hoặc đã đạt tới một mức độ nào đó, thường mang sắc thái nhấn mạnh, đôi khi có ý than phiền/thúc giục nhẹ.",
+        "examples": [
+          {
+            "zh": "都12点了，我们吃饭吧。",
+            "py": "Dōu shí'èr diǎn le, wǒmen chīfàn ba.",
+            "vi": "Mười hai giờ rồi, chúng ta ăn cơm thôi."
+          },
+          {
+            "zh": "都八点半了，你还不起床吗？",
+            "py": "Dōu bā diǎn bàn le, nǐ hái bù qǐchuáng ma?",
+            "vi": "Tám rưỡi rồi, con vẫn chưa dậy à?"
+          },
+          {
+            "zh": "我都去过北京了，不想再去了。",
+            "py": "Wǒ dōu qù guo Běijīng le, bù xiǎng zài qù le.",
+            "vi": "Tôi đến Bắc Kinh rồi mà, không muốn đi nữa."
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "回国前一天，我们去一雪姐家了。",
+          "到她家的时候，饭菜都做好了。",
+          "刘爷爷还准备了奶茶。",
+          "因为吃了太多东西，我们吃完饭是走回酒店的。"
+        ],
+        "vi": [
+          "Ngày trước khi về nước, chúng tôi đến nhà chị Nhất Tuyết.",
+          "Lúc đến nhà chị, cơm nước đều đã làm xong.",
+          "Ông Lưu còn chuẩn bị cả trà sữa.",
+          "Vì ăn nhiều đồ quá nên ăn xong chúng tôi đi bộ về khách sạn."
+        ]
+      },
+      {
+        "zh": [
+          "王一雪的爸爸妈妈对家月和安妮很好，还准备了礼物。",
+          "一家人一起吃饭，聊得很开心。",
+          "晚上，家月和安妮走回酒店，路上聊起了今天的事情。"
+        ],
+        "vi": [
+          "Bố mẹ của Vương Nhất Tuyết rất tốt với Gia Nguyệt và An Ni, còn chuẩn bị quà.",
+          "Cả nhà cùng ăn cơm, nói chuyện rất vui vẻ.",
+          "Buổi tối, Gia Nguyệt và An Ni đi bộ về khách sạn, trên đường nói chuyện về những việc hôm nay."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "An Ni giục Bạch Gia Nguyệt mau xuống nhà, lần đầu đến nhà bạn Trung Quốc chơi.",
+        "dialogue": [
+          {
+            "who": "安妮 Ānní",
+            "zh": "家月，快下来吧，第一次去中国朋友家，别晚了。",
+            "py": "Jiāyuè, kuài xiàlái ba, dì-yī cì qù Zhōngguó péngyou jiā, bié wǎn le.",
+            "vi": "Gia Nguyệt, mau xuống đi, lần đầu đến nhà bạn Trung Quốc, đừng để muộn."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "还有时间，你上来吧。",
+            "py": "Hái yǒu shíjiān, nǐ shànglái ba.",
+            "vi": "Vẫn còn thời gian mà, bạn lên đây đi."
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "我不上去了，就在下面等你。",
+            "py": "Wǒ bú shàngqù le, jiù zài xiàmiàn děng nǐ.",
+            "vi": "Tôi không lên nữa đâu, cứ ở dưới đợi bạn."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "那我一会儿就下去。",
+            "py": "Nà wǒ yíhuìr jiù xiàqù.",
+            "vi": "Vậy lát nữa tôi xuống ngay."
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "你快点儿吧。",
+            "py": "Nǐ kuài diǎnr ba.",
+            "vi": "Bạn nhanh lên chút đi."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "没事，一雪姐说11点前到就可以。",
+            "py": "Méishì, Yīxuě jiě shuō shíyī diǎn qián dào jiù kěyǐ.",
+            "vi": "Không sao, chị Nhất Tuyết nói trước 11 giờ đến là được."
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "Đến nhà, Vương Nhất Tuyết giới thiệu hai bạn với ông bà.",
+        "dialogue": [
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "家月、安妮，快进来！我给你们介绍一下，这是孩子们的爷爷、奶奶。",
+            "py": "Jiāyuè, Ānní, kuài jìnlái! Wǒ gěi nǐmen jièshào yíxià, zhè shì háizimen de yéye, nǎinai.",
+            "vi": "Gia Nguyệt, An Ni, mau vào đi! Để chị giới thiệu, đây là ông bà nội của các cháu."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "你们好！",
+            "py": "Nǐmen hǎo!",
+            "vi": "Chào ông bà ạ!"
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "爸、妈，这是白家月，这是安妮。她们都是一飞的学生。",
+            "py": "Bà, mā, zhè shì Bái Jiāyuè, zhè shì Ānní. Tāmen dōu shì Yīfēi de xuésheng.",
+            "vi": "Bố, mẹ, đây là Bạch Gia Nguyệt, đây là An Ni. Đều là học sinh của Nhất Phi."
+          },
+          {
+            "who": "刘爷爷 Liú yéye",
+            "zh": "家月、安妮，你们好！这是送你们的礼物。",
+            "py": "Jiāyuè, Ānní, nǐmen hǎo! Zhè shì sòng nǐmen de lǐwù.",
+            "vi": "Gia Nguyệt, An Ni, chào các cháu! Đây là quà tặng các cháu."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "你们太客气了，还拿这么多礼物来！",
+            "py": "Nǐmen tài kèqi le, hái ná zhème duō lǐwù lái!",
+            "vi": "Ông bà khách sáo quá, còn mang nhiều quà thế này đến!"
+          },
+          {
+            "who": "刘爷爷 Liú yéye",
+            "zh": "一雪姐，这是给孩子们准备的礼物。",
+            "py": "Yīxuě jiě, zhè shì gěi háizimen zhǔnbèi de lǐwù.",
+            "vi": "Nhất Tuyết à, đây là quà chuẩn bị cho bọn trẻ."
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "谢谢！你们别客气，快坐吧！",
+            "py": "Xièxie! Nǐmen bié kèqi, kuài zuò ba!",
+            "vi": "Cảm ơn! Mọi người đừng khách sáo, ngồi đi!"
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Cả nhà cùng ăn cơm, thưởng thức trà sữa tự làm.",
+        "dialogue": [
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "都12点了，我们吃饭吧。",
+            "py": "Dōu shí'èr diǎn le, wǒmen chīfàn ba.",
+            "vi": "Mười hai giờ rồi, chúng ta ăn cơm thôi."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "这么多好吃的，您太客气了！",
+            "py": "Zhème duō hàochī de, nín tài kèqi le!",
+            "vi": "Nhiều món ngon thế này, chị khách sáo quá!"
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "都是我自己做的，你们多吃点儿。",
+            "py": "Dōu shì wǒ zìjǐ zuò de, nǐmen duō chī diǎnr.",
+            "vi": "Đều do chị tự làm cả, mọi người ăn nhiều vào."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "奶茶也很好喝，是您自己做的吗？",
+            "py": "Nǎichá yě hěn hǎohē, shì nín zìjǐ zuò de ma?",
+            "vi": "Trà sữa cũng ngon lắm, chị tự làm à?"
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "不是，奶茶是爷爷买的。",
+            "py": "Bú shì, nǎichá shì yéye mǎi de.",
+            "vi": "Không, trà sữa là ông mua."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "在哪儿买的？我还没喝过这么好喝的奶茶。",
+            "py": "Zài nǎr mǎi de? Wǒ hái méi hē guo zhème hǎohē de nǎichá.",
+            "vi": "Mua ở đâu vậy? Tôi chưa từng uống trà sữa nào ngon thế này."
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "就在前边的商场，吃完饭你们可以跟我去看看。",
+            "py": "Jiù zài qiánbian de shāngchǎng, chī wán fàn nǐmen kěyǐ gēn wǒ qù kànkan.",
+            "vi": "Ngay ở trung tâm thương mại đằng trước, ăn xong cơm mọi người có thể đi cùng chị xem thử."
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Tại khách sạn, Bạch Gia Nguyệt nhắn tin cho Lý Văn.",
+        "dialogue": [
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "回国前一天，我们去一雪姐家了。",
+            "py": "Huí guó qián yì tiān, wǒmen qù Yīxuě jiě jiā le.",
+            "vi": "Một ngày trước khi về nước, chúng tôi đã đến nhà chị Nhất Tuyết."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "到她家的时候，饭菜都做好了。刘爷爷还准备了奶茶。",
+            "py": "Dào tā jiā de shíhou, fàncài dōu zuò hǎo le. Liú yéye hái zhǔnbèi le nǎichá.",
+            "vi": "Lúc đến nhà chị, cơm nước đều đã làm xong. Ông Lưu còn chuẩn bị cả trà sữa."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "因为吃了太多东西，我们是走回酒店的。",
+            "py": "Yīnwèi chī le tài duō dōngxi, wǒmen shì zǒu huí jiǔdiàn de.",
+            "vi": "Vì ăn nhiều đồ quá nên chúng tôi đã đi bộ về khách sạn."
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "快",
+        "kuài",
+        "Khoái",
+        "nhanh, mau lên",
+        "Tính từ"
+      ],
+      [
+        "下来",
+        "xiàlái",
+        "Hạ lai",
+        "xuống đây",
+        "Động từ"
+      ],
+      [
+        "上来",
+        "shànglái",
+        "Thượng lai",
+        "lên đây",
+        "Động từ"
+      ],
+      [
+        "上去",
+        "shàngqù",
+        "Thượng khứ",
+        "đi lên",
+        "Động từ"
+      ],
+      [
+        "下面",
+        "xiàmiàn",
+        "Hạ diện",
+        "phía dưới",
+        "Danh từ"
+      ],
+      [
+        "等",
+        "děng",
+        "Đẳng",
+        "đợi, chờ",
+        "Động từ"
+      ],
+      [
+        "一会儿",
+        "yíhuìr",
+        "Nhất hội nhi",
+        "lát nữa, một lát",
+        "Phó từ"
+      ],
+      [
+        "下去",
+        "xiàqù",
+        "Hạ khứ",
+        "đi xuống",
+        "Động từ"
+      ],
+      [
+        "进来",
+        "jìnlái",
+        "Tiến lai",
+        "vào đây",
+        "Động từ"
+      ],
+      [
+        "爷爷",
+        "yéye",
+        "Da da",
+        "ông nội",
+        "Danh từ"
+      ],
+      [
+        "奶奶",
+        "nǎinai",
+        "Nãi nãi",
+        "bà nội",
+        "Danh từ"
+      ],
+      [
+        "礼物",
+        "lǐwù",
+        "Lễ vật",
+        "món quà",
+        "Danh từ"
+      ],
+      [
+        "准备",
+        "zhǔnbèi",
+        "Chuẩn bị",
+        "chuẩn bị",
+        "Động từ"
+      ],
+      [
+        "奶茶",
+        "nǎichá",
+        "Nãi trà",
+        "trà sữa",
+        "Danh từ"
+      ],
+      [
+        "跟",
+        "gēn",
+        "Cân",
+        "cùng, với",
+        "Giới từ"
+      ],
+      [
+        "走",
+        "zǒu",
+        "Tẩu",
+        "đi (bộ)",
+        "Động từ"
+      ],
+      [
+        "酒店",
+        "jiǔdiàn",
+        "Tửu điếm",
+        "khách sạn",
+        "Danh từ"
+      ]
+    ]
+  },
+  {
+    "t": "Bài 6",
+    "vi_t": "Sinh nhật vui vẻ!",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "形容词重叠",
+        "title_vi": "Tính từ lặp lại",
+        "explain_zh": "单音节形容词「A」重叠为「AA」，如：绿绿的、热热的；双音节形容词「AB」重叠为「AABB」，如：高高兴兴的、开开心心的。重叠后表示程度加深或喜爱、亲切的语气。",
+        "explain_vi": "Tính từ đơn âm tiết \"A\" khi lặp có dạng \"AA\", ví dụ: 绿绿的, 热热的. Tính từ song âm tiết \"AB\" khi lặp thường có dạng \"AABB\", ví dụ: 高高兴兴的, 开开心心的. Tính từ lặp dùng để nhấn mạnh mức độ hoặc thể hiện cảm xúc yêu thích, trìu mến.",
+        "examples": [
+          {
+            "zh": "我再给她买个大大的生日蛋糕。",
+            "py": "Wǒ zài gěi tā mǎi ge dàdà de shēngrì dàngāo.",
+            "vi": "Tôi sẽ mua thêm cho con một cái bánh sinh nhật thật to."
+          },
+          {
+            "zh": "这只猫小小的，真让人喜欢。",
+            "py": "Zhè zhī māo xiǎoxiǎo de, zhēn ràng rén xǐhuan.",
+            "vi": "Con mèo này nhỏ nhắn, thật đáng yêu."
+          },
+          {
+            "zh": "一雪的女儿每天都漂漂亮亮的。",
+            "py": "Yīxuě de nǚ'ér měitiān dōu piàopiàoliàngliàng de.",
+            "vi": "Con gái của Nhất Tuyết ngày nào cũng xinh xắn."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "「什么的」",
+        "title_vi": "Cụm từ cố định \"什么的\"",
+        "explain_zh": "固定短语「什么的」表示「……之类」的意思，用在并列的名词或动词后面，表示列举未尽。",
+        "explain_vi": "Cụm từ cố định \"什么的\" có nghĩa là \"…các kiểu, …vv\", dùng sau các danh từ hoặc động từ liệt kê để chỉ còn nhiều thứ tương tự chưa nói hết.",
+        "examples": [
+          {
+            "zh": "画我们的家！有爸爸、妈妈、弟弟，还有黑色的狗、白色的猫什么的。",
+            "py": "Huà wǒmen de jiā! Yǒu bàba, māma, dìdi, hái yǒu hēisè de gǒu, báisè de māo shénmede.",
+            "vi": "Vẽ nhà mình đi! Có bố, mẹ, em trai, còn có chó đen, mèo trắng các kiểu."
+          },
+          {
+            "zh": "桌子上有电脑、杯子、书和画笔什么的。",
+            "py": "Zhuōzi shàng yǒu diànnǎo, bēizi, shū hé huàbǐ shénmede.",
+            "vi": "Trên bàn có máy tính, cốc, sách và bút vẽ các thứ."
+          },
+          {
+            "zh": "他拿来了一些水、面包和苹果什么的。",
+            "py": "Tā ná lái le yìxiē shuǐ, miànbāo hé píngguǒ shénmede.",
+            "vi": "Anh ấy mang đến ít nước, bánh mì và táo các loại."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "结构助词「地」",
+        "title_vi": "Trợ từ kết cấu \"地\"",
+        "explain_zh": "结构助词「地」用在形容词和动词之间，表示动作发生的状态或方式。结构：形容词/短语 + 地 + 动词。",
+        "explain_vi": "Trợ từ kết cấu \"地\" thường dùng ở giữa tính từ và động từ, dùng để biểu thị trạng thái, cách thức của hành động. Cấu trúc: tính từ/cụm từ + 地 + động từ.",
+        "examples": [
+          {
+            "zh": "过生日就要吃好吃的，还要高高兴兴地玩。",
+            "py": "Guò shēngrì jiù yào chī hàochī de, hái yào gāogāoxìngxìng de wán.",
+            "vi": "Đón sinh nhật phải ăn ngon, còn phải chơi thật vui vẻ."
+          },
+          {
+            "zh": "老师早早地到了教室。",
+            "py": "Lǎoshī zǎozǎo de dào le jiàoshì.",
+            "vi": "Cô giáo đến lớp thật sớm."
+          },
+          {
+            "zh": "爸爸很快地吃完早饭，就去上班了。",
+            "py": "Bàba hěn kuài de chī wán zǎofàn, jiù qù shàngbān le.",
+            "vi": "Bố ăn sáng thật nhanh rồi đi làm."
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "今天是女儿的生日。",
+          "我们买了蛋糕，做了面条儿，还做了鱼啊肉啊什么的。",
+          "吃完晚饭，一家人去看了个电影。",
+          "回家后，孩子们早早地就上床了。"
+        ],
+        "vi": [
+          "Hôm nay là sinh nhật con gái.",
+          "Chúng tôi mua bánh kem, làm mì sợi, còn làm cá thịt các kiểu.",
+          "Ăn tối xong, cả nhà đi xem phim.",
+          "Về nhà rồi, bọn trẻ lên giường ngủ thật sớm."
+        ]
+      },
+      {
+        "zh": [
+          "明天不上学，孩子们说要舒服舒服地睡一觉。",
+          "让我们晚点儿叫他们起床。",
+          "这是很忙、很累，但很快乐的一天。"
+        ],
+        "vi": [
+          "Mai không phải đi học, bọn trẻ nói muốn ngủ một giấc thật thoải mái.",
+          "Bảo chúng tôi gọi các con dậy muộn một chút.",
+          "Đây là một ngày rất bận, rất mệt, nhưng rất vui vẻ."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "Lưu Minh và Vương Nhất Tuyết bàn chuyện chuẩn bị quà sinh nhật cho con gái.",
+        "dialogue": [
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "明天就是女儿的生日了。你不说我还真忘了。我们给她准备个什么礼物呢？",
+            "py": "Míngtiān jiù shì nǚ'ér de shēngrì le. Nǐ bù shuō wǒ hái zhēn wàng le. Wǒmen gěi tā zhǔnbèi ge shénme lǐwù ne?",
+            "vi": "Mai là sinh nhật con gái rồi. Anh không nói em thật quên mất. Chúng ta chuẩn bị quà gì cho con nhỉ?"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "她喜欢画画，你觉得画笔怎么样？",
+            "py": "Tā xǐhuan huàhuà, nǐ juéde huàbǐ zěnmeyàng?",
+            "vi": "Con thích vẽ, em thấy bút màu thế nào?"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "就送画笔吧！",
+            "py": "Jiù sòng huàbǐ ba!",
+            "vi": "Vậy tặng bút màu đi!"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "那我明天上午就去买？",
+            "py": "Nà wǒ míngtiān shàngwǔ jiù qù mǎi?",
+            "vi": "Vậy sáng mai anh đi mua nhé?"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "好的！我再给她买个大大的生日蛋糕。",
+            "py": "Hǎo de! Wǒ zài gěi tā mǎi ge dàdà de shēngrì dàngāo.",
+            "vi": "Được! Em sẽ mua thêm cho con một cái bánh sinh nhật thật to."
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "Ngày sinh nhật, cả nhà tặng quà cho Lưu Tiểu Tuyết.",
+        "dialogue": [
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "小雨，生日快乐！",
+            "py": "Xiǎoyǔ, shēngrì kuàilè!",
+            "vi": "Tiểu Vũ, sinh nhật vui vẻ!"
+          },
+          {
+            "who": "赵小龙 Zhào Xiǎolóng",
+            "zh": "姐姐，生日快乐！",
+            "py": "Jiějie, shēngrì kuàilè!",
+            "vi": "Chị ơi, sinh nhật vui vẻ!"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "小雨，这是爸爸、妈妈送你的礼物，你打开看看喜欢不喜欢。",
+            "py": "Xiǎoyǔ, zhè shì bàba, māma sòng nǐ de lǐwù, nǐ dǎkāi kànkan xǐhuan bu xǐhuan.",
+            "vi": "Tiểu Vũ, đây là quà bố mẹ tặng con, con mở ra xem có thích không."
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "画笔！我很喜欢！",
+            "py": "Huàbǐ! Wǒ hěn xǐhuan!",
+            "vi": "Bút màu! Con rất thích!"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "那你想画点儿什么？",
+            "py": "Nà nǐ xiǎng huà diǎnr shénme?",
+            "vi": "Vậy con muốn vẽ gì?"
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "画我们的家！有爸爸、妈妈、弟弟，还有黑色的狗、白色的猫什么的。",
+            "py": "Huà wǒmen de jiā! Yǒu bàba, māma, dìdi, hái yǒu hēisè de gǒu, báisè de māo shénmede.",
+            "vi": "Vẽ nhà mình! Có bố, mẹ, em trai, còn có chó đen, mèo trắng các kiểu."
+          },
+          {
+            "who": "赵小龙 Zhào Xiǎolóng",
+            "zh": "那我要画一个穿白色衣服的姐姐。",
+            "py": "Nà wǒ yào huà yí ge chuān báisè yīfu de jiějie.",
+            "vi": "Vậy em muốn vẽ chị mặc áo trắng."
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Cả nhà thưởng thức bữa tối mừng sinh nhật.",
+        "dialogue": [
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "小雨，看看今天有什么好吃的。",
+            "py": "Xiǎoyǔ, kànkan jīntiān yǒu shénme hàochī de.",
+            "vi": "Tiểu Vũ, xem hôm nay có gì ngon nào."
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "长长的面条儿，大大的蛋糕。",
+            "py": "Chángcháng de miàntiáor, dàdà de dàngāo.",
+            "vi": "Mì sợi dài, bánh kem to."
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "你看，还有鱼啊肉啊什么的，都是你喜欢吃的。",
+            "py": "Nǐ kàn, hái yǒu yú a ròu a shénmede, dōu shì nǐ xǐhuan chī de.",
+            "vi": "Con xem, còn có cá này thịt này các kiểu, đều là món con thích ăn."
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "谢谢爸爸、妈妈！",
+            "py": "Xièxie bàba, māma!",
+            "vi": "Cảm ơn bố mẹ!"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "快去叫弟弟过来吃饭吧，吃完饭我们还要出去玩呢。",
+            "py": "Kuài qù jiào dìdi guòlái chīfàn ba, chī wán fàn wǒmen hái yào chūqù wán ne.",
+            "vi": "Mau đi gọi em trai đến ăn cơm đi, ăn xong chúng ta còn phải ra ngoài chơi nữa."
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "过生日真好啊！",
+            "py": "Guò shēngrì zhēn hǎo a!",
+            "vi": "Đón sinh nhật thích thật đấy!"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "是的，过生日就要吃好吃的，还要高高兴兴地玩。",
+            "py": "Shì de, guò shēngrì jiù yào chī hàochī de, hái yào gāogāoxìngxìng de wán.",
+            "vi": "Đúng vậy, đón sinh nhật phải ăn ngon, còn phải chơi thật vui vẻ."
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Ở nhà, Vương Nhất Tuyết viết nhật ký trong phòng.",
+        "dialogue": [
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "今天是女儿的生日。我们买了蛋糕，做了面条儿，还做了鱼啊肉啊什么的。",
+            "py": "Jīntiān shì nǚ'ér de shēngrì. Wǒmen mǎi le dàngāo, zuò le miàntiáor, hái zuò le yú a ròu a shénmede.",
+            "vi": "Hôm nay là sinh nhật con gái. Chúng tôi mua bánh kem, làm mì sợi, còn làm cá thịt các kiểu."
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "吃完晚饭，一家人去看了个电影。回家后，孩子们早早地就上床了。",
+            "py": "Chī wán wǎnfàn, yìjiā rén qù kàn le ge diànyǐng. Huí jiā hòu, háizimen zǎozǎo de jiù shàngchuáng le.",
+            "vi": "Ăn tối xong, cả nhà đi xem một bộ phim. Về nhà rồi, bọn trẻ lên giường ngủ thật sớm."
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "明天不上学，他们说要舒舒服服地睡一觉，让我们晚点儿叫他们起床。",
+            "py": "Míngtiān bú shàngxué, tāmen shuō yào shūshufúfú de shuì yí jiào, ràng wǒmen wǎn diǎnr jiào tāmen qǐchuáng.",
+            "vi": "Mai không phải đi học, chúng nói muốn ngủ một giấc thật thoải mái, bảo chúng tôi gọi chúng dậy muộn hơn."
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "这是很忙、很累，但很快乐的一天。",
+            "py": "Zhè shì hěn máng, hěn lèi, dàn hěn kuàilè de yì tiān.",
+            "vi": "Đây là một ngày rất bận, rất mệt, nhưng rất vui vẻ."
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "生日",
+        "shēngrì",
+        "Sinh nhật",
+        "sinh nhật",
+        "Danh từ"
+      ],
+      [
+        "忘",
+        "wàng",
+        "Vong",
+        "quên",
+        "Động từ"
+      ],
+      [
+        "画",
+        "huà",
+        "Hoạ",
+        "vẽ, bức vẽ",
+        "Động từ"
+      ],
+      [
+        "画笔",
+        "huàbǐ",
+        "Hoạ bút",
+        "bút màu, cọ vẽ",
+        "Danh từ"
+      ],
+      [
+        "蛋糕",
+        "dàngāo",
+        "Đản cao",
+        "bánh kem",
+        "Danh từ"
+      ],
+      [
+        "快乐",
+        "kuàilè",
+        "Khoái lạc",
+        "vui vẻ, hạnh phúc",
+        "Tính từ"
+      ],
+      [
+        "打开",
+        "dǎkāi",
+        "Đả khai",
+        "mở",
+        "Động từ"
+      ],
+      [
+        "长",
+        "cháng",
+        "Trường",
+        "dài",
+        "Tính từ"
+      ],
+      [
+        "鱼",
+        "yú",
+        "Ngư",
+        "cá",
+        "Danh từ"
+      ],
+      [
+        "肉",
+        "ròu",
+        "Nhục",
+        "thịt",
+        "Danh từ"
+      ],
+      [
+        "地",
+        "de",
+        "Địa",
+        "(trợ từ chỉ cách thức)",
+        "Trợ từ"
+      ],
+      [
+        "床",
+        "chuáng",
+        "Sàng",
+        "cái giường",
+        "Danh từ"
+      ],
+      [
+        "舒服",
+        "shūfu",
+        "Thư phục",
+        "thoải mái, dễ chịu",
+        "Tính từ"
+      ]
+    ]
+  },
+  {
+    "t": "Bài 7",
+    "vi_t": "Sao vừa tan học đã chạy ra ngoài vậy?",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "「一……就……」",
+        "title_vi": "Câu phức rút gọn \"一……就……\"",
+        "explain_zh": "「一……就……」表示后一动作紧接前一动作发生，或前者是条件/原因，后者是结果。两分句主语相同时，主语放在「一」或「就」前；不同时，主语1在「一」前，主语2在「就」前。",
+        "explain_vi": "Cấu trúc \"一……就……\" dùng để biểu thị hành động sau xảy ra ngay sau hành động trước, hoặc hành động trước là điều kiện/nguyên nhân, hành động sau là kết quả. Nếu hai vế cùng chủ ngữ thì chủ ngữ đặt trước \"一\" hoặc \"就\"; nếu khác chủ ngữ thì chủ ngữ 1 trước \"一\", chủ ngữ 2 trước \"就\".",
+        "examples": [
+          {
+            "zh": "你怎么一下课就往外跑？",
+            "py": "Nǐ zěnme yí xiàkè jiù wǎng wài pǎo?",
+            "vi": "Sao bạn vừa tan học đã chạy ra ngoài vậy?"
+          },
+          {
+            "zh": "我一到家，妈妈就打来电话了。",
+            "py": "Wǒ yí dào jiā, māma jiù dǎ lái diànhuà le.",
+            "vi": "Tôi vừa về đến nhà, mẹ liền gọi điện đến."
+          },
+          {
+            "zh": "一到星期六，陈天中就跟同学去打篮球。",
+            "py": "Yí dào xīngqīliù, Chén Tiānzhōng jiù gēn tóngxué qù dǎ lánqiú.",
+            "vi": "Cứ đến thứ bảy là Trần Thiên Trung lại cùng bạn học đi chơi bóng rổ."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "状态补语(1)",
+        "title_vi": "Bổ ngữ trạng thái (1)",
+        "explain_zh": "状态补语是动词后表示动作结果或程度的成分。结构：动词 + 得 + 形容词性短语。否定：动词 + 得 + 不 + 形容词。疑问：句尾加「吗」；或「得 + Adj + 不 + Adj」；或「得 + 怎么样」。",
+        "explain_vi": "Bổ ngữ trạng thái là thành phần đứng sau động từ để bổ sung, giải thích trạng thái/mức độ khi hành động được thực hiện. Cấu trúc: động từ + 得 + cụm tính từ. Phủ định: động từ + 得 + 不 + tính từ. Nghi vấn: thêm \"吗\" cuối câu; hoặc \"得 + tính từ + 不 + tính từ\"; hoặc \"得 + 怎么样\".",
+        "examples": [
+          {
+            "zh": "我踢得很不错。",
+            "py": "Wǒ tī de hěn búcuò.",
+            "vi": "Tôi đá khá tốt."
+          },
+          {
+            "zh": "他们玩得很高兴。",
+            "py": "Tāmen wán de hěn gāoxìng.",
+            "vi": "Họ chơi rất vui."
+          },
+          {
+            "zh": "白家月跑得很快。",
+            "py": "Bái Jiāyuè pǎo de hěn kuài.",
+            "vi": "Bạch Gia Nguyệt chạy rất nhanh."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "状态补语(2)",
+        "title_vi": "Bổ ngữ trạng thái (2) — động từ ly hợp và có tân ngữ",
+        "explain_zh": "若动词是离合词，须重复动词部分：睡觉睡得早，跑步跑得快。若动词带宾语，可将宾语提前或重复动词：他说中文说得很好 / 他中文说得很好。",
+        "explain_vi": "Nếu động từ là động từ ly hợp thì phải lặp lại phần động từ: 睡觉睡得早, 跑步跑得快. Nếu động từ có tân ngữ, có 2 cách: đưa tân ngữ lên trước hoặc lặp lại động từ: 他说中文说得很好 / 他中文说得很好.",
+        "examples": [
+          {
+            "zh": "他游泳游得很快。",
+            "py": "Tā yóuyǒng yóu de hěn kuài.",
+            "vi": "Anh ấy bơi rất nhanh."
+          },
+          {
+            "zh": "妹妹骑自行车骑得很快。",
+            "py": "Mèimei qí zìxíngchē qí de hěn kuài.",
+            "vi": "Em gái đạp xe rất nhanh."
+          },
+          {
+            "zh": "安妮唱歌唱得很好听。",
+            "py": "Ānní chànggē chàng de hěn hǎotīng.",
+            "vi": "An Ni hát rất hay."
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "我的爱好是运动。",
+          "从上小学开始，我每天都跟爸爸去运动。",
+          "现在我篮球打得很好，足球踢得不错，游泳游得也很快。",
+          "我一有时间就去运动。"
+        ],
+        "vi": [
+          "Sở thích của tôi là thể thao.",
+          "Từ khi học tiểu học, ngày nào tôi cũng cùng bố đi tập thể thao.",
+          "Bây giờ tôi chơi bóng rổ rất giỏi, đá bóng cũng khá, bơi cũng rất nhanh.",
+          "Hễ có thời gian là tôi lại đi tập thể thao."
+        ]
+      },
+      {
+        "zh": [
+          "陈天中最喜欢的运动是篮球和足球。",
+          "一到星期天，他就跟朋友们出去踢球。",
+          "虽然他跑得不快，但他很喜欢运动，觉得运动能让人快乐。"
+        ],
+        "vi": [
+          "Môn thể thao Trần Thiên Trung thích nhất là bóng rổ và bóng đá.",
+          "Cứ đến chủ nhật là cậu ấy lại cùng bạn bè ra ngoài đá bóng.",
+          "Tuy chạy không nhanh nhưng cậu ấy rất thích thể thao, thấy thể thao khiến con người vui vẻ."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "An Ni thắc mắc vì sao Trần Thiên Trung vừa tan học đã vội chạy ra ngoài.",
+        "dialogue": [
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "安妮，你是什么时候从北京回来的？",
+            "py": "Ānní, nǐ shì shénme shíhou cóng Běijīng huílái de?",
+            "vi": "An Ni, bạn từ Bắc Kinh về lúc nào vậy?"
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "昨天下午。天中，你怎么一下课就往外跑？",
+            "py": "Zuótiān xiàwǔ. Tiānzhōng, nǐ zěnme yí xiàkè jiù wǎng wài pǎo?",
+            "vi": "Chiều hôm qua. Thiên Trung, sao bạn vừa tan học đã chạy ra ngoài vậy?"
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "我跟同学说好了，一起去打篮球。",
+            "py": "Wǒ gēn tóngxué shuō hǎo le, yìqǐ qù dǎ lánqiú.",
+            "vi": "Mình hẹn với bạn học rồi, cùng đi chơi bóng rổ."
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "我也想跟你们一起玩。",
+            "py": "Wǒ yě xiǎng gēn nǐmen yìqǐ wán.",
+            "vi": "Mình cũng muốn chơi cùng các bạn."
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "没问题，走吧。",
+            "py": "Méi wèntí, zǒu ba.",
+            "vi": "Không vấn đề gì, đi thôi."
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "An Ni hỏi Trần Thiên Trung về sở thích thể thao.",
+        "dialogue": [
+          {
+            "who": "安妮 Ānní",
+            "zh": "天中，你是不是很喜欢打篮球？",
+            "py": "Tiānzhōng, nǐ shì bu shì hěn xǐhuan dǎ lánqiú?",
+            "vi": "Thiên Trung, bạn có phải rất thích chơi bóng rổ không?"
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "没错。",
+            "py": "Méi cuò.",
+            "vi": "Đúng vậy."
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "你还喜欢什么运动？",
+            "py": "Nǐ hái xǐhuan shénme yùndòng?",
+            "vi": "Bạn còn thích môn thể thao nào nữa?"
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "我还喜欢踢足球，一到星期天就跟朋友们去踢球。",
+            "py": "Wǒ hái xǐhuan tī zúqiú, yí dào xīngqītiān jiù gēn péngyoumen qù tī qiú.",
+            "vi": "Mình còn thích đá bóng, cứ đến chủ nhật là lại cùng bạn bè đi đá bóng."
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "你踢得怎么样？",
+            "py": "Nǐ tī de zěnmeyàng?",
+            "vi": "Bạn đá thế nào?"
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "我踢得还可以。",
+            "py": "Wǒ tī de hái kěyǐ.",
+            "vi": "Mình đá cũng tạm được."
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Trần Thiên Trung kể thêm về các môn thể thao mình chơi.",
+        "dialogue": [
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "你篮球打得怎么样？",
+            "py": "Nǐ lánqiú dǎ de zěnmeyàng?",
+            "vi": "Bạn chơi bóng rổ thế nào?"
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "打得还可以。跑步呢？你跑得快不快？",
+            "py": "Dǎ de hái kěyǐ. Pǎobù ne? Nǐ pǎo de kuài bu kuài?",
+            "vi": "Chơi cũng tạm được. Còn chạy bộ? Bạn chạy có nhanh không?"
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "我跑得不快，也不太喜欢跑步。",
+            "py": "Wǒ pǎo de bú kuài, yě bú tài xǐhuan pǎobù.",
+            "vi": "Mình chạy không nhanh, cũng không thích chạy bộ lắm."
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "那你喜欢游泳吗？",
+            "py": "Nà nǐ xǐhuan yóuyǒng ma?",
+            "vi": "Vậy bạn có thích bơi không?"
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "喜欢，但我游泳游得不太快。",
+            "py": "Xǐhuan, dàn wǒ yóuyǒng yóu de bú tài kuài.",
+            "vi": "Thích, nhưng mình bơi không nhanh lắm."
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Ở nhà, Trần Thiên Trung viết nhật ký trong phòng.",
+        "dialogue": [
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "我的爱好是运动。从上小学开始，我每天都跟爸爸去运动。",
+            "py": "Wǒ de àihào shì yùndòng. Cóng shàng xiǎoxué kāishǐ, wǒ měitiān dōu gēn bàba qù yùndòng.",
+            "vi": "Sở thích của tôi là thể thao. Từ khi học tiểu học, ngày nào tôi cũng cùng bố đi tập thể thao."
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "现在我篮球打得很好，足球踢得不错，游泳游得也很快。",
+            "py": "Xiànzài wǒ lánqiú dǎ de hěn hǎo, zúqiú tī de búcuò, yóuyǒng yóu de yě hěn kuài.",
+            "vi": "Bây giờ tôi chơi bóng rổ rất giỏi, đá bóng cũng khá, bơi cũng rất nhanh."
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "我一有时间就去运动。",
+            "py": "Wǒ yì yǒu shíjiān jiù qù yùndòng.",
+            "vi": "Hễ có thời gian là tôi lại đi tập thể thao."
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "从",
+        "cóng",
+        "Tòng",
+        "từ",
+        "Giới từ"
+      ],
+      [
+        "往",
+        "wǎng",
+        "Vãng",
+        "hướng tới, đi tới",
+        "Giới từ"
+      ],
+      [
+        "跑",
+        "pǎo",
+        "Bào",
+        "chạy",
+        "Động từ"
+      ],
+      [
+        "打",
+        "dǎ",
+        "Đả",
+        "chơi, đánh",
+        "Động từ"
+      ],
+      [
+        "篮球",
+        "lánqiú",
+        "Lam cầu",
+        "bóng rổ",
+        "Danh từ"
+      ],
+      [
+        "运动",
+        "yùndòng",
+        "Vận động",
+        "vận động, thể thao",
+        "Động từ"
+      ],
+      [
+        "踢",
+        "tī",
+        "Thích",
+        "đá",
+        "Động từ"
+      ],
+      [
+        "足球",
+        "zúqiú",
+        "Túc cầu",
+        "bóng đá",
+        "Danh từ"
+      ],
+      [
+        "球",
+        "qiú",
+        "Cầu",
+        "bóng",
+        "Danh từ"
+      ],
+      [
+        "得",
+        "de",
+        "Đắc",
+        "(trợ từ bổ ngữ mức độ)",
+        "Trợ từ"
+      ],
+      [
+        "跑步",
+        "pǎobù",
+        "Bào bộ",
+        "chạy bộ",
+        "Động từ"
+      ],
+      [
+        "游泳",
+        "yóuyǒng",
+        "Du vịnh",
+        "bơi lội",
+        "Động từ"
+      ],
+      [
+        "游",
+        "yóu",
+        "Du",
+        "bơi",
+        "Động từ"
+      ],
+      [
+        "爱好",
+        "àihào",
+        "Ái hiếu",
+        "sở thích",
+        "Danh từ"
+      ],
+      [
+        "开始",
+        "kāishǐ",
+        "Khai thuỷ",
+        "bắt đầu",
+        "Động từ"
+      ]
+    ]
+  },
+  {
+    "t": "Bài 8",
+    "vi_t": "Tuy bạn quên, nhưng mình vẫn nhớ",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "比较句(1)",
+        "title_vi": "Câu so sánh (1) — cấu trúc cơ bản",
+        "explain_zh": "用「比」表示两者在性质、状态上的差异。结构：A + 比 + B + 形容词/形容词短语。",
+        "explain_vi": "Câu so sánh với \"比\" để so sánh sự khác biệt về bản chất và trạng thái giữa hai đối tượng. Cấu trúc: A 比 B + tính từ/cụm tính từ.",
+        "examples": [
+          {
+            "zh": "我也觉得左边的比右边的好看。",
+            "py": "Wǒ yě juéde zuǒbian de bǐ yòubian de hǎokàn.",
+            "vi": "Tôi cũng thấy cái bên trái đẹp hơn cái bên phải."
+          },
+          {
+            "zh": "今天比昨天冷。",
+            "py": "Jīntiān bǐ zuótiān lěng.",
+            "vi": "Hôm nay lạnh hơn hôm qua."
+          },
+          {
+            "zh": "他觉得踢足球比打篮球有意思。",
+            "py": "Tā juéde tī zúqiú bǐ dǎ lánqiú yǒu yìsi.",
+            "vi": "Anh ấy thấy đá bóng thú vị hơn chơi bóng rổ."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "比较句(2)",
+        "title_vi": "Câu so sánh (2) — dùng 还/更",
+        "explain_zh": "在「比」字句中，「很」「非常」等程度副词不能用在形容词前，而用「还」或「更」表示程度加深。结构：A 比 B + 还/更 + 形容词。",
+        "explain_vi": "Trong câu so sánh \"比\", các trạng từ chỉ mức độ như \"很\" hoặc \"非常\" không thể dùng trước tính từ. Thay vào đó, \"还\" và \"更\" được dùng để chỉ mức độ tăng lên.",
+        "examples": [
+          {
+            "zh": "我看网上说这个电影比那个爱情片更有意思。",
+            "py": "Wǒ kàn wǎngshàng shuō zhège diànyǐng bǐ nàge àiqíngpiàn gèng yǒu yìsi.",
+            "vi": "Tôi xem trên mạng nói phim này thú vị hơn phim tình cảm kia."
+          },
+          {
+            "zh": "今天比昨天更热。",
+            "py": "Jīntiān bǐ zuótiān gèng rè.",
+            "vi": "Hôm nay nóng hơn hôm qua."
+          },
+          {
+            "zh": "我觉得奶茶比牛奶还好喝。",
+            "py": "Wǒ juéde nǎichá bǐ niúnǎi hái hǎohē.",
+            "vi": "Tôi thấy trà sữa còn ngon hơn sữa."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "「虽然……但是……」",
+        "title_vi": "Câu phức chuyển ngoặt \"虽然……但是……\"",
+        "explain_zh": "「虽然……，但是……」构成表转折/让步的复句。「虽然」和「但是」可成对使用，也可只用其中一个。",
+        "explain_vi": "Cấu trúc \"虽然……，但是……\" (tuy rằng... nhưng...) tạo thành câu phức biểu thị sự chuyển ngoặt/nhượng bộ. Có thể dùng theo cặp hoặc chỉ dùng một trong hai.",
+        "examples": [
+          {
+            "zh": "虽然你忘了，但是我记得。",
+            "py": "Suīrán nǐ wàng le, dànshì wǒ jìde.",
+            "vi": "Tuy bạn quên rồi nhưng mình vẫn nhớ."
+          },
+          {
+            "zh": "外边下雪了，但是不太冷。",
+            "py": "Wàibian xiàxuě le, dànshì bú tài lěng.",
+            "vi": "Bên ngoài có tuyết rơi, nhưng không lạnh lắm."
+          },
+          {
+            "zh": "虽然觉得有点儿累，我还是走回家了。",
+            "py": "Suīrán juéde yǒudiǎnr lèi, wǒ háishi zǒu huí jiā le.",
+            "vi": "Tuy thấy hơi mệt nhưng tôi vẫn đi bộ về nhà."
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "虽然妻子忘了今天是自己的生日，但是丈夫记得。",
+          "丈夫请妻子去饭馆吃饭、去电影院看电影，还给妻子买了一块非常漂亮的手表。",
+          "妻子觉得今天很快乐。"
+        ],
+        "vi": [
+          "Tuy vợ quên hôm nay là sinh nhật mình nhưng chồng vẫn nhớ.",
+          "Chồng mời vợ đi nhà hàng ăn cơm, đi rạp xem phim, còn mua cho vợ một chiếc đồng hồ rất đẹp.",
+          "Vợ cảm thấy hôm nay thật vui vẻ."
+        ]
+      },
+      {
+        "zh": [
+          "赵刚和张丽去看了一场电影，是网上买的票，比现场买便宜不少。",
+          "看完电影，他们又去吃饭，点了不少好吃的菜。",
+          "张丽没想到，这些都是赵刚为她的生日特意准备的。"
+        ],
+        "vi": [
+          "Lưu Minh và Vương Nhất Tuyết đi xem một bộ phim, vé mua trên mạng, rẻ hơn nhiều so với mua tại chỗ.",
+          "Xem phim xong, họ lại đi ăn cơm, gọi khá nhiều món ngon.",
+          "Vương Nhất Tuyết không ngờ, tất cả đều là Lưu Minh cố ý chuẩn bị cho sinh nhật cô."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "Lưu Minh và Vương Nhất Tuyết đi xem đồng hồ đeo tay.",
+        "dialogue": [
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "你看，这两块手表怎么样？",
+            "py": "Nǐ kàn, zhè liǎng kuài shǒubiǎo zěnmeyàng?",
+            "vi": "Anh xem, hai cái đồng hồ này thế nào?"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "都不错！",
+            "py": "Dōu búcuò!",
+            "vi": "Đều được đấy!"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "我喜欢左边这个。",
+            "py": "Wǒ xǐhuan zuǒbian zhège.",
+            "vi": "Em thích cái bên trái này."
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "我也觉得左边的比右边的好看。你看看要多少钱！",
+            "py": "Wǒ yě juéde zuǒbian de bǐ yòubian de hǎokàn. Nǐ kànkan yào duōshao qián!",
+            "vi": "Anh cũng thấy cái bên trái đẹp hơn bên phải. Em xem giá bao nhiêu đi!"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "真不便宜！八千八！",
+            "py": "Zhēn bù piányi! Bāqiānbā!",
+            "vi": "Đắt thật đấy! Tám nghìn tám!"
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "Cặp đôi bàn nhau đi xem phim.",
+        "dialogue": [
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "今天有不少电影，我们看个电影吧。",
+            "py": "Jīntiān yǒu bùshǎo diànyǐng, wǒmen kàn ge diànyǐng ba.",
+            "vi": "Hôm nay có khá nhiều phim, chúng ta xem một bộ đi."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "好啊！我们看哪个？",
+            "py": "Hǎo a! Wǒmen kàn nǎge?",
+            "vi": "Được đấy! Xem phim nào?"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "我记得你喜欢看爱情片，我们看那个爱情片，怎么样？",
+            "py": "Wǒ jìde nǐ xǐhuan kàn àiqíngpiàn, wǒmen kàn nàge àiqíngpiàn, zěnmeyàng?",
+            "vi": "Anh nhớ em thích xem phim tình cảm, chúng ta xem phim tình cảm đó nhé?"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "还是看这个吧，我看网上说这个电影比那个爱情片更有意思。",
+            "py": "Háishi kàn zhège ba, wǒ kàn wǎngshàng shuō zhège diànyǐng bǐ nàge àiqíngpiàn gèng yǒu yìsi.",
+            "vi": "Vẫn xem cái này thôi, em xem trên mạng nói phim này thú vị hơn phim tình cảm kia."
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "好。我去买票。",
+            "py": "Hǎo. Wǒ qù mǎi piào.",
+            "vi": "Được. Anh đi mua vé."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "到网上买吧，网上买比在这里买便宜。",
+            "py": "Dào wǎngshàng mǎi ba, wǎngshàng mǎi bǐ zài zhèlǐ mǎi piányi.",
+            "vi": "Mua trên mạng đi, mua trên mạng rẻ hơn mua ở đây."
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Ăn tối xong, Lưu Minh tặng quà bất ngờ vì đây là sinh nhật Vương Nhất Tuyết.",
+        "dialogue": [
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "您好，就要这几个菜吧，谢谢！",
+            "py": "Nín hǎo, jiù yào zhè jǐ ge cài ba, xièxie!",
+            "vi": "Chào chị, cho tôi mấy món này, cảm ơn!"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "怎么点这么多菜？",
+            "py": "Zěnme diǎn zhème duō cài?",
+            "vi": "Sao lại gọi nhiều món thế?"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "你想想，今天是几月几号？",
+            "py": "Nǐ xiǎngxiang, jīntiān shì jǐ yuè jǐ hào?",
+            "vi": "Em nghĩ xem, hôm nay ngày mấy tháng mấy?"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "8月27号。啊！我的生日！",
+            "py": "Bā yuè èrshíqī hào. A! Wǒ de shēngrì!",
+            "vi": "Ngày 27 tháng 8. À! Sinh nhật em!"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "生日快乐！虽然你忘了，但是我记得。看看是什么？",
+            "py": "Shēngrì kuàilè! Suīrán nǐ wàng le, dànshì wǒ jìde. Kànkan shì shénme?",
+            "vi": "Sinh nhật vui vẻ! Tuy em quên rồi nhưng anh vẫn nhớ. Xem thử là gì nào?"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "手表！吃饭、看电影、买手表，今天花了不少钱吧？",
+            "py": "Shǒubiǎo! Chīfàn, kàn diànyǐng, mǎi shǒubiǎo, jīntiān huā le bùshǎo qián ba?",
+            "vi": "Đồng hồ! Ăn cơm, xem phim, mua đồng hồ, hôm nay tốn không ít tiền nhỉ?"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "虽然花了一些钱，但是我们过了一个快乐的生日。",
+            "py": "Suīrán huā le yìxiē qián, dànshì wǒmen guò le yí ge kuàilè de shēngrì.",
+            "vi": "Tuy tốn ít tiền nhưng chúng ta đã có một sinh nhật vui vẻ."
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Câu chuyện kể lại một ngày sinh nhật.",
+        "dialogue": [
+          {
+            "who": "旁白 Lời kể",
+            "zh": "虽然妻子忘了今天是自己的生日，但是丈夫记得。",
+            "py": "Suīrán qīzi wàng le jīntiān shì zìjǐ de shēngrì, dànshì zhàngfu jìde.",
+            "vi": "Tuy người vợ quên hôm nay là sinh nhật mình, nhưng người chồng vẫn nhớ."
+          },
+          {
+            "who": "旁白 Lời kể",
+            "zh": "丈夫请妻子去饭馆吃饭、去电影院看电影，还给妻子买了一块非常漂亮的手表。",
+            "py": "Zhàngfu qǐng qīzi qù fànguǎn chīfàn, qù diànyǐngyuàn kàn diànyǐng, hái gěi qīzi mǎi le yí kuài fēicháng piàoliang de shǒubiǎo.",
+            "vi": "Người chồng mời vợ đi nhà hàng ăn cơm, đi rạp xem phim, còn mua cho vợ một chiếc đồng hồ rất đẹp."
+          },
+          {
+            "who": "旁白 Lời kể",
+            "zh": "妻子觉得今天很快乐。",
+            "py": "Qīzi juéde jīntiān hěn kuàilè.",
+            "vi": "Người vợ cảm thấy hôm nay rất vui vẻ."
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "手表",
+        "shǒubiǎo",
+        "Thủ biểu",
+        "đồng hồ đeo tay",
+        "Danh từ"
+      ],
+      [
+        "左边",
+        "zuǒbian",
+        "Tả biên",
+        "bên trái",
+        "Danh từ"
+      ],
+      [
+        "比",
+        "bǐ",
+        "Bỉ",
+        "hơn (so sánh)",
+        "Giới từ"
+      ],
+      [
+        "右边",
+        "yòubian",
+        "Hữu biên",
+        "bên phải",
+        "Danh từ"
+      ],
+      [
+        "记得",
+        "jìde",
+        "Ký đắc",
+        "nhớ",
+        "Động từ"
+      ],
+      [
+        "爱情片",
+        "àiqíngpiàn",
+        "Ái tình phiến",
+        "phim tình cảm",
+        "Danh từ"
+      ],
+      [
+        "有意思",
+        "yǒu yìsi",
+        "Hữu ý tứ",
+        "thú vị",
+        "Cụm từ"
+      ],
+      [
+        "点",
+        "diǎn",
+        "Điểm",
+        "gọi (món)",
+        "Động từ"
+      ],
+      [
+        "虽然",
+        "suīrán",
+        "Tuy nhiên",
+        "mặc dù",
+        "Liên từ"
+      ],
+      [
+        "但是",
+        "dànshì",
+        "Đãn thị",
+        "nhưng",
+        "Liên từ"
+      ],
+      [
+        "花",
+        "huā",
+        "Hoa",
+        "tiêu, tốn (tiền/thời gian)",
+        "Động từ"
+      ],
+      [
+        "妻子",
+        "qīzi",
+        "Thê tử",
+        "vợ",
+        "Danh từ"
+      ],
+      [
+        "丈夫",
+        "zhàngfu",
+        "Trượng phu",
+        "chồng",
+        "Danh từ"
+      ],
+      [
+        "饭馆",
+        "fànguǎn",
+        "Phạn quán",
+        "nhà hàng",
+        "Danh từ"
+      ]
+    ]
+  },
+  {
+    "t": "Bài 9",
+    "vi_t": "Con trai không cao bằng cậu bé đó",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "比较句(3)",
+        "title_vi": "Câu so sánh (3) — dùng \"没有\"",
+        "explain_zh": "用「没有」表示「不如、不及」，构成否定式比较。结构：A + 没有 + B + (这么/那么) + 形容词。肯定形式为「有」，常用在疑问句。",
+        "explain_vi": "Câu so sánh với \"没有\" mang ý nghĩa \"không bằng, kém hơn\". Cấu trúc: A 没有 B + (这么/那么) + tính từ. Trước tính từ có thể thêm \"这么\" hoặc \"那么\" để nhấn mạnh. Dạng khẳng định của \"没有\" là \"有\", thường dùng trong câu hỏi so sánh.",
+        "examples": [
+          {
+            "zh": "儿子的个子没有他那么高。",
+            "py": "Érzi de gèzi méiyǒu tā nàme gāo.",
+            "vi": "Con trai không cao bằng cậu bé đó."
+          },
+          {
+            "zh": "昨天没有今天这么冷。",
+            "py": "Zuótiān méiyǒu jīntiān zhème lěng.",
+            "vi": "Hôm qua không lạnh bằng hôm nay."
+          },
+          {
+            "zh": "妹妹有姐姐高吗？",
+            "py": "Mèimei yǒu jiějie gāo ma?",
+            "vi": "Em gái có cao bằng chị gái không?"
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "动词「离」",
+        "title_vi": "Động từ \"离\" — chỉ khoảng cách",
+        "explain_zh": "动词「离」表示两点之间空间或时间上的距离。结构：A + 离 + B + ……。",
+        "explain_vi": "Động từ \"离\" chỉ khoảng cách về không gian hoặc thời gian giữa hai điểm. Cấu trúc: A 离 B + ……",
+        "examples": [
+          {
+            "zh": "咖啡店离这儿有点儿远。",
+            "py": "Kāfēidiàn lí zhèr yǒudiǎnr yuǎn.",
+            "vi": "Quán cà phê cách đây hơi xa."
+          },
+          {
+            "zh": "学校离医院不远。",
+            "py": "Xuéxiào lí yīyuàn bù yuǎn.",
+            "vi": "Trường học cách bệnh viện không xa."
+          },
+          {
+            "zh": "现在离我的生日还有三天。",
+            "py": "Xiànzài lí wǒ de shēngrì hái yǒu sān tiān.",
+            "vi": "Bây giờ còn ba ngày nữa là đến sinh nhật tôi."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "时量补语(1)",
+        "title_vi": "Bổ ngữ thời lượng (1)",
+        "explain_zh": "表示动作或状态持续的时间，放在动词后。结构：S + V + 时量补语。带宾语时：宾语是事物名词放在补语后；是人称代词则放在补语前。可重复动词以强调：S + V + O + V + 时量补语。离合词须重复动词部分。",
+        "explain_vi": "Khi các từ chỉ khoảng thời gian đặt sau động từ, tạo thành bổ ngữ thời lượng, chỉ thời gian hành động/trạng thái kéo dài. Khi có tân ngữ: nếu là danh từ chỉ vật thì đặt sau bổ ngữ; nếu là đại từ nhân xưng thì đặt trước bổ ngữ. Có thể lặp động từ để nhấn mạnh. Động từ ly hợp phải lặp phần động từ.",
+        "examples": [
+          {
+            "zh": "走半个多小时就到了。",
+            "py": "Zǒu bàn ge duō xiǎoshí jiù dào le.",
+            "vi": "Đi bộ hơn nửa tiếng là đến."
+          },
+          {
+            "zh": "他们学中文学了两年。",
+            "py": "Tāmen xué Zhōngwén xué le liǎng nián.",
+            "vi": "Họ học tiếng Trung được hai năm."
+          },
+          {
+            "zh": "李文等了她一个小时。",
+            "py": "Lǐ Wén děng le tā yí ge xiǎoshí.",
+            "vi": "Lý Văn đợi cô ấy một tiếng đồng hồ."
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "这周赵刚休息，我下班后跟他去了一家商店。",
+          "商店里边的衣服没有大商场里的好看。",
+          "我们没有买到喜欢的衣服，从商店出来就到咖啡店坐了坐。",
+          "因为想运动运动，喝完东西我们就走回家了。"
+        ],
+        "vi": [
+          "Tuần này Lưu Minh nghỉ, tan làm tôi cùng anh ấy đến một cửa hàng.",
+          "Quần áo trong cửa hàng không đẹp bằng ở trung tâm thương mại lớn.",
+          "Chúng tôi không mua được món đồ ưng ý, ra khỏi cửa hàng liền ghé quán cà phê ngồi một lát.",
+          "Vì muốn vận động nên uống xong chúng tôi đi bộ về nhà."
+        ]
+      },
+      {
+        "zh": [
+          "赵刚想给儿子买条新裤子，但是没买到合适的。",
+          "张丽觉得旁边男孩儿穿的裤子很好看，但儿子个子没那么高。",
+          "最后他们去咖啡店坐了坐，又走路回家。"
+        ],
+        "vi": [
+          "Lưu Minh muốn mua cho con trai một cái quần mới, nhưng không mua được cái ưng ý.",
+          "Vương Nhất Tuyết thấy cái quần cậu bé bên cạnh mặc rất đẹp, nhưng con trai không cao bằng cậu bé đó.",
+          "Cuối cùng họ đến quán cà phê ngồi một lát, rồi đi bộ về nhà."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "Lưu Minh và Vương Nhất Tuyết đi mua quần mới cho con trai.",
+        "dialogue": [
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "儿子的裤子坏了，我们给他买条新的吧。",
+            "py": "Érzi de kùzi huài le, wǒmen gěi tā mǎi tiáo xīn de ba.",
+            "vi": "Quần của con trai rách rồi, chúng ta mua cho con một cái mới đi."
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "好啊。",
+            "py": "Hǎo a.",
+            "vi": "Được đấy."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "你看这条黑色的怎么样？",
+            "py": "Nǐ kàn zhè tiáo hēisè de zěnmeyàng?",
+            "vi": "Anh xem cái màu đen này thế nào?"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "没有你上次买的那条好看。",
+            "py": "Méiyǒu nǐ shàng cì mǎi de nà tiáo hǎokàn.",
+            "vi": "Không đẹp bằng cái em mua lần trước."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "旁边的男孩儿就穿了这样的裤子，我觉得很好看啊！",
+            "py": "Pángbiān de nánháir jiù chuān le zhèyàng de kùzi, wǒ juéde hěn hǎokàn a!",
+            "vi": "Cậu bé bên cạnh mặc cái quần kiểu này đấy, em thấy đẹp mà!"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "儿子的个子没有他那么高，穿上就不会太好看。",
+            "py": "Érzi de gèzi méiyǒu tā nàme gāo, chuān shàng jiù bú huì tài hǎokàn.",
+            "vi": "Con trai không cao bằng cậu bé đó, mặc vào sẽ không đẹp lắm đâu."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "好吧，我们再去那边看看。",
+            "py": "Hǎo ba, wǒmen zài qù nàbiān kànkan.",
+            "vi": "Được rồi, chúng ta qua bên kia xem thử."
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "Đôi vợ chồng bàn xem uống trà sữa hay cà phê.",
+        "dialogue": [
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "门口有家奶茶店。你想喝杯奶茶吗？",
+            "py": "Ménkǒu yǒu jiā nǎichá diàn. Nǐ xiǎng hē bēi nǎichá ma?",
+            "vi": "Trước cửa có một quán trà sữa. Anh có muốn uống trà sữa không?"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "我想喝咖啡，还是去咖啡店吧。",
+            "py": "Wǒ xiǎng hē kāfēi, háishi qù kāfēidiàn ba.",
+            "vi": "Anh muốn uống cà phê, hay là đi quán cà phê thôi."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "咖啡店离这儿有点儿远。",
+            "py": "Kāfēidiàn lí zhèr yǒudiǎnr yuǎn.",
+            "vi": "Quán cà phê cách đây hơi xa."
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "没关系，你家店的咖啡很好喝。",
+            "py": "Méi guānxi, nǐ jiā diàn de kāfēi hěn hǎohē.",
+            "vi": "Không sao, quán đó cà phê ngon lắm."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "那你等一下，我去买杯奶茶。你不想喝咖啡吗？",
+            "py": "Nà nǐ děng yíxià, wǒ qù mǎi bēi nǎichá. Nǐ bù xiǎng hē kāfēi ma?",
+            "vi": "Vậy anh đợi chút, em đi mua trà sữa. Anh không muốn uống cà phê à?"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "喝了咖啡，晚上就别想睡觉了。",
+            "py": "Hē le kāfēi, wǎnshàng jiù bié xiǎng shuìjiào le.",
+            "vi": "Uống cà phê rồi tối nay đừng mong ngủ được."
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Trên đường về, hai người bàn nhau đi bộ để vận động.",
+        "dialogue": [
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "我们打车回去吧。",
+            "py": "Wǒmen dǎchē huíqù ba.",
+            "vi": "Chúng ta bắt taxi về đi."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "这里离家很近，还是走路吧。",
+            "py": "Zhèlǐ lí jiā hěn jìn, háishi zǒulù ba.",
+            "vi": "Chỗ này gần nhà lắm, đi bộ thôi."
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "要走多长时间？",
+            "py": "Yào zǒu duō cháng shíjiān?",
+            "vi": "Phải đi bao lâu?"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "走半个多小时就到了。",
+            "py": "Zǒu bàn ge duō xiǎoshí jiù dào le.",
+            "vi": "Đi hơn nửa tiếng là đến."
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "好的。每天上下班都坐车，今天运动运动吧。",
+            "py": "Hǎo de. Měitiān shàngxiàbān dōu zuò chē, jīntiān yùndòng yùndòng ba.",
+            "vi": "Được. Ngày nào đi làm về cũng ngồi xe, hôm nay vận động chút đi."
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Ở nhà, Vương Nhất Tuyết viết nhật ký trong phòng.",
+        "dialogue": [
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "这周刘明休息，我下班后跟他去了一家商店。",
+            "py": "Zhè zhōu Liú Míng xiūxi, wǒ xiàbān hòu gēn tā qù le yì jiā shāngdiàn.",
+            "vi": "Tuần này Lưu Minh nghỉ, tan làm tôi cùng anh ấy đến một cửa hàng."
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "商店里边的衣服没有大商场里的好看。我们没有买到喜欢的衣服，",
+            "py": "Shāngdiàn lǐbian de yīfu méiyǒu dà shāngchǎng lǐ de hǎokàn. Wǒmen méiyǒu mǎidào xǐhuan de yīfu,",
+            "vi": "Quần áo trong cửa hàng không đẹp bằng ở trung tâm thương mại lớn. Chúng tôi không mua được món đồ ưng ý,"
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "从商店出来就到咖啡店坐了坐。因为想运动运动，所以喝完东西，我们就走回家了。",
+            "py": "cóng shāngdiàn chūlái jiù dào kāfēidiàn zuò le zuò. Yīnwèi xiǎng yùndòng yùndòng, suǒyǐ hē wán dōngxi, wǒmen jiù zǒu huí jiā le.",
+            "vi": "ra khỏi cửa hàng liền ghé quán cà phê ngồi một lát. Vì muốn vận động nên uống xong đồ, chúng tôi liền đi bộ về nhà."
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "坏",
+        "huài",
+        "Hoại",
+        "xấu, hỏng",
+        "Tính từ"
+      ],
+      [
+        "旁边",
+        "pángbiān",
+        "Bàng biên",
+        "bên cạnh",
+        "Danh từ"
+      ],
+      [
+        "男孩儿",
+        "nánháir",
+        "Nam hài nhi",
+        "cậu trai",
+        "Danh từ"
+      ],
+      [
+        "这样",
+        "zhèyàng",
+        "Giá dạng",
+        "như thế, như vậy",
+        "Đại từ"
+      ],
+      [
+        "个子",
+        "gèzi",
+        "Cá tử",
+        "dáng người, chiều cao",
+        "Danh từ"
+      ],
+      [
+        "那么",
+        "nàme",
+        "Na ma",
+        "như thế, như vậy",
+        "Đại từ"
+      ],
+      [
+        "高",
+        "gāo",
+        "Cao",
+        "cao",
+        "Tính từ"
+      ],
+      [
+        "门口",
+        "ménkǒu",
+        "Môn khẩu",
+        "trước cửa, lối ra vào",
+        "Danh từ"
+      ],
+      [
+        "咖啡",
+        "kāfēi",
+        "Già phi",
+        "cà phê",
+        "Danh từ"
+      ],
+      [
+        "离",
+        "lí",
+        "Ly",
+        "cách",
+        "Động từ"
+      ],
+      [
+        "近",
+        "jìn",
+        "Cận",
+        "gần",
+        "Tính từ"
+      ],
+      [
+        "走路",
+        "zǒulù",
+        "Tẩu lộ",
+        "đi bộ",
+        "Động từ"
+      ],
+      [
+        "周",
+        "zhōu",
+        "Chu",
+        "tuần",
+        "Danh từ"
+      ]
+    ]
+  },
+  {
+    "t": "Bài 10",
+    "vi_t": "Là mẹ chuẩn bị thi hay là con chuẩn bị thi?",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "主谓短语作谓语",
+        "title_vi": "Cụm chủ-vị làm vị ngữ",
+        "explain_zh": "主谓短语可以做谓语，用来说明、描述主语，构成主谓谓语句。主谓短语中的主语通常是全句主语的一部分或与之相关。",
+        "explain_vi": "Cụm chủ-vị có thể làm vị ngữ, dùng để giải thích, miêu tả cho chủ ngữ, tạo thành câu chủ ngữ-vị ngữ. Chủ ngữ trong cụm chủ-vị thường là một phần hoặc có liên quan đến chủ ngữ của toàn câu.",
+        "examples": [
+          {
+            "zh": "我的书包你看见了吗？",
+            "py": "Wǒ de shūbāo nǐ kànjiàn le ma?",
+            "vi": "Cặp sách của tôi bạn có thấy không?"
+          },
+          {
+            "zh": "弟弟手很小。",
+            "py": "Dìdi shǒu hěn xiǎo.",
+            "vi": "Tay em trai rất nhỏ."
+          },
+          {
+            "zh": "这件事他知道。",
+            "py": "Zhè jiàn shì tā zhīdào.",
+            "vi": "Việc này anh ấy biết."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "「还是」表选择疑问",
+        "title_vi": "Câu hỏi lựa chọn \"还是\"",
+        "explain_zh": "连词「还是」用在选择疑问句中，表示在几种可能中选择一个。结构：A + 还是 + B？",
+        "explain_vi": "Liên từ \"还是\" dùng trong câu hỏi nghi vấn, biểu thị sự lựa chọn giữa các phương án. Cấu trúc: A 还是 B?",
+        "examples": [
+          {
+            "zh": "妈妈，是您准备考试还是我准备考试？",
+            "py": "Māma, shì nín zhǔnbèi kǎoshì háishi wǒ zhǔnbèi kǎoshì?",
+            "vi": "Mẹ ơi, là mẹ chuẩn bị thi hay là con chuẩn bị thi vậy?"
+          },
+          {
+            "zh": "你更喜欢打篮球、踢足球还是游泳？",
+            "py": "Nǐ gèng xǐhuan dǎ lánqiú, tī zúqiú háishi yóuyǒng?",
+            "vi": "Bạn thích chơi bóng rổ, đá bóng hay là bơi hơn?"
+          },
+          {
+            "zh": "我们什么时候去看电影？今天还是明天？",
+            "py": "Wǒmen shénme shíhou qù kàn diànyǐng? Jīntiān háishi míngtiān?",
+            "vi": "Chúng ta khi nào đi xem phim? Hôm nay hay là mai?"
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "「要/快/快要/就要……了」",
+        "title_vi": "Cấu trúc \"sắp… rồi\"",
+        "explain_zh": "「要/快/快要/就要……了」表示动作或情况即将发生。若句中有时间状语（如「过一会儿」「明天」），则常用「就要……了」。",
+        "explain_vi": "Cấu trúc \"要/快/快要/就要……了\" dùng để diễn tả một việc sắp xảy ra/chuẩn bị xảy ra. Nếu trong câu có trạng ngữ chỉ thời gian thì thường dùng \"就要……了\".",
+        "examples": [
+          {
+            "zh": "饭菜快要做好了。",
+            "py": "Fàncài kuàiyào zuò hǎo le.",
+            "vi": "Cơm nước sắp làm xong rồi."
+          },
+          {
+            "zh": "火车快开了。",
+            "py": "Huǒchē kuài kāi le.",
+            "vi": "Tàu sắp chạy rồi."
+          },
+          {
+            "zh": "我们下星期就要考试了。",
+            "py": "Wǒmen xià xīngqī jiù yào kǎoshì le.",
+            "vi": "Tuần sau chúng tôi sắp thi rồi."
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "快要开学了，爸爸帮弟弟准备书包、本子和笔。",
+          "我就要考试了，妈妈让我看书、看做错的题。",
+          "我们上学，爸爸、妈妈比我们还忙。"
+        ],
+        "vi": [
+          "Sắp khai giảng rồi, bố giúp em trai chuẩn bị cặp sách, vở và bút.",
+          "Con sắp thi rồi, mẹ bảo con xem sách, xem lại những câu làm sai.",
+          "Chúng con đi học mà bố mẹ còn bận hơn chúng con."
+        ]
+      },
+      {
+        "zh": [
+          "我问他们：“是我和弟弟上学还是你们上学？”",
+          "我问完，他们都笑了。",
+          "家里每个人都为开学的事忙碌着。"
+        ],
+        "vi": [
+          "Con hỏi bố mẹ: \"Là con với em đi học hay là bố mẹ đi học vậy?\"",
+          "Con vừa hỏi xong, bố mẹ đều cười.",
+          "Mỗi người trong nhà đều bận rộn vì chuyện khai giảng."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "Sắp khai giảng, Lưu Minh giúp con trai chuẩn bị đồ dùng học tập.",
+        "dialogue": [
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "小龙，你们明天开学，你准备好了吗?",
+            "py": "Xiǎolóng, nǐmen míngtiān kāixué, nǐ zhǔnbèi hǎo le ma?",
+            "vi": "Tiểu Long, mai các con khai giảng rồi, con chuẩn bị xong chưa?"
+          },
+          {
+            "who": "赵小龙 Zhào Xiǎolóng",
+            "zh": "明天就开学吗？爸爸，我的书包你看见了吗？",
+            "py": "Míngtiān jiù kāixué ma? Bàba, wǒ de shūbāo nǐ kànjiàn le ma?",
+            "vi": "Mai khai giảng rồi à? Bố ơi, cặp sách của con bố có thấy không?"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "书包在门后面。",
+            "py": "Shūbāo zài mén hòumian.",
+            "vi": "Cặp ở sau cửa."
+          },
+          {
+            "who": "赵小龙 Zhào Xiǎolóng",
+            "zh": "书在哪儿呢？笔呢？",
+            "py": "Shū zài nǎr ne? Bǐ ne?",
+            "vi": "Sách đâu nhỉ? Bút đâu?"
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "书在床上，笔在桌子上。",
+            "py": "Shū zài chuáng shàng, bǐ zài zhuōzi shàng.",
+            "vi": "Sách ở trên giường, bút ở trên bàn."
+          },
+          {
+            "who": "赵小龙 Zhào Xiǎolóng",
+            "zh": "太好了！现在都准备好了。",
+            "py": "Tài hǎo le! Xiànzài dōu zhǔnbèi hǎo le.",
+            "vi": "Tốt quá! Bây giờ chuẩn bị xong hết rồi."
+          },
+          {
+            "who": "赵刚 Zhào Gāng",
+            "zh": "这次爸爸帮你，下次你自己准备，好不好？",
+            "py": "Zhè cì bàba bāng nǐ, xià cì nǐ zìjǐ zhǔnbèi, hǎo bu hǎo?",
+            "vi": "Lần này bố giúp con, lần sau con tự chuẩn bị nhé?"
+          },
+          {
+            "who": "赵小龙 Zhào Xiǎolóng",
+            "zh": "好！",
+            "py": "Hǎo!",
+            "vi": "Vâng!"
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "Lưu Tiểu Tuyết chuẩn bị cho kỳ thi ngày mai.",
+        "dialogue": [
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "小雨，你在做什么呢？",
+            "py": "Xiǎoyǔ, nǐ zài zuò shénme ne?",
+            "vi": "Tiểu Vũ, con đang làm gì vậy?"
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "明天考试，我在看书呢。",
+            "py": "Míngtiān kǎoshì, wǒ zài kàn shū ne.",
+            "vi": "Mai thi rồi, con đang xem sách."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "这些词要好好看看。",
+            "py": "Zhèxiē cí yào hǎohǎo kànkan.",
+            "vi": "Mấy từ này phải xem kỹ vào."
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "我看过了，意思也都懂了。",
+            "py": "Wǒ kàn guo le, yìsi yě dōu dǒng le.",
+            "vi": "Con xem rồi, nghĩa cũng hiểu hết rồi."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "你的本子呢？本子上做错的题也要看一看。",
+            "py": "Nǐ de běnzi ne? Běnzi shàng zuò cuò de tí yě yào kàn yi kàn.",
+            "vi": "Vở của con đâu? Mấy câu con làm sai trong vở cũng phải xem lại."
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "妈妈，是您准备考试还是我准备考试？",
+            "py": "Māma, shì nín zhǔnbèi kǎoshì háishi wǒ zhǔnbèi kǎoshì?",
+            "vi": "Mẹ ơi, là mẹ chuẩn bị thi hay là con chuẩn bị thi vậy?"
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Lưu Tiểu Tuyết đi thi về, cả nhà chuẩn bị ăn cơm.",
+        "dialogue": [
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "妈妈，我回来了！",
+            "py": "Māma, wǒ huílái le!",
+            "vi": "Mẹ ơi, con về rồi!"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "我买了奶茶，就在桌子上，自己去拿吧。",
+            "py": "Wǒ mǎi le nǎichá, jiù zài zhuōzi shàng, zìjǐ qù ná ba.",
+            "vi": "Mẹ mua trà sữa, ở trên bàn đấy, con tự lấy đi."
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "谢谢妈妈！",
+            "py": "Xièxie māma!",
+            "vi": "Cảm ơn mẹ!"
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "今天考试考得怎么样？",
+            "py": "Jīntiān kǎoshì kǎo de zěnmeyàng?",
+            "vi": "Hôm nay thi thế nào?"
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "我觉得比上次好。",
+            "py": "Wǒ juéde bǐ shàng cì hǎo.",
+            "vi": "Con thấy tốt hơn lần trước."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "真不错！饭菜快要做好了，你叫弟弟一起去洗手吧。",
+            "py": "Zhēn búcuò! Fàncài kuàiyào zuò hǎo le, nǐ jiào dìdi yìqǐ qù xǐshǒu ba.",
+            "vi": "Tốt thật đấy! Cơm nước sắp xong rồi, con gọi em đi rửa tay cùng đi."
+          },
+          {
+            "who": "赵小龙 Zhào Xiǎolóng",
+            "zh": "妈妈，我是第一名，姐姐还没洗完呢。",
+            "py": "Māma, wǒ shì dì-yī míng, jiějie hái méi xǐ wán ne.",
+            "vi": "Mẹ ơi, con nhất rồi, chị vẫn chưa rửa xong."
+          },
+          {
+            "who": "张丽 Zhāng Lì",
+            "zh": "你洗得真快啊！",
+            "py": "Nǐ xǐ de zhēn kuài a!",
+            "vi": "Con rửa nhanh thật đấy!"
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Ở nhà, Lưu Tiểu Tuyết viết nhật ký trong phòng.",
+        "dialogue": [
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "快要开学了，爸爸帮弟弟准备书包、本子和笔。",
+            "py": "Kuài yào kāixué le, bàba bāng dìdi zhǔnbèi shūbāo, běnzi hé bǐ.",
+            "vi": "Sắp khai giảng rồi, bố giúp em trai chuẩn bị cặp sách, vở và bút."
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "我就要考试了，妈妈让我看书、看做错的题。",
+            "py": "Wǒ jiù yào kǎoshì le, māma ràng wǒ kàn shū, kàn zuò cuò de tí.",
+            "vi": "Mình sắp thi rồi, mẹ bảo mình xem sách, xem lại những câu làm sai."
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "我们上学，爸爸、妈妈比我们还忙。",
+            "py": "Wǒmen shàngxué, bàba, māma bǐ wǒmen hái máng.",
+            "vi": "Chúng mình đi học, mà bố mẹ còn bận hơn cả chúng mình."
+          },
+          {
+            "who": "赵小雨 Zhào Xiǎoyǔ",
+            "zh": "我问他们：是我和弟弟上学还是你们上学？我问完，他们都笑了。",
+            "py": "Wǒ wèn tāmen: Shì wǒ hé dìdi shàngxué háishì nǐmen shàngxué? Wǒ wèn wán, tāmen dōu xiào le.",
+            "vi": "Mình hỏi họ: Là con với em đi học hay là bố mẹ đi học vậy? Mình vừa hỏi xong là họ đều cười."
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "开学",
+        "kāixué",
+        "Khai học",
+        "khai giảng",
+        "Động từ"
+      ],
+      [
+        "门",
+        "mén",
+        "Môn",
+        "cái cửa",
+        "Danh từ"
+      ],
+      [
+        "后面",
+        "hòumiàn",
+        "Hậu diện",
+        "đằng sau",
+        "Danh từ"
+      ],
+      [
+        "笔",
+        "bǐ",
+        "Bút",
+        "cái bút",
+        "Danh từ"
+      ],
+      [
+        "帮",
+        "bāng",
+        "Bang",
+        "giúp",
+        "Động từ"
+      ],
+      [
+        "考试",
+        "kǎoshì",
+        "Khảo thí",
+        "thi, kỳ thi",
+        "Danh từ"
+      ],
+      [
+        "词",
+        "cí",
+        "Từ",
+        "từ",
+        "Danh từ"
+      ],
+      [
+        "本子",
+        "běnzi",
+        "Bản tử",
+        "quyển vở",
+        "Danh từ"
+      ],
+      [
+        "错",
+        "cuò",
+        "Thác",
+        "sai",
+        "Tính từ"
+      ],
+      [
+        "题",
+        "tí",
+        "Đề",
+        "câu hỏi, bài tập",
+        "Danh từ"
+      ],
+      [
+        "还是",
+        "háishi",
+        "Hoàn thị",
+        "hay là",
+        "Liên từ"
+      ],
+      [
+        "考",
+        "kǎo",
+        "Khảo",
+        "thi",
+        "Động từ"
+      ],
+      [
+        "快要",
+        "kuàiyào",
+        "Khoái yếu",
+        "sắp",
+        "Phó từ"
+      ],
+      [
+        "笑",
+        "xiào",
+        "Tiếu",
+        "cười",
+        "Động từ"
+      ]
+    ]
+  },
+  {
+    "t": "Bài 11",
+    "vi_t": "Bạn cứ ngồi đây, tôi đi lấy xe đưa bạn đi bệnh viện",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "动态助词「着」(1)",
+        "title_vi": "Trợ từ động thái \"着\" — trạng thái tiếp diễn",
+        "explain_zh": "动态助词「着」用在动词后，表示动作或状态的持续。否定：在动词前加「没(有)」。结构：（+）V + 着；（-）没(有) + V + 着。",
+        "explain_vi": "Trợ từ động thái \"着\" dùng sau động từ, biểu thị sự tiếp diễn của hành động hoặc trạng thái. Dạng phủ định: thêm \"没(有)\" vào trước động từ.",
+        "examples": [
+          {
+            "zh": "那你在这儿坐着。",
+            "py": "Nà nǐ zài zhèr zuò zhe.",
+            "vi": "Vậy bạn cứ ngồi đây."
+          },
+          {
+            "zh": "教室的门开着。",
+            "py": "Jiàoshì de mén kāi zhe.",
+            "vi": "Cửa lớp học đang mở."
+          },
+          {
+            "zh": "教室的门没开着。",
+            "py": "Jiàoshì de mén méi kāi zhe.",
+            "vi": "Cửa lớp học không mở."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "动态助词「着」(2)",
+        "title_vi": "Trợ từ động thái \"着\" — có tân ngữ",
+        "explain_zh": "表示动作或状态正在持续时，若动词带宾语，宾语放在「着」后面：V + 着 + O。疑问句有三种：句尾加「吗」；句尾加「没有」；V + 没 + V + 着。",
+        "explain_vi": "Trong câu biểu thị động tác hoặc trạng thái đang tiếp diễn, tân ngữ phải đặt sau trợ từ động thái \"着\": V + 着 + O. Hình thức câu nghi vấn có 3 loại: thêm \"吗\" cuối câu; thêm \"没有\" cuối câu; V + 没 + V + 着.",
+        "examples": [
+          {
+            "zh": "现在路上车多，还下着雪，我开慢一点儿。",
+            "py": "Xiànzài lùshang chē duō, hái xià zhe xuě, wǒ kāi màn yìdiǎnr.",
+            "vi": "Bây giờ trên đường nhiều xe, còn đang có tuyết rơi, tôi lái chậm một chút."
+          },
+          {
+            "zh": "她穿着白色的裤子。",
+            "py": "Tā chuān zhe báisè de kùzi.",
+            "vi": "Cô ấy đang mặc quần màu trắng."
+          },
+          {
+            "zh": "陈天中没拿着咖啡。",
+            "py": "Chén Tiānzhōng méi ná zhe kāfēi.",
+            "vi": "Trần Thiên Trung không cầm cà phê."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "程度副词「最」",
+        "title_vi": "Trạng từ mức độ \"最\"",
+        "explain_zh": "程度副词「最」用在形容词或心理动词（如喜欢、担心、害怕）前面，表示某种特征在同类中程度最高，即「第一」的意思。",
+        "explain_vi": "Trạng từ chỉ mức độ \"最\" được dùng trước tính từ hoặc động từ tâm lý (như 喜欢, 担心, 害怕...), biểu thị rằng đặc điểm/tính chất nào đó vượt hơn tất cả những người/sự vật cùng loại, tức là \"nhất\".",
+        "examples": [
+          {
+            "zh": "你最喜欢吃中国菜。",
+            "py": "Nǐ zuì xǐhuan chī Zhōngguó cài.",
+            "vi": "Bạn thích ăn món Trung Quốc nhất."
+          },
+          {
+            "zh": "在我们家，爸爸最高。",
+            "py": "Zài wǒmen jiā, bàba zuì gāo.",
+            "vi": "Trong nhà tôi, bố cao nhất."
+          },
+          {
+            "zh": "你们班谁说中文说得最好？",
+            "py": "Nǐmen bān shéi shuō Zhōngwén shuō de zuì hǎo?",
+            "vi": "Lớp các bạn ai nói tiếng Trung giỏi nhất?"
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "我这几天经常头疼，从药店买了点儿药，没去医院。",
+          "今天下课后，王老师看我不舒服，就送我去医院了。",
+          "从医院回来，李文也来看我了。",
+          "现在他们都回去了，我也要睡觉了。"
+        ],
+        "vi": [
+          "Mấy hôm nay em hay đau đầu, mua ít thuốc ở hiệu thuốc, không đi bệnh viện.",
+          "Hôm nay tan học, cô Vương thấy em không khỏe liền đưa em đi bệnh viện.",
+          "Từ bệnh viện về, Lý Văn cũng đến thăm em.",
+          "Bây giờ mọi người đều về rồi, em cũng phải đi ngủ đây."
+        ]
+      },
+      {
+        "zh": [
+          "白家月这几天头疼，王老师很担心，开车送她去了医院。",
+          "医生开了药，吃完好多了。",
+          "李文听说后也赶来看她，王老师还特意做了中国菜给她吃。"
+        ],
+        "vi": [
+          "Mấy hôm nay Bạch Gia Nguyệt bị đau đầu, cô Vương rất lo lắng, lái xe đưa cô ấy đi bệnh viện.",
+          "Bác sĩ kê thuốc, uống xong đỡ nhiều.",
+          "Lý Văn nghe tin cũng vội đến thăm, cô Vương còn đặc biệt làm món Trung Quốc cho cô ấy ăn."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "Bạch Gia Nguyệt bị đau đầu, thầy Vương Nhất Phi lo lắng hỏi thăm.",
+        "dialogue": [
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "家月，都下课了，你怎么还不回家？",
+            "py": "Jiāyuè, dōu xiàkè le, nǐ zěnme hái bù huí jiā?",
+            "vi": "Gia Nguyệt, tan học rồi mà, sao em vẫn chưa về nhà?"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "我头疼，不太舒服。",
+            "py": "Wǒ tóuténg, bú tài shūfu.",
+            "vi": "Em bị đau đầu, không được khỏe lắm."
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "你这几天经常头疼，去医院看看吧。",
+            "py": "Nǐ zhè jǐ tiān jīngcháng tóuténg, qù yīyuàn kànkan ba.",
+            "vi": "Mấy hôm nay em hay đau đầu, đi bệnh viện khám thử đi."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "我想休息一下，现在不能动，一动就疼。",
+            "py": "Wǒ xiǎng xiūxi yíxià, xiànzài bù néng dòng, yí dòng jiù téng.",
+            "vi": "Em muốn nghỉ một lát, bây giờ không cử động được, cử động là đau."
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "那你在这儿坐着，我去开车，一会儿送你去医院。",
+            "py": "Nà nǐ zài zhèr zuò zhe, wǒ qù kāichē, yíhuìr sòng nǐ qù yīyuàn.",
+            "vi": "Vậy em ngồi đây, cô đi lấy xe, lát nữa đưa em đi bệnh viện."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "谢谢王老师。",
+            "py": "Xièxie Wáng lǎoshī.",
+            "vi": "Cảm ơn cô Vương."
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "Trên đường đến bệnh viện, Lý Văn gọi điện hỏi thăm.",
+        "dialogue": [
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "现在路上车多，还下着雪，我开慢一点儿。",
+            "py": "Xiànzài lùshang chē duō, hái xià zhe xuě, wǒ kāi màn yìdiǎnr.",
+            "vi": "Bây giờ trên đường nhiều xe, còn đang có tuyết rơi, cô lái chậm một chút."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "没问题，现在头没那么疼了。",
+            "py": "Méi wèntí, xiànzài tóu méi nàme téng le.",
+            "vi": "Không sao ạ, bây giờ đầu không đau nhiều nữa."
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "好。李文来电话了，你帮我接一下。",
+            "py": "Hǎo. Lǐ Wén lái diànhuà le, nǐ bāng wǒ jiē yíxià.",
+            "vi": "Được. Lý Văn gọi điện đến rồi, em nghe giúp cô nhé."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "喂，李文。王老师开着车呢，你找她有事吗?",
+            "py": "Wéi, Lǐ Wén. Wáng lǎoshī kāi zhe chē ne, nǐ zhǎo tā yǒu shì ma?",
+            "vi": "A lô, Lý Văn à. Cô Vương đang lái xe, bạn tìm cô có việc gì không?"
+          },
+          {
+            "who": "李文 Lǐ Wén",
+            "zh": "没什么事。今天这么大，你们开车去哪儿啊？",
+            "py": "Méi shénme shì. Jīntiān zhème dà, nǐmen kāichē qù nǎr a?",
+            "vi": "Không có gì đâu. Hôm nay tuyết to thế, hai người lái xe đi đâu vậy?"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "去医院，我头有点儿疼。",
+            "py": "Qù yīyuàn, wǒ tóu yǒudiǎnr téng.",
+            "vi": "Đi bệnh viện, mình hơi đau đầu."
+          },
+          {
+            "who": "李文 Lǐ Wén",
+            "zh": "那我一会儿去看看你。",
+            "py": "Nà wǒ yíhuìr qù kànkan nǐ.",
+            "vi": "Vậy lát nữa mình qua thăm bạn."
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Lý Văn đến thăm Bạch Gia Nguyệt, thầy Vương Nhất Phi nấu cơm mời khách.",
+        "dialogue": [
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "李文，快请进！",
+            "py": "Lǐ Wén, kuài qǐng jìn!",
+            "vi": "Lý Văn, vào đi!"
+          },
+          {
+            "who": "李文 Lǐ Wén",
+            "zh": "家月，你怎么样了？头还疼吗？",
+            "py": "Jiāyuè, nǐ zěnmeyàng le? Tóu hái téng ma?",
+            "vi": "Gia Nguyệt, bạn thế nào rồi? Đầu vẫn đau không?"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "不那么疼了。医生开了一些药，吃完就好多了。",
+            "py": "Bú nàme téng le. Yīshēng kāi le yìxiē yào, chī wán jiù hǎo duō le.",
+            "vi": "Không đau nhiều nữa. Bác sĩ kê cho ít thuốc, uống xong đỡ nhiều rồi."
+          },
+          {
+            "who": "李文 Lǐ Wén",
+            "zh": "那就好！",
+            "py": "Nà jiù hǎo!",
+            "vi": "Vậy thì tốt rồi!"
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "家月，你想不想吃点儿东西？吃点儿吧，身体不舒服时更要好好吃饭。",
+            "py": "Jiāyuè, nǐ xiǎng bu xiǎng chī diǎnr dōngxi? Chī diǎnr ba, shēntǐ bù shūfu shí gèng yào hǎohǎo chīfàn.",
+            "vi": "Gia Nguyệt, em có muốn ăn gì không? Ăn chút đi, lúc không khỏe càng phải ăn uống đầy đủ."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "吃点儿什么呢？",
+            "py": "Chī diǎnr shénme ne?",
+            "vi": "Ăn gì bây giờ ạ?"
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "你最喜欢吃中国菜，我做几个中国菜吧。",
+            "py": "Nǐ zuì xǐhuan chī Zhōngguó cài, wǒ zuò jǐ ge Zhōngguó cài ba.",
+            "vi": "Em thích ăn món Trung Quốc nhất, để cô làm vài món Trung Quốc nhé."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "好的，谢谢王老师。",
+            "py": "Hǎo de, xièxie Wáng lǎoshī.",
+            "vi": "Vâng, cảm ơn cô Vương."
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Ở nhà, Bạch Gia Nguyệt viết nhật ký trong phòng.",
+        "dialogue": [
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "我这几天经常头疼，从药店买了点儿药，没去医院。",
+            "py": "Wǒ zhè jǐ tiān jīngcháng tóuténg, cóng yàodiàn mǎi le diǎnr yào, méi qù yīyuàn.",
+            "vi": "Mấy hôm nay tôi hay đau đầu, mua ít thuốc ở hiệu thuốc, không đi bệnh viện."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "今天下课后，王老师看我不舒服，就送我去医院了。",
+            "py": "Jīntiān xiàkè hòu, Wáng lǎoshī kàn wǒ bù shūfu, jiù sòng wǒ qù yīyuàn le.",
+            "vi": "Hôm nay tan học, cô Vương thấy tôi không khỏe liền đưa tôi đi bệnh viện."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "从医院回来，李文也来看我了。现在他们都回去了，我也要睡觉了。",
+            "py": "Cóng yīyuàn huílái, Lǐ Wén yě lái kàn wǒ le. Xiànzài tāmen dōu huíqù le, wǒ yě yào shuìjiào le.",
+            "vi": "Từ bệnh viện về, Lý Văn cũng đến thăm tôi. Bây giờ mọi người đều về rồi, tôi cũng phải đi ngủ đây."
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "头",
+        "tóu",
+        "Đầu",
+        "đầu",
+        "Danh từ"
+      ],
+      [
+        "疼",
+        "téng",
+        "Đông",
+        "đau",
+        "Tính từ"
+      ],
+      [
+        "经常",
+        "jīngcháng",
+        "Kinh thường",
+        "thường xuyên",
+        "Phó từ"
+      ],
+      [
+        "动",
+        "dòng",
+        "Động",
+        "động, cử động",
+        "Động từ"
+      ],
+      [
+        "着",
+        "zhe",
+        "Trước",
+        "(trợ từ tiếp diễn)",
+        "Trợ từ"
+      ],
+      [
+        "路上",
+        "lùshang",
+        "Lộ thượng",
+        "trên đường",
+        "Danh từ"
+      ],
+      [
+        "慢",
+        "màn",
+        "Mạn",
+        "chậm",
+        "Tính từ"
+      ],
+      [
+        "进",
+        "jìn",
+        "Tiến",
+        "vào",
+        "Động từ"
+      ],
+      [
+        "药",
+        "yào",
+        "Dược",
+        "thuốc",
+        "Danh từ"
+      ],
+      [
+        "身体",
+        "shēntǐ",
+        "Thân thể",
+        "cơ thể, sức khỏe",
+        "Danh từ"
+      ],
+      [
+        "时",
+        "shí",
+        "Thì",
+        "lúc, khi",
+        "Danh từ"
+      ],
+      [
+        "最",
+        "zuì",
+        "Tối",
+        "nhất",
+        "Phó từ"
+      ],
+      [
+        "药店",
+        "yàodiàn",
+        "Dược điếm",
+        "hiệu thuốc",
+        "Danh từ"
+      ]
+    ]
+  },
+  {
+    "t": "Bài 12",
+    "vi_t": "Chỗ tôi lạnh hơn Bắc Kinh nhiều lắm",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "比较句(4)",
+        "title_vi": "Câu so sánh (4) — dùng \"多了/得多\"",
+        "explain_zh": "在「比」字句中，「多了」或「得多」放在形容词后，用来强调差距很大。结构：A 比 B + 形容词 + 多了/得多。",
+        "explain_vi": "Trong câu so sánh dùng \"比\", \"多了\" hoặc \"得多\" đứng sau tính từ, dùng để nhấn mạnh rằng mức độ chênh lệch rất lớn.",
+        "examples": [
+          {
+            "zh": "我这里比北京冷多了。",
+            "py": "Wǒ zhèlǐ bǐ Běijīng lěng duō le.",
+            "vi": "Chỗ tôi lạnh hơn Bắc Kinh nhiều lắm."
+          },
+          {
+            "zh": "坐飞机比坐火车快得多。",
+            "py": "Zuò fēijī bǐ zuò huǒchē kuài de duō.",
+            "vi": "Đi máy bay nhanh hơn đi tàu hỏa nhiều."
+          },
+          {
+            "zh": "他觉得红茶比绿茶好喝得很。",
+            "py": "Tā juéde hóngchá bǐ lǜchá hǎohē de hěn.",
+            "vi": "Anh ấy thấy trà đen ngon hơn trà xanh nhiều."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "比较句(5)",
+        "title_vi": "Câu so sánh (5) — kèm bổ ngữ trạng thái",
+        "explain_zh": "若比较的动词带状态补语，「比」可置于动词前或后。结构：A 比 B + V + 得 + Adj；或 A + V + 得 + 比 B + Adj。",
+        "explain_vi": "Trong câu so sánh dùng \"比\", nếu động từ có bổ ngữ trạng thái thì \"比\" có thể đặt trước hoặc sau động từ.",
+        "examples": [
+          {
+            "zh": "昨天比今天下得大。",
+            "py": "Zuótiān bǐ jīntiān xià de dà.",
+            "vi": "Hôm qua tuyết rơi to hơn hôm nay."
+          },
+          {
+            "zh": "妈妈比我睡得晚。",
+            "py": "Māma bǐ wǒ shuì de wǎn.",
+            "vi": "Mẹ ngủ muộn hơn tôi."
+          },
+          {
+            "zh": "李文跑得比白家月快。",
+            "py": "Lǐ Wén pǎo de bǐ Bái Jiāyuè kuài.",
+            "vi": "Lý Văn chạy nhanh hơn Bạch Gia Nguyệt."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "比较句(6)",
+        "title_vi": "Câu so sánh (6) — động từ có tân ngữ và bổ ngữ trạng thái",
+        "explain_zh": "若动词既有宾语又有状态补语：可将宾语提前（A 比 B + 宾语 + V + 得 + Adj），或重复动词（A 比 B + V + 宾语 + V + 得 + Adj）。",
+        "explain_vi": "Trong câu so sánh dùng \"比\", nếu động từ vừa có tân ngữ vừa có bổ ngữ trạng thái: đưa tân ngữ lên trước động từ, hoặc lặp lại động từ.",
+        "examples": [
+          {
+            "zh": "你跑步跑得比我快。",
+            "py": "Nǐ pǎobù pǎo de bǐ wǒ kuài.",
+            "vi": "Bạn chạy bộ nhanh hơn tôi."
+          },
+          {
+            "zh": "白家月汉语写得比陈天中好。",
+            "py": "Bái Jiāyuè Hànyǔ xiě de bǐ Chén Tiānzhōng hǎo.",
+            "vi": "Bạch Gia Nguyệt viết tiếng Trung tốt hơn Trần Thiên Trung."
+          },
+          {
+            "zh": "他踢足球比我踢得好。",
+            "py": "Tā tī zúqiú bǐ wǒ tī de hǎo.",
+            "vi": "Anh ấy đá bóng giỏi hơn tôi."
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "前几天天气不好，我没走路，每天坐两站地铁去学校。",
+          "今天是个大晴天，李文让我跟他去外面跑步。",
+          "他小时候经常跑步，跑得比我快，但是他会等我。",
+          "跟李文一起跑步，我好高兴啊！"
+        ],
+        "vi": [
+          "Mấy hôm trước thời tiết không tốt, mình không đi bộ, ngày nào cũng đi hai trạm tàu điện ngầm đến trường.",
+          "Hôm nay trời nắng đẹp, Lý Văn rủ mình ra ngoài chạy bộ.",
+          "Lúc nhỏ cậu ấy hay chạy bộ, chạy nhanh hơn mình, nhưng cậu ấy sẽ đợi mình.",
+          "Chạy bộ cùng Lý Văn, mình vui lắm!"
+        ]
+      },
+      {
+        "zh": [
+          "王一飞这几天都在网上给学生上课，没有出门。",
+          "下雪的时候，她让哥哥一飞多买点儿吃的东西回去。",
+          "天晴的时候，李文喜欢约朋友一起去跑步。"
+        ],
+        "vi": [
+          "Mấy hôm nay Vương Nhất Phi đều dạy học sinh trên mạng, không ra ngoài.",
+          "Lúc trời tuyết, chị bảo em trai Nhất Phi mua nhiều đồ ăn mang về.",
+          "Lúc trời nắng đẹp, Lý Văn thích rủ bạn cùng đi chạy bộ."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "Bạch Gia Nguyệt gọi điện hỏi thăm chị Vương Nhất Tuyết về thời tiết.",
+        "dialogue": [
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "喂，家月，是你啊！有什么事情吗？",
+            "py": "Wéi, Jiāyuè, shì nǐ a! Yǒu shénme shìqing ma?",
+            "vi": "A lô, Gia Nguyệt, là em à! Có chuyện gì không?"
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "没什么事，就想跟您说说话。",
+            "py": "Méi shénme shì, jiù xiǎng gēn nín shuōshuo huà.",
+            "vi": "Không có gì đâu, chỉ muốn nói chuyện với chị thôi."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "好啊。你今天没课吗？",
+            "py": "Hǎo a. Nǐ jīntiān méi kè ma?",
+            "vi": "Được đấy. Hôm nay em không có tiết à?"
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "下午有课。您那里天气怎么样？",
+            "py": "Xiàwǔ yǒu kè. Nín nàlǐ tiānqì zěnmeyàng?",
+            "vi": "Chiều mới có tiết. Chỗ chị thời tiết thế nào?"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "北京这几天虽然是晴天，但是有点儿冷。",
+            "py": "Běijīng zhè jǐ tiān suīrán shì qíngtiān, dànshì yǒudiǎnr lěng.",
+            "vi": "Bắc Kinh mấy hôm nay tuy nắng nhưng hơi lạnh."
+          },
+          {
+            "who": "王一雪 Wáng Yīxuě",
+            "zh": "我这里比北京冷多了，外边还正下着雪呢！",
+            "py": "Wǒ zhèlǐ bǐ Běijīng lěng duō le, wàibian hái zhèng xià zhe xuě ne!",
+            "vi": "Chỗ em lạnh hơn Bắc Kinh nhiều lắm, ngoài trời còn đang có tuyết rơi đấy!"
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "Vương Nhất Phi gọi điện cho chị gái, kể chuyện dạy học online mùa tuyết.",
+        "dialogue": [
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "喂，一飞，听家月说你那边下雪了，下得大不大？",
+            "py": "Wéi, Yīfēi, tīng Jiāyuè shuō nǐ nàbiān xiàxuě le, xià de dà bu dà?",
+            "vi": "A lô, Nhất Phi, nghe Gia Nguyệt nói chỗ em có tuyết rơi, rơi to không?"
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "今天不大，昨天比今天下得大。",
+            "py": "Jīntiān bú dà, zuótiān bǐ jīntiān xià de dà.",
+            "vi": "Hôm nay không to, hôm qua rơi to hơn hôm nay."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "天气不好，你去外面的时候多穿点儿衣服。",
+            "py": "Tiānqì bù hǎo, nǐ qù wàimiàn de shíhou duō chuān diǎnr yīfu.",
+            "vi": "Thời tiết không tốt, lúc ra ngoài em mặc thêm quần áo vào."
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "这几天我在网上上课，没出去过。",
+            "py": "Zhè jǐ tiān wǒ zài wǎngshàng shàngkè, méi chūqù guo.",
+            "vi": "Mấy hôm nay em dạy học trên mạng, không ra ngoài."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "那就好，有事记得给我打电话。",
+            "py": "Nà jiù hǎo, yǒu shì jìde gěi wǒ dǎ diànhuà.",
+            "vi": "Vậy thì tốt, có việc gì nhớ gọi điện cho chị."
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "好的。现在不下雪了，我出去买点儿吃的。",
+            "py": "Hǎo de. Xiànzài bú xiàxuě le, wǒ chūqù mǎi diǎnr chī de.",
+            "vi": "Vâng. Bây giờ hết tuyết rồi, em ra ngoài mua chút đồ ăn."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "一次多买点儿，阴天下雪什么的就少出去吧。",
+            "py": "Yí cì duō mǎi diǎnr, yīntiān xiàxuě shénmede jiù shǎo chūqù ba.",
+            "vi": "Mua một lần cho nhiều vào, trời âm u tuyết rơi thì ít ra ngoài thôi."
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Lý Văn rủ Bạch Gia Nguyệt đi chạy bộ vào ngày trời đẹp.",
+        "dialogue": [
+          {
+            "who": "李文 Lǐ Wén",
+            "zh": "喂，家月，今天天气不错，我们去跑步吧！",
+            "py": "Wéi, Jiāyuè, jīntiān tiānqì búcuò, wǒmen qù pǎobù ba!",
+            "vi": "A lô, Gia Nguyệt, hôm nay thời tiết đẹp đấy, chúng ta đi chạy bộ đi!"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "你跑步跑得比我快，我们能一起跑吗？",
+            "py": "Nǐ pǎobù pǎo de bǐ wǒ kuài, wǒmen néng yìqǐ pǎo ma?",
+            "vi": "Bạn chạy nhanh hơn mình, chúng ta chạy cùng nhau được không?"
+          },
+          {
+            "who": "李文 Lǐ Wén",
+            "zh": "可以的，我慢慢跑，等着你。",
+            "py": "Kěyǐ de, wǒ mànmàn pǎo, děng zhe nǐ.",
+            "vi": "Được chứ, mình chạy chậm thôi, đợi bạn."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "好吧。你真爱跑步啊！",
+            "py": "Hǎo ba. Nǐ zhēn ài pǎobù a!",
+            "vi": "Được rồi. Bạn thích chạy bộ thật đấy!"
+          },
+          {
+            "who": "李文 Lǐ Wén",
+            "zh": "我从小就经常跟爸爸跑步，跑步能让人快乐！好，那我准备一下。我现在坐地铁去找你，一会儿楼下见。",
+            "py": "Wǒ cóngxiǎo jiù jīngcháng gēn bàba pǎobù, pǎobù néng ràng rén kuàilè! Hǎo, nà wǒ zhǔnbèi yíxià. Wǒ xiànzài zuò dìtiě qù zhǎo nǐ, yíhuìr lóuxià jiàn.",
+            "vi": "Từ nhỏ mình đã hay chạy bộ cùng bố, chạy bộ khiến người ta vui vẻ! Được, để mình chuẩn bị. Mình đi tàu điện ngầm đến tìm bạn ngay, lát nữa gặp dưới nhà nhé."
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Ở nhà, Bạch Gia Nguyệt viết nhật ký trong phòng.",
+        "dialogue": [
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "前几天天气不好，我没走路，每天坐两站地铁去学校。",
+            "py": "Qián jǐ tiān tiānqì bù hǎo, wǒ méi zǒulù, měitiān zuò liǎng zhàn dìtiě qù xuéxiào.",
+            "vi": "Mấy hôm trước thời tiết không tốt, tôi không đi bộ, ngày nào cũng đi hai trạm tàu điện ngầm đến trường."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "今天是个大晴天，李文让我跟他去外面跑步。",
+            "py": "Jīntiān shì ge dà qíngtiān, Lǐ Wén ràng wǒ gēn tā qù wàimiàn pǎobù.",
+            "vi": "Hôm nay trời nắng đẹp, Lý Văn rủ tôi cùng anh ấy ra ngoài chạy bộ."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "他小时候经常跑步，跑得比我快，但是他会等我。",
+            "py": "Tā xiǎoshíhou jīngcháng pǎobù, pǎo de bǐ wǒ kuài, dànshì tā huì děng wǒ.",
+            "vi": "Lúc nhỏ anh ấy hay chạy bộ, chạy nhanh hơn tôi, nhưng anh ấy sẽ đợi tôi."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "跟李文一起跑步，我好高兴啊！",
+            "py": "Gēn Lǐ Wén yìqǐ pǎobù, wǒ hǎo gāoxìng a!",
+            "vi": "Chạy bộ cùng Lý Văn, tôi vui thật đấy!"
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "事情",
+        "shìqing",
+        "Sự tình",
+        "sự việc, chuyện",
+        "Danh từ"
+      ],
+      [
+        "晴",
+        "qíng",
+        "Tình",
+        "nắng",
+        "Tính từ"
+      ],
+      [
+        "正",
+        "zhèng",
+        "Chính",
+        "đang (diễn ra)",
+        "Phó từ"
+      ],
+      [
+        "外面",
+        "wàimiàn",
+        "Ngoại diện",
+        "bên ngoài",
+        "Danh từ"
+      ],
+      [
+        "阴",
+        "yīn",
+        "Âm",
+        "âm u, có mây",
+        "Tính từ"
+      ],
+      [
+        "从小",
+        "cóngxiǎo",
+        "Tòng tiểu",
+        "từ nhỏ",
+        "Phó từ"
+      ],
+      [
+        "地铁",
+        "dìtiě",
+        "Địa thiết",
+        "tàu điện ngầm",
+        "Danh từ"
+      ],
+      [
+        "楼",
+        "lóu",
+        "Lâu",
+        "tòa nhà",
+        "Danh từ"
+      ],
+      [
+        "站",
+        "zhàn",
+        "Trạm",
+        "bến, trạm, ga",
+        "Danh từ"
+      ],
+      [
+        "小时候",
+        "xiǎoshíhou",
+        "Tiểu thì hậu",
+        "lúc nhỏ",
+        "Danh từ"
+      ],
+      [
+        "好",
+        "hǎo",
+        "Hảo",
+        "rất",
+        "Phó từ"
+      ]
+    ]
+  },
+  {
+    "t": "Bài 13",
+    "vi_t": "Chúng em yêu thích tiết học tiếng Trung!",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "双宾语句",
+        "title_vi": "Câu hai tân ngữ",
+        "explain_zh": "双宾语句是一个动词带两个宾语的句子，靠前的宾语通常指人，靠后的宾语通常指物。常见动词：拿、送、卖 + 给。",
+        "explain_vi": "Câu hai tân ngữ là câu có một động từ đi với hai tân ngữ, trong đó tân ngữ đứng trước thường chỉ người, còn tân ngữ đứng sau thường chỉ vật. Các động từ \"拿、送、卖\" kết hợp với \"给\" tạo thành câu hai tân ngữ.",
+        "examples": [
+          {
+            "zh": "王老师喜欢花，就送给她花吧。",
+            "py": "Wáng lǎoshī xǐhuan huā, jiù sòng gěi tā huā ba.",
+            "vi": "Cô Vương thích hoa, vậy tặng hoa cho cô đi."
+          },
+          {
+            "zh": "她拿给我一杯水。",
+            "py": "Tā ná gěi wǒ yì bēi shuǐ.",
+            "vi": "Cô ấy đưa cho tôi một cốc nước."
+          },
+          {
+            "zh": "他卖给我一本中文书。",
+            "py": "Tā mài gěi wǒ yì běn Zhōngwén shū.",
+            "vi": "Anh ấy bán cho tôi một quyển sách tiếng Trung."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "比较句(7)",
+        "title_vi": "Câu so sánh (7) — chênh lệch cụ thể",
+        "explain_zh": "在「比」字句中，表示具体数量差距的词语放在形容词后。结构：A 比 B + 形容词 + 数量短语。",
+        "explain_vi": "Trong các câu so sánh dùng \"比\", cụm từ chỉ số lượng được đặt sau tính từ để biểu thị sự chênh lệch cụ thể.",
+        "examples": [
+          {
+            "zh": "今天的词比昨天多了十个。",
+            "py": "Jīntiān de cí bǐ zuótiān duō le shí ge.",
+            "vi": "Từ hôm nay nhiều hơn hôm qua mười từ."
+          },
+          {
+            "zh": "姐姐比我大三岁。",
+            "py": "Jiějie bǐ wǒ dà sān suì.",
+            "vi": "Chị lớn hơn tôi ba tuổi."
+          },
+          {
+            "zh": "坐飞机比坐火车快五个多小时。",
+            "py": "Zuò fēijī bǐ zuò huǒchē kuài wǔ ge duō xiǎoshí.",
+            "vi": "Đi máy bay nhanh hơn đi tàu hỏa hơn năm tiếng."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "比较句(8)",
+        "title_vi": "Câu so sánh (8) — chênh lệch nhỏ",
+        "explain_zh": "在「比」字句中，若想表示差距较小，可在形容词后加「一点儿」或「一些」。结构：A 比 B + 形容词 + 一点儿/一些。",
+        "explain_vi": "Trong các câu so sánh dùng \"比\", nếu muốn biểu thị sự chênh lệch nhỏ, có thể dùng \"一点儿\" hoặc \"一些\" sau tính từ.",
+        "examples": [
+          {
+            "zh": "这个本子比我们一起买的那个贵一点儿。",
+            "py": "Zhège běnzi bǐ wǒmen yìqǐ mǎi de nàge guì yìdiǎnr.",
+            "vi": "Quyển vở này đắt hơn quyển chúng ta cùng mua một chút."
+          },
+          {
+            "zh": "姐姐比我高一点儿。",
+            "py": "Jiějie bǐ wǒ gāo yìdiǎnr.",
+            "vi": "Chị cao hơn tôi một chút."
+          },
+          {
+            "zh": "那间教室比这间大一些。",
+            "py": "Nà jiān jiàoshì bǐ zhè jiān dà yìxiē.",
+            "vi": "Phòng học kia rộng hơn phòng này một chút."
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "新年就要到了，安妮送给我一个新本子。",
+          "她告诉我是在网上买的，比我的本子贵一点儿。",
+          "我们班同学也送了王老师漂亮的花，希望她高高兴兴地过个新年。"
+        ],
+        "vi": [
+          "Năm mới sắp đến rồi, An Ni tặng cho tôi một quyển vở mới.",
+          "Cô ấy nói với tôi là mua trên mạng, đắt hơn quyển vở của tôi một chút.",
+          "Các bạn học lớp tôi cũng tặng cô Vương những bông hoa đẹp, hy vọng cô đón một năm mới thật vui vẻ."
+        ]
+      },
+      {
+        "zh": [
+          "王老师这一年教我们很认真，我们都很爱上她的中文课。",
+          "新年快到了，同学们一起商量给她准备什么礼物。",
+          "最后大家决定送花和一个新本子，一起去她的办公室送礼物。"
+        ],
+        "vi": [
+          "Năm nay cô Vương dạy tụi mình rất tận tâm, ai cũng rất thích tiết tiếng Trung của cô.",
+          "Năm mới sắp đến, các bạn học cùng bàn nhau chuẩn bị quà gì cho cô.",
+          "Cuối cùng mọi người quyết định tặng hoa và một quyển vở mới, cùng nhau đến văn phòng tặng quà cho cô."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "Sắp năm mới, Bạch Gia Nguyệt và Trần Thiên Trung bàn chuyện tặng quà cho cô giáo.",
+        "dialogue": [
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "时间过得真快啊！新年就要到了。",
+            "py": "Shíjiān guò de zhēn kuài a! Xīnnián jiù yào dào le.",
+            "vi": "Thời gian trôi nhanh thật! Năm mới sắp đến rồi."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "这一年王老师教我们中文，每天工作都很累。",
+            "py": "Zhè yì nián Wáng lǎoshī jiāo wǒmen Zhōngwén, měitiān gōngzuò dōu hěn lèi.",
+            "vi": "Năm nay cô Vương dạy tụi mình tiếng Trung, ngày nào cũng làm việc mệt lắm."
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "是啊，她教得很好。因为她，我们都非常爱上中文课。",
+            "py": "Shì a, tā jiāo de hěn hǎo. Yīnwèi tā, wǒmen dōu fēicháng ài shàng Zhōngwén kè.",
+            "vi": "Đúng vậy, cô dạy rất hay. Nhờ có cô mà tụi mình đều rất yêu thích tiết tiếng Trung."
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "我们给她准备个新年礼物吧。你觉得送给她什么好呢？",
+            "py": "Wǒmen gěi tā zhǔnbèi ge xīnnián lǐwù ba. Nǐ juéde sòng gěi tā shénme hǎo ne?",
+            "vi": "Chúng ta chuẩn bị một món quà năm mới cho cô đi. Bạn thấy tặng gì cho cô thì tốt?"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "王老师喜欢花，就送给她花吧。",
+            "py": "Wáng lǎoshī xǐhuan huā, jiù sòng gěi tā huā ba.",
+            "vi": "Cô Vương thích hoa, vậy tặng hoa cho cô đi."
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "那我们去花店看看，现在买花的人多，希望花店还有漂亮的花。",
+            "py": "Nà wǒmen qù huādiàn kànkan, xiànzài mǎi huā de rén duō, xīwàng huādiàn hái yǒu piàoliang de huā.",
+            "vi": "Vậy chúng ta đến tiệm hoa xem thử, bây giờ người mua hoa nhiều, hy vọng tiệm hoa vẫn còn hoa đẹp."
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "Trong lớp, thầy Vương Nhất Phi hướng dẫn học viên viết chữ trên bảng.",
+        "dialogue": [
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "大家把这个字写在黑板上面，写完了去洗手间洗洗手吧。",
+            "py": "Dàjiā bǎ zhège zì xiě zài hēibǎn shàngmiàn, xiě wán le qù xǐshǒujiān xǐxǐ shǒu ba.",
+            "vi": "Mọi người viết chữ này lên bảng, viết xong đi nhà vệ sinh rửa tay nhé."
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "老师，这个字里面是什么？我不太懂。",
+            "py": "Lǎoshī, zhège zì lǐmiàn shì shénme? Wǒ bú tài dǒng.",
+            "vi": "Thưa cô, bên trong chữ này là gì ạ? Em không hiểu lắm."
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "你看，「间」比「问」多几笔，里面多写了一横。",
+            "py": "Nǐ kàn, \"jiān\" bǐ \"wèn\" duō jǐ bǐ, lǐmiàn duō xiě le yì héng.",
+            "vi": "Em xem, chữ \"间\" nhiều hơn chữ \"问\" vài nét, bên trong viết thêm một nét ngang."
+          },
+          {
+            "who": "陈天中 Chén Tiānzhōng",
+            "zh": "懂了，谢谢老师！",
+            "py": "Dǒng le, xièxie lǎoshī!",
+            "vi": "Em hiểu rồi ạ, cảm ơn cô!"
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "可能有点儿难，你们可以上网多查查这些字。",
+            "py": "Kěnéng yǒudiǎnr nán, nǐmen kěyǐ shàngwǎng duō chácha zhèxiē zì.",
+            "vi": "Có thể hơi khó, các em có thể lên mạng tra thêm những chữ này."
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Bạch Gia Nguyệt và An Ni đi mua quà năm mới, so sánh giá cả các quyển vở.",
+        "dialogue": [
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "安妮，你看这个本子怎么样？",
+            "py": "Ānní, nǐ kàn zhège běnzi zěnmeyàng?",
+            "vi": "An Ni, bạn xem quyển vở này thế nào?"
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "不错，是新年礼物吗？",
+            "py": "Búcuò, shì xīnnián lǐwù ma?",
+            "vi": "Được đấy, là quà năm mới à?"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "对，我想送给王老师。这个本子比我们一起买的那个贵一点儿。",
+            "py": "Duì, wǒ xiǎng sòng gěi Wáng lǎoshī. Zhège běnzi bǐ wǒmen yìqǐ mǎi de nàge guì yìdiǎnr.",
+            "vi": "Đúng vậy, mình muốn tặng cô Vương. Quyển vở này đắt hơn quyển chúng ta cùng mua một chút."
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "没关系，那样更好看。我也买了新年礼物了，是给王老师的花。",
+            "py": "Méi guānxi, nàyàng gèng hǎokàn. Wǒ yě mǎi le xīnnián lǐwù le, shì gěi Wáng lǎoshī de huā.",
+            "vi": "Không sao, như vậy đẹp hơn. Mình cũng mua quà năm mới rồi, là hoa tặng cô Vương."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "太好了，我们一起去送给她吧！",
+            "py": "Tài hǎo le, wǒmen yìqǐ qù sòng gěi tā ba!",
+            "vi": "Tốt quá, chúng ta cùng đi tặng cô nhé!"
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Ở lớp, Bạch Gia Nguyệt viết nhật ký.",
+        "dialogue": [
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "新年就要到了，安妮送给我一个新本子。",
+            "py": "Xīnnián jiù yào dào le, Ānní sòng gěi wǒ yí ge xīn běnzi.",
+            "vi": "Năm mới sắp đến rồi, An Ni tặng tôi một quyển vở mới."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "她告诉我是在网上买的，比我的本子贵一点儿。",
+            "py": "Tā gàosu wǒ shì zài wǎngshàng mǎi de, bǐ wǒ de běnzi guì yìdiǎnr.",
+            "vi": "Cô ấy nói với tôi là mua trên mạng, đắt hơn quyển vở của tôi một chút."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "我们班同学也送了王老师漂亮的花，希望她高高兴兴地过个新年。",
+            "py": "Wǒmen bān tóngxué yě sòng le Wáng lǎoshī piàoliang de huā, xīwàng tā gāo gāo xìng xìng de guò ge xīnnián.",
+            "vi": "Các bạn học lớp chúng tôi cũng tặng cô Vương những bông hoa đẹp, hy vọng cô đón một năm mới thật vui vẻ."
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "新年",
+        "xīnnián",
+        "Tân niên",
+        "năm mới",
+        "Danh từ"
+      ],
+      [
+        "教",
+        "jiāo",
+        "Giáo",
+        "dạy",
+        "Động từ"
+      ],
+      [
+        "花",
+        "huā",
+        "Hoa",
+        "bông hoa",
+        "Danh từ"
+      ],
+      [
+        "希望",
+        "xīwàng",
+        "Hy vọng",
+        "hy vọng",
+        "Động từ"
+      ],
+      [
+        "上面",
+        "shàngmiàn",
+        "Thượng diện",
+        "phía trên",
+        "Danh từ"
+      ],
+      [
+        "洗手间",
+        "xǐshǒujiān",
+        "Tẩy thủ gian",
+        "nhà vệ sinh",
+        "Danh từ"
+      ],
+      [
+        "里面",
+        "lǐmiàn",
+        "Lý diện",
+        "bên trong",
+        "Danh từ"
+      ],
+      [
+        "笔",
+        "bǐ",
+        "Bút",
+        "nét (chữ)",
+        "Lượng từ"
+      ],
+      [
+        "可能",
+        "kěnéng",
+        "Khả năng",
+        "có lẽ, có thể",
+        "Phó từ"
+      ],
+      [
+        "上网",
+        "shàngwǎng",
+        "Thượng võng",
+        "lên mạng",
+        "Động từ"
+      ],
+      [
+        "那样",
+        "nàyàng",
+        "Na dạng",
+        "như vậy",
+        "Đại từ"
+      ],
+      [
+        "告诉",
+        "gàosu",
+        "Cáo tố",
+        "nói cho",
+        "Động từ"
+      ],
+      [
+        "班",
+        "bān",
+        "Ban",
+        "lớp",
+        "Danh từ"
+      ]
+    ]
+  },
+  {
+    "t": "Bài 14",
+    "vi_t": "Một mình đón Tết thì chán lắm!",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "存现句",
+        "title_vi": "Câu tồn hiện (với \"着\")",
+        "explain_zh": "动态助词「着」放在动词后可构成存现句：地点/处所 + 动词 + 着 + 人/物（不确定的）。",
+        "explain_vi": "Trợ từ động thái \"着\" khi đặt sau động từ có thể tạo thành câu tồn hiện. Trước động từ là cụm từ chỉ địa điểm, sau động từ thường là người hoặc vật không xác định cụ thể. Cấu trúc: địa điểm + động từ + 着 + người/vật.",
+        "examples": [
+          {
+            "zh": "你家楼下站着一个人。",
+            "py": "Nǐ jiā lóuxià zhàn zhe yí ge rén.",
+            "vi": "Dưới nhà bạn có một người đang đứng."
+          },
+          {
+            "zh": "爸爸手里拿着一杯咖啡。",
+            "py": "Bàba shǒu lǐ ná zhe yì bēi kāfēi.",
+            "vi": "Bố đang cầm một cốc cà phê trên tay."
+          },
+          {
+            "zh": "那间教室里坐着不少学生。",
+            "py": "Nà jiān jiàoshì lǐ zuò zhe bùshǎo xuésheng.",
+            "vi": "Trong lớp học đó có không ít học sinh đang ngồi."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "程度副词「多」用于感叹",
+        "title_vi": "Phó từ mức độ \"多\" trong câu cảm thán",
+        "explain_zh": "「多」用在感叹句中，放在形容词前，表示程度很高。结构：多 + 形容词 + 啊！",
+        "explain_vi": "\"多\" được dùng trong câu cảm thán, đặt trước tính từ, biểu thị mức độ rất cao.",
+        "examples": [
+          {
+            "zh": "你一个人在这儿多没意思啊！",
+            "py": "Nǐ yí ge rén zài zhèr duō méiyìsi a!",
+            "vi": "Bạn một mình ở đây chán lắm!"
+          },
+          {
+            "zh": "我们一起去多好啊！",
+            "py": "Wǒmen yìqǐ qù duō hǎo a!",
+            "vi": "Chúng ta cùng đi thì tốt biết mấy!"
+          },
+          {
+            "zh": "多好看啊！买这件吧。",
+            "py": "Duō hǎokàn a! Mǎi zhè jiàn ba.",
+            "vi": "Đẹp quá đi! Mua cái này đi."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "复合趋向补语",
+        "title_vi": "Bổ ngữ xu hướng kép",
+        "explain_zh": "「上、下、进、出、回、过」与「来/去」或「起来」结合，放在动词后，构成复合趋向补语，表示动作的方向。若有宾语：地点名词放在「来/去」前面；事物名词可放在「来/去」前或后。",
+        "explain_vi": "Các động từ \"上、下、进、出、回、过\" kết hợp với \"来/去\" hoặc \"起来\", đặt sau động từ, tạo thành bổ ngữ xu hướng kép, biểu thị hướng của hành động. Nếu có tân ngữ: tân ngữ chỉ địa điểm đặt trước \"来/去\"; tân ngữ chỉ vật có thể đặt trước hoặc sau.",
+        "examples": [
+          {
+            "zh": "她经常跑上来找我玩。",
+            "py": "Tā jīngcháng pǎo shànglái zhǎo wǒ wán.",
+            "vi": "Cô bé thường chạy lên đây tìm tôi chơi."
+          },
+          {
+            "zh": "楼不高，我们走上去吧。",
+            "py": "Lóu bù gāo, wǒmen zǒu shàngqù ba.",
+            "vi": "Tòa nhà không cao, chúng ta đi bộ lên thôi."
+          },
+          {
+            "zh": "一听到老师叫他的名字，他就站起来了。",
+            "py": "Yì tīngdào lǎoshī jiào tā de míngzi, tā jiù zhàn qǐlái le.",
+            "vi": "Vừa nghe thầy gọi tên, anh ấy liền đứng dậy."
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "我男朋友姓孙，叫孙芳。",
+          "他高个子、大眼睛，唱歌唱得很好，跳舞跳得也不错。",
+          "他和我姐姐一起工作，是姐姐介绍我们认识的。"
+        ],
+        "vi": [
+          "Bạn trai em họ Tôn, tên Dương Đồng Lạc.",
+          "Anh ấy dáng cao, mắt to, hát rất hay, nhảy múa cũng giỏi.",
+          "Anh ấy làm việc cùng chị gái em, là chị giới thiệu chúng em quen nhau."
+        ]
+      },
+      {
+        "zh": [
+          "他告诉我，从见到我的第一天开始，他就喜欢上我了。",
+          "过年前，他特意来北京看我，还认识了我的朋友李文。",
+          "我们一起住了几天，聊了很多以前的事情。"
+        ],
+        "vi": [
+          "Anh ấy nói với em, từ ngày đầu gặp em anh đã thích em rồi.",
+          "Trước Tết, anh ấy đặc biệt đến Bắc Kinh thăm em, còn quen được bạn Lý Văn của em.",
+          "Chúng em ở cùng nhau mấy hôm, nói chuyện nhiều về những chuyện trước đây."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "Lý Văn phát hiện có người lạ đứng dưới nhà thầy Vương Nhất Phi.",
+        "dialogue": [
+          {
+            "who": "李文 Lǐ Wén",
+            "zh": "王老师，你家楼下站着一个人。",
+            "py": "Wáng lǎoshī, nǐ jiā lóuxià zhàn zhe yí ge rén.",
+            "vi": "Cô Vương, dưới nhà cô có một người đang đứng."
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "我家楼下？我看看。",
+            "py": "Wǒ jiā lóuxià? Wǒ kànkan.",
+            "vi": "Dưới nhà cô à? Để cô xem thử."
+          },
+          {
+            "who": "李文 Lǐ Wén",
+            "zh": "那个人穿着黑色的裤子，手里还拿着一个黑色的包。",
+            "py": "Nàge rén chuān zhe hēisè de kùzi, shǒu lǐ hái ná zhe yí ge hēisè de bāo.",
+            "vi": "Người đó mặc quần màu đen, tay còn cầm một cái túi màu đen."
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "我看见那个人了，他是我的男朋友。我们快过去吧。",
+            "py": "Wǒ kànjiàn nàge rén le, tā shì wǒ de nánpéngyou. Wǒmen kuài guòqù ba.",
+            "vi": "Cô thấy người đó rồi, đó là bạn trai của cô. Chúng ta mau qua đó đi."
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "Bạn trai Dương Đồng Lạc đến thăm, thầy Vương Nhất Phi vui mừng giới thiệu với Lý Văn.",
+        "dialogue": [
+          {
+            "who": "孙芳 Sūn Fāng",
+            "zh": "一飞，真是你啊！上次打电话，你说有时间过来看我，没想到这么快就来了！",
+            "py": "Yīfēi, zhēn shì nǐ a! Shàng cì dǎ diànhuà, nǐ shuō yǒu shíjiān guòlái kàn wǒ, méi xiǎngdào zhème kuài jiù lái le!",
+            "vi": "Nhất Phi, đúng là em thật! Lần trước gọi điện em nói có thời gian sẽ qua thăm anh, không ngờ nhanh vậy đã đến rồi!"
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "就要过年了，你一个人在这儿多没意思啊，所以我就早早过来了。你能来，我太高兴了！",
+            "py": "Jiù yào guònián le, nǐ yí ge rén zài zhèr duō méiyìsi a, suǒyǐ wǒ jiù zǎozǎo guòlái le.",
+            "vi": "Sắp Tết rồi, anh một mình ở đây chán lắm, nên em đến sớm luôn."
+          },
+          {
+            "who": "孙芳 Sūn Fāng",
+            "zh": "一飞，你旁边这位是？",
+            "py": "Yīfēi, nǐ pángbiān zhè wèi shì?",
+            "vi": "Nhất Phi, người bên cạnh em là ai vậy?"
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "同乐，这是李文，他在我们学校学医。李文，这是我男朋友孙芳。",
+            "py": "Tóng lè, zhè shì Lǐ Wén, tā zài wǒmen xuéxiào xué yī. Lǐ Wén, zhè shì wǒ nánpéngyou Sūn Fāng.",
+            "vi": "Đồng Lạc à, đây là Lý Văn, cậu ấy học y ở trường em. Lý Văn, đây là bạn trai của cô, Dương Đồng Lạc."
+          },
+          {
+            "who": "李文 Lǐ Wén",
+            "zh": "很高兴认识你！",
+            "py": "Hěn gāoxìng rènshi nǐ!",
+            "vi": "Rất vui được quen anh!"
+          },
+          {
+            "who": "孙芳 Sūn Fāng",
+            "zh": "认识你我也很高兴！我家就在前面那个楼，有时间来玩。",
+            "py": "Rènshi nǐ wǒ yě hěn gāoxìng! Wǒ jiā jiù zài qiánmian nàge lóu, yǒu shíjiān lái wán.",
+            "vi": "Quen em anh cũng rất vui! Nhà anh ở ngay tòa nhà đằng trước kia, có thời gian đến chơi nhé."
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Dương Đồng Lạc đưa Vương Nhất Phi về nhà, kể về hàng xóm.",
+        "dialogue": [
+          {
+            "who": "孙芳 Sūn Fāng",
+            "zh": "一飞，你住的房子真不错，很大，离学校也不远。",
+            "py": "Yīfēi, nǐ zhù de fángzi zhēn búcuò, hěn dà, lí xuéxiào yě bù yuǎn.",
+            "vi": "Nhất Phi, nhà em ở tốt thật đấy, rất rộng, cũng không xa trường."
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "是啊！我楼下还住着一家中国人，他们人很好。这样有事情就可以找他们帮忙。",
+            "py": "Shì a! Wǒ lóuxià hái zhù zhe yì jiā Zhōngguórén, tāmen rén hěn hǎo.",
+            "vi": "Đúng vậy! Dưới nhà em còn có một gia đình người Trung Quốc, họ rất tốt bụng."
+          },
+          {
+            "who": "孙芳 Sūn Fāng",
+            "zh": "对，我也帮他们家的小孩儿学中文。",
+            "py": "Duì, wǒ yě bāng tāmen jiā de xiǎoháir xué Zhōngwén.",
+            "vi": "Đúng vậy, anh cũng giúp con nhà họ học tiếng Trung."
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "我记得你跟我说过，是个女孩儿，学得也很好。",
+            "py": "Wǒ jìde nǐ gēn wǒ shuō guo, shì ge nǚháir, xué de yě hěn hǎo.",
+            "vi": "Em nhớ anh từng nói với em, là một bé gái, học cũng giỏi lắm."
+          },
+          {
+            "who": "孙芳 Sūn Fāng",
+            "zh": "没错，她经常跑上来找我玩。你问问他们什么时候有时间，我请他们吃个饭。",
+            "py": "Méi cuò, tā jīngcháng pǎo shànglái zhǎo wǒ wán.",
+            "vi": "Đúng vậy, bé thường chạy lên đây tìm anh chơi. Em hỏi họ khi nào rảnh, anh mời họ ăn cơm."
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Ở nhà, Vương Nhất Phi viết nhật ký trong phòng.",
+        "dialogue": [
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "我男朋友姓杨，叫杨同乐。他高个子、大眼睛，唱歌唱得很好，跳舞跳得也不错。",
+            "py": "Wǒ nánpéngyou xìng Yáng, jiào Yáng Tónglè. Tā gāo gèzi, dà yǎnjing, chànggē chàng de hěn hǎo, tiàowǔ tiào de yě búcuò.",
+            "vi": "Bạn trai tôi họ Dương, tên Dương Đồng Lạc. Anh ấy dáng cao, mắt to, hát rất hay, nhảy múa cũng giỏi."
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "他和我姐姐一起工作，是姐姐介绍我们认识的。",
+            "py": "Tā hé wǒ jiějie yìqǐ gōngzuò, shì jiějie jièshào wǒmen rènshi de.",
+            "vi": "Anh ấy làm việc cùng chị gái tôi, là chị giới thiệu chúng tôi quen nhau."
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "他告诉我，从见到我的第一天开始，他就喜欢上我了。",
+            "py": "Tā gàosu wǒ, cóng jiàndào wǒ de dì-yī tiān kāishǐ, tā jiù xǐhuan shàng wǒ le.",
+            "vi": "Anh ấy nói với tôi, ngay từ ngày đầu tiên gặp tôi, anh ấy đã thích tôi rồi."
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "站",
+        "zhàn",
+        "Trạm",
+        "đứng",
+        "Động từ"
+      ],
+      [
+        "包",
+        "bāo",
+        "Bao",
+        "cái túi",
+        "Danh từ"
+      ],
+      [
+        "过年",
+        "guònián",
+        "Quá niên",
+        "đón tết",
+        "Động từ"
+      ],
+      [
+        "没意思",
+        "méiyìsi",
+        "Một ý tứ",
+        "nhạt nhẽo, nhàm chán",
+        "Cụm từ"
+      ],
+      [
+        "位",
+        "wèi",
+        "Vị",
+        "(lượng từ chỉ kính trọng)",
+        "Lượng từ"
+      ],
+      [
+        "前面",
+        "qiánmian",
+        "Tiền diện",
+        "phía trước",
+        "Danh từ"
+      ],
+      [
+        "房子",
+        "fángzi",
+        "Phòng tử",
+        "căn nhà",
+        "Danh từ"
+      ],
+      [
+        "小孩儿",
+        "xiǎoháir",
+        "Tiểu hài nhi",
+        "trẻ nhỏ",
+        "Danh từ"
+      ],
+      [
+        "女孩儿",
+        "nǚháir",
+        "Nữ hài nhi",
+        "bé gái",
+        "Danh từ"
+      ],
+      [
+        "姓",
+        "xìng",
+        "Tính",
+        "họ là",
+        "Động từ"
+      ],
+      [
+        "眼睛",
+        "yǎnjing",
+        "Nhãn tình",
+        "mắt",
+        "Danh từ"
+      ],
+      [
+        "跳舞",
+        "tiàowǔ",
+        "Khiêu vũ",
+        "múa, nhảy múa",
+        "Động từ"
+      ]
+    ]
+  },
+  {
+    "t": "Bài 15",
+    "vi_t": "Tôi muốn đi Trung Quốc thêm một lần nữa",
+    "real": true,
+    "grammarPoints": [
+      {
+        "title_zh": "动量补语(1)",
+        "title_vi": "Bổ ngữ động lượng (1) — \"数+次\"",
+        "explain_zh": "「数词 + 次」用在动词后，构成动量补语，表示动作发生的次数。若动词带宾语，宾语是人名或地名时，可放在动量补语前或后。",
+        "explain_vi": "\"Số + 次\" được sử dụng sau động từ để tạo thành bổ ngữ động lượng, chỉ số lần hành động xảy ra. Khi động từ có tân ngữ, nếu tân ngữ là tên người hoặc tên địa điểm, nó có thể đặt trước hoặc sau bổ ngữ động lượng.",
+        "examples": [
+          {
+            "zh": "我想去中国，虽然去过一次，但是很想再去一次。",
+            "py": "Wǒ xiǎng qù Zhōngguó, suīrán qù guo yí cì, dànshì hěn xiǎng zài qù yí cì.",
+            "vi": "Tôi muốn đi Trung Quốc, tuy đã đi một lần rồi nhưng vẫn rất muốn đi thêm một lần nữa."
+          },
+          {
+            "zh": "安妮去过一次北京。",
+            "py": "Ānní qù guo yí cì Běijīng.",
+            "vi": "An Ni đã từng đi Bắc Kinh một lần."
+          },
+          {
+            "zh": "李文见了孙芳两次。",
+            "py": "Lǐ Wén jiàn le Sūn Fāng liǎng cì.",
+            "vi": "Lý Văn đã gặp Dương Đồng Lạc hai lần."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "动量补语(2)",
+        "title_vi": "Bổ ngữ động lượng (2) — vị trí tân ngữ",
+        "explain_zh": "当一个动词既有动量补语又有宾语时，若宾语是普通事物名词，通常放在补语后面；若宾语是代词，则放在补语前面。",
+        "explain_vi": "Khi một động từ có cả bổ ngữ động lượng và tân ngữ, nếu tân ngữ là một danh từ chỉ vật, nó thường được đặt sau bổ ngữ; nếu tân ngữ là một đại từ, nó được đặt trước bổ ngữ.",
+        "examples": [
+          {
+            "zh": "因为我想再吃一次烤鸭，再喝一次奶茶。",
+            "py": "Yīnwèi wǒ xiǎng zài chī yí cì kǎoyā, zài hē yí cì nǎichá.",
+            "vi": "Vì tôi muốn ăn vịt quay thêm một lần nữa, uống trà sữa thêm một lần nữa."
+          },
+          {
+            "zh": "我想找他一次。",
+            "py": "Wǒ xiǎng zhǎo tā yí cì.",
+            "vi": "Tôi muốn tìm anh ấy một lần."
+          },
+          {
+            "zh": "安妮来过这儿两次。",
+            "py": "Ānní lái guo zhèr liǎng cì.",
+            "vi": "An Ni đã đến đây hai lần."
+          }
+        ],
+        "drills": []
+      },
+      {
+        "title_zh": "「有」表约数",
+        "title_vi": "Câu với \"有\" biểu thị số lượng ước chừng",
+        "explain_zh": "「有 + 数量」表示达到某个数量或程度，常用于估计。",
+        "explain_vi": "\"有 + số lượng\" biểu thị đã đạt đến một số lượng hoặc mức độ nhất định, thường dùng khi ước lượng.",
+        "examples": [
+          {
+            "zh": "你有一年没回过家了吧？",
+            "py": "Nǐ yǒu yì nián méi huí guo jiā le ba?",
+            "vi": "Bạn chắc cả năm rồi chưa về nhà nhỉ?"
+          },
+          {
+            "zh": "你女儿今年有10岁了吗？",
+            "py": "Nǐ nǚ'ér jīnnián yǒu shí suì le ma?",
+            "vi": "Con gái bạn năm nay được mười tuổi rồi à?"
+          },
+          {
+            "zh": "我有一个月没给家里打电话了。",
+            "py": "Wǒ yǒu yí ge yuè méi gěi jiālǐ dǎ diànhuà le.",
+            "vi": "Tôi cả tháng rồi chưa gọi điện về nhà."
+          }
+        ],
+        "drills": []
+      }
+    ],
+    "readingPassages": [
+      {
+        "zh": [
+          "李文星期五坐飞机回国，白家月和安妮都去机场送他了。",
+          "白家月说，好像时间过得特别快，一转眼大家就要分开了。",
+          "看着飞机飞走，她心里想着，以后一定要再来中国一次。"
+        ],
+        "vi": [
+          "Lý Văn thứ sáu đi máy bay về nước, Bạch Gia Nguyệt và An Ni đều ra sân bay tiễn cậu ấy.",
+          "Bạch Gia Nguyệt nói, hình như thời gian trôi đặc biệt nhanh, thoáng cái mọi người đã phải chia tay.",
+          "Nhìn máy bay bay đi, trong lòng cô nghĩ, sau này nhất định phải đến Trung Quốc thêm một lần nữa."
+        ]
+      },
+      {
+        "zh": [
+          "白家月和安妮也要回国了，她们买好了机票和门票。",
+          "离开前，她们想再去一次颐和园，看看那里的鸟和风景。",
+          "虽然要回国了，但她们都说，以后一定还会再来中国旅游。"
+        ],
+        "vi": [
+          "Bạch Gia Nguyệt và An Ni cũng sắp về nước, họ đã mua xong vé máy bay và vé vào cửa.",
+          "Trước khi đi, họ muốn đến Di Hòa Viên thêm một lần nữa, ngắm chim chóc và cảnh sắc ở đó.",
+          "Tuy sắp về nước nhưng cả hai đều nói, sau này nhất định sẽ quay lại Trung Quốc du lịch."
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "label": "课文1 · Text 1",
+        "situation": "Trước kỳ thi cuối khóa, thầy Vương Nhất Phi nhắc học viên về những điều thú vị khi ở Trung Quốc.",
+        "dialogue": [
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "考试开始前，大家把姓名写好，检查一下自己带的东西。",
+            "py": "Kǎoshì kāishǐ qián, dàjiā bǎ xìngmíng xiě hǎo, jiǎnchá yíxià zìjǐ dài de dōngxi.",
+            "vi": "Trước khi thi, mọi người viết họ tên cho rõ ràng, kiểm tra lại đồ mình mang theo."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "老师，考完试我们是不是就要回国了？",
+            "py": "Lǎoshī, kǎo wán shì wǒmen shì bu shì jiù yào huíguó le?",
+            "vi": "Thưa cô, thi xong là tụi em phải về nước rồi ạ?"
+          },
+          {
+            "who": "王一飞 Wáng Yīfēi",
+            "zh": "是啊，不过你们以后还可以再来中国。我想去中国，虽然去过一次，但是很想再去一次。",
+            "py": "Shì a, búguò nǐmen yǐhòu hái kěyǐ zài lái Zhōngguó. Wǒ xiǎng qù Zhōngguó, suīrán qù guo yí cì, dànshì hěn xiǎng zài qù yí cì.",
+            "vi": "Đúng vậy, nhưng sau này các em vẫn có thể quay lại Trung Quốc. Cô cũng muốn đi Trung Quốc, tuy đã đi một lần rồi nhưng vẫn rất muốn đi thêm một lần nữa."
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "到中国后，我们还可以经常吃北京烤鸭，喝奶茶！",
+            "py": "Dào Zhōngguó hòu, wǒmen hái kěyǐ jīngcháng chī Běijīng kǎoyā, hē nǎichá!",
+            "vi": "Đến Trung Quốc, tụi em còn có thể thường xuyên ăn vịt quay Bắc Kinh, uống trà sữa nữa!"
+          }
+        ]
+      },
+      {
+        "label": "课文2 · Text 2",
+        "situation": "Bạch Gia Nguyệt kể lý do muốn quay lại Bắc Kinh và việc mua vé.",
+        "dialogue": [
+          {
+            "who": "安妮 Ānní",
+            "zh": "家月，你为什么还想去北京？我们不是去过了吗？",
+            "py": "Jiāyuè, nǐ wèishénme hái xiǎng qù Běijīng? Wǒmen bú shì qù guo le ma?",
+            "vi": "Gia Nguyệt, sao bạn vẫn muốn đi Bắc Kinh? Chúng ta chả đi rồi sao?"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "因为我想再吃一次烤鸭，再喝一次奶茶，还想去颐和园看看。",
+            "py": "Yīnwèi wǒ xiǎng zài chī yí cì kǎoyā, zài hē yí cì nǎichá, hái xiǎng qù Yíhéyuán kànkan.",
+            "vi": "Vì mình muốn ăn vịt quay thêm một lần nữa, uống trà sữa thêm một lần nữa, còn muốn đi Di Hòa Viên xem thử."
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "那门票你买好了吗？",
+            "py": "Nà ménpiào nǐ mǎi hǎo le ma?",
+            "vi": "Vậy vé vào cửa bạn mua chưa?"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "买好了，是在网上买的，比在门口买的便宜。",
+            "py": "Mǎi hǎo le, shì zài wǎngshàng mǎi de, bǐ zài ménkǒu mǎi de piányi.",
+            "vi": "Mua rồi, mua trên mạng, rẻ hơn mua ở cổng."
+          }
+        ]
+      },
+      {
+        "label": "课文3 · Text 3",
+        "situation": "Bạch Gia Nguyệt nhớ lại lần trước, cô đã cùng ra sân bay tiễn Lý Văn.",
+        "dialogue": [
+          {
+            "who": "安妮 Ānní",
+            "zh": "上次李文回国，是谁送他去机场的？",
+            "py": "Shàng cì Lǐ Wén huíguó, shì shéi sòng tā qù jīchǎng de?",
+            "vi": "Lần trước Lý Văn về nước, là ai đưa cậu ấy ra sân bay vậy?"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "是我送他去的，我们在机场聊了很久。",
+            "py": "Shì wǒ sòng tā qù de, wǒmen zài jīchǎng liáo le hěn jiǔ.",
+            "vi": "Là mình đưa cậu ấy đi đấy, chúng mình nói chuyện ở sân bay rất lâu."
+          },
+          {
+            "who": "安妮 Ānní",
+            "zh": "机票贵不贵？",
+            "py": "Jīpiào guì bu guì?",
+            "vi": "Vé máy bay có đắt không?"
+          },
+          {
+            "who": "白家月 Bái Jiāyuè",
+            "zh": "还好，不算太贵。想到以后还能再见到他，我很高兴。",
+            "py": "Hái hǎo, bú suàn tài guì. Xiǎngdào yǐhòu hái néng zài jiàndào tā, wǒ hěn gāoxìng.",
+            "vi": "Cũng được, không tính là quá đắt. Nghĩ đến sau này vẫn có thể gặp lại cậu ấy, mình vui lắm."
+          }
+        ]
+      },
+      {
+        "label": "课文4 · Text 4",
+        "situation": "Ở nhà, Lý Văn viết nhật ký trong phòng.",
+        "dialogue": [
+          {
+            "who": "李文 Lǐ Wén",
+            "zh": "我六月的时候回过一次北京，现在有半年多没回去了，我有点儿想家。",
+            "py": "Wǒ liùyuè de shíhou huí guo yí cì Běijīng, xiànzài yǒu bàn nián duō méi huíqù le, wǒ yǒudiǎnr xiǎng jiā.",
+            "vi": "Tháng sáu tôi từng về Bắc Kinh một lần, giờ đã hơn nửa năm chưa về, tôi hơi nhớ nhà."
+          },
+          {
+            "who": "李文 Lǐ Wén",
+            "zh": "就要过年了，我要回家过年。家月这次也要去北京，我们都是星期五的飞机。",
+            "py": "Jiù yào guònián le, wǒ yào huí jiā guònián. Jiāyuè zhè cì yě yào qù Běijīng, wǒmen dōu shì xīngqīwǔ de fēijī.",
+            "vi": "Sắp Tết rồi, tôi phải về nhà ăn Tết. Gia Nguyệt lần này cũng đi Bắc Kinh, cả hai chúng tôi đều bay vào thứ sáu."
+          },
+          {
+            "who": "李文 Lǐ Wén",
+            "zh": "家月说我们好像小鸟，一起飞到北京，再一起飞回这里。",
+            "py": "Jiāyuè shuō wǒmen hǎoxiàng xiǎoniǎo, yìqǐ fēidào Běijīng, zài yìqǐ fēihuí zhèlǐ.",
+            "vi": "Gia Nguyệt nói chúng tôi giống như chim nhỏ, cùng bay đến Bắc Kinh, rồi lại cùng bay về đây."
+          }
+        ]
+      }
+    ],
+    "w": [
+      [
+        "姓名",
+        "xìngmíng",
+        "Tính danh",
+        "họ tên",
+        "Danh từ"
+      ],
+      [
+        "出国",
+        "chūguó",
+        "Xuất quốc",
+        "đi nước ngoài",
+        "Động từ"
+      ],
+      [
+        "门票",
+        "ménpiào",
+        "Môn phiếu",
+        "vé vào cửa",
+        "Danh từ"
+      ],
+      [
+        "高中",
+        "gāozhōng",
+        "Cao trung",
+        "cấp 3",
+        "Danh từ"
+      ],
+      [
+        "出门",
+        "chūmén",
+        "Xuất môn",
+        "ra khỏi nhà",
+        "Động từ"
+      ],
+      [
+        "路",
+        "lù",
+        "Lộ",
+        "đường",
+        "Danh từ"
+      ],
+      [
+        "颐和园",
+        "Yíhéyuán",
+        "Di Hòa viên",
+        "Di Hòa Viên (Bắc Kinh)",
+        "Danh từ"
+      ],
+      [
+        "机场",
+        "jīchǎng",
+        "Cơ trường",
+        "sân bay",
+        "Danh từ"
+      ],
+      [
+        "机票",
+        "jīpiào",
+        "Cơ phiếu",
+        "vé máy bay",
+        "Danh từ"
+      ],
+      [
+        "飞",
+        "fēi",
+        "Phi",
+        "bay",
+        "Động từ"
+      ],
+      [
+        "好像",
+        "hǎoxiàng",
+        "Hảo tượng",
+        "hình như, dường như",
+        "Động từ"
+      ],
+      [
+        "鸟",
+        "niǎo",
+        "Điểu",
+        "con chim",
+        "Danh từ"
+      ]
+    ]
+  }
+]

@@ -1,0 +1,115 @@
+{
+  "accessCode": "yuzhou2026",
+  "allowedAccess": {
+    "thoholy.sbk@gmail.com": [
+      "hsk1",
+      "hsk2",
+      "hsk3"
+    ],
+    "phantrinh38k17@gmail.com": [
+      "hsk1",
+      "hsk2",
+      "hsk3"
+    ],
+    "nhathuyen94@gmail.com": [
+      "hsk1",
+      "hsk2",
+      "hsk3"
+    ],
+    "maiduyen.dn92@gmail.com": [
+      "hsk1"
+    ],
+    "nguyenthibaongoc.dalat@gmail.com": [
+      "hsk1"
+    ],
+    "hang52nt.ntu@gmail.com": [
+      "hsk1"
+    ],
+    "huyentrang290301@gmail.com": [
+      "hsk1"
+    ],
+    "trangdai24@gmail.com": [
+      "hsk1"
+    ],
+    "tranthidiemquynhdl@gmail.com": [
+      "hsk1"
+    ],
+    "sonphaman6@gmail.com": [
+      "hsk1"
+    ],
+    "duongchithuan9999@gmail.com": [
+      "hsk1"
+    ],
+    "thicuc.tr@gmail.com": [
+      "hsk1",
+      "hsk2",
+      "hsk3"
+    ]
+  },
+  "synonymGroups": [
+    [
+      "你好",
+      "您好"
+    ],
+    [
+      "再见",
+      "拜拜"
+    ],
+    [
+      "谢谢",
+      "多谢"
+    ],
+    [
+      "不客气",
+      "不用谢"
+    ],
+    [
+      "因为",
+      "由于"
+    ],
+    [
+      "所以",
+      "因此"
+    ],
+    [
+      "但是",
+      "不过"
+    ],
+    [
+      "妈妈",
+      "母亲"
+    ],
+    [
+      "爸爸",
+      "父亲"
+    ],
+    [
+      "老师",
+      "教师"
+    ],
+    [
+      "现在",
+      "目前"
+    ],
+    [
+      "为什么",
+      "为何"
+    ],
+    [
+      "怎么样",
+      "怎样"
+    ],
+    [
+      "一起",
+      "一块儿"
+    ],
+    [
+      "电脑",
+      "计算机"
+    ],
+    [
+      "什么时候",
+      "何时"
+    ]
+  ]
+}
