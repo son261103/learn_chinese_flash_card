@@ -451,9 +451,9 @@ export function EditorialFlashcards({
 
       {/* VIEW 1: Spaced Repetition 3D Flashcard Stage */}
       {viewTab === "card" ? (
-        <div className="flex-1 overflow-y-auto flex flex-col items-center px-4 sm:px-6 xl:px-8 py-3 relative">
+        <div className="flex-1 overflow-hidden flex flex-col items-center justify-center px-4 sm:px-6 xl:px-8 py-2 relative">
           {!isRoundFinished ? (
-            <div className="w-full max-w-lg sm:max-w-xl flex flex-col items-center justify-start gap-3 pb-3">
+            <div className="w-full max-w-lg sm:max-w-xl flex flex-col items-center justify-center space-y-4 my-auto">
               {/* Top Indicator & Progress Line */}
               <div className="w-full space-y-1.5">
                 <div className="flex items-center justify-between text-xs text-slate-500 px-1">
@@ -503,7 +503,7 @@ export function EditorialFlashcards({
               {/* 3D Flip Card Container */}
               <div
                 onClick={() => setIsFlipped(!isFlipped)}
-                className="perspective-1000 w-full shrink-0 h-[clamp(250px,38vh,320px)] cursor-pointer select-none"
+                className="perspective-1000 w-full h-[280px] sm:h-[320px] cursor-pointer select-none"
               >
                 <div
                   className={`relative w-full h-full duration-500 transform-style-3d transition-transform ${
@@ -511,27 +511,25 @@ export function EditorialFlashcards({
                   }`}
                 >
                   {/* FRONT FACE */}
-                  <div className="absolute inset-0 backface-hidden w-full h-full bg-white rounded-3xl p-6 sm:p-7 border border-[#E5E3DF] shadow-[0_4px_24px_rgba(0,0,0,0.03)] flex flex-col justify-between items-center text-center">
-                    <div className="w-full flex items-center justify-end">
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleRateCard(!isMastered);
-                        }}
-                        className={`p-2 rounded-xl border transition-all cursor-pointer ${
-                          isMastered
-                            ? "bg-emerald-500 text-white border-emerald-500 shadow-2xs"
-                            : "text-slate-300 hover:text-emerald-600 border-[#E5E3DF] hover:bg-emerald-50"
-                        }`}
-                        title={isMastered ? "Đã thuộc" : "Đánh dấu đã thuộc [Phím 2]"}
-                      >
-                        <Check className="w-4 h-4" />
-                      </button>
-                    </div>
+                  <div className="absolute inset-0 backface-hidden w-full h-full bg-white rounded-3xl p-6 sm:p-7 border border-[#E5E3DF] shadow-[0_4px_24px_rgba(0,0,0,0.03)] overflow-hidden flex flex-col items-center justify-center text-center">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleRateCard(!isMastered);
+                      }}
+                      className={`absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-xl border transition-all cursor-pointer ${
+                        isMastered
+                          ? "bg-emerald-500 text-white border-emerald-500 shadow-2xs"
+                          : "text-slate-300 hover:text-emerald-600 border-[#E5E3DF] hover:bg-emerald-50"
+                      }`}
+                      title={isMastered ? "Đã thuộc" : "Đánh dấu đã thuộc [Phím 2]"}
+                    >
+                      <Check className="w-4 h-4" />
+                    </button>
 
                     {/* Character Calligraphy */}
-                    <div className="my-auto space-y-3">
+                    <div className="space-y-3">
                       <div className="hanzi text-6xl sm:text-7xl md:text-8xl font-normal text-[#1C1C1C] tracking-wide">
                         {currentWord?.zh}
                       </div>
@@ -613,7 +611,7 @@ export function EditorialFlashcards({
               )}
 
               {/* Action Buttons with Spaced Repetition Rating */}
-              <div className="flex items-center justify-between gap-2.5 w-full pt-2 pb-1 shrink-0 sticky bottom-0 bg-[#FAF9F6]/95 backdrop-blur-sm z-10">
+              <div className="flex items-center justify-between gap-2.5 w-full pt-1">
                 {/* Previous */}
                 <button
                   type="button"
@@ -672,7 +670,7 @@ export function EditorialFlashcards({
             </div>
           ) : (
             /* Round Completion Summary Screen */
-            <div className="w-full max-w-md bg-white border border-[#E5E3DF] rounded-3xl p-6 sm:p-8 shadow-2xl text-center space-y-5 my-4">
+            <div className="w-full max-w-md bg-white border border-[#E5E3DF] rounded-3xl p-6 sm:p-8 shadow-2xl text-center space-y-5 my-auto">
               <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mx-auto shadow-2xs">
                 {unmasteredCount === 0 ? (
                   <Award className="w-7 h-7 text-amber-600" />
