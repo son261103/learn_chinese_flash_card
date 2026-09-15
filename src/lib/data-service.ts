@@ -13,17 +13,15 @@ export const LOCAL_DATA: Record<string, Lesson[]> = {
 };
 
 export const STORAGE_KEYS = {
-  APP_STATE: "hsk_app_state_v3",
-  PROGRESS: "hsk_study_progress_v3",
-  STATS: "hsk_practice_stats_v3",
+  APP_STATE: "hsk_app_state_v4",
+  PROGRESS: "hsk_study_progress_v4",
+  STATS: "hsk_practice_stats_v4",
 };
 
 export interface UserAppState {
   currentLevelId: string;
+  currentLessonIdx: number;
   activeMode: "typing" | "flashcards" | "lessons" | "garden";
-  typingLessonIdx: number;
-  flashcardLessonIdx: number;
-  lessonsLessonIdx: number;
 }
 
 export interface PracticeStatsRecord {
@@ -36,10 +34,8 @@ export interface PracticeStatsRecord {
 export function getDefaultAppState(): UserAppState {
   return {
     currentLevelId: "hsk1",
+    currentLessonIdx: 0,
     activeMode: "typing",
-    typingLessonIdx: 0,
-    flashcardLessonIdx: 0,
-    lessonsLessonIdx: 0,
   };
 }
 
@@ -51,10 +47,8 @@ export function loadAppState(): UserAppState {
       const parsed = JSON.parse(raw);
       return {
         currentLevelId: parsed.currentLevelId || "hsk1",
+        currentLessonIdx: Number.isInteger(parsed.currentLessonIdx) ? parsed.currentLessonIdx : 0,
         activeMode: parsed.activeMode || "typing",
-        typingLessonIdx: Number.isInteger(parsed.typingLessonIdx) ? parsed.typingLessonIdx : 0,
-        flashcardLessonIdx: Number.isInteger(parsed.flashcardLessonIdx) ? parsed.flashcardLessonIdx : 0,
-        lessonsLessonIdx: Number.isInteger(parsed.lessonsLessonIdx) ? parsed.lessonsLessonIdx : 0,
       };
     }
   } catch {}
