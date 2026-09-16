@@ -52,6 +52,8 @@ export function EditorialTyping({
   const [showPinyin, setShowPinyin] = useState(true);
   const [showMeaning, setShowMeaning] = useState(true);
 
+  const stageScrollRef = useRef<HTMLDivElement>(null);
+
   // Convert lesson tuples into single words list
   const wordItems: SentenceItem[] = useMemo(() => {
     if (!lesson || !lesson.w) return [];
@@ -209,35 +211,8 @@ export function EditorialTyping({
     onRecordResult(false);
     handleNext();
   };
-  const touchStartPos = useRef<{ x: number; y: number } | null>(null);
 
-  const handleStageTouchStart = (e: React.TouchEvent) => {
-    if (e.touches.length === 1) {
-      touchStartPos.current = {
-        x: e.touches[0].clientX,
-        y: e.touches[0].clientY,
-      };
-    }
-  };
-
-  const handleStageTouchEnd = (e: React.TouchEvent) => {
-    if (!touchStartPos.current || e.changedTouches.length === 0) return;
-    const start = touchStartPos.current;
-    const endX = e.changedTouches[0].clientX;
-    const endY = e.changedTouches[0].clientY;
-    const deltaX = endX - start.x;
-    const deltaY = endY - start.y;
-    touchStartPos.current = null;
-
-    if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.4) {
-      if (deltaX < 0) {
-        handleNext();
-      } else {
-        handlePrev();
-      }
-    }
-  };
-  // Keyboard navigation
+  // Keyboard navigation on desktop
   useEffect(() => {
     const handleGlobalKey = (e: KeyboardEvent) => {
       if (["INPUT", "TEXTAREA"].includes((e.target as HTMLElement).tagName)) {
@@ -287,16 +262,16 @@ export function EditorialTyping({
         />
       </StageHeader>
 
-      {/* Main Workspace Stage - Matches Bài khoá full-width layout */}
+      {/* Main Workspace Stage - In passages mode, overscroll-y-auto allows natural unblocked scrolling */}
       <div
-        onTouchStart={handleStageTouchStart}
-        onTouchEnd={handleStageTouchEnd}
-        className={`flex-1 min-h-0 overflow-y-auto px-3 sm:px-6 xl:px-8 py-3 sm:py-6 w-full touch-scroll touch-pan-y ${
+        ref={stageScrollRef}
+        className={`flex-1 min-h-0 overflow-y-auto px-3 sm:px-6 xl:px-8 py-3 sm:py-6 w-full touch-pan-y overscroll-y-auto ${
           typingMode === "words"
-            ? "flex flex-col justify-start pt-4 sm:pt-0 sm:justify-center items-center"
-            : "space-y-4 sm:space-y-6"
+            ? "flex flex-col justify-start pt-4 sm:pt-0 sm:justify-center items-center pb-4"
+            : "space-y-4 sm:space-y-6 pb-28 sm:pb-36"
         }`}
       >
+        {/* Words Mode: SentenceCard displays word and highlights characters live as user types */}
         {typingMode === "words" && currentWord && (
           <div className="w-full flex flex-col items-center sm:my-auto">
             <SentenceCard
@@ -305,10 +280,12 @@ export function EditorialTyping({
               showPinyin={showPinyin}
               showMeaning={showMeaning}
               currentLevel={levelId.toUpperCase()}
+              userInput={userInput}
             />
           </div>
         )}
 
+        {/* Passages Mode: Conversational Dialogue List */}
         {typingMode === "passages" && currentPassage && (
           <div className="w-full">
             <PassageCard
@@ -322,11 +299,12 @@ export function EditorialTyping({
           </div>
         )}
       </div>
-      {/* Bottom Docked Input Area */}
+
+      {/* Bottom Docked Input Area: Rendered cleanly for both words and passages without nested scroll locks */}
       {targetHanzi && (
         <div
           id="bottom-input-dock"
-          className="shrink-0 border-t border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md px-3 sm:px-6 xl:px-8 py-2 sm:py-3 pb-safe w-full z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.03)] max-h-[75vh] overflow-y-auto overscroll-contain"
+          className="shrink-0 border-t border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md px-3 sm:px-6 xl:px-8 py-2 sm:py-2.5 pb-safe w-full z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]"
         >
           <div className="w-full flex flex-col gap-2">
             <InputArea

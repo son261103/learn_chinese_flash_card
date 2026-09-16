@@ -54,6 +54,31 @@ export default function HomePage() {
     getDefaultPracticeStats()
   );
 
+  // Theo dõi visualViewport để thích ứng chiều cao màn hình trên thiết bị di động khi bàn phím ảo bật lên
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const updateVisualViewport = () => {
+      const vv = window.visualViewport;
+      const height = vv ? vv.height : window.innerHeight;
+      document.documentElement.style.setProperty(
+        "--visual-viewport-height",
+        `${height}px`
+      );
+    };
+
+    updateVisualViewport();
+    window.visualViewport?.addEventListener("resize", updateVisualViewport);
+    window.visualViewport?.addEventListener("scroll", updateVisualViewport);
+    window.addEventListener("resize", updateVisualViewport);
+
+    return () => {
+      window.visualViewport?.removeEventListener("resize", updateVisualViewport);
+      window.visualViewport?.removeEventListener("scroll", updateVisualViewport);
+      window.removeEventListener("resize", updateVisualViewport);
+    };
+  }, []);
+
   // Nạp state đã lưu sau khi mount (chỉ chạy ở client) để khớp SSR
   useEffect(() => {
     const appState = loadAppState();
@@ -172,7 +197,7 @@ export default function HomePage() {
     saveAppState({ currentLessonIdx: nextIdx });
   };
   return (
-    <div className="flex flex-col lg:flex-row h-dvh min-h-dvh lg:h-screen lg:overflow-hidden w-full bg-[#FAF9F6] text-[#222B25] font-sans antialiased selection:bg-[#E5E3DF] overflow-hidden">
+    <div className="flex flex-col lg:flex-row h-[var(--visual-viewport-height,100dvh)] min-h-[var(--visual-viewport-height,100dvh)] lg:h-screen lg:min-h-screen lg:overflow-hidden w-full bg-[#FAF9F6] text-[#222B25] font-sans antialiased selection:bg-[#E5E3DF] overflow-hidden">
       {/* Mobile Top Header (< lg) matching --main */}
       <header className="lg:hidden w-full border-b border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md shrink-0 z-30 px-3 pt-safe pb-1.5">
         {/* Top Row: Brand + Unified Level & Lesson Selector + Streak */}

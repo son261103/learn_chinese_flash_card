@@ -75,6 +75,23 @@ export const PassageCard = memo(function PassageCard({
     return map;
   }, [passage.sentences]);
 
+  // Auto-scroll to current active sentence while typing in conversation
+  useEffect(() => {
+    if (userCleanChars.length === 0 || sentenceOffsets.length === 0) return;
+    let activeIdx = 0;
+    for (let i = 0; i < sentenceOffsets.length; i++) {
+      if (userCleanChars.length >= sentenceOffsets[i]) {
+        activeIdx = i;
+      } else {
+        break;
+      }
+    }
+    const elem = document.getElementById(`passage-sentence-${activeIdx}`);
+    if (elem) {
+      elem.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [userCleanChars.length, sentenceOffsets]);
+
   const handleCopy = () => {
     navigator.clipboard.writeText(passage.hanzi);
     setCopied(true);
@@ -217,8 +234,9 @@ export const PassageCard = memo(function PassageCard({
 
           return (
             <div
+              id={`passage-sentence-${sIdx}`}
               key={sIdx}
-              className={`w-full flex ${
+              className={`w-full flex scroll-mt-24 sm:scroll-mt-28 ${
                 isSecondarySpeaker ? "justify-end" : "justify-start"
               }`}
             >

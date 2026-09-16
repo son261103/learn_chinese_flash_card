@@ -23,6 +23,7 @@ interface SentenceCardProps {
   showMeaning?: boolean;
   speechRate?: number;
   currentLevel?: string;
+  userInput?: string;
 }
 
 interface LookupInfo {
@@ -38,6 +39,7 @@ export function SentenceCard({
   showMeaning = true,
   speechRate = 0.9,
   currentLevel = "HSK1",
+  userInput = "",
 }: SentenceCardProps) {
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -51,6 +53,22 @@ export function SentenceCard({
     return alignHanziAndPinyin(sentence.hanzi);
   }, [sentence.hanzi]);
 
+  // Map each Chinese character token to its ordinal index in the word
+  const { zhTokenIndices } = useMemo(() => {
+    let counter = 0;
+    const indicesMap: Record<string, number> = {};
+    tokens.forEach((t) => {
+      if (!t.isPunctuation && t.isZh) {
+        indicesMap[t.id] = counter++;
+      }
+    });
+    return { zhTokenIndices: indicesMap };
+  }, [tokens]);
+
+  const cleanUserChars = useMemo(() => {
+    return Array.from(userInput.replace(/\s+/g, ""));
+  }, [userInput]);
+
   const handleSpeak = async (textToSpeak?: string) => {
     if (isPlayingAudio) return;
     setIsPlayingAudio(true);
@@ -58,7 +76,8 @@ export function SentenceCard({
     setIsPlayingAudio(false);
   };
 
-  const handleCopy = () => {
+  const handleCopy = (e: React.MouseEvent) => {
+    e.stopPropagation();
     navigator.clipboard.writeText(sentence.hanzi);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
@@ -129,20 +148,25 @@ export function SentenceCard({
       className="w-full flex flex-col items-center text-center relative select-none py-2"
     >
       {/* Audio Button on Top */}
-      <button
-        type="button"
-        onClick={() => handleSpeak()}
-        disabled={isPlayingAudio}
-        className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#E5E3DF] bg-white text-slate-700 hover:bg-[#24523B] hover:text-white hover:border-[#24523B] transition-all flex items-center justify-center shadow-2xs mb-3 sm:mb-5 active:scale-95 cursor-pointer ${
-          isPlayingAudio ? "ring-2 ring-[#24523B] bg-[#FAF9F6] text-[#24523B]" : ""
-        }`}
-        title="Nghe phát âm"
-      >
-        <Volume2 className="w-4.5 h-4.5" />
-      </button>
+      <div className="relative z-10">
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleSpeak();
+          }}
+          disabled={isPlayingAudio}
+          className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#E5E3DF] bg-white text-slate-700 hover:bg-[#24523B] hover:text-white hover:border-[#24523B] transition-all flex items-center justify-center shadow-2xs mb-3 sm:mb-5 active:scale-95 cursor-pointer ${
+            isPlayingAudio ? "ring-2 ring-[#24523B] bg-[#FAF9F6] text-[#24523B]" : ""
+          }`}
+          title="Nghe phát âm"
+        >
+          <Volume2 className="w-4.5 h-4.5" />
+        </button>
+      </div>
 
       {/* Target Hanzi with Interlinear Ruby Pinyin */}
-      <div className="w-full flex flex-col justify-center items-center relative">
+      <div className="w-full flex flex-col justify-center items-center relative z-10">
         <div className="relative group w-full flex flex-wrap items-end justify-center gap-x-1.5 sm:gap-x-2 gap-y-3 sm:gap-y-4 px-2 leading-tight">
           {tokens.map((tok) => {
             const isHighlighted =
@@ -150,6 +174,17 @@ export function SentenceCard({
               tok.index >= highlightedRange[0] &&
               tok.index <= highlightedRange[1];
             const isChinese = !tok.isPunctuation && tok.isZh;
+            const zhIdx = zhTokenIndices[tok.id];
+
+            // Live typing status when user types into InputArea
+            let typingStatus: "correct" | "incorrect" | "current" | "pending" = "pending";
+            if (isChinese && zhIdx !== undefined && cleanUserChars.length > 0) {
+              if (zhIdx < cleanUserChars.length) {
+                typingStatus = cleanUserChars[zhIdx] === tok.char ? "correct" : "incorrect";
+              } else if (zhIdx === cleanUserChars.length) {
+                typingStatus = "current";
+              }
+            }
 
             if (tok.isPunctuation) {
               return (
@@ -179,7 +214,7 @@ export function SentenceCard({
                 title={isChinese ? `Nhấp để tra từ "${tok.char}"` : undefined}
                 className={`group/char relative inline-flex flex-col items-center justify-end rounded-2xl transition-all duration-150 px-1.5 py-1 ${
                   isChinese
-                    ? "cursor-pointer hover:bg-slate-100 active:scale-95"
+                    ? "cursor-pointer hover:bg-slate-100/70 active:scale-95"
                     : "cursor-default"
                 } ${
                   isHighlighted
@@ -193,6 +228,8 @@ export function SentenceCard({
                     className={`text-xs sm:text-sm font-sans tracking-tight select-none transition-all pb-1 min-h-[1.25rem] flex items-center justify-center ${
                       isHighlighted
                         ? "font-bold text-[#24523B]"
+                        : typingStatus === "correct"
+                        ? "text-[#24523B] font-semibold"
                         : "text-slate-400 font-medium group-hover/char:text-slate-900"
                     }`}
                   >
@@ -204,20 +241,34 @@ export function SentenceCard({
                   </span>
                 )}
 
-                {/* Hanzi character */}
+                {/* Hanzi character with dynamic typing status */}
                 <span
                   id={`target-hanzi-${tok.id}`}
                   className={`hanzi ${hanziSizeClass} font-medium tracking-tight select-text transition-all leading-none ${
-                    isHighlighted ? "text-[#222B25] font-semibold" : "text-slate-900"
+                    typingStatus === "correct"
+                      ? "text-[#24523B] font-bold scale-105 inline-block"
+                      : typingStatus === "incorrect"
+                      ? "text-rose-600 bg-rose-50/90 rounded-xl px-1 font-bold"
+                      : typingStatus === "current"
+                      ? "text-slate-900 underline decoration-[#24523B] decoration-4 underline-offset-8 animate-pulse font-semibold"
+                      : isHighlighted
+                      ? "text-[#222B25] font-semibold"
+                      : "text-slate-900"
                   }`}
                 >
                   {tok.char}
                 </span>
 
-                {/* Subtle dot */}
+                {/* Status indicator dot */}
                 <span
-                  className={`w-1 h-1 rounded-full transition-opacity mt-1.5 ${
-                    isChinese
+                  className={`w-1.5 h-1.5 rounded-full transition-all mt-1.5 ${
+                    typingStatus === "correct"
+                      ? "bg-[#24523B] scale-125 opacity-100"
+                      : typingStatus === "incorrect"
+                      ? "bg-rose-500 scale-125 opacity-100"
+                      : typingStatus === "current"
+                      ? "bg-[#24523B] animate-ping opacity-75"
+                      : isChinese
                       ? isHighlighted
                         ? "bg-[#24523B] opacity-100"
                         : "bg-slate-300 opacity-60 group-hover/char:opacity-100"
@@ -232,7 +283,7 @@ export function SentenceCard({
           <button
             type="button"
             onClick={handleCopy}
-            className="opacity-0 group-hover:opacity-100 transition-opacity absolute -right-6 top-1/2 -translate-y-1/2 p-2 text-slate-400 hover:text-slate-700 rounded-lg hidden md:block cursor-pointer"
+            className="opacity-0 group-hover:opacity-100 transition-opacity absolute -right-6 top-1/2 -translate-y-1/2 p-2 text-slate-400 hover:text-slate-700 rounded-lg hidden md:block cursor-pointer z-10"
             title="Sao chép chữ Hán"
           >
             {copied ? <Check className="w-4 h-4 text-[#24523B]" /> : <Copy className="w-4 h-4 text-slate-400" />}
@@ -241,7 +292,7 @@ export function SentenceCard({
 
         {/* Translation line */}
         {showMeaning && (
-          <div className="mt-3 sm:mt-5 px-3.5 sm:px-6 py-1.5 sm:py-2 rounded-2xl bg-white/75 border border-[#E5E3DF]/80 shadow-2xs max-w-xl mx-auto">
+          <div className="mt-3 sm:mt-5 px-3.5 sm:px-6 py-1.5 sm:py-2 rounded-2xl bg-white/75 border border-[#E5E3DF]/80 shadow-2xs max-w-xl mx-auto z-10">
             <p className="text-sm sm:text-base md:text-lg text-slate-700 italic font-editorial-serif leading-relaxed">
               &ldquo;{sentence.meaning}&rdquo;
             </p>
