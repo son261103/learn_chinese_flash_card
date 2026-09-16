@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useCallback, useEffect } from "react";
+import React, { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { Lesson, TypingSubMode, PassageItem } from "@/lib/types";
 import { tupleToWord } from "@/lib/utils";
 import { evaluateInput, EvaluationResult, speakChinese } from "@/utils/diff";
@@ -209,7 +209,34 @@ export function EditorialTyping({
     onRecordResult(false);
     handleNext();
   };
+  const touchStartPos = useRef<{ x: number; y: number } | null>(null);
 
+  const handleStageTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      touchStartPos.current = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+      };
+    }
+  };
+
+  const handleStageTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartPos.current || e.changedTouches.length === 0) return;
+    const start = touchStartPos.current;
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+    const deltaX = endX - start.x;
+    const deltaY = endY - start.y;
+    touchStartPos.current = null;
+
+    if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.4) {
+      if (deltaX < 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+  };
   // Keyboard navigation
   useEffect(() => {
     const handleGlobalKey = (e: KeyboardEvent) => {
@@ -262,7 +289,9 @@ export function EditorialTyping({
 
       {/* Main Workspace Stage - Matches Bài khoá full-width layout */}
       <div
-        className={`flex-1 min-h-0 overflow-y-auto px-3 sm:px-6 xl:px-8 py-3 sm:py-6 w-full touch-scroll ${
+        onTouchStart={handleStageTouchStart}
+        onTouchEnd={handleStageTouchEnd}
+        className={`flex-1 min-h-0 overflow-y-auto px-3 sm:px-6 xl:px-8 py-3 sm:py-6 w-full touch-scroll touch-pan-y ${
           typingMode === "words"
             ? "flex flex-col justify-start pt-4 sm:pt-0 sm:justify-center items-center"
             : "space-y-4 sm:space-y-6"
@@ -297,7 +326,7 @@ export function EditorialTyping({
       {targetHanzi && (
         <div
           id="bottom-input-dock"
-          className="shrink-0 border-t border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md px-3 sm:px-6 xl:px-8 py-2 sm:py-3 pb-safe w-full z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]"
+          className="shrink-0 border-t border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md px-3 sm:px-6 xl:px-8 py-2 sm:py-3 pb-safe w-full z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.03)] max-h-[75vh] overflow-y-auto overscroll-contain"
         >
           <div className="w-full flex flex-col gap-2">
             <InputArea

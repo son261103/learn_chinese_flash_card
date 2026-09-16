@@ -51,7 +51,7 @@ export function TopicModal({
       onClick={onClose}
     >
       <div
-        className="bg-[#FAF9F6] border border-[#E5E3DF] rounded-t-3xl sm:rounded-3xl max-w-2xl w-full p-4 sm:p-6 md:p-7 shadow-2xl space-y-3 sm:space-y-4 max-h-[88vh] sm:max-h-[85vh] flex flex-col text-[#222B25] animate-in slide-in-from-bottom-4 duration-200"
+        className="bg-[#FAF9F6] border border-[#E5E3DF] rounded-t-3xl sm:rounded-3xl max-w-2xl w-full p-4 sm:p-6 md:p-7 pb-safe shadow-2xl space-y-3 sm:space-y-4 max-h-[88vh] sm:max-h-[85vh] flex flex-col text-[#222B25] animate-in slide-in-from-bottom-4 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -77,7 +77,7 @@ export function TopicModal({
 
         {/* Quick Level switch tabs */}
         {levels && onSelectLevel && (
-          <div className="grid grid-cols-3 gap-1 bg-[#E5E3DF]/50 p-1 rounded-xl border border-[#E5E3DF]">
+          <div className="grid grid-cols-3 gap-1 bg-[#EFECE6]/70 p-1 rounded-xl border border-[#E5E3DF]">
             {levels.map((lvl) => (
               <button
                 key={lvl.id}
@@ -85,8 +85,8 @@ export function TopicModal({
                 onClick={() => onSelectLevel(lvl.id)}
                 className={`py-1.5 px-2 rounded-lg text-xs font-bold transition-all text-center cursor-pointer ${
                   levelId === lvl.id
-                    ? "bg-[#24523B] text-white shadow-xs"
-                    : "text-slate-600 hover:bg-white/60"
+                    ? "bg-white text-slate-900 shadow-2xs font-bold"
+                    : "text-slate-500 hover:text-slate-900"
                 }`}
               >
                 {lvl.id.toUpperCase()}
@@ -97,14 +97,27 @@ export function TopicModal({
 
         {/* Search Bar */}
         <div className="relative">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Tìm theo tên bài, chữ Hán, từ vựng..."
-            className="w-full pl-9 pr-4 py-2.5 bg-white border border-[#E5E3DF] rounded-xl text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#24523B] focus:ring-1 focus:ring-[#24523B]"
+            placeholder="Tìm bài học..."
+            autoCapitalize="none"
+            autoCorrect="off"
+            spellCheck={false}
+            className="w-full pl-9 pr-9 py-2.5 bg-white border border-[#E5E3DF] rounded-xl text-base sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#24523B] focus:ring-1 focus:ring-[#24523B]"
           />
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={() => setSearchQuery("")}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-700 cursor-pointer"
+              title="Xóa tìm kiếm"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
         </div>
 
         {/* Lessons List */}

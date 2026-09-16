@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Newsreader, Noto_Serif_SC, Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
 
@@ -27,10 +27,26 @@ const notoSansSC = Noto_Sans_SC({
   weight: ["400", "500", "700"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+  themeColor: "#FAF9F6",
+};
+
 export const metadata: Metadata = {
   title: "HANZI. · Học Tiếng Trung & Luyện Gõ Chữ Hán",
   description:
     "Ứng dụng luyện gõ chữ Hán, Flashcards và học tiếng Trung HSK phong cách tối giản thanh lịch.",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "HANZI.",
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export default function RootLayout({

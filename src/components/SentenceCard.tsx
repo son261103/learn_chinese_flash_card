@@ -257,7 +257,7 @@ export function SentenceCard({
         {activeToken && lookupData && (
           <div
             ref={popoverRef}
-            className="fixed sm:absolute z-40 bottom-28 sm:bottom-auto sm:top-full sm:mt-3 left-4 right-4 sm:left-1/2 sm:-translate-x-1/2 sm:w-80 max-w-sm mx-auto sm:mx-0 bg-white border border-[#E5E3DF] rounded-2xl p-3.5 sm:p-4 shadow-2xl text-left animate-in fade-in zoom-in-95 duration-150"
+            className="fixed sm:absolute z-50 bottom-28 sm:bottom-auto sm:top-full sm:mt-3 left-4 right-4 sm:left-1/2 sm:-translate-x-1/2 sm:w-80 max-w-sm mx-auto sm:mx-0 bg-white border border-[#E5E3DF] rounded-2xl p-3.5 sm:p-4 shadow-2xl text-left animate-in fade-in zoom-in-95 duration-150"
           >
             <div className="flex items-start justify-between gap-2 pb-2 border-b border-[#E5E3DF]/60">
               <div className="flex items-baseline gap-2">

@@ -47,12 +47,12 @@ export function TypingControls({
       {/* Left: Typing sub-mode switcher */}
       <div className="flex items-center gap-1.5 min-w-0 flex-1 overflow-x-auto no-scrollbar">
         {onToggleTypingMode && (
-          <div className="inline-flex p-0.5 rounded-xl border border-[#E5E3DF] bg-[#EFECE6]/70 shrink-0">
+          <div className="inline-flex items-center p-0.5 h-8 rounded-xl border border-[#E5E3DF] bg-[#EFECE6]/70 shrink-0">
             <button
               type="button"
               onClick={() => onToggleTypingMode("words")}
               aria-pressed={typingMode === "words"}
-              className={`h-8 px-2.5 sm:px-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              className={`h-full px-2.5 sm:px-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 typingMode === "words"
                   ? "bg-white text-slate-900 shadow-2xs font-bold"
                   : "text-slate-500 hover:text-slate-900"
@@ -67,9 +67,9 @@ export function TypingControls({
               type="button"
               onClick={() => onToggleTypingMode("passages")}
               aria-pressed={typingMode === "passages"}
-              className={`h-8 px-2.5 sm:px-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              className={`h-full px-2.5 sm:px-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 typingMode === "passages"
-                  ? "bg-white text-[#24523B] shadow-2xs font-bold"
+                  ? "bg-white text-slate-900 shadow-2xs font-bold"
                   : "text-slate-500 hover:text-slate-900"
               }`}
               title="Chế độ gõ bài hội thoại"

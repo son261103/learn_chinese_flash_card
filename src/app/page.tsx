@@ -174,9 +174,9 @@ export default function HomePage() {
   return (
     <div className="flex flex-col lg:flex-row h-dvh min-h-dvh lg:h-screen lg:overflow-hidden w-full bg-[#FAF9F6] text-[#222B25] font-sans antialiased selection:bg-[#E5E3DF] overflow-hidden">
       {/* Mobile Top Header (< lg) matching --main */}
-      <header className="lg:hidden w-full border-b border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md shrink-0 z-30 px-3 py-1">
+      <header className="lg:hidden w-full border-b border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md shrink-0 z-30 px-3 pt-safe pb-1.5">
         {/* Top Row: Brand + Unified Level & Lesson Selector + Streak */}
-        <div className="flex items-center justify-between gap-1.5 h-7 min-h-[26px]">
+        <div className="flex items-center justify-between gap-1.5 h-8 min-h-[30px]">
           <div className="flex items-center gap-1.5 min-w-0">
             <span className="text-base font-black tracking-tighter text-[#222B25] shrink-0 leading-none">
               HANZI.
@@ -186,7 +186,7 @@ export default function HomePage() {
             <button
               type="button"
               onClick={() => setIsTopicModalOpen(true)}
-              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-white border border-[#E5E3DF] text-[11px] font-semibold text-slate-800 shadow-2xs hover:border-slate-400 active:scale-95 transition-all truncate h-6"
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-[#E5E3DF] text-xs font-semibold text-slate-800 shadow-2xs hover:border-slate-400 active:scale-95 transition-all truncate h-7 cursor-pointer"
               title="Đổi bài học hoặc cấp độ HSK"
             >
               <span className="text-[#24523B] font-extrabold shrink-0">{currentLevelId.toUpperCase()}</span>
@@ -200,42 +200,42 @@ export default function HomePage() {
           <button
             type="button"
             onClick={() => setIsMobileStatsOpen(true)}
-            className="flex items-center gap-1 text-[11px] font-bold text-orange-600 px-2 py-0.5 bg-orange-50 hover:bg-orange-100/80 rounded-lg border border-orange-200 shadow-2xs shrink-0 cursor-pointer transition-colors active:scale-95 h-6"
+            className="flex items-center gap-1 text-xs font-bold text-orange-600 px-2 py-1 bg-orange-50 hover:bg-orange-100/80 rounded-lg border border-orange-200 shadow-2xs shrink-0 cursor-pointer transition-colors active:scale-95 h-7"
             title="Bấm để xem thống kê phiên học"
           >
-            <Flame className="w-3 h-3 fill-orange-500 text-orange-500" />
+            <Flame className="w-3.5 h-3.5 fill-orange-500 text-orange-500" />
             <span>{stats.currentStreak}</span>
           </button>
         </div>
 
         {/* Bottom Row: Sleek Segmented Control for Modes */}
-        <div className="p-0.5 rounded-lg bg-[#EFECE6]/80 flex items-center justify-between gap-0.5 mt-1 border border-[#E5E3DF]/50 h-7">
+        <div className="p-0.5 rounded-xl bg-[#EFECE6]/80 flex items-center justify-between gap-0.5 mt-1.5 border border-[#E5E3DF]/50 h-8">
           <button
             type="button"
             onClick={() => handleSelectMode("typing")}
-            className={`flex-1 h-6 px-1 rounded-md text-[10.5px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 ${
+            className={`flex-1 h-7 px-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 ${
               activeMode === "typing"
                 ? "bg-[#24523B] text-white shadow-2xs font-bold"
                 : "text-slate-600 hover:text-slate-900"
             }`}
           >
-            <Keyboard className="w-3 h-3 shrink-0" />
+            <Keyboard className="w-3.5 h-3.5 shrink-0" />
             <span>Gõ</span>
           </button>
 
           <button
             type="button"
             onClick={() => handleSelectMode("flashcards")}
-            className={`flex-1 h-6 px-1 rounded-md text-[10.5px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 relative ${
+            className={`flex-1 h-7 px-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 relative ${
               activeMode === "flashcards"
                 ? "bg-[#24523B] text-white shadow-2xs font-bold"
                 : "text-slate-600 hover:text-slate-900"
             }`}
           >
-            <Layers className="w-3 h-3 shrink-0" />
+            <Layers className="w-3.5 h-3.5 shrink-0" />
             <span>Thẻ</span>
             {dueCount > 0 && (
-              <span className="absolute -top-1 -right-0.5 min-w-[14px] h-3 px-0.5 rounded-full bg-[#24523B] text-white text-[7.5px] font-bold flex items-center justify-center border border-white">
+              <span className="absolute -top-1 -right-0.5 min-w-[14px] h-3.5 px-0.5 rounded-full bg-[#24523B] text-white text-[8px] font-bold flex items-center justify-center border border-white">
                 {dueCount}
               </span>
             )}
@@ -244,26 +244,26 @@ export default function HomePage() {
           <button
             type="button"
             onClick={() => handleSelectMode("lessons")}
-            className={`flex-1 h-6 px-1 rounded-md text-[10.5px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 ${
+            className={`flex-1 h-7 px-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 ${
               activeMode === "lessons"
                 ? "bg-[#24523B] text-white shadow-2xs font-bold"
                 : "text-slate-600 hover:text-slate-900"
             }`}
           >
-            <BookOpen className="w-3 h-3 shrink-0" />
+            <BookOpen className="w-3.5 h-3.5 shrink-0" />
             <span>Bài khoá</span>
           </button>
 
           <button
             type="button"
             onClick={() => handleSelectMode("garden")}
-            className={`flex-1 h-6 px-1 rounded-md text-[10.5px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 ${
+            className={`flex-1 h-7 px-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 ${
               activeMode === "garden"
                 ? "bg-[#24523B] text-white shadow-2xs font-bold"
                 : "text-slate-600 hover:text-slate-900"
             }`}
           >
-            <Library className="w-3 h-3 shrink-0" />
+            <Library className="w-3.5 h-3.5 shrink-0" />
             <span>Vườn từ</span>
           </button>
         </div>
@@ -346,7 +346,7 @@ export default function HomePage() {
           onClick={() => setIsMobileStatsOpen(false)}
         >
           <div
-            className="w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl p-5 sm:p-6 border border-[#E5E3DF] shadow-2xl space-y-4 animate-in slide-in-from-bottom-6 duration-200"
+            className="w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl p-5 sm:p-6 pb-safe border border-[#E5E3DF] shadow-2xl space-y-4 animate-in slide-in-from-bottom-6 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between pb-3 border-b border-[#E5E3DF]">

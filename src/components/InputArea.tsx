@@ -31,7 +31,15 @@ export function InputArea({
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
-    if (!disabled && textareaRef.current) {
+    if (disabled || !textareaRef.current) return;
+
+    const isTouch =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(pointer: coarse)").matches;
+
+    // Auto-focus immediately on desktop; on touch devices, preserve focus only if user is already typing
+    if (!isTouch || document.activeElement === textareaRef.current) {
       textareaRef.current.focus();
     }
   }, [disabled, hasSubmitted]);
@@ -96,6 +104,10 @@ export function InputArea({
           onCompositionEnd={handleCompositionEnd}
           onKeyDown={handleKeyDown}
           disabled={disabled}
+          autoCapitalize="none"
+          autoCorrect="off"
+          autoComplete="off"
+          enterKeyHint={mode === "passages" ? "enter" : "send"}
           placeholder={
             mode === "passages"
               ? "Gõ hội thoại tại đây (dùng bộ gõ Pinyin)..."

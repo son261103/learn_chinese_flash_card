@@ -33,11 +33,11 @@
 }
 
 .micro-caps {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #8C8C8C;
+  font-weight: 700;
+  color: #57655B;
 }
 
 .diff-correct {
@@ -45,14 +45,14 @@
 }
 
 .diff-missing {
-  color: #94A3B8;
-  text-decoration: underline;
+  color: #D97706;
+  text-decoration: underline wavy #D97706;
   text-underline-offset: 4px;
 }
 
 .diff-wrong {
   color: #DC2626;
-  text-decoration: line-through;
+  background-color: #FEE2E2;
 }
 
 /* 3D Flip Card Effect */
@@ -77,15 +77,15 @@
 @keyframes dynamicIslandDrop {
   0% {
     opacity: 0;
-    transform: translateY(-28px) scale(0.85);
+    transform: translate(-50%, -24px) scale(0.85);
   }
-  65% {
+  60% {
     opacity: 1;
-    transform: translateY(2px) scale(1.02);
+    transform: translate(-50%, 4px) scale(1.02);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translate(-50%, 0) scale(1);
   }
 }
 
@@ -113,9 +113,14 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.pt-safe {
+  padding-top: max(0.25rem, env(safe-area-inset-top, 0px));
 }
 
 .pb-safe {
@@ -124,4 +129,5 @@
 
 .touch-scroll {
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
   Volume2,
   Keyboard,
@@ -33,7 +33,12 @@ export function EditorialLessons({
   const [activeSection, setActiveSection] = useState<"dialogue" | "grammar" | "reading">("dialogue");
   const [playingKey, setPlayingKey] = useState<string | null>(null);
   const [isPlayingAll, setIsPlayingAll] = useState(false);
-  const [showMeaning, setShowMeaning] = useState(false);
+  const [showMeaning, setShowMeaning] = useState(true);
+
+  const allDialogueLines = useMemo(() => {
+    if (!lesson.texts) return [];
+    return lesson.texts.flatMap((sec) => sec.dialogue || []);
+  }, [lesson.texts]);
 
   const handleSpeakLine = async (key: string, text: string) => {
     setPlayingKey(key);
@@ -62,14 +67,14 @@ export function EditorialLessons({
         <div className="w-full flex items-center justify-between gap-2 py-0.5">
           {/* Left: section sub-tabs (scrollable on mobile) */}
           <div className="flex items-center min-w-0 flex-1 overflow-x-auto no-scrollbar">
-            <div className="inline-flex items-center h-8 rounded-xl border border-[#E5E3DF] bg-white p-0.5 shadow-2xs shrink-0">
+            <div className="inline-flex items-center p-0.5 h-8 rounded-xl border border-[#E5E3DF] bg-[#EFECE6]/70 shrink-0">
               <button
                 type="button"
                 onClick={() => setActiveSection("dialogue")}
-                className={`h-full px-2 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
+                className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
                   activeSection === "dialogue"
-                    ? "bg-[#24523B] text-white shadow-xs"
-                    : "text-slate-600 hover:text-slate-900"
+                    ? "bg-white text-slate-900 shadow-2xs font-bold"
+                    : "text-slate-500 hover:text-slate-900"
                 }`}
               >
                 <MessageSquare className="w-3.5 h-3.5" />
@@ -79,10 +84,10 @@ export function EditorialLessons({
                 <button
                   type="button"
                   onClick={() => setActiveSection("grammar")}
-                  className={`h-full px-2 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
+                  className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
                     activeSection === "grammar"
-                      ? "bg-[#24523B] text-white shadow-xs"
-                      : "text-slate-600 hover:text-slate-900"
+                      ? "bg-white text-slate-900 shadow-2xs font-bold"
+                      : "text-slate-500 hover:text-slate-900"
                   }`}
                 >
                   <FileText className="w-3.5 h-3.5" />
@@ -93,10 +98,10 @@ export function EditorialLessons({
                 <button
                   type="button"
                   onClick={() => setActiveSection("reading")}
-                  className={`h-full px-2 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
+                  className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
                     activeSection === "reading"
-                      ? "bg-[#24523B] text-white shadow-xs"
-                      : "text-slate-600 hover:text-slate-900"
+                      ? "bg-white text-slate-900 shadow-2xs font-bold"
+                      : "text-slate-500 hover:text-slate-900"
                   }`}
                 >
                   <BookOpen className="w-3.5 h-3.5" />
@@ -117,6 +122,17 @@ export function EditorialLessons({
             >
               <BookOpenText className="w-4 h-4" />
             </button>
+            {allDialogueLines.length > 0 && (
+              <button
+                type="button"
+                onClick={() => handleSpeakAll(allDialogueLines)}
+                aria-label={isPlayingAll ? "Đang phát toàn bộ bài khoá" : "Nghe toàn bộ bài khoá"}
+                title={isPlayingAll ? "Đang phát toàn bộ bài khoá" : "Nghe toàn bộ bài khoá"}
+                className={stageIconBtnClass(isPlayingAll)}
+              >
+                <Play className={`w-4 h-4 ${isPlayingAll ? "fill-white text-white" : "fill-[#24523B] text-[#24523B]"}`} />
+              </button>
+            )}
             <button
               type="button"
               onClick={() => onSelectMode("typing")}

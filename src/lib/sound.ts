@@ -1,24 +1,41 @@
 // Web Audio API lightweight sound effects for interactive learning
 
-function getAudioContextConstructor(): typeof AudioContext | null {
+declare global {
+  interface Window {
+    webkitAudioContext?: typeof AudioContext;
+  }
+}
+
+let sharedAudioCtx: AudioContext | null = null;
+
+function getOrCreateAudioContext(): AudioContext | null {
   if (typeof window === "undefined") return null;
-  if ("AudioContext" in window && typeof window.AudioContext === "function") {
-    return window.AudioContext;
+  if (sharedAudioCtx && sharedAudioCtx.state !== "closed") {
+    if (sharedAudioCtx.state === "suspended") {
+      sharedAudioCtx.resume().catch(() => {});
+    }
+    return sharedAudioCtx;
   }
-  const win = window as unknown as Record<string, unknown>;
-  const webkitCtx = win["webkitAudioContext"];
-  if (typeof webkitCtx === "function") {
-    return webkitCtx as typeof AudioContext;
+
+  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextClass) return null;
+
+  try {
+    sharedAudioCtx = new AudioContextClass();
+    if (sharedAudioCtx.state === "suspended") {
+      sharedAudioCtx.resume().catch(() => {});
+    }
+    return sharedAudioCtx;
+  } catch {
+    return null;
   }
-  return null;
 }
 
 export function playSuccessChime(): void {
-  const AudioContextClass = getAudioContextConstructor();
-  if (!AudioContextClass) return;
+  const ctx = getOrCreateAudioContext();
+  if (!ctx) return;
 
   try {
-    const ctx = new AudioContextClass();
     const now = ctx.currentTime;
 
     const osc1 = ctx.createOscillator();
@@ -50,11 +67,10 @@ export function playSuccessChime(): void {
 }
 
 export function playErrorBuzz(): void {
-  const AudioContextClass = getAudioContextConstructor();
-  if (!AudioContextClass) return;
+  const ctx = getOrCreateAudioContext();
+  if (!ctx) return;
 
   try {
-    const ctx = new AudioContextClass();
     const now = ctx.currentTime;
 
     const osc = ctx.createOscillator();

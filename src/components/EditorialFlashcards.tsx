@@ -19,6 +19,7 @@ import {
   CheckCircle2,
   BellRing,
   CalendarClock,
+  X,
 } from "lucide-react";
 import { StageHeader, stageIconBtnClass } from "@/components/StageHeader";
 import { Lesson, Word } from "@/lib/types";
@@ -205,7 +206,45 @@ export function EditorialFlashcards({
       }
     }
   }, [currentIdx, words, isAutoPlay]);
+  const touchStartPos = useRef<{ x: number; y: number } | null>(null);
+  const didSwipeRef = useRef(false);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      touchStartPos.current = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+      };
+      didSwipeRef.current = false;
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartPos.current || e.changedTouches.length === 0) return;
+    const start = touchStartPos.current;
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+    const deltaX = endX - start.x;
+    const deltaY = endY - start.y;
+    touchStartPos.current = null;
+
+    if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
+      didSwipeRef.current = true;
+      if (deltaX < 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+  };
+
+  const handleCardClick = () => {
+    if (didSwipeRef.current) {
+      didSwipeRef.current = false;
+      return;
+    }
+    setIsFlipped((f) => !f);
+  };
   const handleShuffleToggle = useCallback(() => {
     if (!isShuffled) {
       const indices = studyPool.map((_, i) => i);
@@ -362,14 +401,14 @@ export function EditorialFlashcards({
           {/* Left: filter pills (scrollable on mobile) */}
           <div className="flex items-center gap-1.5 min-w-0 flex-1 overflow-x-auto no-scrollbar">
             {/* Spaced Repetition Filter Pill */}
-            <div className="inline-flex items-center h-8 rounded-xl border border-[#E5E3DF] bg-white p-0.5 shadow-2xs shrink-0">
+            <div className="inline-flex items-center p-0.5 h-8 rounded-xl border border-[#E5E3DF] bg-[#EFECE6]/70 shrink-0">
               <button
                 type="button"
                 onClick={() => handleResetRound("all")}
-                className={`h-full px-2 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
+                className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
                   studyFilter === "all"
-                    ? "bg-[#24523B] text-white shadow-xs"
-                    : "text-slate-600 hover:text-slate-900"
+                    ? "bg-white text-slate-900 shadow-2xs font-bold"
+                    : "text-slate-500 hover:text-slate-900"
                 }`}
                 title="Học tất cả từ vựng trong bài"
               >
@@ -379,14 +418,14 @@ export function EditorialFlashcards({
                 <button
                   type="button"
                   onClick={() => handleResetRound("due")}
-                  className={`h-full px-2 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
+                  className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
                     studyFilter === "due"
-                      ? "bg-[#24523B] text-white shadow-xs"
-                      : "text-slate-600 hover:text-slate-900"
+                      ? "bg-white text-slate-900 shadow-2xs font-bold"
+                      : "text-slate-500 hover:text-slate-900"
                   }`}
                   title="Chỉ ôn các từ đã đến lịch nhắc lại"
                 >
-                  <BellRing className="w-3 h-3" />
+                  <BellRing className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">Đến hạn ({dueCountInLesson})</span>
                   <span className="sm:hidden">Hạn ({dueCountInLesson})</span>
                 </button>
@@ -395,10 +434,10 @@ export function EditorialFlashcards({
                 <button
                   type="button"
                   onClick={() => handleResetRound("review")}
-                  className={`h-full px-2 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
+                  className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
                     studyFilter === "review"
-                      ? "bg-[#24523B] text-white shadow-xs"
-                      : "text-slate-600 hover:text-slate-900"
+                      ? "bg-white text-slate-900 shadow-2xs font-bold"
+                      : "text-slate-500 hover:text-slate-900"
                   }`}
                   title="Chỉ ôn lại các từ chưa nhớ"
                 >
@@ -407,30 +446,31 @@ export function EditorialFlashcards({
                 </button>
               )}
             </div>
+
             {/* View mode toggle pill */}
-            <div className="inline-flex items-center h-8 rounded-xl border border-[#E5E3DF] bg-white p-0.5 shadow-2xs shrink-0">
+            <div className="inline-flex items-center p-0.5 h-8 rounded-xl border border-[#E5E3DF] bg-[#EFECE6]/70 shrink-0">
               <button
                 type="button"
                 onClick={() => setViewTab("card")}
-                className={`h-full px-2 sm:px-2.5 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
+                className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
                   viewTab === "card"
-                    ? "bg-[#24523B] text-white shadow-xs"
-                    : "text-slate-600 hover:text-slate-900"
+                    ? "bg-white text-slate-900 shadow-2xs font-bold"
+                    : "text-slate-500 hover:text-slate-900"
                 }`}
               >
-                <Layers className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                <Layers className="w-3.5 h-3.5" />
                 <span className="hidden min-[380px]:inline">Thẻ</span>
               </button>
               <button
                 type="button"
                 onClick={() => setViewTab("table")}
-                className={`h-full px-2 sm:px-2.5 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
+                className={`h-full px-2.5 sm:px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
                   viewTab === "table"
-                    ? "bg-[#24523B] text-white shadow-xs"
-                    : "text-slate-600 hover:text-slate-900"
+                    ? "bg-white text-slate-900 shadow-2xs font-bold"
+                    : "text-slate-500 hover:text-slate-900"
                 }`}
               >
-                <ListFilter className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                <ListFilter className="w-3.5 h-3.5" />
                 <span className="hidden min-[380px]:inline">Bảng</span>
               </button>
             </div>
@@ -457,19 +497,42 @@ export function EditorialFlashcards({
             >
               <Shuffle className="w-4 h-4" />
             </button>
+          <div className="inline-flex items-center h-8 rounded-xl border border-[#E5E3DF] bg-white divide-x divide-[#E5E3DF] overflow-hidden shadow-2xs shrink-0">
+            <button
+              type="button"
+              onClick={handlePrev}
+              disabled={currentIdx === 0}
+              aria-label="Thẻ trước đó"
+              title="Thẻ trước đó [Phím ←]"
+              className="h-full px-2 sm:px-2.5 flex items-center justify-center text-slate-600 hover:bg-[#FAF9F6] hover:text-slate-900 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              onClick={handleNext}
+              aria-label="Thẻ tiếp theo"
+              title="Thẻ tiếp theo [Phím →]"
+              className="h-full px-2 sm:px-2.5 flex items-center justify-center text-slate-600 hover:bg-[#FAF9F6] hover:text-slate-900 transition-colors cursor-pointer"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
-      </StageHeader>
+      </div>
+    </StageHeader>
 
       {/* VIEW 1: Spaced Repetition 3D Flashcard Stage (ZERO BANNERS ON CARD) */}
       {viewTab === "card" ? (
         <div className="flex-1 min-h-0 overflow-y-auto sm:overflow-hidden flex flex-col items-center justify-center px-3 sm:px-6 xl:px-8 py-2 sm:py-4 relative touch-scroll">
           {!isRoundFinished ? (
             <div className="w-full max-w-lg sm:max-w-xl flex flex-col items-center justify-center space-y-3 sm:space-y-4 my-auto">
-              {/* 3D Flip Card Container */}
+              {/* 3D Flip Card Container with Touch Swipe support */}
               <div
-                onClick={() => setIsFlipped(!isFlipped)}
-                className="perspective-1000 w-full h-[240px] xs:h-[270px] sm:h-[320px] cursor-pointer select-none"
+                onClick={handleCardClick}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+                className="perspective-1000 w-full h-[240px] xs:h-[270px] sm:h-[320px] cursor-pointer select-none touch-pan-y"
               >
                 <div
                   className={`relative w-full h-full duration-500 transform-style-3d transition-transform ${
@@ -763,14 +826,27 @@ export function EditorialFlashcards({
               </div>
 
               <div className="relative w-full sm:w-72">
-                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Tìm theo chữ, pinyin, nghĩa..."
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#FAF9F6] border border-[#E5E3DF] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#24523B]"
+                  placeholder="Tìm từ vựng..."
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  className="w-full pl-9 pr-8 py-2 text-base sm:text-xs bg-[#FAF9F6] border border-[#E5E3DF] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#24523B]"
                 />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-700 cursor-pointer"
+                    title="Xóa tìm kiếm"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                )}
               </div>
             </div>
 
