@@ -3,22 +3,20 @@
 import React, { useState } from "react";
 import {
   Volume2,
-  BookOpen,
   Keyboard,
   Layers,
-  ChevronDown,
   MessageSquare,
   FileText,
+  BookOpenText,
+  BookOpen,
   Play,
 } from "lucide-react";
+import { StageHeader, stageIconBtnClass } from "@/components/StageHeader";
 import { Lesson } from "@/lib/types";
 import { speakChinese } from "@/utils/diff";
 
 interface EditorialLessonsProps {
   lesson: Lesson;
-  lessonIdx: number;
-  levelId: string;
-  onOpenTopicModal: () => void;
   onSelectMode: (mode: "typing" | "flashcards") => void;
 }
 
@@ -30,9 +28,6 @@ function delay(ms: number): Promise<void> {
 
 export function EditorialLessons({
   lesson,
-  lessonIdx,
-  levelId,
-  onOpenTopicModal,
   onSelectMode,
 }: EditorialLessonsProps) {
   const [activeSection, setActiveSection] = useState<"dialogue" | "grammar" | "reading">("dialogue");
@@ -63,110 +58,86 @@ export function EditorialLessons({
 
   return (
     <div className="flex-1 flex flex-col w-full min-h-0 lg:h-full lg:overflow-hidden select-none">
-      {/* Top Bar Header (Synchronized padding: px-4 sm:px-6 xl:px-8) */}
-      <div className="h-auto min-h-11 sm:min-h-14 px-2 sm:px-6 xl:px-8 py-1.5 sm:py-2 border-b border-[#E5E3DF] flex items-center justify-between bg-[#FAF9F6] sticky top-0 z-20 shrink-0">
-        {/* Left: Level Badge + Lesson Selector (Desktop only) */}
-        <div className="hidden lg:flex items-center gap-2 min-w-0">
-          <span className="h-9 px-3 inline-flex items-center justify-center text-xs font-bold tracking-tight rounded-xl bg-[#24523B] text-white shadow-xs shrink-0">
-            {levelId.toUpperCase()}
-          </span>
-
-          <button
-            type="button"
-            onClick={onOpenTopicModal}
-            className="h-9 px-3.5 inline-flex items-center gap-2 text-xs sm:text-sm font-semibold rounded-xl border border-[#E5E3DF] bg-white text-slate-800 hover:border-slate-400 hover:bg-[#FAF9F6] transition-all shadow-2xs group cursor-pointer truncate"
-            title="Đổi bài học"
-          >
-            <BookOpen className="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-800 shrink-0" />
-            <span className="truncate max-w-[150px] sm:max-w-[280px]">
-              Bài {lessonIdx + 1}: {lesson.t}
-            </span>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-600 shrink-0 ml-0.5" />
-          </button>
-        </div>
-
-        {/* Center/Right: Sub-tabs, Meaning toggle & Mode Shortcuts */}
-        <div className="flex items-center gap-1 sm:gap-2 shrink-0 ml-auto">
-          {/* Section Sub-tabs */}
-          <div className="inline-flex items-center h-8 sm:h-9 rounded-xl border border-[#E5E3DF] bg-white p-0.5 shadow-2xs">
+      <StageHeader progress={0}>
+        <div className="w-full flex items-center justify-between gap-2 py-0.5">
+          {/* Left: section sub-tabs (scrollable on mobile) */}
+          <div className="flex items-center min-w-0 flex-1 overflow-x-auto no-scrollbar">
+            <div className="inline-flex items-center h-8 rounded-xl border border-[#E5E3DF] bg-white p-0.5 shadow-2xs shrink-0">
+              <button
+                type="button"
+                onClick={() => setActiveSection("dialogue")}
+                className={`h-full px-2 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
+                  activeSection === "dialogue"
+                    ? "bg-[#24523B] text-white shadow-xs"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                <MessageSquare className="w-3.5 h-3.5" />
+                <span className="hidden min-[380px]:inline">Hội thoại</span>
+              </button>
+              {grammarCount > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setActiveSection("grammar")}
+                  className={`h-full px-2 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
+                    activeSection === "grammar"
+                      ? "bg-[#24523B] text-white shadow-xs"
+                      : "text-slate-600 hover:text-slate-900"
+                  }`}
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span className="hidden min-[380px]:inline">Ngữ pháp ({grammarCount})</span>
+                </button>
+              )}
+              {readingCount > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setActiveSection("reading")}
+                  className={`h-full px-2 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
+                    activeSection === "reading"
+                      ? "bg-[#24523B] text-white shadow-xs"
+                      : "text-slate-600 hover:text-slate-900"
+                  }`}
+                >
+                  <BookOpen className="w-3.5 h-3.5" />
+                  <span className="hidden min-[380px]:inline">Luyện đọc</span>
+                </button>
+              )}
+            </div>
+          </div>
+          {/* Right: icon-only meaning + mode shortcuts */}
+          <div className="flex items-center gap-1 sm:gap-1.5 shrink-0 ml-auto">
             <button
               type="button"
-              onClick={() => setActiveSection("dialogue")}
-              className={`h-full px-2.5 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
-                activeSection === "dialogue"
-                  ? "bg-[#24523B] text-white shadow-xs"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
+              onClick={() => setShowMeaning(!showMeaning)}
+              aria-pressed={showMeaning}
+              aria-label="Bật / tắt dịch nghĩa tiếng Việt"
+              title="Bật / Tắt dịch nghĩa tiếng Việt"
+              className={stageIconBtnClass(showMeaning)}
             >
-              <MessageSquare className="w-3.5 h-3.5" />
-              <span>Hội thoại</span>
+              <BookOpenText className="w-4 h-4" />
             </button>
-
-            {grammarCount > 0 && (
-              <button
-                type="button"
-                onClick={() => setActiveSection("grammar")}
-                className={`h-full px-2.5 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
-                  activeSection === "grammar"
-                    ? "bg-[#24523B] text-white shadow-xs"
-                    : "text-slate-600 hover:text-slate-900"
-                }`}
-              >
-                <FileText className="w-3.5 h-3.5" />
-                <span>Ngữ pháp ({grammarCount})</span>
-              </button>
-            )}
-
-            {readingCount > 0 && (
-              <button
-                type="button"
-                onClick={() => setActiveSection("reading")}
-                className={`h-full px-2.5 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
-                  activeSection === "reading"
-                    ? "bg-[#24523B] text-white shadow-xs"
-                    : "text-slate-600 hover:text-slate-900"
-                }`}
-              >
-                <BookOpen className="w-3.5 h-3.5" />
-                <span>Luyện đọc</span>
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={() => onSelectMode("typing")}
+              aria-label="Chuyển sang Luyện gõ bài này"
+              title="Chuyển sang Luyện gõ bài này"
+              className={stageIconBtnClass(false)}
+            >
+              <Keyboard className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => onSelectMode("flashcards")}
+              aria-label="Chuyển sang Flashcard bài này"
+              title="Chuyển sang Flashcard bài này"
+              className={stageIconBtnClass(false)}
+            >
+              <Layers className="w-4 h-4" />
+            </button>
           </div>
-
-          {/* Optional Meaning toggle */}
-          <button
-            type="button"
-            onClick={() => setShowMeaning(!showMeaning)}
-            className={`h-8 sm:h-9 px-2.5 sm:px-3 rounded-xl border text-[11px] sm:text-xs font-semibold transition-all cursor-pointer shadow-2xs ${
-              showMeaning
-                ? "bg-[#24523B] text-white border-[#24523B]"
-                : "bg-white text-slate-600 border-[#E5E3DF] hover:border-slate-400"
-            }`}
-            title="Bật / Tắt dịch nghĩa tiếng Việt"
-          >
-            Dịch nghĩa
-          </button>
-          {/* Quick Mode Shortcuts */}
-          <button
-            type="button"
-            onClick={() => onSelectMode("typing")}
-            className="h-9 px-3 rounded-xl bg-white hover:bg-[#FAF9F6] text-slate-700 border border-[#E5E3DF] text-xs font-semibold transition-all shadow-2xs flex items-center gap-1.5 cursor-pointer hidden md:inline-flex"
-            title="Chuyển sang Luyện gõ bài này"
-          >
-            <Keyboard className="w-3.5 h-3.5 text-slate-500" />
-            <span>Luyện gõ</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => onSelectMode("flashcards")}
-            className="h-9 px-3 rounded-xl bg-white hover:bg-[#FAF9F6] text-slate-700 border border-[#E5E3DF] text-xs font-semibold transition-all shadow-2xs flex items-center gap-1.5 cursor-pointer hidden md:inline-flex"
-            title="Chuyển sang Flashcard bài này"
-          >
-            <Layers className="w-3.5 h-3.5 text-slate-500" />
-            <span>Flashcard</span>
-          </button>
         </div>
-      </div>
+      </StageHeader>
 
       {/* Main Content Area - Synchronized padding: px-3 sm:px-6 xl:px-8 */}
       <div className="flex-1 min-h-0 overflow-y-auto px-3 sm:px-6 xl:px-8 py-4 sm:py-6 space-y-6 sm:space-y-8 w-full touch-scroll">

@@ -8,7 +8,8 @@ import { SentenceCard, SentenceItem } from "@/components/SentenceCard";
 import { PassageCard } from "@/components/PassageCard";
 import { InputArea } from "@/components/InputArea";
 import { ResultDiff } from "@/components/ResultDiff";
-import { TopControlBar } from "@/components/TopControlBar";
+import { StageHeader } from "@/components/StageHeader";
+import { TypingControls } from "@/components/TypingControls";
 import { getLessonPassages } from "@/lib/passage-service";
 import confetti from "canvas-confetti";
 import { playSuccessChime, playErrorBuzz } from "@/lib/sound";
@@ -17,7 +18,6 @@ interface EditorialTypingProps {
   lesson: Lesson;
   lessonIdx: number;
   levelId: string;
-  onOpenTopicModal: () => void;
   onRecordResult: (isCorrect: boolean) => void;
 }
 
@@ -25,7 +25,6 @@ export function EditorialTyping({
   lesson,
   lessonIdx,
   levelId,
-  onOpenTopicModal,
   onRecordResult,
 }: EditorialTypingProps) {
   // Default to "words" on server & initial render to prevent SSR hydration mismatch
@@ -238,12 +237,9 @@ export function EditorialTyping({
 
   return (
     <div className="flex-1 flex flex-col w-full min-h-0 lg:h-full lg:overflow-hidden select-none">
-      {/* Top Control Bar Header */}
-      <div className="h-auto min-h-11 sm:min-h-14 px-2 sm:px-6 xl:px-8 py-1.5 sm:py-2 border-b border-[#E5E3DF] flex items-center bg-[#FAF9F6] sticky top-0 z-10 shrink-0">
-        <TopControlBar
-          currentLevelId={levelId}
+      <StageHeader currentIndex={currentIndex} totalCount={rawCount}>
+        <TypingControls
           currentIndex={currentIndex}
-          totalCount={rawCount}
           onPrev={handlePrev}
           onNext={handleNext}
           isShuffle={isShuffle}
@@ -259,12 +255,10 @@ export function EditorialTyping({
               speakChinese(currentPassage.hanzi, 0.85);
             }
           }}
-          topicTitle={`Bài ${lessonIdx + 1}: ${lesson.t}`}
-          onOpenTopicModal={onOpenTopicModal}
           typingMode={typingMode}
           onToggleTypingMode={handleToggleTypingMode}
         />
-      </div>
+      </StageHeader>
 
       {/* Main Workspace Stage - Matches Bài khoá full-width layout */}
       <div

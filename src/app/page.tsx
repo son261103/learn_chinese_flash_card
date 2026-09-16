@@ -292,7 +292,6 @@ export default function HomePage() {
             lesson={currentLesson}
             lessonIdx={safeLessonIdx}
             levelId={currentLevelId}
-            onOpenTopicModal={() => setIsTopicModalOpen(true)}
             onRecordResult={handleRecordResult}
           />
         )}
@@ -303,7 +302,6 @@ export default function HomePage() {
             lesson={currentLesson}
             lessonIdx={safeLessonIdx}
             levelId={currentLevelId}
-            onOpenTopicModal={() => setIsTopicModalOpen(true)}
             masteredCards={progress.masteredCards}
             needsReviewCards={progress.needsReviewCards}
             cardMemory={progress.cardMemory}
@@ -316,13 +314,9 @@ export default function HomePage() {
           <EditorialLessons
             key={`lessons-${currentLevelId}-${safeLessonIdx}`}
             lesson={currentLesson}
-            lessonIdx={safeLessonIdx}
-            levelId={currentLevelId}
-            onOpenTopicModal={() => setIsTopicModalOpen(true)}
             onSelectMode={handleSelectMode}
           />
         )}
-
         {activeMode === "garden" && (
           <EditorialGarden
             key={`garden-${currentLevelId}`}

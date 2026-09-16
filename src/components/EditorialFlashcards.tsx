@@ -10,8 +10,6 @@ import {
   Shuffle,
   Check,
   Search,
-  BookOpen,
-  ChevronDown,
   Layers,
   ListFilter,
   RotateCcw,
@@ -22,6 +20,7 @@ import {
   BellRing,
   CalendarClock,
 } from "lucide-react";
+import { StageHeader, stageIconBtnClass } from "@/components/StageHeader";
 import { Lesson, Word } from "@/lib/types";
 import { tupleToWord } from "@/lib/utils";
 import { speakChinese } from "@/utils/diff";
@@ -34,7 +33,6 @@ interface EditorialFlashcardsProps {
   lesson: Lesson;
   lessonIdx: number;
   levelId: string;
-  onOpenTopicModal: () => void;
   masteredCards: Record<string, boolean>;
   needsReviewCards: Record<string, boolean>;
   cardMemory: Record<string, CardMemoryRecord>;
@@ -53,7 +51,6 @@ export function EditorialFlashcards({
   lesson,
   lessonIdx,
   levelId,
-  onOpenTopicModal,
   masteredCards,
   needsReviewCards,
   cardMemory,
@@ -357,164 +354,118 @@ export function EditorialFlashcards({
         </div>
       )}
 
-      {/* Top Bar Header */}
-      <div className="h-auto min-h-11 sm:min-h-14 px-2 sm:px-6 xl:px-8 py-1.5 sm:py-2 border-b border-[#E5E3DF] flex items-center justify-between bg-[#FAF9F6] sticky top-0 z-20 shrink-0">
-        {/* Left: Level + Lesson (Desktop only) */}
-        <div className="hidden lg:flex items-center gap-2 min-w-0">
-          <span className="h-9 px-3 inline-flex items-center justify-center text-xs font-bold tracking-tight rounded-xl bg-[#24523B] text-white shadow-xs shrink-0">
-            {levelId.toUpperCase()}
-          </span>
-
-          <button
-            type="button"
-            onClick={onOpenTopicModal}
-            className="h-9 px-3.5 inline-flex items-center gap-2 text-xs sm:text-sm font-semibold rounded-xl border border-[#E5E3DF] bg-white text-slate-800 hover:border-slate-400 hover:bg-[#FAF9F6] transition-all shadow-2xs group cursor-pointer truncate outline-none focus:outline-none focus-visible:outline-none focus:ring-0"
-            title="Đổi bài học"
-          >
-            <BookOpen className="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-800 shrink-0" />
-            <span className="truncate max-w-[150px] sm:max-w-[260px]">
-              Bài {lessonIdx + 1}: {lesson.t}
-            </span>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-600 shrink-0 ml-0.5" />
-          </button>
-        </div>
-
-        {/* Right: Spaced Repetition Filter, View Toggle, Audio Toggle, Shuffle */}
-        <div className="flex items-center gap-0.5 sm:gap-1.5 shrink-0 ml-auto">
-          {/* Spaced Repetition Filter Pill */}
-          <div className="inline-flex items-center h-7 sm:h-9 rounded-lg sm:rounded-xl border border-[#E5E3DF] bg-white p-0.5 shadow-2xs">
-            <button
-              type="button"
-              onClick={() => handleResetRound("all")}
-              className={`h-full px-1.5 sm:px-3 rounded-md sm:rounded-lg text-[10px] sm:text-xs font-semibold transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
-                studyFilter === "all"
-                  ? "bg-[#24523B] text-white shadow-xs"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
-              title="Học tất cả từ vựng trong bài"
-            >
-              Tất cả ({rawWords.length})
-            </button>
-
-            {dueCountInLesson > 0 && (
+      <StageHeader
+        currentIndex={viewTab === "card" ? currentIdx : 0}
+        totalCount={viewTab === "card" ? words.length : 0}
+      >
+        <div className="w-full flex items-center justify-between gap-2 py-0.5">
+          {/* Left: filter pills (scrollable on mobile) */}
+          <div className="flex items-center gap-1.5 min-w-0 flex-1 overflow-x-auto no-scrollbar">
+            {/* Spaced Repetition Filter Pill */}
+            <div className="inline-flex items-center h-8 rounded-xl border border-[#E5E3DF] bg-white p-0.5 shadow-2xs shrink-0">
               <button
                 type="button"
-                onClick={() => handleResetRound("due")}
-                className={`h-full px-1.5 sm:px-3 rounded-md sm:rounded-lg text-[10px] sm:text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
-                  studyFilter === "due"
+                onClick={() => handleResetRound("all")}
+                className={`h-full px-2 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
+                  studyFilter === "all"
                     ? "bg-[#24523B] text-white shadow-xs"
                     : "text-slate-600 hover:text-slate-900"
                 }`}
-                title="Chỉ ôn các từ đã đến lịch nhắc lại"
+                title="Học tất cả từ vựng trong bài"
               >
-                <BellRing className="w-3 h-3" />
-                <span className="hidden sm:inline">Đến hạn ({dueCountInLesson})</span>
-                <span className="sm:hidden">Hạn ({dueCountInLesson})</span>
+                Tất cả ({rawWords.length})
               </button>
-            )}
-
-            {unmasteredCount > 0 && (
+              {dueCountInLesson > 0 && (
+                <button
+                  type="button"
+                  onClick={() => handleResetRound("due")}
+                  className={`h-full px-2 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
+                    studyFilter === "due"
+                      ? "bg-[#24523B] text-white shadow-xs"
+                      : "text-slate-600 hover:text-slate-900"
+                  }`}
+                  title="Chỉ ôn các từ đã đến lịch nhắc lại"
+                >
+                  <BellRing className="w-3 h-3" />
+                  <span className="hidden sm:inline">Đến hạn ({dueCountInLesson})</span>
+                  <span className="sm:hidden">Hạn ({dueCountInLesson})</span>
+                </button>
+              )}
+              {unmasteredCount > 0 && (
+                <button
+                  type="button"
+                  onClick={() => handleResetRound("review")}
+                  className={`h-full px-2 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
+                    studyFilter === "review"
+                      ? "bg-[#24523B] text-white shadow-xs"
+                      : "text-slate-600 hover:text-slate-900"
+                  }`}
+                  title="Chỉ ôn lại các từ chưa nhớ"
+                >
+                  <span className="hidden sm:inline">Cần nhắc lại ({unmasteredCount})</span>
+                  <span className="sm:hidden">Nhắc ({unmasteredCount})</span>
+                </button>
+              )}
+            </div>
+            {/* View mode toggle pill */}
+            <div className="inline-flex items-center h-8 rounded-xl border border-[#E5E3DF] bg-white p-0.5 shadow-2xs shrink-0">
               <button
                 type="button"
-                onClick={() => handleResetRound("review")}
-                className={`h-full px-1.5 sm:px-3 rounded-md sm:rounded-lg text-[10px] sm:text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
-                  studyFilter === "review"
+                onClick={() => setViewTab("card")}
+                className={`h-full px-2 sm:px-2.5 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
+                  viewTab === "card"
                     ? "bg-[#24523B] text-white shadow-xs"
                     : "text-slate-600 hover:text-slate-900"
                 }`}
-                title="Chỉ ôn lại các từ chưa nhớ"
               >
-                <span className="hidden sm:inline">Cần nhắc lại ({unmasteredCount})</span>
-                <span className="sm:hidden">Nhắc ({unmasteredCount})</span>
+                <Layers className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                <span className="hidden min-[380px]:inline">Thẻ</span>
               </button>
-            )}
+              <button
+                type="button"
+                onClick={() => setViewTab("table")}
+                className={`h-full px-2 sm:px-2.5 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
+                  viewTab === "table"
+                    ? "bg-[#24523B] text-white shadow-xs"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                <ListFilter className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                <span className="hidden min-[380px]:inline">Bảng</span>
+              </button>
+            </div>
           </div>
-
-          {/* View mode toggle pill */}
-          <div className="inline-flex items-center h-7 sm:h-9 rounded-lg sm:rounded-xl border border-[#E5E3DF] bg-white p-0.5 shadow-2xs">
+          {/* Right: icon-only tools */}
+          <div className="flex items-center gap-1 sm:gap-1.5 shrink-0 ml-auto">
             <button
               type="button"
-              onClick={() => setViewTab("card")}
-              className={`h-full px-1.5 sm:px-2.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
-                viewTab === "card"
-                  ? "bg-[#24523B] text-white shadow-xs"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
+              onClick={handleToggleAutoPlay}
+              aria-pressed={isAutoPlay}
+              aria-label={isAutoPlay ? "Tắt tự động đọc" : "Bật tự động đọc"}
+              className={stageIconBtnClass(isAutoPlay)}
+              title={isAutoPlay ? "Đang bật tự động đọc (Bấm để tắt)" : "Đang tắt tự động đọc (Bấm để bật)"}
             >
-              <Layers className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-              <span>Thẻ</span>
+              {isAutoPlay ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
             </button>
             <button
               type="button"
-              onClick={() => setViewTab("table")}
-              className={`h-full px-1.5 sm:px-2.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 ${
-                viewTab === "table"
-                  ? "bg-[#24523B] text-white shadow-xs"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
+              onClick={handleShuffleToggle}
+              aria-pressed={isShuffled}
+              aria-label="Trộn ngẫu nhiên thẻ"
+              className={stageIconBtnClass(isShuffled)}
+              title="Trộn ngẫu nhiên thẻ [Phím S]"
             >
-              <ListFilter className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-              <span>Bảng</span>
+              <Shuffle className="w-4 h-4" />
             </button>
           </div>
-
-          {/* Sound Mute/Unmute Toggle Button */}
-          <button
-            type="button"
-            onClick={handleToggleAutoPlay}
-            className={`h-7 w-7 sm:h-9 sm:w-auto sm:px-3 rounded-lg sm:rounded-xl border text-[10px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs outline-none focus:outline-none focus-visible:outline-none focus:ring-0 shrink-0 ${
-              isAutoPlay
-                ? "bg-[#24523B] text-white border-[#24523B]"
-                : "bg-white text-slate-600 border-[#E5E3DF] hover:border-slate-400"
-            }`}
-            title={isAutoPlay ? "Đang bật tự động đọc (Bấm để tắt)" : "Đang tắt tự động đọc (Bấm để bật)"}
-          >
-            {isAutoPlay ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
-            <span className="hidden md:inline">
-              {isAutoPlay ? "Âm thanh" : "Tắt âm"}
-            </span>
-          </button>
-
-          {/* Shuffle button */}
-          <button
-            type="button"
-            onClick={handleShuffleToggle}
-            className={`h-7 w-7 sm:h-9 sm:w-9 rounded-lg sm:rounded-xl border transition-all flex items-center justify-center cursor-pointer shadow-2xs outline-none focus:outline-none focus-visible:outline-none focus:ring-0 shrink-0 ${
-              isShuffled
-                ? "bg-[#24523B] text-white border-[#24523B]"
-                : "bg-white text-slate-600 border-[#E5E3DF] hover:border-slate-400"
-            }`}
-            title="Trộn ngẫu nhiên thẻ [Phím S]"
-          >
-            <Shuffle className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-          </button>
         </div>
-      </div>
+      </StageHeader>
 
       {/* VIEW 1: Spaced Repetition 3D Flashcard Stage (ZERO BANNERS ON CARD) */}
       {viewTab === "card" ? (
         <div className="flex-1 min-h-0 overflow-y-auto sm:overflow-hidden flex flex-col items-center justify-center px-3 sm:px-6 xl:px-8 py-2 sm:py-4 relative touch-scroll">
           {!isRoundFinished ? (
             <div className="w-full max-w-lg sm:max-w-xl flex flex-col items-center justify-center space-y-3 sm:space-y-4 my-auto">
-              {/* Top Indicator & Progress Line */}
-              <div className="w-full space-y-1.5">
-                <div className="flex items-center justify-between text-xs text-slate-500 px-1">
-                  <span className="font-mono font-bold text-slate-700">
-                    Thẻ {currentIdx + 1} / {words.length}
-                  </span>
-                </div>
-
-                {/* Smooth Progress Bar */}
-                <div className="h-1.5 bg-[#E5E3DF] w-full rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-[#24523B] rounded-full transition-all duration-300"
-                    style={{
-                      width: `${((currentIdx + 1) / words.length) * 100}%`,
-                    }}
-                  />
-                </div>
-              </div>
-
               {/* 3D Flip Card Container */}
               <div
                 onClick={() => setIsFlipped(!isFlipped)}
@@ -823,7 +774,98 @@ export function EditorialFlashcards({
               </div>
             </div>
 
-            <div className="overflow-x-auto touch-scroll">
+            {/* Mobile: card list (no horizontal scroll) */}
+            <div className="md:hidden divide-y divide-[#E5E3DF]">
+              {filteredWords.map((w, idx) => {
+                const key = `${levelId}_${w.zh}`;
+                const isWordMastered = !!masteredCards[key];
+                const isWordNeedsReview = !!needsReviewCards[key];
+                const isCardActive = words[currentIdx]?.zh === w.zh;
+                const rec = cardMemory[key];
+                const reviewLabel =
+                  !rec || !rec.nextReview || nowSnapshot === null
+                    ? null
+                    : formatNextReview(rec, nowSnapshot);
+                const isDue =
+                  !!rec?.nextReview && nowSnapshot !== null && rec.nextReview <= nowSnapshot;
+                return (
+                  <div
+                    key={idx}
+                    onClick={() => {
+                      const newIdx = words.findIndex((item) => item.zh === w.zh);
+                      if (newIdx !== -1) {
+                        setCurrentIdx(newIdx);
+                        setIsFlipped(false);
+                        setViewTab("card");
+                        setIsRoundFinished(false);
+                      }
+                    }}
+                    className={`w-full flex items-start gap-2.5 p-3.5 text-left cursor-pointer transition-colors active:bg-[#FAF9F6] ${
+                      isCardActive ? "bg-[#FAF9F6]/70" : ""
+                    }`}
+                  >
+                    <span className="w-5 shrink-0 pt-1 text-center text-[11px] font-mono text-slate-400">
+                      {idx + 1}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <span className="hanzi text-xl font-bold text-slate-900 whitespace-nowrap shrink-0">
+                          {w.zh}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={(e) => handleSpeak(w.zh, e)}
+                          aria-label={`Nghe ${w.zh}`}
+                          className="p-1 -m-1 text-slate-400 hover:text-slate-800 active:scale-95 transition-all shrink-0 cursor-pointer"
+                        >
+                          <Volume2 className="w-3.5 h-3.5" />
+                        </button>
+                        <span className="text-xs font-semibold text-[#24523B] min-w-0 break-words">
+                          {w.py}
+                        </span>
+                      </div>
+                      <p className="mt-0.5 text-[13px] leading-snug text-slate-700 line-clamp-2">
+                        {w.vi}
+                      </p>
+                      <p className="mt-1 text-[11px] leading-snug text-slate-400 truncate">
+                        {w.hv ? `${w.hv}` : ""}
+                        {w.hv && (reviewLabel || !rec) ? " · " : ""}
+                        {reviewLabel ? (
+                          <span className={`font-semibold ${isDue ? "text-[#24523B]" : "text-slate-500"}`}>
+                            {reviewLabel}
+                          </span>
+                        ) : !rec ? (
+                          "Chưa học"
+                        ) : null}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onMarkCard(key, !isWordMastered);
+                      }}
+                      className={`mt-0.5 px-2 py-1 rounded-lg text-[11px] font-semibold border transition-all shrink-0 cursor-pointer ${
+                        isWordMastered
+                          ? "bg-[#24523B] text-white border-[#24523B]"
+                          : isWordNeedsReview
+                          ? "bg-[#FAF9F6] text-[#222B25] border-[#E5E3DF]"
+                          : "text-slate-400 border-[#E5E3DF]"
+                      }`}
+                    >
+                      {isWordMastered ? "Đã thuộc" : isWordNeedsReview ? "Cần ôn" : "Học"}
+                    </button>
+                  </div>
+                );
+              })}
+              {filteredWords.length === 0 && (
+                <p className="p-6 text-center text-xs text-slate-400">
+                  Không tìm thấy từ nào khớp “{searchQuery}”.
+                </p>
+              )}
+            </div>
+            {/* Desktop: full table */}
+            <div className="hidden md:block overflow-x-auto touch-scroll">
               <table className="w-full text-left text-sm border-collapse">
                 <thead>
                   <tr className="bg-[#FAF9F6] text-xs text-slate-500 font-semibold border-b border-[#E5E3DF]">
@@ -843,7 +885,6 @@ export function EditorialFlashcards({
                     const isWordMastered = !!masteredCards[key];
                     const isWordNeedsReview = !!needsReviewCards[key];
                     const isCardActive = words[currentIdx]?.zh === w.zh;
-
                     return (
                       <tr
                         key={idx}
