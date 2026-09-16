@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-xs: 400px;
+}
+
 @layer base {
   body {
     background-color: #FAF9F6;
@@ -103,4 +107,21 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #D1CFCA;
+}
+
+/* Mobile helpers & touch utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.pb-safe {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
+}
+
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
 }

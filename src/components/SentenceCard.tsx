@@ -115,13 +115,13 @@ export function SentenceCard({
 
   const charLength = Array.from(sentence.hanzi).length;
   const hanziSizeClass =
-    charLength <= 6
-      ? "text-5xl sm:text-6xl md:text-7xl lg:text-8xl"
-      : charLength <= 14
-      ? "text-4xl sm:text-5xl md:text-6xl"
-      : charLength <= 26
-      ? "text-3xl sm:text-4xl md:text-5xl"
-      : "text-2xl sm:text-3xl md:text-4xl";
+    charLength <= 4
+      ? "text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl"
+      : charLength <= 8
+      ? "text-3xl xs:text-4xl sm:text-5xl md:text-6xl"
+      : charLength <= 16
+      ? "text-2xl xs:text-3xl sm:text-4xl md:text-5xl"
+      : "text-xl xs:text-2xl sm:text-3xl md:text-4xl";
 
   return (
     <div
@@ -133,7 +133,7 @@ export function SentenceCard({
         type="button"
         onClick={() => handleSpeak()}
         disabled={isPlayingAudio}
-        className={`w-11 h-11 rounded-full border border-[#E5E3DF] bg-white text-slate-700 hover:bg-[#24523B] hover:text-white hover:border-[#24523B] transition-all flex items-center justify-center shadow-2xs mb-5 active:scale-95 cursor-pointer ${
+        className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#E5E3DF] bg-white text-slate-700 hover:bg-[#24523B] hover:text-white hover:border-[#24523B] transition-all flex items-center justify-center shadow-2xs mb-3 sm:mb-5 active:scale-95 cursor-pointer ${
           isPlayingAudio ? "ring-2 ring-[#24523B] bg-[#FAF9F6] text-[#24523B]" : ""
         }`}
         title="Nghe phát âm"
@@ -241,7 +241,7 @@ export function SentenceCard({
 
         {/* Translation line */}
         {showMeaning && (
-          <div className="mt-4 sm:mt-5 px-4 sm:px-6 py-2 rounded-2xl bg-white/75 border border-[#E5E3DF]/80 shadow-2xs">
+          <div className="mt-3 sm:mt-5 px-3.5 sm:px-6 py-1.5 sm:py-2 rounded-2xl bg-white/75 border border-[#E5E3DF]/80 shadow-2xs max-w-xl mx-auto">
             <p className="text-sm sm:text-base md:text-lg text-slate-700 italic font-editorial-serif leading-relaxed">
               &ldquo;{sentence.meaning}&rdquo;
             </p>
@@ -257,7 +257,7 @@ export function SentenceCard({
         {activeToken && lookupData && (
           <div
             ref={popoverRef}
-            className="absolute z-30 top-full mt-3 w-72 sm:w-80 bg-white border border-[#E5E3DF] rounded-2xl p-4 shadow-xl text-left animate-in fade-in zoom-in-95 duration-150"
+            className="fixed sm:absolute z-40 bottom-28 sm:bottom-auto sm:top-full sm:mt-3 left-4 right-4 sm:left-1/2 sm:-translate-x-1/2 sm:w-80 max-w-sm mx-auto sm:mx-0 bg-white border border-[#E5E3DF] rounded-2xl p-3.5 sm:p-4 shadow-2xl text-left animate-in fade-in zoom-in-95 duration-150"
           >
             <div className="flex items-start justify-between gap-2 pb-2 border-b border-[#E5E3DF]/60">
               <div className="flex items-baseline gap-2">

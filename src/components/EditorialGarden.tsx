@@ -60,30 +60,30 @@ export function EditorialGarden({
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full w-full overflow-hidden select-none">
+    <div className="flex-1 flex flex-col w-full min-h-0 lg:h-full lg:overflow-hidden select-none">
       {/* Top Bar Header (Identical h-14 bar matching all other modes) */}
-      <div className="h-14 px-4 sm:px-6 xl:px-8 border-b border-[#E5E3DF] flex items-center justify-between bg-[#FAF9F6] sticky top-0 z-10 shrink-0">
+      <div className="h-auto min-h-11 sm:min-h-14 px-2.5 sm:px-6 xl:px-8 py-1.5 sm:py-2 border-b border-[#E5E3DF] flex items-center justify-between gap-1.5 sm:gap-2 bg-[#FAF9F6] sticky top-0 z-20 shrink-0">
         {/* Left: Level badge + Title */}
-        <div className="flex items-center gap-2.5 min-w-0">
-          <span className="h-9 px-3 inline-flex items-center justify-center text-xs font-bold tracking-tight rounded-xl bg-[#24523B] text-white shadow-xs shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
+          <span className="hidden sm:inline-flex h-8 sm:h-9 px-2.5 sm:px-3 items-center justify-center text-xs font-bold tracking-tight rounded-xl bg-[#24523B] text-white shadow-xs shrink-0">
             {level.toUpperCase()}
           </span>
 
-          <div className="flex items-center gap-2 truncate">
+          <div className="flex items-center gap-1 sm:gap-2 truncate">
             <Library className="w-4 h-4 text-slate-700 shrink-0" />
-            <span className="text-sm font-bold text-slate-800 tracking-tight">
-              Vườn từ vựng HSK
+            <span className="text-xs sm:text-sm font-bold text-slate-800 tracking-tight truncate">
+              Vườn từ
             </span>
-            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-white border border-[#E5E3DF] text-slate-600 hidden sm:inline">
-              {(gardenData[level] || []).length} từ
+            <span className="text-[11px] sm:text-xs font-semibold px-1.5 py-0.5 rounded-full bg-white border border-[#E5E3DF] text-slate-600 hidden xs:inline">
+              {(gardenData[level] || []).length}
             </span>
           </div>
         </div>
 
         {/* Right: Level Switcher Pills + Hide Meaning Toggle */}
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0 ml-auto">
           {/* Level Switcher (HSK1, HSK2, HSK3) */}
-          <div className="inline-flex items-center h-9 rounded-xl border border-[#E5E3DF] bg-white p-0.5 shadow-2xs">
+          <div className="inline-flex items-center h-7 sm:h-9 rounded-lg sm:rounded-xl border border-[#E5E3DF] bg-white p-0.5 shadow-2xs">
             {(["hsk1", "hsk2", "hsk3"] as const).map((lvlKey) => (
               <button
                 key={lvlKey}
@@ -94,7 +94,7 @@ export function EditorialGarden({
                   setQuery("");
                   setRevealedItems({});
                 }}
-                className={`h-full px-2.5 sm:px-3 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                className={`h-full px-1.5 sm:px-3 text-[10px] sm:text-xs font-bold rounded-md sm:rounded-lg transition-all cursor-pointer ${
                   level === lvlKey
                     ? "bg-[#24523B] text-white shadow-xs"
                     : "text-slate-600 hover:text-slate-900"
@@ -112,7 +112,7 @@ export function EditorialGarden({
               setIsHideMode(!isHideMode);
               setRevealedItems({});
             }}
-            className={`h-9 px-3 rounded-xl border text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs ${
+            className={`h-7 w-7 sm:h-9 sm:w-auto sm:px-3 rounded-lg sm:rounded-xl border text-[10px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs shrink-0 ${
               isHideMode
                 ? "bg-[#24523B] text-white border-[#24523B]"
                 : "bg-white text-slate-700 border-[#E5E3DF] hover:border-slate-400"
@@ -131,12 +131,12 @@ export function EditorialGarden({
         </div>
       </div>
 
-      {/* Main Content Area (Synchronized padding: px-4 sm:px-6 xl:px-8) */}
-      <div className="flex-1 overflow-y-auto px-4 sm:px-6 xl:px-8 py-6 space-y-4 w-full">
+      {/* Main Content Area (Synchronized padding: px-3 sm:px-6 xl:px-8) */}
+      <div className="flex-1 min-h-0 overflow-y-auto px-3 sm:px-6 xl:px-8 py-4 sm:py-6 space-y-4 w-full touch-scroll">
         {/* Table Card with Integrated Search */}
         <div className="w-full bg-white rounded-2xl border border-[#E5E3DF] shadow-2xs overflow-hidden">
           {/* Toolbar inside table header */}
-          <div className="p-4 sm:p-5 border-b border-[#E5E3DF] flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white">
+          <div className="p-3.5 sm:p-5 border-b border-[#E5E3DF] flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white">
             <div className="flex items-center gap-3">
               <span className="micro-caps text-slate-400">
                 Đang hiển thị {displayedWords.length} / {filtered.length} từ
@@ -164,18 +164,18 @@ export function EditorialGarden({
           </div>
 
           {/* Table */}
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto touch-scroll">
             <table className="w-full text-left text-sm border-collapse">
               <thead>
                 <tr className="bg-[#FAF9F6] text-xs text-slate-500 font-semibold border-b border-[#E5E3DF]">
-                  <th className="py-2.5 px-4 w-12 text-center">STT</th>
-                  <th className="py-2.5 px-4 w-12">Nghe</th>
-                  <th className="py-2.5 px-4">Chữ Hán</th>
-                  <th className="py-2.5 px-4">Pinyin</th>
-                  <th className="py-2.5 px-4">Hán Việt</th>
-                  <th className="py-2.5 px-4">Nghĩa tiếng Việt</th>
-                  {isHideMode && <th className="py-2.5 px-4 w-16 text-center">Hiện</th>}
-                  <th className="py-2.5 px-4 w-16 text-center">Thuộc</th>
+                  <th className="py-2.5 px-3 sm:px-4 w-10 text-center whitespace-nowrap">STT</th>
+                  <th className="py-2.5 px-3 sm:px-4 w-10 whitespace-nowrap">Nghe</th>
+                  <th className="py-2.5 px-3 sm:px-4 whitespace-nowrap">Chữ Hán</th>
+                  <th className="py-2.5 px-3 sm:px-4 whitespace-nowrap">Pinyin</th>
+                  <th className="py-2.5 px-3 sm:px-4 whitespace-nowrap">Hán Việt</th>
+                  <th className="py-2.5 px-3 sm:px-4 min-w-[140px]">Nghĩa tiếng Việt</th>
+                  {isHideMode && <th className="py-2.5 px-3 sm:px-4 w-12 text-center whitespace-nowrap">Hiện</th>}
+                  <th className="py-2.5 px-3 sm:px-4 w-12 text-center whitespace-nowrap">Thuộc</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E5E3DF]">
@@ -266,7 +266,7 @@ export function EditorialGarden({
               <button
                 type="button"
                 onClick={() => setPage((prev) => prev + 60)}
-                className="px-6 py-2.5 bg-white hover:bg-[#FAF9F6] text-slate-800 font-bold text-xs rounded-xl border border-[#E5E3DF] shadow-2xs transition-colors cursor-pointer"
+                className="w-full sm:w-auto px-6 py-2.5 bg-white hover:bg-[#FAF9F6] text-slate-800 font-bold text-xs rounded-xl border border-[#E5E3DF] shadow-2xs transition-colors cursor-pointer"
               >
                 Xem thêm 60 từ tiếp theo ({displayedWords.length}/{filtered.length})
               </button>

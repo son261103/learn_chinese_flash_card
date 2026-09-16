@@ -154,7 +154,7 @@ export const PassageCard = memo(function PassageCard({
       className="w-full flex flex-col space-y-6 select-none"
     >
       {/* Top Bar Header matching Bài khoá style */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#E5E3DF]/70 w-full">
+      <div className="hidden sm:flex items-center justify-between gap-2 pb-2.5 sm:pb-3 border-b border-[#E5E3DF]/70 w-full">
         {/* Left Section Info */}
         <div className="flex items-center gap-2.5 min-w-0">
           <span className="w-7 h-7 rounded-xl bg-[#24523B] text-white text-xs font-bold flex items-center justify-center shrink-0">
@@ -171,12 +171,12 @@ export const PassageCard = memo(function PassageCard({
         </div>
 
         {/* Right Action Controls */}
-        <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <button
             type="button"
             onClick={handleSpeakAll}
             disabled={isPlayingAll}
-            className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border text-xs font-semibold transition-all shadow-2xs cursor-pointer ${
+            className={`inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-xl border text-xs font-semibold transition-all shadow-2xs cursor-pointer ${
               isPlayingAll
                 ? "bg-[#24523B] text-white border-[#24523B]"
                 : "bg-white text-slate-700 border-[#E5E3DF] hover:border-slate-400 hover:text-slate-900"
@@ -184,9 +184,8 @@ export const PassageCard = memo(function PassageCard({
             title="Nghe toàn bộ đoạn"
           >
             <Play className="w-3.5 h-3.5 text-[#24523B] fill-[#24523B]" />
-            <span>{isPlayingAll ? "Đang phát..." : "Nghe toàn bộ đoạn"}</span>
+            <span>{isPlayingAll ? "Đang phát..." : "Nghe đoạn"}</span>
           </button>
-
           <button
             type="button"
             onClick={handleCopy}
@@ -203,7 +202,7 @@ export const PassageCard = memo(function PassageCard({
       </div>
 
       {/* Conversational Chat Feed matching Bài khoá layout */}
-      <div className="space-y-6 pt-1 w-full">
+      <div className="space-y-4 sm:space-y-6 pt-1 w-full">
         {passage.sentences.map((sent, sIdx) => {
           const isPlayingThis = playingSentenceIdx === sIdx;
           const speakerIndex = speakerMap[(sent.who || "").trim()] ?? 0;
@@ -224,13 +223,13 @@ export const PassageCard = memo(function PassageCard({
               }`}
             >
               <div
-                className={`flex items-start gap-3 w-full md:max-w-[90%] lg:max-w-[85%] ${
+                className={`flex items-start gap-2 sm:gap-3 w-full md:max-w-[90%] lg:max-w-[85%] ${
                   isSecondarySpeaker ? "flex-row-reverse" : "flex-row"
                 }`}
               >
                 {/* Speaker Avatar Icon */}
                 <div
-                  className={`w-9 h-9 rounded-2xl flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs select-none border ${
+                  className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl sm:rounded-2xl flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs select-none border ${
                     isSecondarySpeaker
                       ? "bg-[#24523B] text-white border-[#24523B]"
                       : "bg-white text-slate-800 border-[#E5E3DF]"
@@ -242,7 +241,7 @@ export const PassageCard = memo(function PassageCard({
 
                 {/* Speech Bubble Card */}
                 <div
-                  className={`flex-1 p-4 sm:p-5 rounded-3xl border transition-all flex flex-col gap-2 shadow-2xs ${
+                  className={`flex-1 p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border transition-all flex flex-col gap-1.5 sm:gap-2 shadow-2xs ${
                     isSecondarySpeaker
                       ? "bg-[#FAF9F6] border-[#D1CFCA]/70 rounded-tr-xs"
                       : "bg-white border-[#E5E3DF] rounded-tl-xs"
@@ -270,7 +269,7 @@ export const PassageCard = memo(function PassageCard({
                   </div>
 
                   {/* Chinese Hanzi with Live Typing Highlighting */}
-                  <div className="hanzi text-2xl sm:text-3xl font-normal text-[#222B25] tracking-wide pt-0.5 leading-snug select-text">
+                  <div className="hanzi text-xl sm:text-2xl md:text-3xl font-normal text-[#222B25] tracking-wide pt-0.5 leading-snug select-text">
                     {Array.from(sent.zh).map((char, charIdx) => {
                       const isWhitespace = /[\r\n\s]/.test(char);
                       if (isWhitespace) {
@@ -324,7 +323,7 @@ export const PassageCard = memo(function PassageCard({
 
                   {/* Pinyin Line matching Bài khoá */}
                   {showPinyin && sent.py && (
-                    <div className="text-sm sm:text-base font-semibold text-[#24523B] tracking-wide font-sans">
+                    <div className="text-xs sm:text-sm md:text-base font-semibold text-[#24523B] tracking-wide font-sans">
                       {sent.py}
                     </div>
                   )}
@@ -346,7 +345,7 @@ export const PassageCard = memo(function PassageCard({
       {activeTokenKey && lookupData && (
         <div
           ref={popoverRef}
-          className="fixed z-50 bottom-24 right-6 sm:right-10 w-72 sm:w-80 bg-white border border-[#E5E3DF] rounded-2xl p-4 shadow-2xl text-left animate-in fade-in zoom-in-95 duration-150"
+          className="fixed z-50 bottom-28 sm:bottom-24 left-4 right-4 sm:left-auto sm:right-10 w-auto sm:w-80 max-w-sm mx-auto sm:mx-0 bg-white border border-[#E5E3DF] rounded-2xl p-3.5 sm:p-4 shadow-2xl text-left animate-in fade-in zoom-in-95 duration-150"
         >
           <div className="flex items-start justify-between gap-2 pb-2 border-b border-[#E5E3DF]/60">
             <div className="flex items-baseline gap-2">

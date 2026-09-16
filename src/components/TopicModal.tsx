@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import { BookOpen, Search, X, Check } from "lucide-react";
-import { Lesson } from "@/lib/types";
+import { Lesson, LevelInfo } from "@/lib/types";
 
 interface TopicModalProps {
   isOpen: boolean;
@@ -12,6 +12,8 @@ interface TopicModalProps {
   onSelectLesson: (lessonIdx: number) => void;
   levelId: string;
   levelName: string;
+  levels?: LevelInfo[];
+  onSelectLevel?: (levelId: string) => void;
 }
 
 export function TopicModal({
@@ -20,7 +22,10 @@ export function TopicModal({
   lessons,
   currentLessonIdx,
   onSelectLesson,
+  levelId,
   levelName,
+  levels,
+  onSelectLevel,
 }: TopicModalProps) {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -41,9 +46,12 @@ export function TopicModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-[#24523B]/40 backdrop-blur-xs select-none">
+    <div
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 md:p-6 bg-[#24523B]/40 backdrop-blur-xs select-none animate-in fade-in duration-150"
+      onClick={onClose}
+    >
       <div
-        className="bg-[#FAF9F6] border border-[#E5E3DF] rounded-3xl max-w-2xl w-full p-5 sm:p-6 md:p-7 shadow-2xl space-y-4 max-h-[85vh] flex flex-col text-[#222B25]"
+        className="bg-[#FAF9F6] border border-[#E5E3DF] rounded-t-3xl sm:rounded-3xl max-w-2xl w-full p-4 sm:p-6 md:p-7 shadow-2xl space-y-3 sm:space-y-4 max-h-[88vh] sm:max-h-[85vh] flex flex-col text-[#222B25] animate-in slide-in-from-bottom-4 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -61,11 +69,31 @@ export function TopicModal({
           <button
             type="button"
             onClick={onClose}
-            className="p-2 text-slate-400 hover:text-slate-900 rounded-xl hover:bg-[#E5E3DF]/50 transition-colors cursor-pointer"
+            className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-slate-900 rounded-xl hover:bg-[#E5E3DF]/50 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
+
+        {/* Quick Level switch tabs */}
+        {levels && onSelectLevel && (
+          <div className="grid grid-cols-3 gap-1 bg-[#E5E3DF]/50 p-1 rounded-xl border border-[#E5E3DF]">
+            {levels.map((lvl) => (
+              <button
+                key={lvl.id}
+                type="button"
+                onClick={() => onSelectLevel(lvl.id)}
+                className={`py-1.5 px-2 rounded-lg text-xs font-bold transition-all text-center cursor-pointer ${
+                  levelId === lvl.id
+                    ? "bg-[#24523B] text-white shadow-xs"
+                    : "text-slate-600 hover:bg-white/60"
+                }`}
+              >
+                {lvl.id.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Search Bar */}
         <div className="relative">
@@ -80,7 +108,7 @@ export function TopicModal({
         </div>
 
         {/* Lessons List */}
-        <div className="overflow-y-auto flex-1 pr-1 space-y-2 max-h-[55vh]">
+        <div className="overflow-y-auto flex-1 pr-1 space-y-2 max-h-[60vh] sm:max-h-[55vh] touch-scroll">
           {filteredLessons.map(({ lesson, index }) => {
             const isSelected = index === currentLessonIdx;
 
@@ -92,7 +120,7 @@ export function TopicModal({
                   onSelectLesson(index);
                   onClose();
                 }}
-                className={`w-full text-left p-3.5 rounded-2xl border transition-all flex items-center justify-between gap-3 cursor-pointer ${
+                className={`w-full text-left p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border transition-all flex items-center justify-between gap-2 sm:gap-3 cursor-pointer active:scale-98 ${
                   isSelected
                     ? "bg-[#24523B] text-white border-[#24523B] shadow-sm"
                     : "bg-white text-slate-800 border-[#E5E3DF] hover:border-slate-400 hover:bg-[#FAF9F6]"

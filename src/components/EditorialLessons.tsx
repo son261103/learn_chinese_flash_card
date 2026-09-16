@@ -62,11 +62,11 @@ export function EditorialLessons({
   const readingCount = lesson.readingPassages?.length || 0;
 
   return (
-    <div className="flex-1 flex flex-col h-full w-full overflow-hidden select-none">
+    <div className="flex-1 flex flex-col w-full min-h-0 lg:h-full lg:overflow-hidden select-none">
       {/* Top Bar Header (Synchronized padding: px-4 sm:px-6 xl:px-8) */}
-      <div className="h-14 px-4 sm:px-6 xl:px-8 border-b border-[#E5E3DF] flex items-center justify-between bg-[#FAF9F6] sticky top-0 z-10 shrink-0">
-        {/* Left: Level Badge + Lesson Selector */}
-        <div className="flex items-center gap-2 min-w-0">
+      <div className="h-auto min-h-11 sm:min-h-14 px-2 sm:px-6 xl:px-8 py-1.5 sm:py-2 border-b border-[#E5E3DF] flex items-center justify-between bg-[#FAF9F6] sticky top-0 z-20 shrink-0">
+        {/* Left: Level Badge + Lesson Selector (Desktop only) */}
+        <div className="hidden lg:flex items-center gap-2 min-w-0">
           <span className="h-9 px-3 inline-flex items-center justify-center text-xs font-bold tracking-tight rounded-xl bg-[#24523B] text-white shadow-xs shrink-0">
             {levelId.toUpperCase()}
           </span>
@@ -86,13 +86,13 @@ export function EditorialLessons({
         </div>
 
         {/* Center/Right: Sub-tabs, Meaning toggle & Mode Shortcuts */}
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0 ml-auto">
           {/* Section Sub-tabs */}
-          <div className="inline-flex items-center h-9 rounded-xl border border-[#E5E3DF] bg-white p-0.5 shadow-2xs">
+          <div className="inline-flex items-center h-8 sm:h-9 rounded-xl border border-[#E5E3DF] bg-white p-0.5 shadow-2xs">
             <button
               type="button"
               onClick={() => setActiveSection("dialogue")}
-              className={`h-full px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+              className={`h-full px-2.5 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
                 activeSection === "dialogue"
                   ? "bg-[#24523B] text-white shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
@@ -106,7 +106,7 @@ export function EditorialLessons({
               <button
                 type="button"
                 onClick={() => setActiveSection("grammar")}
-                className={`h-full px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                className={`h-full px-2.5 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
                   activeSection === "grammar"
                     ? "bg-[#24523B] text-white shadow-xs"
                     : "text-slate-600 hover:text-slate-900"
@@ -121,7 +121,7 @@ export function EditorialLessons({
               <button
                 type="button"
                 onClick={() => setActiveSection("reading")}
-                className={`h-full px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                className={`h-full px-2.5 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
                   activeSection === "reading"
                     ? "bg-[#24523B] text-white shadow-xs"
                     : "text-slate-600 hover:text-slate-900"
@@ -137,7 +137,7 @@ export function EditorialLessons({
           <button
             type="button"
             onClick={() => setShowMeaning(!showMeaning)}
-            className={`h-9 px-3 rounded-xl border text-xs font-semibold transition-all cursor-pointer shadow-2xs ${
+            className={`h-8 sm:h-9 px-2.5 sm:px-3 rounded-xl border text-[11px] sm:text-xs font-semibold transition-all cursor-pointer shadow-2xs ${
               showMeaning
                 ? "bg-[#24523B] text-white border-[#24523B]"
                 : "bg-white text-slate-600 border-[#E5E3DF] hover:border-slate-400"
@@ -146,7 +146,6 @@ export function EditorialLessons({
           >
             Dịch nghĩa
           </button>
-
           {/* Quick Mode Shortcuts */}
           <button
             type="button"
@@ -169,8 +168,8 @@ export function EditorialLessons({
         </div>
       </div>
 
-      {/* Main Content Area - Synchronized padding: px-4 sm:px-6 xl:px-8 */}
-      <div className="flex-1 overflow-y-auto px-4 sm:px-6 xl:px-8 py-6 space-y-8 w-full">
+      {/* Main Content Area - Synchronized padding: px-3 sm:px-6 xl:px-8 */}
+      <div className="flex-1 min-h-0 overflow-y-auto px-3 sm:px-6 xl:px-8 py-4 sm:py-6 space-y-6 sm:space-y-8 w-full touch-scroll">
         {/* SECTION 1: True Conversational Chat Script */}
         {activeSection === "dialogue" && (
           <div className="space-y-10 w-full">
@@ -243,13 +242,13 @@ export function EditorialLessons({
                             }`}
                           >
                             <div
-                              className={`flex items-start gap-3 w-full md:max-w-[90%] lg:max-w-[85%] ${
+                              className={`flex items-start gap-2 sm:gap-3 w-full md:max-w-[90%] lg:max-w-[85%] ${
                                 isSecondarySpeaker ? "flex-row-reverse" : "flex-row"
                               }`}
                             >
                               {/* Speaker Avatar Icon */}
                               <div
-                                className={`w-9 h-9 rounded-2xl flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs select-none border ${
+                                className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl sm:rounded-2xl flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs select-none border ${
                                   isSecondarySpeaker
                                     ? "bg-[#24523B] text-white border-[#24523B]"
                                     : "bg-white text-slate-800 border-[#E5E3DF]"
@@ -261,7 +260,7 @@ export function EditorialLessons({
 
                               {/* Speech Bubble Card */}
                               <div
-                                className={`flex-1 p-4 sm:p-5 rounded-3xl border transition-all flex flex-col gap-1.5 shadow-2xs ${
+                                className={`flex-1 p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border transition-all flex flex-col gap-1 sm:gap-1.5 shadow-2xs ${
                                   isSecondarySpeaker
                                     ? "bg-[#FAF9F6] border-[#D1CFCA] rounded-tr-xs"
                                     : "bg-white border-[#E5E3DF] rounded-tl-xs"
@@ -288,7 +287,7 @@ export function EditorialLessons({
                                 </div>
 
                                 {/* Chinese Hanzi */}
-                                <div className="hanzi text-2xl sm:text-3xl font-normal text-[#222B25] tracking-wide pt-0.5 leading-snug">
+                                <div className="hanzi text-xl sm:text-2xl md:text-3xl font-normal text-[#222B25] tracking-wide pt-0.5 leading-snug">
                                   {line.zh}
                                 </div>
 
@@ -327,7 +326,7 @@ export function EditorialLessons({
               lesson.grammarPoints.map((gp, i) => (
                 <div
                   key={i}
-                  className="w-full p-5 sm:p-7 rounded-3xl bg-white border border-[#E5E3DF] shadow-2xs space-y-4"
+                  className="w-full p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-[#E5E3DF] shadow-2xs space-y-3 sm:space-y-4"
                 >
                   {/* Grammar Title */}
                   <div className="flex items-baseline gap-3 pb-3 border-b border-[#E5E3DF]">
@@ -335,7 +334,7 @@ export function EditorialLessons({
                       {i + 1}
                     </span>
                     <div>
-                      <h4 className="hanzi text-xl sm:text-2xl font-bold text-[#222B25]">
+                      <h4 className="hanzi text-lg sm:text-2xl font-bold text-[#222B25]">
                         {gp.title_zh}
                       </h4>
                       <p className="text-xs sm:text-sm text-slate-500 font-editorial-serif italic mt-0.5">
@@ -345,7 +344,7 @@ export function EditorialLessons({
                   </div>
 
                   {/* Explanation */}
-                  <div className="space-y-2 text-xs sm:text-sm text-slate-700 leading-relaxed bg-[#FAF9F6] p-4 sm:p-5 rounded-2xl border border-[#E5E3DF]/80">
+                  <div className="space-y-2 text-xs sm:text-sm text-slate-700 leading-relaxed bg-[#FAF9F6] p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border border-[#E5E3DF]/80">
                     <p className="hanzi font-normal text-base sm:text-lg text-slate-900">{gp.explain_zh}</p>
                     <p className="text-slate-600 italic font-editorial-serif border-t border-[#E5E3DF] pt-2">
                       {gp.explain_vi}
@@ -360,7 +359,7 @@ export function EditorialLessons({
                         {gp.examples.map((ex, exIdx) => (
                           <div
                             key={exIdx}
-                            className="p-3.5 sm:p-4 rounded-2xl bg-[#FAF9F6] border border-[#E5E3DF] flex items-center justify-between gap-3"
+                            className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#FAF9F6] border border-[#E5E3DF] flex items-center justify-between gap-3"
                           >
                             <div className="space-y-0.5">
                               <div className="hanzi text-base sm:text-lg font-normal text-slate-900">
@@ -403,7 +402,7 @@ export function EditorialLessons({
               lesson.readingPassages.map((rp, rIdx) => (
                 <div
                   key={rIdx}
-                  className="w-full p-6 sm:p-8 rounded-3xl bg-white border border-[#E5E3DF] shadow-2xs space-y-5"
+                  className="w-full p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-white border border-[#E5E3DF] shadow-2xs space-y-4 sm:space-y-5"
                 >
                   <div className="flex items-center justify-between pb-3 border-b border-[#E5E3DF]">
                     <span className="micro-caps text-slate-400">
@@ -425,7 +424,7 @@ export function EditorialLessons({
                     {rp.zh?.map((zhLine, zIdx) => (
                       <div
                         key={zIdx}
-                        className="p-4 rounded-2xl bg-[#FAF9F6] border border-[#E5E3DF] hover:border-slate-300 transition-all flex items-start justify-between gap-3"
+                        className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#FAF9F6] border border-[#E5E3DF] hover:border-slate-300 transition-all flex items-start justify-between gap-3"
                       >
                         <div className="space-y-1">
                           <div className="hanzi text-lg sm:text-xl font-normal text-[#222B25] leading-relaxed">

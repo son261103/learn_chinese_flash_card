@@ -237,9 +237,9 @@ export function EditorialTyping({
   }
 
   return (
-    <div className="flex-1 flex flex-col h-full w-full overflow-hidden select-none">
+    <div className="flex-1 flex flex-col w-full min-h-0 lg:h-full lg:overflow-hidden select-none">
       {/* Top Control Bar Header */}
-      <div className="h-auto min-h-14 px-4 sm:px-6 xl:px-8 py-2 border-b border-[#E5E3DF] flex items-center bg-[#FAF9F6] sticky top-0 z-10 shrink-0">
+      <div className="h-auto min-h-11 sm:min-h-14 px-2 sm:px-6 xl:px-8 py-1.5 sm:py-2 border-b border-[#E5E3DF] flex items-center bg-[#FAF9F6] sticky top-0 z-10 shrink-0">
         <TopControlBar
           currentLevelId={levelId}
           currentIndex={currentIndex}
@@ -253,8 +253,10 @@ export function EditorialTyping({
           showMeaning={showMeaning}
           onToggleMeaning={() => setShowMeaning((m) => !m)}
           onSpeak={() => {
-            if (currentWord?.hanzi) {
+            if (typingMode === "words" && currentWord?.hanzi) {
               speakChinese(currentWord.hanzi, 0.85);
+            } else if (typingMode === "passages" && currentPassage?.hanzi) {
+              speakChinese(currentPassage.hanzi, 0.85);
             }
           }}
           topicTitle={`Bài ${lessonIdx + 1}: ${lesson.t}`}
@@ -266,14 +268,14 @@ export function EditorialTyping({
 
       {/* Main Workspace Stage - Matches Bài khoá full-width layout */}
       <div
-        className={`flex-1 overflow-y-auto px-4 sm:px-6 xl:px-8 py-6 w-full ${
+        className={`flex-1 min-h-0 overflow-y-auto px-3 sm:px-6 xl:px-8 py-3 sm:py-6 w-full touch-scroll ${
           typingMode === "words"
-            ? "flex flex-col justify-center items-center"
-            : "space-y-6"
+            ? "flex flex-col justify-start pt-4 sm:pt-0 sm:justify-center items-center"
+            : "space-y-4 sm:space-y-6"
         }`}
       >
         {typingMode === "words" && currentWord && (
-          <div className="w-full flex flex-col items-center my-auto">
+          <div className="w-full flex flex-col items-center sm:my-auto">
             <SentenceCard
               key={`word-${currentWord.id}`}
               sentence={currentWord}
@@ -301,7 +303,7 @@ export function EditorialTyping({
       {targetHanzi && (
         <div
           id="bottom-input-dock"
-          className="shrink-0 border-t border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md px-4 sm:px-6 xl:px-8 py-2.5 sm:py-3.5 w-full z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]"
+          className="shrink-0 border-t border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md px-3 sm:px-6 xl:px-8 py-2 sm:py-3 pb-safe w-full z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]"
         >
           <div className="w-full flex flex-col gap-2">
             <InputArea

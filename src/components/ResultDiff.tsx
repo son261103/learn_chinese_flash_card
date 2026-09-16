@@ -106,7 +106,7 @@ export function ResultDiff({
               <button
                 type="button"
                 onClick={onRetryKeep}
-                className="flex-1 sm:flex-initial px-3 py-1.5 bg-white border border-rose-200 text-rose-700 font-bold text-xs rounded-xl hover:bg-rose-50 transition-colors flex items-center justify-center gap-1 cursor-pointer"
+                className="flex-1 sm:flex-initial px-2.5 sm:px-3 py-1.5 bg-white border border-rose-200 text-rose-700 font-bold text-xs rounded-xl hover:bg-rose-50 transition-colors flex items-center justify-center gap-1 cursor-pointer"
               >
                 <Edit3 className="w-3.5 h-3.5" />
                 <span>Sửa tiếp</span>
@@ -114,7 +114,7 @@ export function ResultDiff({
               <button
                 type="button"
                 onClick={onRetryClear}
-                className="flex-1 sm:flex-initial px-3 py-1.5 bg-white border border-slate-300 text-slate-700 font-bold text-xs rounded-xl hover:bg-slate-50 transition-colors flex items-center justify-center gap-1 cursor-pointer"
+                className="flex-1 sm:flex-initial px-2.5 sm:px-3 py-1.5 bg-white border border-slate-300 text-slate-700 font-bold text-xs rounded-xl hover:bg-slate-50 transition-colors flex items-center justify-center gap-1 cursor-pointer"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Gõ lại</span>
@@ -122,7 +122,7 @@ export function ResultDiff({
               <button
                 type="button"
                 onClick={onContinue}
-                className="px-3 py-1.5 bg-[#24523B] text-white font-bold text-xs rounded-xl hover:bg-[#2D6448] transition-colors flex items-center gap-1 cursor-pointer"
+                className="px-2.5 sm:px-3 py-1.5 bg-[#24523B] text-white font-bold text-xs rounded-xl hover:bg-[#2D6448] transition-colors flex items-center gap-1 cursor-pointer shrink-0"
               >
                 <span>Bỏ qua</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -156,7 +156,7 @@ export function ResultDiff({
               return (
                 <span
                   key={idx}
-                  className="hanzi text-2xl sm:text-3xl font-bold diff-correct bg-emerald-50 px-1.5 py-0.5 rounded"
+                  className="hanzi text-xl sm:text-2xl md:text-3xl font-bold diff-correct bg-emerald-50 px-1.5 py-0.5 rounded"
                   title="Chính xác"
                 >
                   {tok.char}
@@ -170,7 +170,7 @@ export function ResultDiff({
                   className="inline-flex flex-col items-center bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200"
                   title={`Bạn gõ: ${tok.char} — Cần gõ: ${tok.expected}`}
                 >
-                  <span className="hanzi text-2xl sm:text-3xl font-bold diff-wrong">
+                  <span className="hanzi text-xl sm:text-2xl md:text-3xl font-bold diff-wrong">
                     {tok.char}
                   </span>
                   <span className="hanzi text-xs font-semibold text-emerald-700">
@@ -186,7 +186,7 @@ export function ResultDiff({
                   className="inline-flex flex-col items-center bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200"
                   title={`Thiếu ký tự: ${tok.expected}`}
                 >
-                  <span className="hanzi text-2xl sm:text-3xl font-bold diff-missing">
+                  <span className="hanzi text-xl sm:text-2xl md:text-3xl font-bold diff-missing">
                     {tok.expected}
                   </span>
                   <span className="text-[9px] uppercase tracking-wider text-slate-400 font-sans">
@@ -199,7 +199,7 @@ export function ResultDiff({
             return (
               <span
                 key={idx}
-                className="hanzi text-2xl sm:text-3xl font-bold diff-wrong bg-rose-100 px-1.5 py-0.5 rounded"
+                className="hanzi text-xl sm:text-2xl md:text-3xl font-bold diff-wrong bg-rose-100 px-1.5 py-0.5 rounded"
                 title={`Ký tự thừa: ${tok.char}`}
               >
                 {tok.char}
@@ -209,7 +209,7 @@ export function ResultDiff({
         </div>
 
         {/* Target string reference */}
-        <div className="pt-2 border-t border-[#E5E3DF]/60 text-xs text-slate-500 flex items-center justify-between">
+        <div className="pt-2 border-t border-[#E5E3DF]/60 text-xs text-slate-500 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
           <span>Câu mẫu chuẩn: <strong className="hanzi text-slate-800 font-bold">{targetSentence.hanzi}</strong></span>
           <span className="font-editorial-serif italic text-slate-600">&ldquo;{targetSentence.meaning}&rdquo;</span>
         </div>

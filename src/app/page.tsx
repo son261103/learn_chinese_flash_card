@@ -20,9 +20,10 @@ import {
   loadUserProgress,
   saveUserProgress,
   scheduleNextReview,
+  getDueCardsCount,
 } from "@/lib/data-service";
 import { LevelInfo, Lesson, UserProgress } from "@/lib/types";
-import { BookOpen, Flame } from "lucide-react";
+import { BookOpen, ChevronDown, Flame, Keyboard, Layers, Library, RotateCcw, X } from "lucide-react";
 
 export default function HomePage() {
   const [levels] = useState<LevelInfo[]>(LOCAL_LEVELS);
@@ -45,6 +46,8 @@ export default function HomePage() {
   );
 
   const [isTopicModalOpen, setIsTopicModalOpen] = useState(false);
+  const [isMobileStatsOpen, setIsMobileStatsOpen] = useState(false);
+  const [dueCount, setDueCount] = useState(0);
 
   // Practice stats tracking with localStorage persistence
   const [stats, setStats] = useState<EditorialStats>(() =>
@@ -61,6 +64,12 @@ export default function HomePage() {
     setProgress(loadUserProgress());
     setStats(loadPracticeStats());
   }, []);
+
+  // Đồng bộ dueCount từ progress khi mount và khi progress thay đổi
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setDueCount(getDueCardsCount(progress));
+  }, [progress]);
 
   const handleToggleMastered = (key: string) => {
     setProgress((prev) => {
@@ -95,7 +104,6 @@ export default function HomePage() {
 
       // SM-2 scheduled next review date
       cardMemory[key] = scheduleNextReview(cardMemory[key], isMastered, now);
-
       const updated = { ...prev, masteredCards, needsReviewCards, cardMemory };
       saveUserProgress(updated);
       return updated;
@@ -163,104 +171,100 @@ export default function HomePage() {
     setCurrentLessonIdx(nextIdx);
     saveAppState({ currentLessonIdx: nextIdx });
   };
-
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen lg:h-screen lg:overflow-hidden w-full bg-[#FAF9F6] text-[#222B25] font-sans antialiased selection:bg-[#E5E3DF]">
+    <div className="flex flex-col lg:flex-row h-dvh min-h-dvh lg:h-screen lg:overflow-hidden w-full bg-[#FAF9F6] text-[#222B25] font-sans antialiased selection:bg-[#E5E3DF] overflow-hidden">
       {/* Mobile Top Header (< lg) matching --main */}
-      <header className="lg:hidden w-full border-b border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md sticky top-0 z-30 px-4 py-3">
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div>
-              <span className="text-xl font-black tracking-tighter text-[#222B25]">
-                HANZI.
-              </span>
-              <span className="micro-caps ml-1">HSK</span>
-            </div>
+      <header className="lg:hidden w-full border-b border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md shrink-0 z-30 px-3 py-1">
+        {/* Top Row: Brand + Unified Level & Lesson Selector + Streak */}
+        <div className="flex items-center justify-between gap-1.5 h-7 min-h-[26px]">
+          <div className="flex items-center gap-1.5 min-w-0">
+            <span className="text-base font-black tracking-tighter text-[#222B25] shrink-0 leading-none">
+              HANZI.
+            </span>
 
-            {/* Quick Level switch for mobile */}
-            <div className="flex items-center bg-[#E5E3DF]/60 p-0.5 rounded-lg text-xs font-bold">
-              {levels.map((lvl) => (
-                <button
-                  key={lvl.id}
-                  type="button"
-                  onClick={() => handleSelectLevel(lvl.id)}
-                  className={`px-2 py-1 rounded-md transition-all ${
-                    currentLevelId === lvl.id
-                      ? "bg-[#24523B] text-white shadow-xs"
-                      : "text-slate-600"
-                  }`}
-                >
-                  {lvl.id.toUpperCase()}
-                </button>
-              ))}
-            </div>
-
-            {/* Topic modal trigger on mobile */}
+            {/* Unified Level & Lesson Pill */}
             <button
               type="button"
               onClick={() => setIsTopicModalOpen(true)}
-              className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-700 bg-white px-2 py-1 rounded-lg border border-[#E5E3DF]"
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-white border border-[#E5E3DF] text-[11px] font-semibold text-slate-800 shadow-2xs hover:border-slate-400 active:scale-95 transition-all truncate h-6"
+              title="Đổi bài học hoặc cấp độ HSK"
             >
-              <BookOpen className="w-3 h-3 text-slate-500" />
-              <span className="max-w-[80px] truncate">
-                Bài {safeLessonIdx + 1}
-              </span>
+              <span className="text-[#24523B] font-extrabold shrink-0">{currentLevelId.toUpperCase()}</span>
+              <span className="text-slate-300 shrink-0">·</span>
+              <span className="truncate max-w-[120px] font-medium">Bài {safeLessonIdx + 1}</span>
+              <ChevronDown className="w-3 h-3 text-slate-400 shrink-0 ml-0.5" />
             </button>
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1 text-xs font-bold text-orange-600 px-2 py-1 bg-orange-50 rounded-lg border border-orange-200">
-              <Flame className="w-3.5 h-3.5 fill-orange-500 text-orange-500" />
-              <span>{stats.currentStreak}</span>
-            </div>
-          </div>
+          {/* Right: Streak & Session Stats trigger */}
+          <button
+            type="button"
+            onClick={() => setIsMobileStatsOpen(true)}
+            className="flex items-center gap-1 text-[11px] font-bold text-orange-600 px-2 py-0.5 bg-orange-50 hover:bg-orange-100/80 rounded-lg border border-orange-200 shadow-2xs shrink-0 cursor-pointer transition-colors active:scale-95 h-6"
+            title="Bấm để xem thống kê phiên học"
+          >
+            <Flame className="w-3 h-3 fill-orange-500 text-orange-500" />
+            <span>{stats.currentStreak}</span>
+          </button>
         </div>
 
-        {/* Mobile Mode Switcher Bar */}
-        <div className="grid grid-cols-4 gap-1 pt-2 mt-2 border-t border-[#E5E3DF]">
+        {/* Bottom Row: Sleek Segmented Control for Modes */}
+        <div className="p-0.5 rounded-lg bg-[#EFECE6]/80 flex items-center justify-between gap-0.5 mt-1 border border-[#E5E3DF]/50 h-7">
           <button
             type="button"
             onClick={() => handleSelectMode("typing")}
-            className={`py-1 text-xs font-bold rounded-lg cursor-pointer ${
+            className={`flex-1 h-6 px-1 rounded-md text-[10.5px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 ${
               activeMode === "typing"
-                ? "bg-[#24523B] text-white"
-                : "text-slate-600 hover:bg-slate-100"
+                ? "bg-[#24523B] text-white shadow-2xs font-bold"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
-            Luyện gõ
+            <Keyboard className="w-3 h-3 shrink-0" />
+            <span>Gõ</span>
           </button>
+
           <button
             type="button"
             onClick={() => handleSelectMode("flashcards")}
-            className={`py-1 text-xs font-bold rounded-lg cursor-pointer ${
+            className={`flex-1 h-6 px-1 rounded-md text-[10.5px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 relative ${
               activeMode === "flashcards"
-                ? "bg-[#24523B] text-white"
-                : "text-slate-600 hover:bg-slate-100"
+                ? "bg-[#24523B] text-white shadow-2xs font-bold"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
-            Flashcard
+            <Layers className="w-3 h-3 shrink-0" />
+            <span>Thẻ</span>
+            {dueCount > 0 && (
+              <span className="absolute -top-1 -right-0.5 min-w-[14px] h-3 px-0.5 rounded-full bg-[#24523B] text-white text-[7.5px] font-bold flex items-center justify-center border border-white">
+                {dueCount}
+              </span>
+            )}
           </button>
+
           <button
             type="button"
             onClick={() => handleSelectMode("lessons")}
-            className={`py-1 text-xs font-bold rounded-lg cursor-pointer ${
+            className={`flex-1 h-6 px-1 rounded-md text-[10.5px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 ${
               activeMode === "lessons"
-                ? "bg-[#24523B] text-white"
-                : "text-slate-600 hover:bg-slate-100"
+                ? "bg-[#24523B] text-white shadow-2xs font-bold"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
-            Bài khoá
+            <BookOpen className="w-3 h-3 shrink-0" />
+            <span>Bài khoá</span>
           </button>
+
           <button
             type="button"
             onClick={() => handleSelectMode("garden")}
-            className={`py-1 text-xs font-bold rounded-lg cursor-pointer ${
+            className={`flex-1 h-6 px-1 rounded-md text-[10.5px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 ${
               activeMode === "garden"
-                ? "bg-[#24523B] text-white"
-                : "text-slate-600 hover:bg-slate-100"
+                ? "bg-[#24523B] text-white shadow-2xs font-bold"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
-            Vườn từ
+            <Library className="w-3 h-3 shrink-0" />
+            <span>Vườn từ</span>
           </button>
         </div>
       </header>
@@ -281,7 +285,7 @@ export default function HomePage() {
       />
 
       {/* Right Column: Full-width, Full-height Workspace Stage */}
-      <main className="flex-1 flex flex-col h-full w-full min-w-0 overflow-hidden bg-[#FAF9F6]">
+      <main className="flex-1 min-h-0 flex flex-col w-full min-w-0 bg-[#FAF9F6] overflow-hidden lg:h-full lg:overflow-hidden">
         {activeMode === "typing" && (
           <EditorialTyping
             key={`typing-${currentLevelId}-${safeLessonIdx}`}
@@ -338,7 +342,104 @@ export default function HomePage() {
         onSelectLesson={handleSelectLesson}
         levelId={currentLevelId}
         levelName={currentLevel.name}
+        levels={levels}
+        onSelectLevel={handleSelectLevel}
       />
+      {/* Mobile Session Stats Sheet */}
+      {isMobileStatsOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/40 backdrop-blur-xs lg:hidden animate-in fade-in duration-200"
+          onClick={() => setIsMobileStatsOpen(false)}
+        >
+          <div
+            className="w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl p-5 sm:p-6 border border-[#E5E3DF] shadow-2xl space-y-4 animate-in slide-in-from-bottom-6 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between pb-3 border-b border-[#E5E3DF]">
+              <div className="flex items-center gap-2">
+                <Flame className="w-5 h-5 text-orange-500 fill-orange-500" />
+                <h3 className="text-base font-bold text-slate-900">
+                  Thống kê phiên học
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsMobileStatsOpen(false)}
+                className="p-1.5 text-slate-400 hover:text-slate-700 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Metrics cards */}
+            <div className="grid grid-cols-2 gap-2.5">
+              <div className="bg-[#FAF9F6] rounded-2xl p-3 border border-[#E5E3DF]">
+                <div className="text-xs text-slate-500 font-medium">Đã luyện tập</div>
+                <div className="text-xl font-bold text-slate-900 mt-1">
+                  {stats.completedCount} <span className="text-xs font-normal text-slate-400">từ</span>
+                </div>
+              </div>
+              <div className="bg-[#FAF9F6] rounded-2xl p-3 border border-[#E5E3DF]">
+                <div className="text-xs text-slate-500 font-medium">Chuẩn 100%</div>
+                <div className="text-xl font-bold text-[#24523B] mt-1">
+                  {stats.correctCount} <span className="text-xs font-normal text-slate-400">từ</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Accuracy bar */}
+            <div className="bg-[#FAF9F6] rounded-2xl p-3.5 border border-[#E5E3DF] space-y-2">
+              <div className="flex justify-between text-xs font-medium text-slate-600">
+                <span>Độ chính xác</span>
+                <span className="font-bold text-slate-900">
+                  {stats.completedCount > 0
+                    ? `${Math.round((stats.correctCount / stats.completedCount) * 100)}%`
+                    : "—"}
+                </span>
+              </div>
+              <div className="h-2 bg-[#EFECE6] w-full rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-[#24523B] rounded-full transition-all duration-300"
+                  style={{
+                    width: stats.completedCount > 0
+                      ? `${Math.round((stats.correctCount / stats.completedCount) * 100)}%`
+                      : "0%",
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Streak row */}
+            <div className="flex items-center justify-between p-3 rounded-2xl bg-[#FAF9F6] border border-[#E5E3DF] text-xs">
+              <span className="flex items-center gap-1.5 text-slate-700 font-medium">
+                <Flame className="w-4 h-4 text-orange-500 fill-orange-500" />
+                Chuỗi hiện tại
+              </span>
+              <span className="font-bold text-slate-900 text-sm">
+                {stats.currentStreak}{" "}
+                <span className="text-xs text-slate-400 font-normal">
+                  (Kỷ lục: {stats.bestStreak})
+                </span>
+              </span>
+            </div>
+
+            {/* Reset button */}
+            {stats.completedCount > 0 && (
+              <button
+                type="button"
+                onClick={() => {
+                  handleResetStats();
+                  setIsMobileStatsOpen(false);
+                }}
+                className="w-full py-2.5 rounded-xl border border-[#E5E3DF] text-slate-600 hover:text-slate-900 hover:bg-slate-50 font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>Làm mới thống kê phiên này</span>
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -79,7 +79,7 @@ export function InputArea({
     <div id="input-validation-system" className="w-full">
       {/* Main Typing Input Canvas */}
       <div
-        className={`w-full bg-white border border-[#E5E3DF] rounded-2xl shadow-xs p-3 sm:p-4 relative transition-all duration-200 overflow-hidden ${
+        className={`w-full bg-white border border-[#E5E3DF] rounded-2xl shadow-xs p-2.5 sm:p-4 relative transition-all duration-200 overflow-hidden ${
           isFocused
             ? "border-[#24523B] ring-2 ring-[#24523B]/15 shadow-sm"
             : "hover:border-slate-300"
@@ -98,20 +98,20 @@ export function InputArea({
           disabled={disabled}
           placeholder={
             mode === "passages"
-              ? "Bắt đầu gõ hội thoại tại đây (dùng bộ gõ Pinyin)..."
-              : "Nhập chữ Hán tại đây (dùng bộ gõ Pinyin)..."
+              ? "Gõ hội thoại tại đây (dùng bộ gõ Pinyin)..."
+              : "Gõ chữ Hán tại đây (dùng bộ gõ Pinyin)..."
           }
           spellCheck={false}
           rows={mode === "passages" ? 3 : 1}
-          className={`hanzi w-full text-lg sm:text-xl md:text-2xl text-slate-900 bg-transparent border-none outline-none placeholder:text-slate-300 placeholder:font-sans placeholder:text-sm tracking-wide leading-relaxed px-1 resize-none ${
-            mode === "passages" ? "min-h-[72px] sm:min-h-[84px]" : "min-h-[42px]"
+          className={`hanzi w-full text-base sm:text-xl md:text-2xl text-slate-900 bg-transparent border-none outline-none placeholder:text-slate-400 placeholder:font-sans placeholder:text-xs sm:placeholder:text-sm tracking-wide leading-relaxed px-1 resize-none ${
+            mode === "passages" ? "min-h-[64px] sm:min-h-[84px]" : "min-h-[38px] sm:min-h-[42px]"
           }`}
         />
 
         {/* Bottom Bar: Clean 1-line Action & Status Row */}
-        <div className="flex items-center justify-between gap-3 mt-2 pt-2 border-t border-[#E5E3DF]/70">
+        <div className="flex items-center justify-between gap-1.5 sm:gap-3 mt-1.5 sm:mt-2 pt-1.5 sm:pt-2 border-t border-[#E5E3DF]/70">
           {/* Left: Progress counter & keyboard shortcut */}
-          <div className="flex items-center gap-2.5 pl-0.5 text-xs text-slate-500 font-sans">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 pl-0.5 text-xs text-slate-500 font-sans min-w-0 truncate">
             {targetLength !== undefined && targetLength > 0 && (
               <span className="font-mono font-bold text-slate-800">
                 {currentCount} <span className="text-slate-400 font-normal">/ {targetLength} chữ</span>
@@ -158,7 +158,7 @@ export function InputArea({
           </div>
 
           {/* Right: Actions */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {hasSubmitted ? (
               <button
                 id="btn-retry-reset"
@@ -185,7 +185,7 @@ export function InputArea({
               type="button"
               onClick={onSubmit}
               disabled={disabled || value.trim().length === 0}
-              className="h-8.5 px-5 rounded-xl bg-[#24523B] hover:bg-[#1b3d2c] text-white font-bold text-xs shadow-xs hover:shadow-sm active:scale-95 disabled:opacity-35 disabled:pointer-events-none transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="h-8.5 px-3.5 sm:px-5 rounded-xl bg-[#24523B] hover:bg-[#1b3d2c] text-white font-bold text-xs shadow-xs hover:shadow-sm active:scale-95 disabled:opacity-35 disabled:pointer-events-none transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer"
             >
               <Check className="w-3.5 h-3.5" />
               <span>Kiểm tra</span>
