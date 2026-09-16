@@ -261,8 +261,6 @@ export function EditorialTyping({
           onOpenTopicModal={onOpenTopicModal}
           typingMode={typingMode}
           onToggleTypingMode={handleToggleTypingMode}
-          wordsCount={wordItems.length}
-          passagesCount={passageItems.length}
         />
       </div>
 
@@ -291,6 +289,7 @@ export function EditorialTyping({
             <PassageCard
               key={`passage-${currentPassage.id}`}
               passage={currentPassage}
+              userInput={userInput}
               showPinyin={showPinyin}
               showMeaning={showMeaning}
               currentLevel={levelId.toUpperCase()}

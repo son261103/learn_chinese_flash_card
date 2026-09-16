@@ -1,14 +1,15 @@
 "use client";
 
 import React, { useState, useMemo, useEffect, useRef, memo } from "react";
-import { Volume2, Copy, Check, X, Play, BookOpen, Quote } from "lucide-react";
+import { Volume2, Copy, Check, X, Play } from "lucide-react";
 import { PassageItem, PassageSentence } from "@/lib/types";
-import { alignHanziAndPinyin, CharRubyToken, getInitialWordRange } from "@/utils/pinyinParser";
+import { getInitialWordRange } from "@/utils/pinyinParser";
 import { speakChinese } from "@/utils/diff";
 import { findWordInDict } from "@/lib/passage-service";
 
 interface PassageCardProps {
   passage: PassageItem;
+  userInput?: string;
   showPinyin?: boolean;
   showMeaning?: boolean;
   currentLevel?: string;
@@ -29,6 +30,7 @@ function delay(ms: number): Promise<void> {
 
 export const PassageCard = memo(function PassageCard({
   passage,
+  userInput = "",
   showPinyin = true,
   showMeaning = true,
   currentLevel = "HSK1",
@@ -36,7 +38,6 @@ export const PassageCard = memo(function PassageCard({
   const [copied, setCopied] = useState(false);
   const [playingSentenceIdx, setPlayingSentenceIdx] = useState<number | null>(null);
   const [isPlayingAll, setIsPlayingAll] = useState(false);
-  const [hoveredSentenceIdx, setHoveredSentenceIdx] = useState<number | null>(null);
 
   // Word lookup state
   const [activeTokenKey, setActiveTokenKey] = useState<string | null>(null);
@@ -45,9 +46,33 @@ export const PassageCard = memo(function PassageCard({
 
   const charCount = useMemo(() => Array.from(passage.hanzi).length, [passage.hanzi]);
 
-  // Pre-calculate and memoize tokens for all sentences in the passage
-  const sentenceTokens = useMemo(() => {
-    return passage.sentences.map((sent) => alignHanziAndPinyin(sent.zh));
+  // Clean user input without newlines or extra spaces for live character matching
+  const userCleanChars = useMemo(() => {
+    return Array.from(userInput.replace(/[\r\n\s]+/g, ""));
+  }, [userInput]);
+
+  // Calculate global start character offset for each sentence in the passage
+  const sentenceOffsets = useMemo(() => {
+    const offsets: number[] = [];
+    let currentOffset = 0;
+    for (const sent of passage.sentences) {
+      offsets.push(currentOffset);
+      const chars = Array.from(sent.zh.replace(/[\r\n\s]+/g, ""));
+      currentOffset += chars.length;
+    }
+    return offsets;
+  }, [passage.sentences]);
+
+  // Speaker mapping for chat bubble layout (Speaker 0 = Left, Speaker 1 = Right, etc.)
+  const speakerMap = useMemo(() => {
+    const map: Record<string, number> = {};
+    for (const item of passage.sentences) {
+      const who = (item.who || "").trim();
+      if (who && !(who in map)) {
+        map[who] = Object.keys(map).length;
+      }
+    }
+    return map;
   }, [passage.sentences]);
 
   const handleCopy = () => {
@@ -95,13 +120,13 @@ export const PassageCard = memo(function PassageCard({
   const handleCharClick = (
     sentence: PassageSentence,
     sentenceIdx: number,
-    token: CharRubyToken,
+    char: string,
+    charIndex: number,
     e: React.MouseEvent
   ) => {
     e.stopPropagation();
-    if (token.isPunctuation) return;
 
-    const tokenKey = `${sentenceIdx}-${token.index}`;
+    const tokenKey = `${sentenceIdx}-${charIndex}`;
     if (activeTokenKey === tokenKey) {
       setActiveTokenKey(null);
       setLookupData(null);
@@ -109,13 +134,13 @@ export const PassageCard = memo(function PassageCard({
     }
 
     setActiveTokenKey(tokenKey);
-    const initial = getInitialWordRange(sentence.zh, token.index);
-    const targetWord = initial.word || token.char;
-    const dictMatch = findWordInDict(targetWord) || findWordInDict(token.char);
+    const initial = getInitialWordRange(sentence.zh, charIndex);
+    const targetWord = initial.word || char;
+    const dictMatch = findWordInDict(targetWord) || findWordInDict(char);
 
     setLookupData({
       word: targetWord,
-      pinyin: dictMatch?.py || token.pinyin,
+      pinyin: dictMatch?.py || "",
       meaning: dictMatch?.vi || sentence.vi,
       hv: dictMatch?.hv,
     });
@@ -126,159 +151,195 @@ export const PassageCard = memo(function PassageCard({
   return (
     <div
       id={`passage-card-${passage.id}`}
-      className="w-full flex flex-col space-y-4 select-none"
+      className="w-full flex flex-col space-y-6 select-none"
     >
-      {/* Editorial Manuscript Paper Container */}
-      <div className="w-full bg-white rounded-3xl border border-[#E5E3DF] p-6 sm:p-8 md:p-9 shadow-[0_4px_30px_rgba(0,0,0,0.02)] space-y-6 relative transition-all">
-        {/* Header Bar of Manuscript */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#E5E3DF]/70">
-          {/* Left Metadata */}
-          <div className="flex items-center gap-2.5 flex-wrap">
-            <span className="h-6 px-2.5 rounded-lg bg-[#24523B] text-white text-[11px] font-bold tracking-tight inline-flex items-center gap-1 shadow-2xs">
-              <BookOpen className="w-3 h-3" />
-              <span>{currentLevel.toUpperCase()}</span>
-            </span>
-
-            <h3 className="text-sm sm:text-base font-bold text-slate-900 tracking-tight">
+      {/* Top Bar Header matching Bài khoá style */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#E5E3DF]/70 w-full">
+        {/* Left Section Info */}
+        <div className="flex items-center gap-2.5 min-w-0">
+          <span className="w-7 h-7 rounded-xl bg-[#24523B] text-white text-xs font-bold flex items-center justify-center shrink-0">
+            {passage.source === "text" ? "课" : "读"}
+          </span>
+          <div className="flex items-baseline gap-2 min-w-0">
+            <h3 className="text-sm sm:text-base font-bold tracking-tight text-[#222B25] uppercase truncate">
               {passage.title}
             </h3>
-
             <span className="text-xs text-slate-400 font-mono hidden sm:inline">
               · {passage.sentences.length} câu · {charCount} chữ Hán
             </span>
           </div>
-
-          {/* Right Action Controls */}
-          <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
-            <button
-              type="button"
-              onClick={handleSpeakAll}
-              disabled={isPlayingAll}
-              className={`h-8 px-3.5 rounded-xl border text-xs font-semibold transition-all shadow-2xs flex items-center gap-1.5 cursor-pointer ${
-                isPlayingAll
-                  ? "bg-[#24523B] text-white border-[#24523B]"
-                  : "bg-[#FAF9F6] text-slate-700 border-[#E5E3DF] hover:bg-white hover:text-slate-900 hover:border-slate-400"
-              }`}
-              title="Nghe toàn bộ đoạn văn"
-            >
-              <Play className="w-3 h-3 text-[#24523B] fill-[#24523B]" />
-              <span>{isPlayingAll ? "Đang phát..." : "Nghe toàn bài"}</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={handleCopy}
-              className="h-8 px-2.5 rounded-xl bg-[#FAF9F6] border border-[#E5E3DF] text-slate-600 hover:text-slate-900 hover:bg-white transition-all shadow-2xs flex items-center gap-1 cursor-pointer"
-              title="Sao chép đoạn văn"
-            >
-              {copied ? (
-                <Check className="w-3.5 h-3.5 text-[#24523B]" />
-              ) : (
-                <Copy className="w-3.5 h-3.5" />
-              )}
-            </button>
-          </div>
         </div>
 
-        {/* Continuous Natural Paragraph Flow */}
-        <div className="w-full text-left text-slate-900">
-          <div className="flex flex-wrap items-baseline gap-x-2 sm:gap-x-2.5 gap-y-6 sm:gap-y-7 leading-[2.3] sm:leading-[2.5]">
-            {passage.sentences.map((sent, sIdx) => {
-              const tokens = sentenceTokens[sIdx] || [];
-              const isPlayingThisSentence = playingSentenceIdx === sIdx;
-              const isHovered = hoveredSentenceIdx === sIdx;
+        {/* Right Action Controls */}
+        <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+          <button
+            type="button"
+            onClick={handleSpeakAll}
+            disabled={isPlayingAll}
+            className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border text-xs font-semibold transition-all shadow-2xs cursor-pointer ${
+              isPlayingAll
+                ? "bg-[#24523B] text-white border-[#24523B]"
+                : "bg-white text-slate-700 border-[#E5E3DF] hover:border-slate-400 hover:text-slate-900"
+            }`}
+            title="Nghe toàn bộ đoạn"
+          >
+            <Play className="w-3.5 h-3.5 text-[#24523B] fill-[#24523B]" />
+            <span>{isPlayingAll ? "Đang phát..." : "Nghe toàn bộ đoạn"}</span>
+          </button>
 
-              return (
-                <span
-                  key={sIdx}
-                  onMouseEnter={() => setHoveredSentenceIdx(sIdx)}
-                  onMouseLeave={() => setHoveredSentenceIdx(null)}
-                  className={`group/sentence relative inline-flex flex-wrap items-end rounded-2xl px-2 py-1 -my-1 transition-all duration-150 ${
-                    isPlayingThisSentence
-                      ? "bg-[#24523B]/10 ring-2 ring-[#24523B]/40 shadow-xs"
-                      : isHovered
-                      ? "bg-[#FAF9F6] ring-1 ring-[#E5E3DF]"
+          <button
+            type="button"
+            onClick={handleCopy}
+            className="p-2 rounded-xl bg-white border border-[#E5E3DF] text-slate-600 hover:text-slate-900 transition-colors shadow-2xs cursor-pointer"
+            title="Sao chép toàn bộ chữ Hán"
+          >
+            {copied ? (
+              <Check className="w-3.5 h-3.5 text-[#24523B]" />
+            ) : (
+              <Copy className="w-3.5 h-3.5" />
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Conversational Chat Feed matching Bài khoá layout */}
+      <div className="space-y-6 pt-1 w-full">
+        {passage.sentences.map((sent, sIdx) => {
+          const isPlayingThis = playingSentenceIdx === sIdx;
+          const speakerIndex = speakerMap[(sent.who || "").trim()] ?? 0;
+          const isSecondarySpeaker = speakerIndex === 1;
+
+          // Single character for avatar: e.g. "王" from "王一飞" or "言"
+          const avatarLetter =
+            (sent.who || "").replace(/[A-Za-z\s]/g, "").slice(0, 1) || String(sIdx + 1);
+
+          const sentenceOffset = sentenceOffsets[sIdx] || 0;
+          let nonSpaceCharCounter = 0;
+
+          return (
+            <div
+              key={sIdx}
+              className={`w-full flex ${
+                isSecondarySpeaker ? "justify-end" : "justify-start"
+              }`}
+            >
+              <div
+                className={`flex items-start gap-3 w-full md:max-w-[90%] lg:max-w-[85%] ${
+                  isSecondarySpeaker ? "flex-row-reverse" : "flex-row"
+                }`}
+              >
+                {/* Speaker Avatar Icon */}
+                <div
+                  className={`w-9 h-9 rounded-2xl flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs select-none border ${
+                    isSecondarySpeaker
+                      ? "bg-[#24523B] text-white border-[#24523B]"
+                      : "bg-white text-slate-800 border-[#E5E3DF]"
+                  }`}
+                  title={sent.who || `Câu ${sIdx + 1}`}
+                >
+                  {avatarLetter}
+                </div>
+
+                {/* Speech Bubble Card */}
+                <div
+                  className={`flex-1 p-4 sm:p-5 rounded-3xl border transition-all flex flex-col gap-2 shadow-2xs ${
+                    isSecondarySpeaker
+                      ? "bg-[#FAF9F6] border-[#D1CFCA]/70 rounded-tr-xs"
+                      : "bg-white border-[#E5E3DF] rounded-tl-xs"
+                  } ${
+                    isPlayingThis
+                      ? "ring-2 ring-[#24523B]/40 bg-[#FAF9F6] border-[#24523B]/50"
                       : ""
                   }`}
                 >
-                  {/* Subtle superscript sentence indicator */}
-                  <sup className="text-[10px] font-mono font-semibold text-slate-400 select-none mr-1 opacity-60">
-                    [{sIdx + 1}]
-                  </sup>
+                  {/* Speaker Name & Play Button Row */}
+                  <div className="flex items-center justify-between gap-4 pb-1.5 border-b border-[#E5E3DF]/50">
+                    <span className="text-xs font-bold text-slate-500 tracking-wide font-chinese">
+                      {sent.who || `Câu ${sIdx + 1}`}
+                    </span>
 
-                  {/* Audio Trigger on Hover or Playing */}
-                  <button
-                    type="button"
-                    onClick={(e) => handleSpeakSentence(sent.zh, sIdx, e)}
-                    className={`inline-flex items-center justify-center w-5 h-5 rounded-md mr-1 mb-1 transition-all cursor-pointer ${
-                      isPlayingThisSentence
-                        ? "text-[#24523B] bg-[#24523B]/20 opacity-100"
-                        : "text-slate-400 hover:text-slate-700 opacity-0 group-hover/sentence:opacity-100"
-                    }`}
-                    title={`Nghe câu ${sIdx + 1}`}
-                  >
-                    <Volume2 className="w-3 h-3" />
-                  </button>
+                    <button
+                      type="button"
+                      onClick={(e) => handleSpeakSentence(sent.zh, sIdx, e)}
+                      disabled={isPlayingAll}
+                      className="p-1 text-slate-400 hover:text-slate-900 rounded-lg transition-colors cursor-pointer"
+                      title="Phát âm câu này"
+                    >
+                      <Volume2 className="w-4 h-4" />
+                    </button>
+                  </div>
 
-                  {/* Character Ruby Tokens */}
-                  {tokens.map((tok) => {
-                    const isChinese = !tok.isPunctuation && tok.isZh;
-                    const tokenKey = `${sIdx}-${tok.index}`;
-                    const isHighlighted = activeTokenKey === tokenKey;
+                  {/* Chinese Hanzi with Live Typing Highlighting */}
+                  <div className="hanzi text-2xl sm:text-3xl font-normal text-[#222B25] tracking-wide pt-0.5 leading-snug select-text">
+                    {Array.from(sent.zh).map((char, charIdx) => {
+                      const isWhitespace = /[\r\n\s]/.test(char);
+                      if (isWhitespace) {
+                        return <span key={charIdx}> </span>;
+                      }
 
-                    if (tok.isPunctuation) {
+                      const globalCharIdx = sentenceOffset + nonSpaceCharCounter;
+                      nonSpaceCharCounter++;
+
+                      // Determine live typing status for this character
+                      let status: "correct" | "incorrect" | "current" | "pending" =
+                        "pending";
+                      if (globalCharIdx < userCleanChars.length) {
+                        status =
+                          char === userCleanChars[globalCharIdx]
+                            ? "correct"
+                            : "incorrect";
+                      } else if (globalCharIdx === userCleanChars.length) {
+                        status = "current";
+                      }
+
+                      const tokenKey = `${sIdx}-${charIdx}`;
+                      const isLookupHighlighted = activeTokenKey === tokenKey;
+
                       return (
                         <span
-                          key={tok.id}
-                          className="hanzi text-xl sm:text-2xl md:text-3xl text-slate-700 select-text px-0.5"
+                          key={charIdx}
+                          onClick={(e) =>
+                            handleCharClick(sent, sIdx, char, charIdx, e)
+                          }
+                          title={`Nhấp để tra từ "${char}"`}
+                          className={`inline-block cursor-pointer transition-all duration-150 ${
+                            isLookupHighlighted
+                              ? "bg-[#24523B]/20 ring-2 ring-[#24523B]/70 rounded px-0.5"
+                              : ""
+                          } ${
+                            status === "correct"
+                              ? "font-bold text-[#24523B]"
+                              : status === "incorrect"
+                              ? "font-bold text-rose-600 bg-rose-50/80 rounded px-0.5"
+                              : status === "current"
+                              ? "font-semibold text-slate-900 underline decoration-[#24523B] decoration-2 underline-offset-4 animate-pulse"
+                              : "text-[#222B25] font-normal"
+                          }`}
                         >
-                          {tok.char}
+                          {char}
                         </span>
                       );
-                    }
+                    })}
+                  </div>
 
-                    return (
-                      <span
-                        key={tok.id}
-                        onClick={(e) => isChinese && handleCharClick(sent, sIdx, tok, e)}
-                        title={isChinese ? `Nhấp để tra từ "${tok.char}"` : undefined}
-                        className={`inline-flex flex-col items-center justify-end px-0.5 rounded-lg transition-all ${
-                          isChinese ? "cursor-pointer hover:bg-slate-200/80" : ""
-                        } ${isHighlighted ? "bg-[#24523B]/20 ring-2 ring-[#24523B]/70" : ""}`}
-                      >
-                        {showPinyin && (
-                          <span className="text-[11px] sm:text-xs text-slate-400 font-sans select-none leading-none pb-1 pointer-events-none">
-                            {tok.pinyin || ""}
-                          </span>
-                        )}
-                        <span className="hanzi text-2xl sm:text-3xl md:text-[32px] font-normal text-[#1E2922] leading-tight select-text">
-                          {tok.char}
-                        </span>
-                      </span>
-                    );
-                  })}
-                </span>
-              );
-            })}
-          </div>
-        </div>
+                  {/* Pinyin Line matching Bài khoá */}
+                  {showPinyin && sent.py && (
+                    <div className="text-sm sm:text-base font-semibold text-[#24523B] tracking-wide font-sans">
+                      {sent.py}
+                    </div>
+                  )}
 
-        {/* Footnote / Vietnamese Translation Section */}
-        {showMeaning && passage.meaning && (
-          <div className="pt-4 border-t border-[#E5E3DF]/70 text-left">
-            <div className="flex items-start gap-2.5 p-3.5 sm:p-4 rounded-2xl bg-[#FAF9F6] border border-[#E5E3DF]/60">
-              <Quote className="w-4 h-4 text-[#24523B] shrink-0 mt-0.5 opacity-80" />
-              <div className="space-y-1">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block font-sans">
-                  Bản dịch tham khảo
-                </span>
-                <p className="text-sm sm:text-base text-slate-700 font-editorial-serif italic leading-relaxed">
-                  &ldquo;{passage.meaning}&rdquo;
-                </p>
+                  {/* Vietnamese Translation Line matching Bài khoá */}
+                  {showMeaning && sent.vi && (
+                    <div className="text-xs sm:text-sm text-slate-600 font-editorial-serif italic pt-0.5 leading-relaxed">
+                      &ldquo;{sent.vi}&rdquo;
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          );
+        })}
       </div>
 
       {/* Word / Character Lookup Floating Popover */}

@@ -76,20 +76,10 @@ export function InputArea({
       : null;
 
   return (
-    <div id="input-validation-system" className="w-full space-y-2">
-      {/* Progress Bar directly on top */}
-      {targetLength !== undefined && targetLength > 0 && (
-        <div className="w-full bg-[#E5E3DF]/70 h-[3px] rounded-full overflow-hidden">
-          <div
-            className="h-full bg-[#24523B] transition-all duration-200 rounded-full"
-            style={{ width: `${progressPercent || 0}%` }}
-          />
-        </div>
-      )}
-
+    <div id="input-validation-system" className="w-full">
       {/* Main Typing Input Canvas */}
       <div
-        className={`w-full bg-white border border-[#E5E3DF] rounded-2xl shadow-xs p-3 sm:p-4 relative transition-all duration-200 ${
+        className={`w-full bg-white border border-[#E5E3DF] rounded-2xl shadow-xs p-3 sm:p-4 relative transition-all duration-200 overflow-hidden ${
           isFocused
             ? "border-[#24523B] ring-2 ring-[#24523B]/15 shadow-sm"
             : "hover:border-slate-300"
@@ -108,13 +98,13 @@ export function InputArea({
           disabled={disabled}
           placeholder={
             mode === "passages"
-              ? "Bắt đầu gõ đoạn văn tại đây (dùng bộ gõ Pinyin)..."
+              ? "Bắt đầu gõ hội thoại tại đây (dùng bộ gõ Pinyin)..."
               : "Nhập chữ Hán tại đây (dùng bộ gõ Pinyin)..."
           }
           spellCheck={false}
           rows={mode === "passages" ? 3 : 1}
-          className={`hanzi w-full text-lg sm:text-xl md:text-2xl text-slate-900 bg-transparent border-none outline-none placeholder:text-slate-300 placeholder:font-sans placeholder:text-sm tracking-wide leading-relaxed px-1 ${
-            mode === "passages" ? "min-h-[72px] sm:min-h-[84px] resize-y" : "min-h-[42px] resize-none"
+          className={`hanzi w-full text-lg sm:text-xl md:text-2xl text-slate-900 bg-transparent border-none outline-none placeholder:text-slate-300 placeholder:font-sans placeholder:text-sm tracking-wide leading-relaxed px-1 resize-none ${
+            mode === "passages" ? "min-h-[72px] sm:min-h-[84px]" : "min-h-[42px]"
           }`}
         />
 
@@ -203,6 +193,16 @@ export function InputArea({
             </button>
           </div>
         </div>
+
+        {/* Subtle active progress bar embedded at bottom edge of card */}
+        {targetLength !== undefined && targetLength > 0 && progressPercent !== null && progressPercent > 0 && (
+          <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#24523B]/15">
+            <div
+              className="h-full bg-[#24523B] transition-all duration-150"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

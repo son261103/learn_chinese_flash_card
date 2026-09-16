@@ -47,10 +47,9 @@ export function findWordInDict(word: string): DictEntry | null {
 }
 
 /**
- * Extract all practice passages for a given lesson from existing curriculum:
- * 1. Native Reading Passages (bài đọc hiểu)
- * 2. Native Lesson Texts (bài khoá hội thoại)
- * All passages are curated by textbook authors specifically using that lesson's vocabulary.
+ * Extract all practice dialogues/passages for a given lesson:
+ * 1. Native Lesson Texts (bài khoá hội thoại có phân vai)
+ * 2. Native Reading Passages (bài đọc hiểu)
  */
 export function getLessonPassages(
   lesson: Lesson,
@@ -61,7 +60,39 @@ export function getLessonPassages(
 
   const passages: PassageItem[] = [];
 
-  // 1. Native reading passages
+  // 1. Native texts dialogues (Bài khoá hội thoại phân vai người nói)
+  if (lesson.texts && lesson.texts.length > 0) {
+    lesson.texts.forEach((text, idx) => {
+      if (!text.dialogue || text.dialogue.length === 0) return;
+
+      const validLines = text.dialogue.filter((d) => d.zh && d.zh.trim().length > 0);
+      if (validLines.length === 0) return;
+
+      const sentences: PassageSentence[] = validLines.map((d) => ({
+        who: d.who,
+        zh: d.zh,
+        py: d.py || pinyin(d.zh, { toneType: "symbol" }),
+        vi: d.vi,
+      }));
+
+      const hanzi = sentences.map((s) => s.zh).join("");
+      const py = sentences.map((s) => s.py).join(" ");
+      const meaning = sentences.map((s) => (s.who ? `${s.who}: ${s.vi}` : s.vi)).join(" ");
+
+      passages.push({
+        id: `text-${levelId}-${lessonIdx + 1}-${idx + 1}`,
+        title: text.label || `Bài khoá #${idx + 1}`,
+        situation: text.situation,
+        hanzi,
+        pinyin: py,
+        meaning,
+        sentences,
+        source: "text",
+      });
+    });
+  }
+
+  // 2. Native reading passages (Đoạn văn đọc hiểu)
   if (lesson.readingPassages && lesson.readingPassages.length > 0) {
     lesson.readingPassages.forEach((rp, idx) => {
       const zhLines = (rp.zh || []).filter((line) => line.trim().length > 0);
@@ -85,36 +116,6 @@ export function getLessonPassages(
         meaning,
         sentences,
         source: "reading",
-      });
-    });
-  }
-
-  // 2. Native texts dialogues
-  if (lesson.texts && lesson.texts.length > 0) {
-    lesson.texts.forEach((text, idx) => {
-      if (!text.dialogue || text.dialogue.length === 0) return;
-
-      const validLines = text.dialogue.filter((d) => d.zh && d.zh.trim().length > 0);
-      if (validLines.length === 0) return;
-
-      const sentences: PassageSentence[] = validLines.map((d) => ({
-        zh: d.zh,
-        py: d.py || pinyin(d.zh, { toneType: "symbol" }),
-        vi: d.who ? `${d.who}: ${d.vi}` : d.vi,
-      }));
-
-      const hanzi = sentences.map((s) => s.zh).join("");
-      const py = sentences.map((s) => s.py).join(" ");
-      const meaning = sentences.map((s) => s.vi).filter(Boolean).join(" ");
-
-      passages.push({
-        id: `text-${levelId}-${lessonIdx + 1}-${idx + 1}`,
-        title: text.label || `Bài khoá #${idx + 1}`,
-        hanzi,
-        pinyin: py,
-        meaning,
-        sentences,
-        source: "text",
       });
     });
   }

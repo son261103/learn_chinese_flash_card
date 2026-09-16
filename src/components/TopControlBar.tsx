@@ -8,7 +8,7 @@ import {
   BookOpen,
   ChevronDown,
   Shuffle,
-  FileText,
+  MessageSquare,
   Type,
 } from "lucide-react";
 
@@ -29,8 +29,6 @@ interface TopControlBarProps {
   onOpenTopicModal?: () => void;
   typingMode?: "words" | "passages";
   onToggleTypingMode?: (mode: "words" | "passages") => void;
-  wordsCount?: number;
-  passagesCount?: number;
 }
 
 export function TopControlBar({
@@ -50,8 +48,6 @@ export function TopControlBar({
   onOpenTopicModal,
   typingMode = "words",
   onToggleTypingMode,
-  wordsCount,
-  passagesCount,
 }: TopControlBarProps) {
   return (
     <div
@@ -79,13 +75,13 @@ export function TopControlBar({
           </button>
         )}
 
-        {/* Sub-mode Switcher: Từ mới vs Đoạn văn */}
+        {/* Sub-mode Switcher: Từ mới vs Hội thoại */}
         {onToggleTypingMode && (
           <div className="inline-flex p-0.5 rounded-xl border border-[#E5E3DF] bg-[#EFECE6]/70 shrink-0">
             <button
               type="button"
               onClick={() => onToggleTypingMode("words")}
-              className={`h-8 px-2.5 sm:px-3 inline-flex items-center gap-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              className={`h-8 px-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 typingMode === "words"
                   ? "bg-white text-slate-900 shadow-2xs font-bold"
                   : "text-slate-600 hover:text-slate-900"
@@ -94,29 +90,19 @@ export function TopControlBar({
             >
               <Type className="w-3.5 h-3.5" />
               <span>Từ mới</span>
-              {wordsCount !== undefined && (
-                <span className="text-[10px] px-1 py-0.2 rounded bg-[#FAF9F6] text-slate-500 font-mono">
-                  {wordsCount}
-                </span>
-              )}
             </button>
             <button
               type="button"
               onClick={() => onToggleTypingMode("passages")}
-              className={`h-8 px-2.5 sm:px-3 inline-flex items-center gap-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              className={`h-8 px-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 typingMode === "passages"
                   ? "bg-white text-[#24523B] shadow-2xs font-bold"
                   : "text-slate-600 hover:text-slate-900"
               }`}
-              title="Chế độ gõ cả 1 đoạn văn"
+              title="Chế độ gõ bài hội thoại"
             >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Đoạn văn</span>
-              {passagesCount !== undefined && (
-                <span className="text-[10px] px-1 py-0.2 rounded bg-[#FAF9F6] text-slate-500 font-mono">
-                  {passagesCount}
-                </span>
-              )}
+              <MessageSquare className="w-3.5 h-3.5" />
+              <span>Hội thoại</span>
             </button>
           </div>
         )}
@@ -135,7 +121,7 @@ export function TopControlBar({
         )}
 
         {/* Pinyin Toggle Pill */}
-        {onToggleTypingMode && onTogglePinyin && (
+        {onTogglePinyin && (
           <button
             type="button"
             onClick={onTogglePinyin}
@@ -166,7 +152,7 @@ export function TopControlBar({
           </button>
         )}
 
-        {/* Audio Speaker Button (only in words mode or global) */}
+        {/* Audio Speaker Button (only in words mode) */}
         {onSpeak && typingMode === "words" && (
           <button
             type="button"

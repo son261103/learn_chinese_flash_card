@@ -38,6 +38,7 @@ export interface ReadingPassage {
 export type TypingSubMode = "words" | "passages";
 
 export interface PassageSentence {
+  who?: string;
   zh: string;
   py: string;
   vi: string;
@@ -46,6 +47,7 @@ export interface PassageSentence {
 export interface PassageItem {
   id: string;
   title: string;
+  situation?: string;
   hanzi: string;
   pinyin: string;
   meaning: string;
