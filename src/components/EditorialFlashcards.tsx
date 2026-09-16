@@ -67,15 +67,8 @@ export function EditorialFlashcards({
   // Spaced repetition filter mode: 'all' | 'review' | 'mastered' | 'due'
   const [studyFilter, setStudyFilter] = useState<"all" | "review" | "mastered" | "due">("all");
 
-  // Persist autoplay preference in localStorage
-  const [isAutoPlay, setIsAutoPlay] = useState(() => {
-    if (typeof window === "undefined") return false;
-    try {
-      return localStorage.getItem(FLASHCARD_AUTOPLAY_KEY) === "true";
-    } catch {
-      return false;
-    }
-  });
+  // Đọc localStorage sau mount để SSR và lần render đầu ở client giống nhau
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
 
   const [viewTab, setViewTab] = useState<"card" | "table">("card");
   const [isShuffled, setIsShuffled] = useState(false);
@@ -86,8 +79,16 @@ export function EditorialFlashcards({
   const [islandToast, setIslandToast] = useState<DynamicIslandToast | null>(null);
   const islandTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Snapshot timestamp once at mount to keep render pure
-  const [nowSnapshot] = useState(() => Date.now());
+  // Chụp timestamp sau mount (client-only) để SSR/client render đầu giống nhau.
+  // Trước khi mount giữ null => mọi tính toán "đến hạn" trả về rỗng/không đến hạn.
+  const [nowSnapshot, setNowSnapshot] = useState<number | null>(null);
+
+  useEffect(() => {
+    try {
+      setIsAutoPlay(localStorage.getItem(FLASHCARD_AUTOPLAY_KEY) === "true");
+    } catch {}
+    setNowSnapshot(Date.now());
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -112,6 +113,7 @@ export function EditorialFlashcards({
 
   // Pre-compute due card keys for the current lesson from the snapshot time
   const dueKeysInLessonSet = useMemo(() => {
+    if (nowSnapshot === null) return {} as Record<string, boolean>;
     const snapshotKeys = getDueCardKeys(
       {
         learnedWords: {},
@@ -600,10 +602,10 @@ export function EditorialFlashcards({
                             {currentWord.pos}
                           </span>
                         )}
-                        {cardMemory[currentKey]?.nextReview && (
+                        {cardMemory[currentKey]?.nextReview && nowSnapshot !== null && (
                           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/10 border border-white/15 text-[10px] text-slate-300">
                             <CalendarClock className="w-3 h-3 text-[#D1E7DD]" />
-                            <span>{formatNextReview(cardMemory[currentKey])}</span>
+                            <span>{formatNextReview(cardMemory[currentKey], nowSnapshot)}</span>
                           </span>
                         )}
                       </div>
@@ -830,10 +832,11 @@ export function EditorialFlashcards({
                           {(() => {
                             const rec = cardMemory[key];
                             if (!rec || !rec.nextReview) return <span className="text-slate-400">—</span>;
+                            if (nowSnapshot === null) return <span className="text-slate-400">—</span>;
                             const isDue = rec.nextReview <= nowSnapshot;
                             return (
                               <span className={`font-semibold ${isDue ? "text-[#24523B]" : "text-slate-600"}`}>
-                                {formatNextReview(rec)}
+                                {formatNextReview(rec, nowSnapshot)}
                               </span>
                             );
                           })()}

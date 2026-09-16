@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { EditorialSidebar, EditorialStats } from "@/components/EditorialSidebar";
 import { EditorialTyping } from "@/components/EditorialTyping";
 import { EditorialFlashcards } from "@/components/EditorialFlashcards";
@@ -14,7 +14,9 @@ import {
   saveAppState,
   loadPracticeStats,
   savePracticeStats,
+  getDefaultAppState,
   getDefaultPracticeStats,
+  getInitialProgress,
   loadUserProgress,
   saveUserProgress,
   scheduleNextReview,
@@ -25,25 +27,39 @@ import { BookOpen, Flame } from "lucide-react";
 export default function HomePage() {
   const [levels] = useState<LevelInfo[]>(LOCAL_LEVELS);
 
-  // Synchronized active level, lesson, and mode stored in localStorage
+  // Khởi tạo bằng defaults để SSR và lần render đầu ở client giống nhau,
+  // sau đó mới nạp giá trị từ localStorage trong useEffect (client-only).
+  // Điều này tránh hydration mismatch khi localStorage có giá trị khác default.
   const [currentLevelId, setCurrentLevelId] = useState<string>(
-    () => loadAppState().currentLevelId
+    () => getDefaultAppState().currentLevelId
   );
   const [currentLessonIdx, setCurrentLessonIdx] = useState<number>(
-    () => loadAppState().currentLessonIdx
+    () => getDefaultAppState().currentLessonIdx
   );
   const [activeMode, setActiveMode] = useState<
     "typing" | "flashcards" | "lessons" | "garden"
-  >(() => loadAppState().activeMode);
+  >(() => getDefaultAppState().activeMode);
 
   const [progress, setProgress] = useState<UserProgress>(() =>
-    loadUserProgress()
+    getInitialProgress()
   );
 
   const [isTopicModalOpen, setIsTopicModalOpen] = useState(false);
 
   // Practice stats tracking with localStorage persistence
-  const [stats, setStats] = useState<EditorialStats>(() => loadPracticeStats());
+  const [stats, setStats] = useState<EditorialStats>(() =>
+    getDefaultPracticeStats()
+  );
+
+  // Nạp state đã lưu sau khi mount (chỉ chạy ở client) để khớp SSR
+  useEffect(() => {
+    const appState = loadAppState();
+    setCurrentLevelId(appState.currentLevelId);
+    setCurrentLessonIdx(appState.currentLessonIdx);
+    setActiveMode(appState.activeMode);
+    setProgress(loadUserProgress());
+    setStats(loadPracticeStats());
+  }, []);
 
   const handleToggleMastered = (key: string) => {
     setProgress((prev) => {

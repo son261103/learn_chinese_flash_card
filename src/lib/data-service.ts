@@ -183,9 +183,8 @@ export function isCardDue(record: CardMemoryRecord | undefined, now: number = Da
   return record.nextReview <= now;
 }
 
-export function formatNextReview(record: CardMemoryRecord | undefined): string {
+export function formatNextReview(record: CardMemoryRecord | undefined, now: number = Date.now()): string {
   if (!record || !record.nextReview) return "Chưa lên lịch";
-  const now = Date.now();
   const diff = record.nextReview - now;
 
   if (diff <= 0) {

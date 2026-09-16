@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Keyboard,
   Layers,
@@ -51,7 +51,11 @@ export function EditorialSidebar({
       ? Math.round((stats.correctCount / stats.completedCount) * 100)
       : 100;
 
-  const dueCount = getDueCardsCount(progress);
+  // Tính sau mount để SSR và lần render đầu ở client đều là 0 (khớp nhau).
+  const [dueCount, setDueCount] = useState(0);
+  useEffect(() => {
+    setDueCount(getDueCardsCount(progress));
+  }, [progress]);
 
   return (
     <aside className="w-72 xl:w-80 border-r border-[#E5E3DF] hidden lg:flex flex-col shrink-0 bg-[#FAF9F6] h-full overflow-hidden select-none">
