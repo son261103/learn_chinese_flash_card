@@ -54,6 +54,7 @@ export function EditorialSidebar({
   // Tính sau mount để SSR và lần render đầu ở client đều là 0 (khớp nhau).
   const [dueCount, setDueCount] = useState(0);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDueCount(getDueCardsCount(progress));
   }, [progress]);
 
@@ -104,47 +105,27 @@ export function EditorialSidebar({
               <button
                 type="button"
                 onClick={() => onSelectMode("typing")}
-                className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer ${
+                className={`h-10 px-3 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer ${
                   activeMode === "typing"
                     ? "bg-[#24523B] text-white border-[#24523B] shadow-xs"
                     : "bg-white text-slate-700 border-[#E5E3DF] hover:border-slate-400"
                 }`}
               >
                 <Keyboard className="w-4 h-4 shrink-0" />
-                <div>
-                  <div className="text-xs font-bold leading-tight">Luyện gõ</div>
-                  <div
-                    className={`text-[10px] ${
-                      activeMode === "typing" ? "text-white/70" : "text-slate-400"
-                    }`}
-                  >
-                    Gõ chữ theo bài
-                  </div>
-                </div>
+                <span className="text-xs font-bold leading-tight truncate">Luyện gõ</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => onSelectMode("flashcards")}
-                className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer relative ${
+                className={`h-10 px-3 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer relative ${
                   activeMode === "flashcards"
                     ? "bg-[#24523B] text-white border-[#24523B] shadow-xs"
                     : "bg-white text-slate-700 border-[#E5E3DF] hover:border-slate-400"
                 }`}
               >
                 <Layers className="w-4 h-4 shrink-0" />
-                <div>
-                  <div className="text-xs font-bold leading-tight">Flashcard</div>
-                  <div
-                    className={`text-[10px] ${
-                      activeMode === "flashcards"
-                        ? "text-white/70"
-                        : "text-slate-400"
-                    }`}
-                  >
-                    Lật thẻ từ vựng
-                  </div>
-                </div>
+                <span className="text-xs font-bold leading-tight truncate">Flashcard</span>
 
                 {/* Due review badge */}
                 {dueCount > 0 && (
@@ -157,49 +138,27 @@ export function EditorialSidebar({
               <button
                 type="button"
                 onClick={() => onSelectMode("lessons")}
-                className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer ${
+                className={`h-10 px-3 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer ${
                   activeMode === "lessons"
                     ? "bg-[#24523B] text-white border-[#24523B] shadow-xs"
                     : "bg-white text-slate-700 border-[#E5E3DF] hover:border-slate-400"
                 }`}
               >
                 <BookOpen className="w-4 h-4 shrink-0" />
-                <div>
-                  <div className="text-xs font-bold leading-tight">Bài khoá</div>
-                  <div
-                    className={`text-[10px] ${
-                      activeMode === "lessons"
-                        ? "text-white/70"
-                        : "text-slate-400"
-                    }`}
-                  >
-                    Hội thoại song ngữ
-                  </div>
-                </div>
+                <span className="text-xs font-bold leading-tight truncate">Bài khoá</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => onSelectMode("garden")}
-                className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer ${
+                className={`h-10 px-3 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer ${
                   activeMode === "garden"
                     ? "bg-[#24523B] text-white border-[#24523B] shadow-xs"
                     : "bg-white text-slate-700 border-[#E5E3DF] hover:border-slate-400"
                 }`}
               >
                 <Library className="w-4 h-4 shrink-0" />
-                <div>
-                  <div className="text-xs font-bold leading-tight">Vườn từ</div>
-                  <div
-                    className={`text-[10px] ${
-                      activeMode === "garden"
-                        ? "text-white/70"
-                        : "text-slate-400"
-                    }`}
-                  >
-                    Toàn bộ từ vựng
-                  </div>
-                </div>
+                <span className="text-xs font-bold leading-tight truncate">Vườn từ</span>
               </button>
             </div>
           </div>

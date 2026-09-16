@@ -1,13 +1,15 @@
 "use client";
 
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-import { Lesson } from "@/lib/types";
+import { Lesson, TypingSubMode, PassageItem } from "@/lib/types";
 import { tupleToWord } from "@/lib/utils";
 import { evaluateInput, EvaluationResult, speakChinese } from "@/utils/diff";
 import { SentenceCard, SentenceItem } from "@/components/SentenceCard";
+import { PassageCard } from "@/components/PassageCard";
 import { InputArea } from "@/components/InputArea";
 import { ResultDiff } from "@/components/ResultDiff";
 import { TopControlBar } from "@/components/TopControlBar";
+import { getLessonPassages } from "@/lib/passage-service";
 import confetti from "canvas-confetti";
 import { playSuccessChime, playErrorBuzz } from "@/lib/sound";
 
@@ -26,6 +28,20 @@ export function EditorialTyping({
   onOpenTopicModal,
   onRecordResult,
 }: EditorialTypingProps) {
+  // Default to "words" on server & initial render to prevent SSR hydration mismatch
+  const [typingMode, setTypingMode] = useState<TypingSubMode>("words");
+
+  // Sync saved preference from localStorage after client mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("xuehanyu_typing_submode");
+      if (saved === "words" || saved === "passages") {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setTypingMode(saved);
+      }
+    } catch {}
+  }, []);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userInput, setUserInput] = useState("");
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -37,13 +53,13 @@ export function EditorialTyping({
   const [showPinyin, setShowPinyin] = useState(true);
   const [showMeaning, setShowMeaning] = useState(true);
 
-  // Convert lesson tuples into SentenceItem list
-  const rawItems: SentenceItem[] = useMemo(() => {
+  // Convert lesson tuples into single words list
+  const wordItems: SentenceItem[] = useMemo(() => {
     if (!lesson || !lesson.w) return [];
     return lesson.w.map((item, idx) => {
       const w = tupleToWord(item, lessonIdx + 1);
       return {
-        id: idx + 1,
+        id: `word-${idx + 1}`,
         level: levelId.toUpperCase(),
         hanzi: w.zh,
         pinyin: w.py,
@@ -51,27 +67,76 @@ export function EditorialTyping({
         hv: w.hv,
         pos: w.pos,
         topicTitle: `Bài ${lessonIdx + 1}: ${lesson.t}`,
+        source: "lesson" as const,
       };
     });
   }, [lesson, lessonIdx, levelId]);
 
-  const items = useMemo(() => {
-    if (!isShuffle || !shuffledIndices || shuffledIndices.length !== rawItems.length) {
-      return rawItems;
-    }
-    return shuffledIndices.map((i) => rawItems[i]);
-  }, [rawItems, isShuffle, shuffledIndices]);
+  // Extract passages from lesson's readingPassages and texts
+  const passageItems: PassageItem[] = useMemo(() => {
+    if (!lesson) return [];
+    return getLessonPassages(lesson, lessonIdx, levelId);
+  }, [lesson, lessonIdx, levelId]);
 
-  const currentSentence = items[currentIndex] || items[0];
+  const rawCount = typingMode === "words" ? wordItems.length : passageItems.length;
+
+  const indices = useMemo(() => {
+    const arr = Array.from({ length: rawCount }, (_, i) => i);
+    if (!isShuffle || !shuffledIndices || shuffledIndices.length !== rawCount) {
+      return arr;
+    }
+    return shuffledIndices;
+  }, [rawCount, isShuffle, shuffledIndices]);
+
+  const activeIndex = indices[currentIndex] ?? 0;
+  const currentWord = wordItems[activeIndex] || wordItems[0];
+  const currentPassage = passageItems[activeIndex] || passageItems[0];
+
+  // Target Hanzi text depending on active mode
+  const targetHanzi = useMemo(() => {
+    if (typingMode === "words") {
+      return currentWord?.hanzi || "";
+    }
+    return currentPassage?.hanzi || "";
+  }, [typingMode, currentWord, currentPassage]);
+
+  // Target sentence representation for ResultDiff
+  const currentSentenceItem: SentenceItem = useMemo(() => {
+    if (typingMode === "words") {
+      return currentWord;
+    }
+    return {
+      id: currentPassage?.id || "passage-1",
+      level: levelId.toUpperCase(),
+      hanzi: currentPassage?.hanzi || "",
+      pinyin: currentPassage?.pinyin || "",
+      meaning: currentPassage?.meaning || "",
+      topicTitle: currentPassage?.title,
+    };
+  }, [typingMode, currentWord, currentPassage, levelId]);
+
+  const handleToggleTypingMode = (mode: TypingSubMode) => {
+    if (mode === typingMode) return;
+    setTypingMode(mode);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("xuehanyu_typing_submode", mode);
+    }
+    setCurrentIndex(0);
+    setUserInput("");
+    setHasSubmitted(false);
+    setEvaluation(null);
+    setIsShuffle(false);
+    setShuffledIndices(null);
+  };
 
   const handleShuffleToggle = () => {
     if (!isShuffle) {
-      const indices = rawItems.map((_, i) => i);
-      for (let i = indices.length - 1; i > 0; i--) {
+      const idxArr = Array.from({ length: rawCount }, (_, i) => i);
+      for (let i = idxArr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [indices[i], indices[j]] = [indices[j], indices[i]];
+        [idxArr[i], idxArr[j]] = [idxArr[j], idxArr[i]];
       }
-      setShuffledIndices(indices);
+      setShuffledIndices(idxArr);
       setIsShuffle(true);
       setCurrentIndex(0);
       setUserInput("");
@@ -97,7 +162,7 @@ export function EditorialTyping({
   }, [currentIndex]);
 
   const handleNext = useCallback(() => {
-    if (currentIndex < items.length - 1) {
+    if (currentIndex < rawCount - 1) {
       setCurrentIndex((prev) => prev + 1);
       setUserInput("");
       setHasSubmitted(false);
@@ -113,12 +178,12 @@ export function EditorialTyping({
       setHasSubmitted(false);
       setEvaluation(null);
     }
-  }, [currentIndex, items.length]);
+  }, [currentIndex, rawCount]);
 
   const handleSubmit = useCallback(() => {
-    if (!userInput.trim() || !currentSentence || hasSubmitted) return;
+    if (!userInput.trim() || !targetHanzi || hasSubmitted) return;
 
-    const result = evaluateInput(userInput, currentSentence.hanzi, true);
+    const result = evaluateInput(userInput, targetHanzi, true);
     setEvaluation(result);
     setHasSubmitted(true);
     onRecordResult(result.isPerfect);
@@ -128,7 +193,7 @@ export function EditorialTyping({
     } else {
       playErrorBuzz();
     }
-  }, [userInput, currentSentence, hasSubmitted, onRecordResult]);
+  }, [userInput, targetHanzi, hasSubmitted, onRecordResult]);
 
   const handleRetryKeep = () => {
     setHasSubmitted(false);
@@ -161,7 +226,7 @@ export function EditorialTyping({
     return () => window.removeEventListener("keydown", handleGlobalKey);
   });
 
-  if (!lesson || rawItems.length === 0) {
+  if (!lesson) {
     return (
       <div className="flex-1 flex items-center justify-center p-8">
         <div className="bg-white border border-[#E5E3DF] rounded-2xl p-8 text-center text-slate-500">
@@ -173,12 +238,12 @@ export function EditorialTyping({
 
   return (
     <div className="flex-1 flex flex-col h-full w-full overflow-hidden select-none">
-      {/* Top Control Bar Header (Synchronized padding: px-4 sm:px-6 xl:px-8) */}
-      <div className="h-14 px-4 sm:px-6 xl:px-8 border-b border-[#E5E3DF] flex items-center bg-[#FAF9F6] sticky top-0 z-10 shrink-0">
+      {/* Top Control Bar Header */}
+      <div className="h-auto min-h-14 px-4 sm:px-6 xl:px-8 py-2 border-b border-[#E5E3DF] flex items-center bg-[#FAF9F6] sticky top-0 z-10 shrink-0">
         <TopControlBar
           currentLevelId={levelId}
           currentIndex={currentIndex}
-          totalCount={items.length}
+          totalCount={rawCount}
           onPrev={handlePrev}
           onNext={handleNext}
           isShuffle={isShuffle}
@@ -188,58 +253,85 @@ export function EditorialTyping({
           showMeaning={showMeaning}
           onToggleMeaning={() => setShowMeaning((m) => !m)}
           onSpeak={() => {
-            if (currentSentence?.hanzi) {
-              speakChinese(currentSentence.hanzi, 0.9);
+            if (currentWord?.hanzi) {
+              speakChinese(currentWord.hanzi, 0.85);
             }
           }}
           topicTitle={`Bài ${lessonIdx + 1}: ${lesson.t}`}
           onOpenTopicModal={onOpenTopicModal}
+          typingMode={typingMode}
+          onToggleTypingMode={handleToggleTypingMode}
+          wordsCount={wordItems.length}
+          passagesCount={passageItems.length}
         />
       </div>
 
-      {/* Main Workspace Stage (Synchronized padding: px-4 sm:px-6 xl:px-8) */}
-      <div className="flex-1 overflow-y-auto px-4 sm:px-6 xl:px-8 py-4 sm:py-6 flex flex-col justify-center items-center w-full">
-        <div className="w-full flex flex-col items-center my-auto">
-          <SentenceCard
-            key={currentSentence.id}
-            sentence={currentSentence}
-            showPinyin={showPinyin}
-            showMeaning={showMeaning}
-            currentLevel={levelId.toUpperCase()}
-          />
-        </div>
-      </div>
-
-      {/* Bottom Docked Input Area (Synchronized padding: px-4 sm:px-6 xl:px-8) */}
+      {/* Main Workspace Stage - Matches Bài khoá full-width layout */}
       <div
-        id="bottom-input-dock"
-        className="shrink-0 border-t border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md px-4 sm:px-6 xl:px-8 py-2.5 sm:py-3.5 w-full z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]"
+        className={`flex-1 overflow-y-auto px-4 sm:px-6 xl:px-8 py-6 w-full ${
+          typingMode === "words"
+            ? "flex flex-col justify-center items-center"
+            : "space-y-6"
+        }`}
       >
-        <div className="w-full flex flex-col gap-2">
-          <InputArea
-            value={userInput}
-            onChange={setUserInput}
-            onSubmit={handleSubmit}
-            onSkip={handleSkip}
-            onReset={handleRetryClear}
-            disabled={hasSubmitted && !!evaluation?.isPerfect}
-            hasSubmitted={hasSubmitted}
-          />
+        {typingMode === "words" && currentWord && (
+          <div className="w-full flex flex-col items-center my-auto">
+            <SentenceCard
+              key={`word-${currentWord.id}`}
+              sentence={currentWord}
+              showPinyin={showPinyin}
+              showMeaning={showMeaning}
+              currentLevel={levelId.toUpperCase()}
+            />
+          </div>
+        )}
 
-          {hasSubmitted && evaluation && (
-            <div className="animate-in fade-in slide-in-from-top-2 duration-150">
-              <ResultDiff
-                evaluation={evaluation}
-                targetSentence={currentSentence}
-                userInput={userInput}
-                onContinue={handleNext}
-                onRetryKeep={handleRetryKeep}
-                onRetryClear={handleRetryClear}
-              />
-            </div>
-          )}
-        </div>
+        {typingMode === "passages" && currentPassage && (
+          <div className="w-full">
+            <PassageCard
+              key={`passage-${currentPassage.id}`}
+              passage={currentPassage}
+              showPinyin={showPinyin}
+              showMeaning={showMeaning}
+              currentLevel={levelId.toUpperCase()}
+            />
+          </div>
+        )}
       </div>
+      {/* Bottom Docked Input Area */}
+      {targetHanzi && (
+        <div
+          id="bottom-input-dock"
+          className="shrink-0 border-t border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md px-4 sm:px-6 xl:px-8 py-2.5 sm:py-3.5 w-full z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]"
+        >
+          <div className="w-full flex flex-col gap-2">
+            <InputArea
+              value={userInput}
+              onChange={setUserInput}
+              onSubmit={handleSubmit}
+              onSkip={handleSkip}
+              onReset={handleRetryClear}
+              disabled={hasSubmitted && !!evaluation?.isPerfect}
+              hasSubmitted={hasSubmitted}
+              mode={typingMode}
+              targetLength={Array.from(targetHanzi).length}
+            />
+
+            {hasSubmitted && evaluation && (
+              <div className="animate-in fade-in slide-in-from-top-2 duration-150">
+                <ResultDiff
+                  evaluation={evaluation}
+                  targetSentence={currentSentenceItem}
+                  userInput={userInput}
+                  onContinue={handleNext}
+                  onRetryKeep={handleRetryKeep}
+                  onRetryClear={handleRetryClear}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -54,6 +54,7 @@ export default function HomePage() {
   // Nạp state đã lưu sau khi mount (chỉ chạy ở client) để khớp SSR
   useEffect(() => {
     const appState = loadAppState();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCurrentLevelId(appState.currentLevelId);
     setCurrentLessonIdx(appState.currentLessonIdx);
     setActiveMode(appState.activeMode);

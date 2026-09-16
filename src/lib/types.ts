@@ -35,6 +35,24 @@ export interface ReadingPassage {
   vi: string[];
 }
 
+export type TypingSubMode = "words" | "passages";
+
+export interface PassageSentence {
+  zh: string;
+  py: string;
+  vi: string;
+}
+
+export interface PassageItem {
+  id: string;
+  title: string;
+  hanzi: string;
+  pinyin: string;
+  meaning: string;
+  sentences: PassageSentence[];
+  source?: "reading" | "text";
+}
+
 export interface Lesson {
   t: string;
   vi_t: string;

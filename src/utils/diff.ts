@@ -18,6 +18,7 @@ export interface EvaluationResult {
 
 export function normalizePunctuation(str: string): string {
   return str
+    .replace(/[\r\n]+/g, ' ')
     .replace(/。/g, '.')
     .replace(/，/g, ',')
     .replace(/！/g, '!')
@@ -28,6 +29,7 @@ export function normalizePunctuation(str: string): string {
     .replace(/‘|’/g, "'")
     .replace(/（/g, '(')
     .replace(/）/g, ')')
+    .replace(/([.,!?:;。，！？：；])\s+/g, '$1')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -40,9 +42,19 @@ export function evaluateInput(
   targetHanzi: string,
   allowNormalizedPunctuation: boolean = true
 ): EvaluationResult {
-  const cleanInput = userInput.trim();
-  const cleanTarget = targetHanzi.trim();
+  const hasTargetNewlines = targetHanzi.includes('\n');
+  let cleanInput = userInput.trim();
 
+  if (!hasTargetNewlines) {
+    cleanInput = cleanInput
+      .replace(/[\r\n]+/g, ' ')
+      .replace(/([.,!?:;。，！？：；])\s+/g, '$1')
+      .trim();
+    if (!targetHanzi.includes(' ')) {
+      cleanInput = cleanInput.replace(/\s+/g, '');
+    }
+  }
+  const cleanTarget = targetHanzi.trim();
   const isLiteralExact = cleanInput === cleanTarget;
   const isNormalizedExact =
     normalizePunctuation(cleanInput) === normalizePunctuation(cleanTarget);

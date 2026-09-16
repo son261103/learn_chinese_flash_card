@@ -4,9 +4,10 @@ import React, { useState, useMemo, useEffect, useRef } from "react";
 import { Volume2, Copy, Check, X } from "lucide-react";
 import { alignHanziAndPinyin, CharRubyToken, getInitialWordRange } from "@/utils/pinyinParser";
 import { speakChinese } from "@/utils/diff";
+import { findWordInDict } from "@/lib/passage-service";
 
 export interface SentenceItem {
-  id: number;
+  id: number | string;
   level: string;
   hanzi: string;
   pinyin: string;
@@ -99,17 +100,19 @@ export function SentenceCard({
     const initial = getInitialWordRange(sentence.hanzi, token.index);
     setHighlightedRange([initial.start, initial.end]);
 
+    const targetWord = initial.word || token.char;
+    const dictMatch = findWordInDict(targetWord) || findWordInDict(token.char);
+
     setLookupData({
-      word: initial.word || token.char,
-      pinyin: token.pinyin,
-      meaning: sentence.meaning,
-      hv: sentence.hv,
+      word: targetWord,
+      pinyin: dictMatch?.py || token.pinyin,
+      meaning: dictMatch?.vi || sentence.meaning,
+      hv: dictMatch?.hv || sentence.hv,
     });
 
-    handleSpeak(initial.word || token.char);
+    handleSpeak(targetWord);
   };
 
-  // Dynamic font size matching --main
   const charLength = Array.from(sentence.hanzi).length;
   const hanziSizeClass =
     charLength <= 6
@@ -133,7 +136,7 @@ export function SentenceCard({
         className={`w-11 h-11 rounded-full border border-[#E5E3DF] bg-white text-slate-700 hover:bg-[#24523B] hover:text-white hover:border-[#24523B] transition-all flex items-center justify-center shadow-2xs mb-5 active:scale-95 cursor-pointer ${
           isPlayingAudio ? "ring-2 ring-[#24523B] bg-[#FAF9F6] text-[#24523B]" : ""
         }`}
-        title="Nghe phát âm (Audio)"
+        title="Nghe phát âm"
       >
         <Volume2 className="w-4.5 h-4.5" />
       </button>
@@ -211,32 +214,32 @@ export function SentenceCard({
                   {tok.char}
                 </span>
 
-                {/* Subtle dot to indicate clickable dictionary */}
+                {/* Subtle dot */}
                 <span
                   className={`w-1 h-1 rounded-full transition-opacity mt-1.5 ${
                     isChinese
                       ? isHighlighted
                         ? "bg-[#24523B] opacity-100"
-                        : "bg-slate-300 opacity-0 group-hover/char:opacity-100"
-                      : "opacity-0 pointer-events-none"
+                        : "bg-slate-300 opacity-60 group-hover/char:opacity-100"
+                      : "opacity-0"
                   }`}
                 />
               </div>
             );
           })}
 
-          {/* Quick Copy Button */}
+          {/* Quick Copy Action */}
           <button
             type="button"
             onClick={handleCopy}
             className="opacity-0 group-hover:opacity-100 transition-opacity absolute -right-6 top-1/2 -translate-y-1/2 p-2 text-slate-400 hover:text-slate-700 rounded-lg hidden md:block cursor-pointer"
             title="Sao chép chữ Hán"
           >
-            {copied ? <Check className="w-4 h-4 text-[#24523B]" /> : <Copy className="w-4 h-4" />}
+            {copied ? <Check className="w-4 h-4 text-[#24523B]" /> : <Copy className="w-4 h-4 text-slate-400" />}
           </button>
         </div>
 
-        {/* Full Sentence translation line */}
+        {/* Translation line */}
         {showMeaning && (
           <div className="mt-4 sm:mt-5 px-4 sm:px-6 py-2 rounded-2xl bg-white/75 border border-[#E5E3DF]/80 shadow-2xs">
             <p className="text-sm sm:text-base md:text-lg text-slate-700 italic font-editorial-serif leading-relaxed">

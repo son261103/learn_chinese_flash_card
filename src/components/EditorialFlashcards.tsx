@@ -85,6 +85,7 @@ export function EditorialFlashcards({
 
   useEffect(() => {
     try {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsAutoPlay(localStorage.getItem(FLASHCARD_AUTOPLAY_KEY) === "true");
     } catch {}
     setNowSnapshot(Date.now());
