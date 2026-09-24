@@ -18,6 +18,24 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+## Chế độ Shadowing (đoạn văn do AI viết)
+
+Trong tab **Gõ → Shadowing**, server gọi model để viết 1–3 đoạn văn tiếng Trung dùng đủ từ vựng
+của bài hiện tại và lồng thêm từ của các bài trước, kèm bản dịch tiếng Việt. Pinyin do `pinyin-pro`
+tính ngay trên máy. Đoạn văn được lưu trong `localStorage` theo từng bài nên không tốn token khi
+học lại.
+
+Cấu hình model bằng biến môi trường (chuẩn OpenAI, dùng SDK `openai` ở server — API key không bao
+giờ gửi xuống trình duyệt). Sao chép `.env.example` thành `.env.local`:
+
+```bash
+OPENAI_API_KEY=sk-...
+OPENAI_MODEL=gpt-4o-mini
+OPENAI_BASE_URL=https://api.openai.com/v1   # tuỳ chọn: đổi provider/model local
+```
+
+Route xử lý: `POST /api/ai/chat` (proxy gọi model), `GET /api/ai/chat` (kiểm tra đã cấu hình chưa).
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More

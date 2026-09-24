@@ -35,13 +35,27 @@ export interface ReadingPassage {
   vi: string[];
 }
 
-export type TypingSubMode = "words" | "passages";
+export type TypingSubMode = "words" | "passages" | "shadowing";
 
 export interface PassageSentence {
   who?: string;
   zh: string;
   py: string;
   vi: string;
+}
+
+// Đoạn văn do AI sinh ra để luyện shadowing (pinyin luôn được tính cục bộ)
+export interface ShadowingPassage {
+  id: string;
+  levelId: string;
+  lessonIdx: number;
+  paragraphCount: number;
+  title: string;
+  paragraphs: PassageSentence[][];
+  sentences: PassageSentence[];
+  charCount: number;
+  createdAt: number;
+  model: string;
 }
 
 export interface PassageItem {

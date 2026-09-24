@@ -10,8 +10,10 @@ import {
   Type,
   Languages,
   BookOpenText,
+  Sparkles,
 } from "lucide-react";
 import { stageIconBtnClass } from "@/components/StageHeader";
+import { TypingSubMode } from "@/lib/types";
 
 export interface TypingControlsProps {
   currentIndex: number;
@@ -24,8 +26,10 @@ export interface TypingControlsProps {
   showMeaning?: boolean;
   onToggleMeaning?: () => void;
   onSpeak?: () => void;
-  typingMode?: "words" | "passages";
-  onToggleTypingMode?: (mode: "words" | "passages") => void;
+  typingMode?: TypingSubMode;
+  onToggleTypingMode?: (mode: TypingSubMode) => void;
+  /** Ẩn nhóm nút điều hướng khi màn hình đã có thanh điều hướng riêng (chế độ shadowing) */
+  showNavigation?: boolean;
 }
 
 export function TypingControls({
@@ -41,6 +45,7 @@ export function TypingControls({
   onSpeak,
   typingMode = "words",
   onToggleTypingMode,
+  showNavigation = true,
 }: TypingControlsProps) {
   return (
     <div className="w-full flex items-center justify-between gap-2 py-0.5">
@@ -77,6 +82,21 @@ export function TypingControls({
               <MessageSquare className="w-3.5 h-3.5" />
               <span className="hidden min-[380px]:inline">Hội thoại</span>
               <span className="min-[380px]:hidden">Thoại</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => onToggleTypingMode("shadowing")}
+              aria-pressed={typingMode === "shadowing"}
+              className={`h-full px-2.5 sm:px-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                typingMode === "shadowing"
+                  ? "bg-white text-slate-900 shadow-2xs font-bold"
+                  : "text-slate-500 hover:text-slate-900"
+              }`}
+              title="Đoạn văn do AI viết từ toàn bộ từ vựng đã học — nghe rồi nhại lại"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span className="hidden min-[380px]:inline">Shadowing</span>
+              <span className="min-[380px]:hidden">Nói</span>
             </button>
           </div>
         )}
@@ -134,27 +154,29 @@ export function TypingControls({
             <Shuffle className="w-4 h-4" />
           </button>
         )}
-        <div className="inline-flex items-center h-8 rounded-xl border border-[#E5E3DF] bg-white divide-x divide-[#E5E3DF] overflow-hidden shadow-2xs shrink-0">
-          <button
-            type="button"
-            onClick={onPrev}
-            disabled={currentIndex === 0}
-            aria-label="Từ trước đó"
-            title="Trước đó [Phím ←]"
-            className="h-full px-2 sm:px-2.5 flex items-center justify-center text-slate-600 hover:bg-[#FAF9F6] hover:text-slate-900 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-          <button
-            type="button"
-            onClick={onNext}
-            aria-label="Từ tiếp theo"
-            title="Tiếp theo [Phím →]"
-            className="h-full px-2 sm:px-2.5 flex items-center justify-center text-slate-600 hover:bg-[#FAF9F6] hover:text-slate-900 transition-colors cursor-pointer"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        </div>
+        {showNavigation && (
+          <div className="inline-flex items-center h-8 rounded-xl border border-[#E5E3DF] bg-white divide-x divide-[#E5E3DF] overflow-hidden shadow-2xs shrink-0">
+            <button
+              type="button"
+              onClick={onPrev}
+              disabled={currentIndex === 0}
+              aria-label="Từ trước đó"
+              title="Trước đó [Phím ←]"
+              className="h-full px-2 sm:px-2.5 flex items-center justify-center text-slate-600 hover:bg-[#FAF9F6] hover:text-slate-900 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              onClick={onNext}
+              aria-label="Từ tiếp theo"
+              title="Tiếp theo [Phím →]"
+              className="h-full px-2 sm:px-2.5 flex items-center justify-center text-slate-600 hover:bg-[#FAF9F6] hover:text-slate-900 transition-colors cursor-pointer"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

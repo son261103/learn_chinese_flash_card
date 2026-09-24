@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { CornerDownLeft, RotateCcw, X, Check, AlertTriangle } from "lucide-react";
+import { TypingSubMode } from "@/lib/types";
 
 interface InputAreaProps {
   value: string;
@@ -11,7 +12,7 @@ interface InputAreaProps {
   disabled?: boolean;
   hasSubmitted?: boolean;
   onReset: () => void;
-  mode?: "words" | "passages";
+  mode?: TypingSubMode;
   targetLength?: number;
 }
 
@@ -128,12 +129,14 @@ export function InputArea({
           placeholder={
             mode === "passages"
               ? "Gõ chữ Hán của đoạn hội thoại tại đây..."
+              : mode === "shadowing"
+              ? "Gõ lại chữ Hán của câu vừa nghe..."
               : "Gõ chữ Hán tại đây..."
           }
           spellCheck={false}
-          rows={mode === "passages" ? 2 : 1}
+          rows={mode === "words" ? 1 : 2}
           className={`hanzi w-full text-base sm:text-xl md:text-2xl text-slate-900 bg-transparent border-none outline-none placeholder:text-slate-400 placeholder:font-sans placeholder:text-xs sm:placeholder:text-sm tracking-wide leading-relaxed px-1 resize-none ${
-            mode === "passages" ? "min-h-[50px] sm:min-h-[76px]" : "min-h-[38px] sm:min-h-[42px]"
+            mode === "words" ? "min-h-[38px] sm:min-h-[42px]" : "min-h-[50px] sm:min-h-[76px]"
           }`}
         />
 

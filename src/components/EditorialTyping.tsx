@@ -10,6 +10,7 @@ import { InputArea } from "@/components/InputArea";
 import { ResultDiff } from "@/components/ResultDiff";
 import { StageHeader } from "@/components/StageHeader";
 import { TypingControls } from "@/components/TypingControls";
+import { ShadowingPanel } from "@/components/ShadowingPanel";
 import { getLessonPassages } from "@/lib/passage-service";
 import confetti from "canvas-confetti";
 import { playSuccessChime, playErrorBuzz } from "@/lib/sound";
@@ -34,7 +35,7 @@ export function EditorialTyping({
   useEffect(() => {
     try {
       const saved = localStorage.getItem("xuehanyu_typing_submode");
-      if (saved === "words" || saved === "passages") {
+      if (saved === "words" || saved === "passages" || saved === "shadowing") {
         // eslint-disable-next-line react-hooks/set-state-in-effect
         setTypingMode(saved);
       }
@@ -79,7 +80,8 @@ export function EditorialTyping({
     return getLessonPassages(lesson, lessonIdx, levelId);
   }, [lesson, lessonIdx, levelId]);
 
-  const rawCount = typingMode === "words" ? wordItems.length : passageItems.length;
+  const rawCount =
+    typingMode === "words" ? wordItems.length : typingMode === "passages" ? passageItems.length : 0;
 
   const indices = useMemo(() => {
     const arr = Array.from({ length: rawCount }, (_, i) => i);
@@ -97,6 +99,10 @@ export function EditorialTyping({
   const targetHanzi = useMemo(() => {
     if (typingMode === "words") {
       return currentWord?.hanzi || "";
+    }
+    // Chế độ shadowing tự quản lý ô gõ riêng theo từng câu
+    if (typingMode === "shadowing") {
+      return "";
     }
     return currentPassage?.hanzi || "";
   }, [typingMode, currentWord, currentPassage]);
@@ -214,6 +220,8 @@ export function EditorialTyping({
 
   // Keyboard navigation on desktop
   useEffect(() => {
+    if (typingMode === "shadowing") return;
+
     const handleGlobalKey = (e: KeyboardEvent) => {
       if (["INPUT", "TEXTAREA"].includes((e.target as HTMLElement).tagName)) {
         return;
@@ -245,94 +253,112 @@ export function EditorialTyping({
           onPrev={handlePrev}
           onNext={handleNext}
           isShuffle={isShuffle}
-          onToggleShuffle={handleShuffleToggle}
+          onToggleShuffle={typingMode === "shadowing" ? undefined : handleShuffleToggle}
           showPinyin={showPinyin}
           onTogglePinyin={() => setShowPinyin((p) => !p)}
           showMeaning={showMeaning}
           onToggleMeaning={() => setShowMeaning((m) => !m)}
-          onSpeak={() => {
-            if (typingMode === "words" && currentWord?.hanzi) {
-              speakChinese(currentWord.hanzi, 0.85);
-            } else if (typingMode === "passages" && currentPassage?.hanzi) {
-              speakChinese(currentPassage.hanzi, 0.85);
-            }
-          }}
+          onSpeak={
+            typingMode === "shadowing"
+              ? undefined
+              : () => {
+                  if (typingMode === "words" && currentWord?.hanzi) {
+                    speakChinese(currentWord.hanzi, 0.85);
+                  } else if (typingMode === "passages" && currentPassage?.hanzi) {
+                    speakChinese(currentPassage.hanzi, 0.85);
+                  }
+                }
+          }
           typingMode={typingMode}
           onToggleTypingMode={handleToggleTypingMode}
+          showNavigation={typingMode !== "shadowing"}
         />
       </StageHeader>
 
-      {/* Main Workspace Stage - In passages mode, overscroll-y-auto allows natural unblocked scrolling */}
-      <div
-        ref={stageScrollRef}
-        className={`flex-1 min-h-0 overflow-y-auto px-3 sm:px-6 xl:px-8 py-3 sm:py-6 w-full touch-pan-y overscroll-y-auto ${
-          typingMode === "words"
-            ? "flex flex-col justify-start pt-4 sm:pt-0 sm:justify-center items-center pb-4"
-            : "space-y-4 sm:space-y-6 pb-28 sm:pb-36"
-        }`}
-      >
-        {/* Words Mode: SentenceCard displays word and highlights characters live as user types */}
-        {typingMode === "words" && currentWord && (
-          <div className="w-full flex flex-col items-center sm:my-auto">
-            <SentenceCard
-              key={`word-${currentWord.id}`}
-              sentence={currentWord}
-              showPinyin={showPinyin}
-              showMeaning={showMeaning}
-              currentLevel={levelId.toUpperCase()}
-              userInput={userInput}
-            />
-          </div>
-        )}
-
-        {/* Passages Mode: Conversational Dialogue List */}
-        {typingMode === "passages" && currentPassage && (
-          <div className="w-full">
-            <PassageCard
-              key={`passage-${currentPassage.id}`}
-              passage={currentPassage}
-              userInput={userInput}
-              showPinyin={showPinyin}
-              showMeaning={showMeaning}
-              currentLevel={levelId.toUpperCase()}
-            />
-          </div>
-        )}
-      </div>
-
-      {/* Bottom Docked Input Area: Rendered cleanly for both words and passages without nested scroll locks */}
-      {targetHanzi && (
-        <div
-          id="bottom-input-dock"
-          className="shrink-0 border-t border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md px-3 sm:px-6 xl:px-8 py-2 sm:py-2.5 pb-safe w-full z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]"
-        >
-          <div className="w-full flex flex-col gap-2">
-            <InputArea
-              value={userInput}
-              onChange={setUserInput}
-              onSubmit={handleSubmit}
-              onSkip={handleSkip}
-              onReset={handleRetryClear}
-              disabled={hasSubmitted && !!evaluation?.isPerfect}
-              hasSubmitted={hasSubmitted}
-              mode={typingMode}
-              targetLength={Array.from(targetHanzi).length}
-            />
-
-            {hasSubmitted && evaluation && (
-              <div className="animate-in fade-in slide-in-from-top-2 duration-150">
-                <ResultDiff
-                  evaluation={evaluation}
-                  targetSentence={currentSentenceItem}
+      {typingMode === "shadowing" ? (
+        <ShadowingPanel
+          lesson={lesson}
+          lessonIdx={lessonIdx}
+          levelId={levelId}
+          showPinyin={showPinyin}
+          showMeaning={showMeaning}
+          onRecordResult={onRecordResult}
+        />
+      ) : (
+        <>
+          {/* Main Workspace Stage - In passages mode, overscroll-y-auto allows natural unblocked scrolling */}
+          <div
+            ref={stageScrollRef}
+            className={`flex-1 min-h-0 overflow-y-auto px-3 sm:px-6 xl:px-8 py-3 sm:py-6 w-full touch-pan-y overscroll-y-auto ${
+              typingMode === "words"
+                ? "flex flex-col justify-start pt-4 sm:pt-0 sm:justify-center items-center pb-4"
+                : "space-y-4 sm:space-y-6 pb-28 sm:pb-36"
+            }`}
+          >
+            {/* Words Mode: SentenceCard displays word and highlights characters live as user types */}
+            {typingMode === "words" && currentWord && (
+              <div className="w-full flex flex-col items-center sm:my-auto">
+                <SentenceCard
+                  key={`word-${currentWord.id}`}
+                  sentence={currentWord}
+                  showPinyin={showPinyin}
+                  showMeaning={showMeaning}
+                  currentLevel={levelId.toUpperCase()}
                   userInput={userInput}
-                  onContinue={handleNext}
-                  onRetryKeep={handleRetryKeep}
-                  onRetryClear={handleRetryClear}
+                />
+              </div>
+            )}
+
+            {/* Passages Mode: Conversational Dialogue List */}
+            {typingMode === "passages" && currentPassage && (
+              <div className="w-full">
+                <PassageCard
+                  key={`passage-${currentPassage.id}`}
+                  passage={currentPassage}
+                  userInput={userInput}
+                  showPinyin={showPinyin}
+                  showMeaning={showMeaning}
+                  currentLevel={levelId.toUpperCase()}
                 />
               </div>
             )}
           </div>
-        </div>
+
+          {/* Bottom Docked Input Area: Rendered cleanly for both words and passages without nested scroll locks */}
+          {targetHanzi && (
+            <div
+              id="bottom-input-dock"
+              className="shrink-0 border-t border-[#E5E3DF] bg-[#FAF9F6]/95 backdrop-blur-md px-3 sm:px-6 xl:px-8 py-2 sm:py-2.5 pb-safe w-full z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]"
+            >
+              <div className="w-full flex flex-col gap-2">
+                <InputArea
+                  value={userInput}
+                  onChange={setUserInput}
+                  onSubmit={handleSubmit}
+                  onSkip={handleSkip}
+                  onReset={handleRetryClear}
+                  disabled={hasSubmitted && !!evaluation?.isPerfect}
+                  hasSubmitted={hasSubmitted}
+                  mode={typingMode}
+                  targetLength={Array.from(targetHanzi).length}
+                />
+
+                {hasSubmitted && evaluation && (
+                  <div className="animate-in fade-in slide-in-from-top-2 duration-150">
+                    <ResultDiff
+                      evaluation={evaluation}
+                      targetSentence={currentSentenceItem}
+                      userInput={userInput}
+                      onContinue={handleNext}
+                      onRetryKeep={handleRetryKeep}
+                      onRetryClear={handleRetryClear}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
