@@ -26,12 +26,12 @@ tính ngay trên máy. Đoạn văn được lưu trong `localStorage` theo từ
 học lại.
 
 Cấu hình model bằng biến môi trường (chuẩn OpenAI, dùng SDK `openai` ở server — API key không bao
-giờ gửi xuống trình duyệt). Sao chép `.env.example` thành `.env.local`:
+giờ gửi xuống trình duyệt). Tạo file `.env` (hoặc sao chép từ `.env.example`):
 
 ```bash
-OPENAI_API_KEY=sk-...
-OPENAI_MODEL=gpt-4o-mini
-OPENAI_BASE_URL=https://api.openai.com/v1   # tuỳ chọn: đổi provider/model local
+LLM_API_KEY=
+LLM_MODEL=
+LLM_BASE_URL=
 ```
 
 Route xử lý: `POST /api/ai/chat` (proxy gọi model), `GET /api/ai/chat` (kiểm tra đã cấu hình chưa).

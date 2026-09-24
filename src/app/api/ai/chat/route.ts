@@ -22,17 +22,17 @@ function jsonError(message: string, status: number): Response {
 
 function readEnv() {
   return {
-    apiKey: process.env.OPENAI_API_KEY?.trim() || "",
-    baseUrl: process.env.OPENAI_BASE_URL?.trim() || "",
-    model: process.env.OPENAI_MODEL?.trim() || "",
+    apiKey: (process.env.LLM_API_KEY || process.env.OPENAI_API_KEY || "").trim(),
+    baseUrl: (process.env.LLM_BASE_URL || process.env.OPENAI_BASE_URL || "").trim(),
+    model: (process.env.LLM_MODEL || process.env.OPENAI_MODEL || "").trim(),
   };
 }
 
 function createClient() {
   const { apiKey, baseUrl, model } = readEnv();
 
-  if (!apiKey) throw new AiConfigError("Thiếu biến môi trường OPENAI_API_KEY.");
-  if (!model) throw new AiConfigError("Thiếu biến môi trường OPENAI_MODEL.");
+  if (!apiKey) throw new AiConfigError("Thiếu biến môi trường LLM_API_KEY.");
+  if (!model) throw new AiConfigError("Thiếu biến môi trường LLM_MODEL.");
 
   return {
     model,
@@ -93,7 +93,7 @@ export async function POST(request: NextRequest): Promise<Response> {
     ({ model, client } = createClient());
   } catch (err) {
     if (err instanceof AiConfigError) {
-      return jsonError(`${err.message} Hãy khai báo trong .env.local rồi khởi động lại server.`, 503);
+      return jsonError(`${err.message} Hãy khai báo trong .env rồi khởi động lại server.`, 503);
     }
     throw err;
   }

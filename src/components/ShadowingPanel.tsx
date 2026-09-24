@@ -618,14 +618,13 @@ export function ShadowingPanel({
             </p>
             <div className="text-left bg-[#FAF9F6] border border-[#E5E3DF] rounded-xl p-3 space-y-1.5">
               <p className="text-[11px] font-semibold text-slate-700">
-                Server chưa được cấu hình model. Khai báo trong{" "}
-                <span className="font-mono">.env.local</span> rồi khởi động lại:
+                Server chưa được cấu hình LLM. Khai báo trong{" "}
+                <span className="font-mono">.env</span> rồi khởi động lại:
               </p>
               <pre className="text-[11px] font-mono text-slate-600 leading-relaxed overflow-x-auto">
-{`OPENAI_API_KEY=sk-...
-OPENAI_MODEL=gpt-4o-mini
-# tuỳ chọn: đổi nhà cung cấp / model chạy local
-OPENAI_BASE_URL=https://api.openai.com/v1`}
+{`LLM_API_KEY=
+LLM_MODEL=
+LLM_BASE_URL=`}
               </pre>
             </div>
             <button
