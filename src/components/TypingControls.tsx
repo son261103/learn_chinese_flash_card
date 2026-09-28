@@ -32,6 +32,36 @@ export interface TypingControlsProps {
   showNavigation?: boolean;
 }
 
+const SUB_MODES: {
+  mode: TypingSubMode;
+  icon: React.ComponentType<{ className?: string }>;
+  label: string;
+  shortLabel: string;
+  title: string;
+}[] = [
+  {
+    mode: "words",
+    icon: Type,
+    label: "Từ mới",
+    shortLabel: "Từ",
+    title: "Chế độ gõ từng từ mới",
+  },
+  {
+    mode: "passages",
+    icon: MessageSquare,
+    label: "Hội thoại",
+    shortLabel: "Thoại",
+    title: "Chế độ gõ bài hội thoại",
+  },
+  {
+    mode: "shadowing",
+    icon: Sparkles,
+    label: "Shadowing",
+    shortLabel: "Nói",
+    title: "Đoạn văn do AI viết từ toàn bộ từ vựng đã học — nghe rồi nhại lại",
+  },
+];
+
 export function TypingControls({
   currentIndex,
   onPrev,
@@ -48,60 +78,34 @@ export function TypingControls({
   showNavigation = true,
 }: TypingControlsProps) {
   return (
-    <div className="w-full flex items-center justify-between gap-2 py-0.5">
-      {/* Left: Typing sub-mode switcher */}
-      <div className="flex items-center gap-1.5 min-w-0 flex-1 overflow-x-auto no-scrollbar">
-        {onToggleTypingMode && (
+    <div className="w-full flex items-center justify-between gap-1.5 sm:gap-2 py-0.5">
+      {/* Typing sub-mode switcher — mobile: nhãn ngắn không icon để gọn một hàng;
+          sm+: icon + nhãn đầy đủ. Nhãn luôn giữ font-semibold để tab không giật width khi đổi */}
+      {onToggleTypingMode && (
+        <div className="flex items-center min-w-0 overflow-x-auto no-scrollbar">
           <div className="inline-flex items-center p-0.5 h-8 rounded-xl border border-[#E5E3DF] bg-[#EFECE6]/70 shrink-0">
-            <button
-              type="button"
-              onClick={() => onToggleTypingMode("words")}
-              aria-pressed={typingMode === "words"}
-              className={`h-full px-2.5 sm:px-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                typingMode === "words"
-                  ? "bg-white text-slate-900 shadow-2xs font-bold"
-                  : "text-slate-500 hover:text-slate-900"
-              }`}
-              title="Chế độ gõ từng từ mới"
-            >
-              <Type className="w-3.5 h-3.5" />
-              <span className="hidden min-[380px]:inline">Từ mới</span>
-              <span className="min-[380px]:hidden">Từ</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => onToggleTypingMode("passages")}
-              aria-pressed={typingMode === "passages"}
-              className={`h-full px-2.5 sm:px-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                typingMode === "passages"
-                  ? "bg-white text-slate-900 shadow-2xs font-bold"
-                  : "text-slate-500 hover:text-slate-900"
-              }`}
-              title="Chế độ gõ bài hội thoại"
-            >
-              <MessageSquare className="w-3.5 h-3.5" />
-              <span className="hidden min-[380px]:inline">Hội thoại</span>
-              <span className="min-[380px]:hidden">Thoại</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => onToggleTypingMode("shadowing")}
-              aria-pressed={typingMode === "shadowing"}
-              className={`h-full px-2.5 sm:px-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                typingMode === "shadowing"
-                  ? "bg-white text-slate-900 shadow-2xs font-bold"
-                  : "text-slate-500 hover:text-slate-900"
-              }`}
-              title="Đoạn văn do AI viết từ toàn bộ từ vựng đã học — nghe rồi nhại lại"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span className="hidden min-[380px]:inline">Shadowing</span>
-              <span className="min-[380px]:hidden">Nói</span>
-            </button>
+            {SUB_MODES.map(({ mode, icon: Icon, label, shortLabel, title }) => (
+              <button
+                key={mode}
+                type="button"
+                onClick={() => onToggleTypingMode(mode)}
+                aria-pressed={typingMode === mode}
+                className={`h-full px-2 sm:px-3 inline-flex items-center justify-center gap-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                  typingMode === mode
+                    ? "bg-white text-slate-900 shadow-2xs"
+                    : "text-slate-500 hover:text-slate-900"
+                }`}
+                title={title}
+              >
+                <Icon className="w-3.5 h-3.5 shrink-0 hidden sm:inline" />
+                <span className="sm:hidden">{shortLabel}</span>
+                <span className="hidden sm:inline">{label}</span>
+              </button>
+            ))}
           </div>
-        )}
-      </div>
-      {/* Right: icon-only unified toolbar */}
+        </div>
+      )}
+      {/* Right: icon-only unified toolbar — cụm sát nhau, neo phải */}
       <div className="flex items-center gap-1 sm:gap-1.5 shrink-0 ml-auto">
         {onTogglePinyin && (
           <button

@@ -13,7 +13,7 @@ import {
   Loader2,
   Play,
   RefreshCw,
-  Repeat,
+  SlidersHorizontal,
   Sparkles,
   Square,
   Volume2,
@@ -146,9 +146,12 @@ export function ShadowingPanel({
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [evaluation, setEvaluation] = useState<EvaluationResult | null>(null);
 
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
   const scrollRef = useRef<HTMLDivElement>(null);
   const playTokenRef = useRef(0);
   const abortRef = useRef<AbortController | null>(null);
+  const settingsRef = useRef<HTMLDivElement>(null);
 
   const { required, review } = useMemo(
     () => getCumulativeWordPool(levelId, lessonIdx),
@@ -182,6 +185,18 @@ export function ShadowingPanel({
       return next;
     });
   }, []);
+
+  // Đóng popup cài đặt khi bấm ra ngoài
+  useEffect(() => {
+    if (!isSettingsOpen) return;
+    const handleDocMouseDown = (e: MouseEvent) => {
+      if (settingsRef.current && !settingsRef.current.contains(e.target as Node)) {
+        setIsSettingsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleDocMouseDown);
+    return () => document.removeEventListener("mousedown", handleDocMouseDown);
+  }, [isSettingsOpen]);
 
   const stopPlayback = useCallback(() => {
     playTokenRef.current += 1;
@@ -392,17 +407,18 @@ export function ShadowingPanel({
     <div className="flex-1 flex flex-col w-full min-h-0">
       <div
         ref={scrollRef}
-        className="flex-1 min-h-0 overflow-y-auto px-3 sm:px-6 xl:px-8 py-3 sm:py-4 w-full touch-pan-y"
+        className="flex-1 min-h-0 overflow-y-auto px-3 sm:px-6 xl:px-8 pt-1.5 pb-3 sm:pt-2 sm:pb-4 w-full touch-pan-y"
       >
         {/* Thanh điều khiển dính trên cùng */}
-        <div className="sticky top-0 z-10 -mx-3 sm:-mx-6 xl:-mx-8 px-3 sm:px-6 xl:px-8 py-2 mb-3 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-[#E5E3DF]/70 space-y-2">
-          {/* Hàng 1: phát audio */}
-          <div className="flex items-center gap-1.5 flex-wrap">
+        <div className="sticky top-0 z-10 -mx-3 sm:-mx-6 xl:-mx-8 px-3 sm:px-6 xl:px-8 py-1.5 mb-2 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-[#E5E3DF]/70 space-y-2">
+          {/* Một hàng duy nhất: phát liên tục ··· cài đặt (popup) + điều hướng.
+              Mỗi câu đã tự phát khi bấm vào nó nên không cần nút nghe lại riêng. */}
+          <div className="flex items-center justify-between gap-1.5">
             <button
               type="button"
               onClick={handleTogglePlayAll}
               disabled={sentences.length === 0}
-              className={`h-8 px-3 rounded-xl border font-bold text-xs transition-all flex items-center gap-1.5 shadow-2xs disabled:opacity-40 disabled:pointer-events-none cursor-pointer ${
+              className={`h-8 px-3 rounded-xl border font-bold text-xs transition-all flex items-center gap-1.5 shadow-2xs disabled:opacity-40 disabled:pointer-events-none cursor-pointer shrink-0 ${
                 isPlayingAll
                   ? "bg-[#24523B] text-white border-[#24523B]"
                   : "bg-white text-slate-700 border-[#E5E3DF] hover:border-slate-400 hover:text-slate-900"
@@ -413,188 +429,137 @@ export function ShadowingPanel({
               <span>{isPlayingAll ? "Dừng" : "Nghe liên tục"}</span>
             </button>
 
-            <button
-              type="button"
-              onClick={() => playSentence(activeIdx)}
-              disabled={sentences.length === 0}
-              className={selectClass() + " flex items-center gap-1 disabled:opacity-40"}
-              title="Nghe lại câu đang chọn"
-            >
-              <Repeat className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Câu này</span>
-            </button>
-
-            <select
-              value={prefs.rate}
-              onChange={(e) => updatePrefs({ rate: Number(e.target.value) })}
-              className={selectClass()}
-              title="Tốc độ đọc"
-              aria-label="Tốc độ đọc"
-            >
-              {RATE_OPTIONS.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-
-            <select
-              value={prefs.gapMs}
-              onChange={(e) => updatePrefs({ gapMs: Number(e.target.value) })}
-              className={selectClass()}
-              title="Khoảng nghỉ giữa các câu để nhại lại"
-              aria-label="Khoảng nghỉ giữa các câu"
-            >
-              {GAP_OPTIONS.map((option) => (
-                <option key={option.value} value={option.value}>
-                  Nghỉ {option.label}
-                </option>
-              ))}
-            </select>
-
-            <button
-              type="button"
-              onClick={() => updatePrefs({ hideHanzi: !prefs.hideHanzi })}
-              aria-pressed={prefs.hideHanzi}
-              className={`h-8 px-2.5 rounded-xl border text-[11px] font-semibold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer ${
-                prefs.hideHanzi
-                  ? "bg-[#24523B] text-white border-[#24523B]"
-                  : "bg-white text-slate-600 border-[#E5E3DF] hover:border-slate-400 hover:text-slate-900"
-              }`}
-              title="Ẩn chữ Hán để nghe trước rồi mới nhìn (đúng kiểu shadowing)"
-            >
-              {prefs.hideHanzi ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-              <span className="hidden sm:inline">{prefs.hideHanzi ? "Đang ẩn chữ" : "Ẩn chữ"}</span>
-            </button>
-
-            <div className="inline-flex items-center h-8 rounded-xl border border-[#E5E3DF] bg-white divide-x divide-[#E5E3DF] overflow-hidden shadow-2xs shrink-0 ml-auto">
-              <button
-                type="button"
-                onClick={() => goToSentence(activeIdx - 1)}
-                disabled={activeIdx === 0}
-                className="h-full px-2 flex items-center justify-center text-slate-600 hover:bg-[#FAF9F6] hover:text-slate-900 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
-                aria-label="Câu trước"
-                title="Câu trước"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <span className="h-full px-2 flex items-center text-[11px] font-mono font-bold text-slate-700 whitespace-nowrap">
-                {sentences.length > 0 ? `${activeIdx + 1}/${sentences.length}` : "0/0"}
-              </span>
-              <button
-                type="button"
-                onClick={() => goToSentence(activeIdx + 1)}
-                disabled={sentences.length === 0 || activeIdx >= sentences.length - 1}
-                className="h-full px-2 flex items-center justify-center text-slate-600 hover:bg-[#FAF9F6] hover:text-slate-900 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
-                aria-label="Câu tiếp theo"
-                title="Câu tiếp theo"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* Hàng 2: số đoạn · độ phủ từ vựng · công cụ AI */}
-          <div className="flex items-center gap-1.5 flex-wrap">
-            <div className="inline-flex items-center p-0.5 h-8 rounded-xl border border-[#E5E3DF] bg-[#EFECE6]/70 shrink-0">
-              {PARAGRAPH_COUNT_OPTIONS.map((count) => (
+            <div className="flex items-center gap-1.5 shrink-0">
+              {/* Nút cài đặt: ẩn chữ · tốc độ · nghỉ · luyện gõ.
+                  Popup neo vào cạnh phải của cả thanh (thanh sticky là gốc định vị)
+                  để không bao giờ tràn lệch khỏi màn hình hẹp. */}
+              <div ref={settingsRef}>
                 <button
-                  key={count}
                   type="button"
-                  onClick={() => updatePrefs({ paragraphCount: count })}
-                  aria-pressed={prefs.paragraphCount === count}
-                  className={`h-full px-2.5 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
-                    prefs.paragraphCount === count
-                      ? "bg-white text-slate-900 shadow-2xs font-bold"
-                      : "text-slate-500 hover:text-slate-900"
+                  onClick={() => setIsSettingsOpen((v) => !v)}
+                  aria-expanded={isSettingsOpen}
+                  aria-label="Cài đặt shadowing"
+                  title="Cài đặt: ẩn chữ, tốc độ, nghỉ giữa câu, luyện gõ"
+                  className={`h-8 w-8 rounded-xl border transition-all flex items-center justify-center shadow-2xs cursor-pointer ${
+                    isSettingsOpen || prefs.hideHanzi || prefs.showTyping
+                      ? "bg-[#24523B] text-white border-[#24523B]"
+                      : "bg-white text-slate-500 border-[#E5E3DF] hover:text-slate-900 hover:border-slate-400"
                   }`}
-                  title={`Đoạn văn gồm ${count} đoạn`}
                 >
-                  {count} đoạn
+                  <SlidersHorizontal className="w-4 h-4" />
                 </button>
-              ))}
-            </div>
 
-            {coverage && (
-              <>
-                <span
-                  className={`h-8 px-2.5 rounded-xl border text-[11px] font-bold inline-flex items-center gap-1 ${
-                    missingRequiredCount === 0
-                      ? "bg-emerald-50 border-emerald-200 text-emerald-700"
-                      : "bg-amber-50 border-amber-200 text-amber-700"
-                  }`}
-                  title={`Từ khoá bắt buộc của bài ${lessonIdx + 1}`}
+                {isSettingsOpen && (
+                  <div className="absolute right-3 top-full mt-1 z-30 w-56 rounded-2xl border border-[#E5E3DF] bg-white shadow-xl p-2 space-y-1">
+                    <button
+                      type="button"
+                      onClick={() => updatePrefs({ hideHanzi: !prefs.hideHanzi })}
+                      aria-pressed={prefs.hideHanzi}
+                      className={`w-full h-9 px-2.5 rounded-xl flex items-center justify-between gap-2 text-xs font-semibold transition-colors cursor-pointer ${
+                        prefs.hideHanzi
+                          ? "bg-[#24523B] text-white"
+                          : "text-slate-700 hover:bg-[#FAF9F6]"
+                      }`}
+                    >
+                      <span className="flex items-center gap-2">
+                        {prefs.hideHanzi ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                        Ẩn chữ Hán
+                      </span>
+                      <span
+                        className={`text-[10px] font-bold ${
+                          prefs.hideHanzi ? "text-white/80" : "text-slate-400"
+                        }`}
+                      >
+                        {prefs.hideHanzi ? "Đang bật" : "Tắt"}
+                      </span>
+                    </button>
+
+                    <div className="flex items-center justify-between gap-2 h-9 px-2.5 rounded-xl">
+                      <span className="text-xs font-semibold text-slate-700 shrink-0">Tốc độ đọc</span>
+                      <select
+                        value={prefs.rate}
+                        onChange={(e) => updatePrefs({ rate: Number(e.target.value) })}
+                        className={selectClass()}
+                        title="Tốc độ đọc"
+                        aria-label="Tốc độ đọc"
+                      >
+                        {RATE_OPTIONS.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="flex items-center justify-between gap-2 h-9 px-2.5 rounded-xl">
+                      <span className="text-xs font-semibold text-slate-700 shrink-0">Nghỉ giữa câu</span>
+                      <select
+                        value={prefs.gapMs}
+                        onChange={(e) => updatePrefs({ gapMs: Number(e.target.value) })}
+                        className={selectClass()}
+                        title="Khoảng nghỉ giữa các câu để nhại lại"
+                        aria-label="Khoảng nghỉ giữa các câu"
+                      >
+                        {GAP_OPTIONS.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => updatePrefs({ showTyping: !prefs.showTyping })}
+                      aria-pressed={prefs.showTyping}
+                      className={`w-full h-9 px-2.5 rounded-xl flex items-center justify-between gap-2 text-xs font-semibold transition-colors cursor-pointer ${
+                        prefs.showTyping
+                          ? "bg-[#24523B] text-white"
+                          : "text-slate-700 hover:bg-[#FAF9F6]"
+                      }`}
+                    >
+                      <span className="flex items-center gap-2">
+                        <Keyboard className="w-3.5 h-3.5" />
+                        Luyện gõ
+                      </span>
+                      <span
+                        className={`text-[10px] font-bold ${
+                          prefs.showTyping ? "text-white/80" : "text-slate-400"
+                        }`}
+                      >
+                        {prefs.showTyping ? "Đang bật" : "Tắt"}
+                      </span>
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <div className="inline-flex items-center h-8 rounded-xl border border-[#E5E3DF] bg-white divide-x divide-[#E5E3DF] overflow-hidden shadow-2xs shrink-0">
+                <button
+                  type="button"
+                  onClick={() => goToSentence(activeIdx - 1)}
+                  disabled={activeIdx === 0}
+                  className="h-full px-2 flex items-center justify-center text-slate-600 hover:bg-[#FAF9F6] hover:text-slate-900 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+                  aria-label="Câu trước"
+                  title="Câu trước"
                 >
-                  {missingRequiredCount === 0 ? (
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                  ) : (
-                    <AlertTriangle className="w-3.5 h-3.5" />
-                  )}
-                  Bài {lessonIdx + 1}: {coverage.required.usedCount}/{coverage.required.total}
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <span className="h-full px-2 flex items-center text-[11px] font-mono font-bold text-slate-700 whitespace-nowrap">
+                  {sentences.length > 0 ? `${activeIdx + 1}/${sentences.length}` : "0/0"}
                 </span>
-
-                {review.length > 0 && (
-                  <span
-                    className={`h-8 px-2.5 rounded-xl border text-[11px] font-bold inline-flex items-center gap-1 ${
-                      missingReviewCount === 0
-                        ? "bg-emerald-50 border-emerald-200 text-emerald-700"
-                        : "bg-white border-[#E5E3DF] text-slate-600"
-                    }`}
-                    title={`Từ vựng tích luỹ của ${lessonIdx} bài trước`}
-                  >
-                    Ôn bài 1–{lessonIdx}: {coverage.review.usedCount}/{coverage.review.total} (
-                    {coverage.review.percent}%)
-                  </span>
-                )}
-
-                {missingReviewCount > 0 && (
-                  <button
-                    type="button"
-                    onClick={handleTopUpReview}
-                    disabled={isRepairing || isGenerating}
-                    className="h-8 px-2.5 rounded-xl border border-[#E5E3DF] bg-white text-[11px] font-semibold text-slate-700 hover:border-slate-400 hover:text-slate-900 disabled:opacity-40 transition-all inline-flex items-center gap-1.5 shadow-2xs cursor-pointer"
-                    title="Nhờ AI viết lại để lồng thêm các từ còn thiếu (tốn thêm 1 lượt gọi model)"
-                  >
-                    {isRepairing ? (
-                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                    ) : (
-                      <Wand2 className="w-3.5 h-3.5" />
-                    )}
-                    <span>{isRepairing ? "Đang bổ sung..." : "Bổ sung từ thiếu"}</span>
-                  </button>
-                )}
-              </>
-            )}
-
-            <button
-              type="button"
-              onClick={() => handleGenerate(true)}
-              disabled={isGenerating || isRepairing}
-              className="h-8 px-2.5 rounded-xl border border-[#E5E3DF] bg-white text-[11px] font-semibold text-slate-700 hover:border-slate-400 hover:text-slate-900 disabled:opacity-40 transition-all inline-flex items-center gap-1.5 shadow-2xs cursor-pointer"
-              title="Nhờ AI viết lại đoạn văn mới cho bài này"
-            >
-              {isGenerating ? (
-                <Loader2 className="w-3.5 h-3.5 animate-spin" />
-              ) : (
-                <RefreshCw className="w-3.5 h-3.5" />
-              )}
-              <span className="hidden sm:inline">{isGenerating ? "Đang viết..." : "Tạo lại"}</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => updatePrefs({ showTyping: !prefs.showTyping })}
-              aria-pressed={prefs.showTyping}
-              className={`h-8 px-2.5 rounded-xl border text-[11px] font-semibold transition-all inline-flex items-center gap-1.5 shadow-2xs cursor-pointer ${
-                prefs.showTyping
-                  ? "bg-[#24523B] text-white border-[#24523B]"
-                  : "bg-white text-slate-600 border-[#E5E3DF] hover:border-slate-400 hover:text-slate-900"
-              }`}
-              title="Bật ô gõ để vừa nhại vừa gõ lại câu đang nghe"
-            >
-              <Keyboard className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Luyện gõ</span>
-            </button>
+                <button
+                  type="button"
+                  onClick={() => goToSentence(activeIdx + 1)}
+                  disabled={sentences.length === 0 || activeIdx >= sentences.length - 1}
+                  className="h-full px-2 flex items-center justify-center text-slate-600 hover:bg-[#FAF9F6] hover:text-slate-900 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+                  aria-label="Câu tiếp theo"
+                  title="Câu tiếp theo"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -669,6 +634,26 @@ LLM_BASE_URL=`}
               )}
               . Pinyin được tính ngay trên máy, không phụ thuộc model.
             </p>
+            <div className="flex justify-center">
+              <div className="inline-flex items-center p-0.5 h-8 rounded-xl border border-[#E5E3DF] bg-[#EFECE6]/70">
+                {PARAGRAPH_COUNT_OPTIONS.map((count) => (
+                  <button
+                    key={count}
+                    type="button"
+                    onClick={() => updatePrefs({ paragraphCount: count })}
+                    aria-pressed={prefs.paragraphCount === count}
+                    className={`h-full px-3 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
+                      prefs.paragraphCount === count
+                        ? "bg-white text-slate-900 shadow-2xs font-bold"
+                        : "text-slate-500 hover:text-slate-900"
+                    }`}
+                    title={`Đoạn văn gồm ${count} đoạn`}
+                  >
+                    {count} đoạn
+                  </button>
+                ))}
+              </div>
+            </div>
             <button
               type="button"
               onClick={() => handleGenerate(false)}
@@ -706,6 +691,73 @@ LLM_BASE_URL=`}
                 </span>
               )}
             </div>
+
+            {/* Độ phủ từ vựng + công cụ AI của đoạn văn này (cuộn theo nội dung) */}
+            {coverage && (
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <span
+                  className={`h-7 px-2.5 rounded-xl border text-[11px] font-bold inline-flex items-center gap-1 ${
+                    missingRequiredCount === 0
+                      ? "bg-emerald-50 border-emerald-200 text-emerald-700"
+                      : "bg-amber-50 border-amber-200 text-amber-700"
+                  }`}
+                  title={`Từ khoá bắt buộc của bài ${lessonIdx + 1}`}
+                >
+                  {missingRequiredCount === 0 ? (
+                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                  ) : (
+                    <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
+                  )}
+                  Bài {lessonIdx + 1}: {coverage.required.usedCount}/{coverage.required.total}
+                </span>
+
+                {review.length > 0 && (
+                  <span
+                    className={`h-7 px-2.5 rounded-xl border text-[11px] font-bold inline-flex items-center ${
+                      missingReviewCount === 0
+                        ? "bg-emerald-50 border-emerald-200 text-emerald-700"
+                        : "bg-white border-[#E5E3DF] text-slate-600"
+                    }`}
+                    title={`Từ vựng tích luỹ của ${lessonIdx} bài trước`}
+                  >
+                    Ôn bài 1–{lessonIdx}: {coverage.review.usedCount}/{coverage.review.total} (
+                    {coverage.review.percent}%)
+                  </span>
+                )}
+
+                {missingReviewCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={handleTopUpReview}
+                    disabled={isRepairing || isGenerating}
+                    className="h-7 px-2.5 rounded-xl border border-[#E5E3DF] bg-white text-[11px] font-semibold text-slate-700 hover:border-slate-400 hover:text-slate-900 disabled:opacity-40 transition-all inline-flex items-center gap-1.5 shadow-2xs cursor-pointer"
+                    title="Nhờ AI viết lại để lồng thêm các từ còn thiếu (tốn thêm 1 lượt gọi model)"
+                  >
+                    {isRepairing ? (
+                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    ) : (
+                      <Wand2 className="w-3.5 h-3.5" />
+                    )}
+                    {isRepairing ? "Đang bổ sung..." : "Bổ sung từ thiếu"}
+                  </button>
+                )}
+
+                <button
+                  type="button"
+                  onClick={() => handleGenerate(true)}
+                  disabled={isGenerating || isRepairing}
+                  className="h-7 px-2.5 rounded-xl border border-[#E5E3DF] bg-white text-[11px] font-semibold text-slate-700 hover:border-slate-400 hover:text-slate-900 disabled:opacity-40 transition-all inline-flex items-center gap-1.5 shadow-2xs cursor-pointer ml-auto"
+                  title="Nhờ AI viết đoạn văn mới cho bài này"
+                >
+                  {isGenerating ? (
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  ) : (
+                    <RefreshCw className="w-3.5 h-3.5" />
+                  )}
+                  {isGenerating ? "Đang viết..." : "Tạo lại"}
+                </button>
+              </div>
+            )}
 
             {/* Lỗi (nếu có) */}
             {genError && (
